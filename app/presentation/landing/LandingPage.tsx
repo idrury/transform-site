@@ -14,19 +14,22 @@ export function LandingPage({}: LandingPageProps) {
 
   return (
     <div>
-      <div className="vh50 boxedAccent col middle center">
-        <h1>Transform Creative</h1>
-        <h4 className="mt3">
+      <div className="vh50 boxedAccent col middle center outline">
+        <div>
+          <img  style={{ height: 200, width: 200 }} src="app/assets/transform-icon-white.png" />
+        </div>
+        <h1 className="mt3" style={{color: 'var(--background)'}}>Transform Creative</h1>
+        <h4 className="mt3"  style={{color: 'var(--background)'}}>
           Impactful digital content for Aussies doing good stuff.
         </h4>
       </div>
       <div className="col middle center vh80">
         <h2 className="mb3">
-          We work with brands to improve your online presence accross
+          We work with brands (like these) to improve your online presence accross
           every digital medium.
         </h2>
         <div className="mt3">
-            <BrandScroller />
+          <BrandScroller />
         </div>
       </div>
       <div className="col middle center mt2">

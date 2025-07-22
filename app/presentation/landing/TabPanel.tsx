@@ -12,6 +12,7 @@ export interface TabPanelProps {}
 const tabStyles = {
   borderRadius: "10px 10px 0 0",
   padding: "30px 0",
+  boxShadow: "0 0 0 2px var(--text)"
 };
 
 /******************************

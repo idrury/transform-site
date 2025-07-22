@@ -11,13 +11,28 @@ const BRANDS = [
     slug: "new-brand-1",
   },
   {
+    src: "https://www.pix-star.com/blog/wp-content/uploads/2021/05/digital-photo-frames.jpg",
+    name: "New brand 2",
+    slug: "new-brand-2",
+  },
+  {
+    src: "https://imgv3.fotor.com/images/blog-cover-image/a-shadow-of-a-boy-carrying-the-camera-with-red-sky-behind.jpg",
+    name: "New brand 3",
+    slug: "new-brand-1",
+  },
+    {
     src: "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
     name: "New brand 1",
     slug: "new-brand-1",
   },
   {
-    src: "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-    name: "New brand 1",
+    src: "https://www.pix-star.com/blog/wp-content/uploads/2021/05/digital-photo-frames.jpg",
+    name: "New brand 2",
+    slug: "new-brand-2",
+  },
+  {
+    src: "https://imgv3.fotor.com/images/blog-cover-image/a-shadow-of-a-boy-carrying-the-camera-with-red-sky-behind.jpg",
+    name: "New brand 3",
     slug: "new-brand-1",
   },
 ];
@@ -32,34 +47,36 @@ export function BrandScroller({}: BrandScrollerProps) {
 
   return (
     <div
-      className="grid w100 middle center"
+      className="grid w100 middle"
       style={{
         gridTemplateColumns: "repeat(auto-fit, minmax(350px, 450px))",
+        overflow: "hidden"
       }}
     >
       {BRANDS.map((brand, idx) => (
         <div
-          className="container boxed"
+          className="container boxed outline"
           key={idx}
-          style={{ width: 500, height: 300,overflow: "hidden" }}
+          style={{ width: 500, height: 300, overflow: "hidden" }}
           onMouseEnter={() => setOverlay(idx)}
           onMouseLeave={() => setOverlay(undefined)}
         >
           {overlay == idx && (
-            <div className="overlayDiv" style={{opacity: 0.8}}>
-            </div>
+            <div
+              className="overlayDiv"
+              style={{ opacity: 0.8 }}
+            ></div>
           )}
           {overlay == idx && (
-            <div className="overlayDiv mediumFade" style={{background: 'none', zIndex: 20}}>
+            <div
+              className="overlayDiv mediumFade"
+              style={{ background: "none", zIndex: 20 }}
+            >
               <p>{brand.name}</p>
             </div>
           )}
 
-              <img
-              style={{maxWidth: "100%"}}
-                src={brand.src}
-              />
-
+          <img style={{ maxWidth: "100%" }} src={brand.src} />
         </div>
       ))}
     </div>

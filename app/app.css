@@ -5,8 +5,8 @@
   background-repeat: no-repeat;
 
   color-scheme: light;
-  --text: #e6e6e6;
-  --background: #111111;
+  --text: #191919;
+  --background: #E5E5E5;
   --smallAccent: #333333;
   --mediumAccent: #555555;
   --highAccent: #999999;
@@ -126,6 +126,7 @@ img {
     min-width: 100%;
     min-height: 100%
 }
+
 /********* Basic elements ***********/
 input {
   font-family: "Roboto", sans-serif;
@@ -482,7 +483,7 @@ th {
 
 .outline {
   border-radius: var(--borderRadius);
-  border: 1px solid var(--highAccent);
+  border: 2px solid var(--text);
   transition: 0.2s;
 }
 
