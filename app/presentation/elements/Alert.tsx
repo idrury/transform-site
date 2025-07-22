@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { useEffect, useRef } from "react";
 import { Transition, TransitionGroup } from "react-transition-group";
 import type { ActivatableElement } from "~/data/CommonTypes";
+import { Icon } from "./Icon";
 
 interface SavedModalProps extends ActivatableElement {
   timeout?: number;
@@ -33,7 +34,6 @@ export default function Alert({
       return () => clearTimeout(timer);
     }
   }, [active]);
-
 
   const handleEnter = () => {
     gsap.to(transitionRef?.current, {
@@ -76,23 +76,19 @@ export default function Alert({
           width: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          top: -260,
+          top: -280,
         }}
       >
         <div className="row between middle p1">
-          <IonIcon
+          <Icon
             className=""
             name={`${
               state == "success"
                 ? "checkmark-circle-outline"
                 : "close-circle-outline"
             }`}
-            style={{
-              width: 20,
-              color: `${
-                state == "fail" ? "var(--text)" : "var(--text)"
-              }`,
-            }}
+            size={20}
+            color={state == "fail" ? "var(--text)" : "var(--text)"}
           />
 
           <div>

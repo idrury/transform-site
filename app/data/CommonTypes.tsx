@@ -3,6 +3,7 @@
  */
 
 import type { Session } from "@supabase/supabase-js";
+import { NavigateFunction } from "react-router";
 
 export type PopAlertFn = (
   header: string,
@@ -25,6 +26,7 @@ export interface InputOption {
 export interface SharedContextProps {
   popAlert: PopAlertFn;
   session: Session | null;
+  navigate: NavigateFunction;
 }
 
 /** An item that can be shown or hidden */

@@ -5,10 +5,22 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useNavigate,
 } from "react-router";
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import {
+  AlertType,
+  PopAlertFn,
+  SharedContextProps,
+} from "./data/CommonTypes";
+import { supabaseSignOut } from "./database/Auth";
+import Alert from "./presentation/elements/Alert";
+import { useEffect, useState } from "react";
+import { supabase } from "./database/SupabaseClient";
+import { Session } from "@supabase/supabase-js";
+import { NavBar } from "./presentation/elements/NavBar";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -23,12 +35,26 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+export function HydrateFallback() {
+  return (
+    <div
+      style={{ width: "100%", height: "100vh" }}
+      className="col middle center"
+    >
+      Loading...
+    </div>
+  );
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        />
         <Meta />
         <Links />
       </head>
@@ -42,7 +68,59 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  const [alert, setAlert] = useState<AlertType>({ active: false });
+  const [session, setSession] = useState<Session | null>();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    supabase.auth.onAuthStateChange((_event, session) => {
+      if (_event == "SIGNED_IN" || _event == "TOKEN_REFRESHED") {
+        //Perform sign in actions here
+      }
+      setSession(session);
+    });
+  }, []);
+
+  /** Activate the saved popup box */
+  const popAlert: PopAlertFn = (header, body, isError = false) => {
+    setAlert({
+      active: true,
+      header: header,
+      body: body,
+      state: isError ? "fail" : "success",
+    });
+  };
+
+  return (
+    <>
+      <NavBar
+        context={
+          {
+            popAlert: popAlert,
+            session,
+            navigate,
+          } as SharedContextProps
+        }
+      />
+      <Outlet
+        context={
+          {
+            popAlert: popAlert,
+            session,
+            navigate,
+          } as SharedContextProps
+        }
+      />
+
+      <Alert
+        header={alert.header}
+        body={alert.body}
+        active={alert.active}
+        onClose={() => setAlert({ active: false })}
+        state={alert.state}
+      />
+    </>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

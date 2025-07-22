@@ -6,7 +6,8 @@ import { IoniconName } from "~/data/Ionicons";
 export interface IconProps {
   name: IoniconName;
   size?: number;
-  isClickable?:boolean;
+  color?:string;
+  onClick?: () => void;
   className?: string;
 }
 
@@ -14,15 +15,27 @@ export interface IconProps {
  * Icon component
  * @todo Create description
  */
-export function Icon({ name, className="", size=10,isClickable=false }: IconProps) {
+export function Icon({
+  name,
+  color="var(--text)",
+  className = "",
+  size = 12,
+  onClick
+}: IconProps) {
   const context: SharedContextProps = useOutletContext();
 
   return (
     <div>
       <IonIcon
+      onClick={() => onClick && onClick()}
         name={name}
-        className={className}
-        style={{ height: `${size}pt`, width: `${size}pt` }}
+        className={`${onClick && "clickable"} ${className}`}
+        style={{
+          height: `${size}pt`,
+          width: `${size}pt`,
+          display: "flex",
+          color: color
+        }}
       />
     </div>
   );
