@@ -15,7 +15,6 @@ import {
   PopAlertFn,
   SharedContextProps,
 } from "./data/CommonTypes";
-import { supabaseSignOut } from "./database/Auth";
 import Alert from "./presentation/elements/Alert";
 import { useEffect, useState } from "react";
 import { supabase } from "./database/SupabaseClient";
@@ -93,15 +92,6 @@ export default function App() {
 
   return (
     <>
-      <NavBar
-        context={
-          {
-            popAlert: popAlert,
-            session,
-            navigate,
-          } as SharedContextProps
-        }
-      />
       <Outlet
         context={
           {

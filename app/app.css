@@ -51,6 +51,16 @@
   color: var(--text);
 }
 
+@font-face {
+  font-family: "Sifon";
+  src: local("SIFONN_PRO"), url(./assets/SIFONN_PRO.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Placard";
+  src: local("PlacardNext-Wide"), url(./assets/PlacardNext-Wide.otf) format("opentype");
+}
+
 body {
   background: linear-gradient(to right, #ffffff, #dddddd);
   margin: 0;
@@ -66,9 +76,9 @@ p {
 }
 
 h1 {
+  font-family: "Sifon", sans-serif;
   text-align: start;
   color: var(--text);
-  font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-size: 40pt;
   line-height: 1;
@@ -77,15 +87,15 @@ h1 {
 }
 
 h2 {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700 !important;
+  font-family: "Placard", sans-serif;
+  font-weight: 400 !important;
   margin: 0;
   font-size: 25pt;
   color: var(--text);
 }
 
 h3 {
-  font-family: "Roboto", sans-serif;
+  font-family: "Placard", sans-serif;
   font-weight: 800;
   font-size: 10pt;
   margin: 0;
@@ -93,7 +103,7 @@ h3 {
 }
 
 h4 {
-  font-family: "Roboto", sans-serif;
+  font-family: "Placard", sans-serif;
   padding: 0;
   margin: 0;
   font-size: 15pt;
