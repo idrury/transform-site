@@ -5,12 +5,14 @@
   background-repeat: no-repeat;
 
   color-scheme: light;
-  --text: #1e1e1e;
-  --background: #ffffff;
-  --smallAccent: #efefef;
-  --mediumAccent: #cecece;
-  --highAccent: #3b3b3b;
-  --primaryColor: #c8fa88;
+  --text: #e6e6e6;
+  --background: #111111;
+  --smallAccent: #333333;
+  --mediumAccent: #555555;
+  --highAccent: #999999;
+  --primaryColor: #5d7e5a;
+  --secondaryColor: #de976f;
+  --thirdColor: #94bc91;
   --primaryGradient: linear-gradient(
     to left,
     var(--primaryColor),
@@ -21,7 +23,7 @@
   --dangerColor: #ed7373;
 
   --nav-bar-spacing: 300px;
-  --borderRadius: 10px;
+  --borderRadius: 25px;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -62,7 +64,7 @@
 }
 
 body {
-  background: linear-gradient(to right, #ffffff, #dddddd);
+  background: var(--background);
   margin: 0;
 }
 
@@ -80,7 +82,7 @@ h1 {
   text-align: start;
   color: var(--text);
   font-weight: 700;
-  font-size: 40pt;
+  font-size: 60pt;
   line-height: 1;
 
   margin: 0;
@@ -118,6 +120,12 @@ label {
   font-size: 10pt !important;
 }
 
+img {
+  border-radius: var(--borderRadius);
+  flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
+}
 /********* Basic elements ***********/
 input {
   font-family: "Roboto", sans-serif;
@@ -387,6 +395,31 @@ th {
   transition: 0.2s;
 }
 
+.overlayDiv {
+  position: absolute; /* Positions the overlay relative to the container */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primaryColor); /* Example: semi-transparent red */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20; /* Ensures the overlay is on top */
+  backdrop-filter: blur(3px);
+}
+
+.container {
+  position: relative; /* Essential for positioning the overlay */
+  width: 200px;
+  height: 100px;
+  background-color: lightblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /************************************
 ************ Display ***********
 *************************************/
@@ -509,7 +542,7 @@ th {
 }
 
 .clickable:hover {
-  background-color: var(--highAccent);
+  background-color: var(--primaryColor);
   opacity: 0.7;
   transition: 0.3s;
   transform: scale(1.02);
@@ -691,15 +724,15 @@ Padding
 }
 
 .p1 {
-  padding: 5px !important;
+  padding: 5px ;
 }
 
 .p2 {
-  padding: 10px !important;
+  padding: 10px ;
 }
 
 .p3 {
-  padding: 40px !important;
+  padding: 40px ;
 }
 
 .pr1 {
