@@ -47,15 +47,16 @@ export function BrandScroller({}: BrandScrollerProps) {
 
   return (
     <div
-      className="grid w100 middle"
+      className="row w100 middle"
       style={{
         gridTemplateColumns: "repeat(auto-fit, minmax(350px, 450px))",
-        overflow: "hidden"
+        overflowX: "clip",
+        maxWidth: "100vw"
       }}
     >
       {BRANDS.map((brand, idx) => (
         <div
-          className="container boxed outline"
+          className="container"
           key={idx}
           style={{ width: 500, height: 300, overflow: "hidden" }}
           onMouseEnter={() => setOverlay(idx)}

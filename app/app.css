@@ -6,7 +6,7 @@
 
   color-scheme: light;
   --text: #191919;
-  --background: #E5E5E5;
+  --background: #e5e5e5;
   --smallAccent: #333333;
   --mediumAccent: #555555;
   --highAccent: #999999;
@@ -55,12 +55,16 @@
 
 @font-face {
   font-family: "Sifon";
-  src: local("SIFONN_PRO"), url(./assets/SIFONN_PRO.otf) format("opentype");
+  src: local("SIFONN_PRO"),
+    url(./assets/SIFONN_PRO.otf)
+      format("opentype");
 }
 
 @font-face {
   font-family: "Placard";
-  src: local("PlacardNext-Wide"), url(./assets/PlacardNext-Wide.otf) format("opentype");
+  src: local("PlacardNext-Wide"),
+    url(./assets/PlacardNext-Wide.otf)
+      format("opentype");
 }
 
 body {
@@ -90,10 +94,12 @@ h1 {
 
 h2 {
   font-family: "Placard", sans-serif;
-  font-weight: 400 !important;
+  font-weight: 400;
   margin: 0;
   font-size: 25pt;
+  line-height: 1.2;
   color: var(--text);
+  color: var(--background);
 }
 
 h3 {
@@ -110,7 +116,8 @@ h4 {
   margin: 0;
   font-size: 15pt;
   font-weight: bold;
-  color: var(--text);
+  line-height: 1.5;
+  color: var(--background);
 }
 
 label {
@@ -123,8 +130,8 @@ label {
 img {
   border-radius: var(--borderRadius);
   flex-shrink: 0;
-    min-width: 100%;
-    min-height: 100%
+  min-width: 100%;
+  min-height: 100%;
 }
 
 /********* Basic elements ***********/
@@ -150,7 +157,8 @@ input {
 input:focus {
   outline: none;
   color: var(--text);
-  box-shadow: 0 0 0px 3px var(--primaryColor) inset;
+  box-shadow: 0 0 0px 3px var(--primaryColor)
+    inset;
 
   background-color: var(--background);
   transition: 0.25s;
@@ -182,7 +190,8 @@ textarea {
 textarea:focus {
   outline: none;
   color: var(--text);
-  box-shadow: 0 0 0px 3px var(--primaryColor) inset;
+  box-shadow: 0 0 0px 3px var(--primaryColor)
+    inset;
 
   background-color: var(--background);
   transition: 0.25s;
@@ -402,7 +411,9 @@ th {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--primaryColor); /* Example: semi-transparent red */
+  background-color: var(
+    --primaryColor
+  ); /* Example: semi-transparent red */
   color: white;
   display: flex;
   justify-content: center;
@@ -443,7 +454,9 @@ th {
 }
 
 .boxedAccent:hover {
-  background-color: var(--primaryColor) !important;
+  background-color: var(
+    --primaryColor
+  ) !important;
 }
 
 .boxedSecondary {
@@ -457,7 +470,9 @@ th {
 }
 
 .boxedSecondary:hover {
-  background-color: var(--secondaryColor) !important;
+  background-color: var(
+    --secondaryColor
+  ) !important;
 }
 
 .boxedDark {
@@ -544,13 +559,15 @@ th {
 
 .clickable:hover {
   background-color: var(--primaryColor);
-  opacity: 0.7;
+  opacity: 1;
   transition: 0.3s;
-  transform: scale(1.02);
+  transform: translateY(5px);
 }
 
 .highlight {
-  background-color: var(--primaryGradient) !important;
+  background-color: var(
+    --primaryGradient
+  ) !important;
   color: #222222 !important;
 }
 
@@ -725,15 +742,15 @@ Padding
 }
 
 .p1 {
-  padding: 5px ;
+  padding: 5px;
 }
 
 .p2 {
-  padding: 10px ;
+  padding: 10px;
 }
 
 .p3 {
-  padding: 40px ;
+  padding: 40px;
 }
 
 .pr1 {
@@ -832,7 +849,10 @@ Padding
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, 350px)
+  );
   gap: 10px;
 }
 
