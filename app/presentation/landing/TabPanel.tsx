@@ -45,7 +45,7 @@ export function TabPanel({}: TabPanelProps) {
               color={"var(--background)"}
               size={23}
               className="mr2"
-            />{" "}
+            />
             Media
           </h4>
         </div>
