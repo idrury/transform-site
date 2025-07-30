@@ -1,5 +1,5 @@
-import './CircularGallery.css'
-
+import { useEffect, useState } from "react";
+import "./CircularGallery.css";
 
 interface CircularGalleryProps {
   images: { image: string; text: string }[];
@@ -8,44 +8,109 @@ interface CircularGalleryProps {
 export default function CircularGallery({
   images,
 }: CircularGalleryProps) {
+  const [hoveredImage, setHoveredImage] =
+    useState<number>();
 
-  const scrollers = document.querySelectorAll(".scroller");
+  useEffect(() => {
+    const scrollers =
+      document.querySelectorAll(".scroller");
 
-// If a user hasn't opted in for recuded motion, then we add the animation
-if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  addAnimation();
-}
+    if (
+      !window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches
+    ) {
+      scrollers.forEach((scroller) => {
+        const scrollerInner =
+          scroller.querySelector(
+            ".scroller__inner"
+          );
 
-function addAnimation() {
-  scrollers.forEach((scroller) => {
-    // add data-animated="true" to every `.scroller` on the page
-    scroller.setAttribute("data-animated", true);
+        if (!scrollerInner) return;
 
-    // Make an array from the elements within `.scroller-inner`
-    const scrollerInner = scroller.querySelector(".scroller__inner");
-    const scrollerContent = Array.from(scrollerInner.children);
+        const scrollerContent = Array.from(
+          scrollerInner.children
+        );
 
-    // For each item in the array, clone it
-    // add aria-hidden to it
-    // add it into the `.scroller-inner`
-    scrollerContent.forEach((item) => {
-      const duplicatedItem = item.cloneNode(true);
-      duplicatedItem.setAttribute("aria-hidden", true);
-      scrollerInner.appendChild(duplicatedItem);
-    });
-  });
-}
+        scrollerContent.forEach((item) => {
+          const duplicatedItem = item.cloneNode(
+            true
+          ) as HTMLElement;
+          duplicatedItem.setAttribute(
+            "aria-hidden",
+            "true"
+          );
+          scrollerInner.appendChild(
+            duplicatedItem
+          );
+        });
+      });
+    }
 
+    // Cleanup function to remove animation and duplicated nodes
+    return () => {
+      scrollers.forEach((scroller) => {
+        scroller.removeAttribute("data-animated");
+        const scrollerInner =
+          scroller.querySelector(
+            ".scroller__inner"
+          );
+        if (!scrollerInner) return;
+        // Remove all nodes with aria-hidden="true"
+        Array.from(
+          scrollerInner.children
+        ).forEach((child) => {
+          if (
+            (child as HTMLElement).getAttribute(
+              "aria-hidden"
+            ) === "true"
+          ) {
+            scrollerInner.removeChild(child);
+          }
+        });
+      });
+    };
+  }, [images]);
 
   return (
     <div
-      className="scroller"
-            data-direction="right"
-      data-speed="slow"
+      className={`scroller scroll slow`}
     >
-      <div className="scroller__inner" >
-        {images.map((img) => (
-          <img style={{height: 'var(--imageHeight)'}} src={`${img.image}`} alt="" />
+      <div className="scroller__inner">
+        {images.map((img, id) => (
+          <div
+            className="container clickable"
+            onMouseOver={() =>
+              setHoveredImage(id)
+            }
+            onMouseOut={() =>
+              setHoveredImage(undefined)
+            }
+          >
+            {hoveredImage == id && (
+              <div className="">
+                <h3
+                  style={{ zIndex: 20 }}
+                  className="overlayDiv mediumFade"
+                >
+                  {img.text}
+                </h3>
+                <div
+                  className="overlayDiv"
+                  style={{
+                    opacity: 0.3,
+                    zIndex: 10,
+                    background: "var(--smallAccent)"
+                  }}
+                />
+              </div>
+            )}
+            <img
+              style={{ width: 400, height: 250,zIndex:1 }}
+              src={`${img.image}`}
+              alt={`image of ${img.text}`}
+            />
+          </div>
         ))}
       </div>
     </div>

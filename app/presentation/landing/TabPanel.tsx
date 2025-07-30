@@ -26,7 +26,7 @@ export function TabPanel({}: TabPanelProps) {
     useOutletContext();
 
   return (
-    <div className="ml2 mr2">
+    <div className="">
       <div className="middle between row">
         <div
           className="boxed w100 p2 clickable"
@@ -50,30 +50,44 @@ export function TabPanel({}: TabPanelProps) {
           </h4>
         </div>
         <div
-          className="boxed w100 p2 clickable"
+          className="boxed w100 p2 clickable row middle center"
           style={{
             background: tabColors.software,
             ...tabStyles,
           }}
           onClick={() => setPanel("software")}
-        >
+        >  <Icon
+              name="keypad"
+              color={"var(--background)"}
+              size={23}
+              className="mr2"
+            />
           <h4
             style={{ color: "var(--background)" }}
           >
+           
+            
             Software
           </h4>
         </div>
         <div
           onClick={() => setPanel("design")}
-          className="w100 p2 clickable"
+          className="w100 p2 clickable middle center"
           style={{
             background: tabColors.design,
             ...tabStyles,
           }}
         >
+            <Icon
+              name="brush"
+              color={"var(--background)"}
+              size={23}
+              className="mr2"
+            />
           <h4
             style={{ color: "var(--background)" }}
           >
+           
             Design
           </h4>
         </div>

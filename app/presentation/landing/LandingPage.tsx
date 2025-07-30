@@ -26,7 +26,8 @@ export function LandingPage({}: LandingPageProps) {
               }}
             >
               <img
-                style={{ height: 150, width: 50 }}
+              className="mt1"
+                style={{ height: 190, width: 190 }}
                 src="app/assets/transform-icon-white.png"
               />
             </div>
@@ -62,27 +63,67 @@ export function LandingPage({}: LandingPageProps) {
         </div>
       </div>
       <div className="col middle between m3 pt2 pb2">
-        <h2 className="mt3 textCenter mb3" style={{color: 'var(--primaryColor)'}}>
+        <h2
+          className="mt3 textCenter mb3"
+          style={{ color: "var(--primaryColor)" }}
+        >
           We work with Aussie organisations to
-          create content that captivates your audience.
+          create content that captivates your
+          audience.
         </h2>
         <div className="mt3 w100 vh50">
-          <CircularGallery 
-
-          images={[
-      { image: `https://picsum.photos/seed/1/800/600?grayscale`, text: "Bridge long text big img" },
-      { image: `https://picsum.photos/seed/2/800/600?grayscale`, text: "Desk Setup" },
-      { image: `https://picsum.photos/seed/3/800/600?grayscale`, text: "Waterfall" },
-      { image: `https://picsum.photos/seed/4/800/600?grayscale`, text: "Strawberries" },
-      { image: `https://picsum.photos/seed/5/800/600?grayscale`, text: "Deep Diving" },
-      { image: `https://picsum.photos/seed/16/800/600?grayscale`, text: "Train Track" },
-      { image: `https://picsum.photos/seed/17/800/600?grayscale`, text: "Santorini" },
-      { image: `https://picsum.photos/seed/8/800/600?grayscale`, text: "Blurry Lights" },
-      { image: `https://picsum.photos/seed/9/800/600?grayscale`, text: "New York" },
-      { image: `https://picsum.photos/seed/10/800/600?grayscale`, text: "Good Boy" },
-      { image: `https://picsum.photos/seed/21/800/600?grayscale`, text: "Coastline" },
-      { image: `https://picsum.photos/seed/12/800/600?grayscale`, text: "Palm Trees" },
-    ]} />
+          <CircularGallery
+            images={[
+              {
+                image: `https://picsum.photos/seed/1/800/600?grayscale`,
+                text: "Bridge long text big img",
+              },
+              {
+                image: `https://picsum.photos/seed/2/800/600?grayscale`,
+                text: "Desk Setup",
+              },
+              {
+                image: `https://picsum.photos/seed/3/800/600?grayscale`,
+                text: "Waterfall",
+              },
+              {
+                image: `https://picsum.photos/seed/4/800/600?grayscale`,
+                text: "Strawberries",
+              },
+              {
+                image: `https://picsum.photos/seed/5/800/600?grayscale`,
+                text: "Deep Diving",
+              },
+              {
+                image: `https://picsum.photos/seed/16/800/600?grayscale`,
+                text: "Train Track",
+              },
+              {
+                image: `https://picsum.photos/seed/17/800/600?grayscale`,
+                text: "Santorini",
+              },
+              {
+                image: `https://picsum.photos/seed/8/800/600?grayscale`,
+                text: "Blurry Lights",
+              },
+              {
+                image: `https://picsum.photos/seed/9/800/600?grayscale`,
+                text: "New York",
+              },
+              {
+                image: `https://picsum.photos/seed/10/800/600?grayscale`,
+                text: "Good Boy",
+              },
+              {
+                image: `https://picsum.photos/seed/21/800/600?grayscale`,
+                text: "Coastline",
+              },
+              {
+                image: `https://picsum.photos/seed/12/800/600?grayscale`,
+                text: "Palm Trees",
+              },
+            ]}
+          />
         </div>
       </div>
       <div className="col middle center mt2">
