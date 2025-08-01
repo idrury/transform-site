@@ -1,9 +1,10 @@
-:root {
-    --imageHeight: 300px;
-}
 
 .scroller {
   height: 320px;
+}
+
+.scroller img {
+border-radius: 3px;
 }
 
 .scroller__inner {
@@ -15,20 +16,6 @@
 
 .scroller {
   overflow: hidden;
-  -webkit-mask: linear-gradient(
-    90deg,
-    transparent,
-    white 20%,
-    white 80%,
-    transparent
-  );
-  mask: linear-gradient(
-    90deg,
-    transparent,
-    white 20%,
-    white 80%,
-    transparent
-  );
 }
 
 .scroller .scroller__inner {

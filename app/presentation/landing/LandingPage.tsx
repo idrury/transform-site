@@ -1,7 +1,11 @@
 import type { SharedContextProps } from "~/data/CommonTypes";
-import { useOutletContext } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
 import { TabPanel } from "./TabPanel";
 import CircularGallery from "./CircularGallery";
+import { Logo } from "../elements/Logo";
+import { Icon } from "../elements/Icon";
+import { DesignTab } from "./DesignTab";
+import { MediaTab } from "./MediaTab";
 
 export interface LandingPageProps {}
 
@@ -10,67 +14,40 @@ export interface LandingPageProps {}
  * @todo Create description
  */
 export function LandingPage({}: LandingPageProps) {
-  const context: SharedContextProps =
-    useOutletContext();
+  const context: SharedContextProps = useOutletContext();
+  const navigate = useNavigate();
 
   return (
     <div>
-      <div className="vh50 boxedAccent col middle center m2">
-        <div>
-          <div className="row">
-            <div
-              className="mr3"
-              style={{
-                width: "140pt",
-                height: "140pt",
-              }}
-            >
-              <img
-              className="mt1"
-                style={{ height: 190, width: 190 }}
-                src="app/assets/transform-icon-white.png"
-              />
-            </div>
-            <div>
-              <h1
-                className="mt3"
-                style={{
-                  padding: 0,
-                  margin: 0,
-                  color: "var(--background)",
-                  fontSize: "100pt",
-                }}
-              >
-                Transform
-              </h1>
-              <h2
-                style={{
-                  fontWeight: 400,
-                  fontSize: "40pt",
-                  color: "var(--background)",
-                }}
-              >
-                Creative
-              </h2>
-            </div>
-          </div>
-          <h4
-            className="mt3"
-            style={{ color: "var(--background)" }}
+      <div className="vh80 col middle center">
+        <div className="w50 col middle center">
+          <h2
+            className="mt3 textCenter pl3 pr3"
+            style={{ color: "var(--primaryColor)", fontSize: 80 }}
           >
-            Digital content that inspires change
-          </h4>
+            Digital content that inspires change.
+          </h2>
+          <h3 className="p3 textCenter">
+            We work with Aussie organisations to create content that
+            captivates your audience.
+          </h3>
+          <div className="row center w50 m3">
+            <button className="row middle ml2 mr3" onClick={() => navigate("#media")}>
+              <Icon name="film-outline" className="mr1" />
+              Media
+            </button>
+            <button className="row middle ml3 mr3">
+              <Icon name="code-outline" className="mr1"  onClick={() => navigate("#software")}/>
+              Software
+            </button>
+            <button className="row middle ml3 mr3">
+              <Icon name="color-filter-outline" className="mr1"  onClick={() => navigate("#design")}/>
+              Design
+            </button>
+          </div>
         </div>
       </div>
-      <div className="col middle between m3 pt2 pb2">
-        <h2
-          className="mt3 textCenter mb3"
-          style={{ color: "var(--primaryColor)" }}
-        >
-          We work with Aussie organisations to
-          create content that captivates your
-          audience.
-        </h2>
+      <div className="col middle between pt2 pb2">
         <div className="mt3 w100 vh50">
           <CircularGallery
             images={[
@@ -126,10 +103,8 @@ export function LandingPage({}: LandingPageProps) {
           />
         </div>
       </div>
-      <div className="col middle center mt2">
-        <div className="textCenter mt3 w100">
-          <TabPanel />
-        </div>
+      <div className="col middle center p3">
+        <MediaTab/>
       </div>
     </div>
   );

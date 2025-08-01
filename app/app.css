@@ -1,16 +1,16 @@
 :root {
-  font-family: "Roboto", sans-serif;
+  font-family: "Placard", sans-serif;
   line-height: 1;
 
   background-repeat: no-repeat;
 
   color-scheme: light;
   --text: #191919;
-  --background: #e5e5e5;
-  --smallAccent: #333333;
-  --mediumAccent: #555555;
-  --highAccent: #999999;
-  --primaryColor: #5d7e5a;
+  --background: #e2e1d8;
+  --smallAccent: #d8d7ce72;
+  --mediumAccent: #b7b6ae72;
+  --highAccent: #92918b72;
+  --primaryColor: #436940;
   --secondaryColor: #de976f;
   --thirdColor: #94bc91;
   --primaryGradient: linear-gradient(
@@ -23,7 +23,7 @@
   --dangerColor: #ed7373;
 
   --nav-bar-spacing: 300px;
-  --borderRadius: 25px;
+  --borderRadius: 3px;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -56,27 +56,38 @@
 @font-face {
   font-family: "Sifon";
   src: local("SIFONN_PRO"),
-    url(./assets/SIFONN_PRO.otf)
-      format("opentype");
+    url(./assets/SIFONN_PRO.otf) format("opentype");
 }
 
 @font-face {
   font-family: "Placard";
   src: local("PlacardNext-Wide"),
-    url(./assets/PlacardNext-Wide.otf)
-      format("opentype");
+    url(./assets/PlacardNext-Wide.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Placard-light";
+  src: local("PlacardNext-light"),
+    url(./assets/PlacardNext-Widelight.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Placard-regular";
+  src: local("PlacardNext-regular"),
+    url(./assets/PlacardNext-regular.otf) format("opentype");
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(to right, #d6d1c9, #bdb7ae);
   margin: 0;
+  padding: 0;
 }
 
 /** text */
 p {
-  font-family: "Placard", sans-serif;
+  font-family: "Placard-light", sans-serif;
   margin: 0px;
-  font-size: 10pt;
+  font-size: 12pt;
   font-weight: 400 !important;
   color: var(--text);
 }
@@ -93,18 +104,17 @@ h1 {
 }
 
 h2 {
-  font-family: "Placard", sans-serif;
+  font-family: "Placard-light", sans-serif;
   font-weight: 400;
   margin: 0;
   text-align: start;
-  font-size: 25pt;
+  font-size: 30pt;
   line-height: 1.2;
-  color: var(--text);
-  color: var(--background);
+  color: var(--primaryColor);
 }
 
 h3 {
-  font-family: "Placard", sans-serif;
+  font-family: "Placard-light", sans-serif;
   font-weight: 800;
   text-align: start;
   font-size: 12pt;
@@ -113,6 +123,16 @@ h3 {
 }
 
 h4 {
+  font-family: "Placard", sans-serif;
+  padding: 0;
+  margin: 0;
+  font-size: 30pt;
+  font-weight: bold;
+  line-height: 1.5;
+  color: var(--primaryColor);
+}
+
+h5 {
   font-family: "Placard", sans-serif;
   padding: 0;
   margin: 0;
@@ -127,9 +147,9 @@ ul {
   margin: 0;
 }
 
-li{
+li {
   font-size: 12pt;
-  font-family: "Placard", sans-serif;
+  font-family: "Placard-light", sans-serif;
   text-align: start;
   margin-bottom: 10pt;
 }
@@ -142,13 +162,12 @@ label {
 }
 
 img {
-  border-radius: var(--borderRadius);
   flex-shrink: 0;
 }
 
 /********* Basic elements ***********/
 input {
-  font-family: "Roboto", sans-serif;
+  font-family: "Placard", sans-serif;
   color: var(--text);
   background: var(--background);
   height: 50px;
@@ -169,8 +188,7 @@ input {
 input:focus {
   outline: none;
   color: var(--text);
-  box-shadow: 0 0 0px 3px var(--primaryColor)
-    inset;
+  box-shadow: 0 0 0px 3px var(--primaryColor) inset;
 
   background-color: var(--background);
   transition: 0.25s;
@@ -182,7 +200,7 @@ input:disabled {
 }
 
 textarea {
-  font-family: "Roboto", sans-serif;
+  font-family: "Placard", sans-serif;
   background-color: var(--background);
 
   resize: vertical;
@@ -202,8 +220,7 @@ textarea {
 textarea:focus {
   outline: none;
   color: var(--text);
-  box-shadow: 0 0 0px 3px var(--primaryColor)
-    inset;
+  box-shadow: 0 0 0px 3px var(--primaryColor) inset;
 
   background-color: var(--background);
   transition: 0.25s;
@@ -214,7 +231,7 @@ textarea:focus {
 }
 
 input {
-  font-family: "Roboto", sans-serif;
+  font-family: "Placard-light", sans-serif;
   color: var(--text);
   background: var(--background);
   height: 50px;
@@ -233,7 +250,7 @@ input {
 }
 
 button {
-  font-family: "Roboto", sans-serif;
+  font-family: "Placard-light", sans-serif;
   color: var(--text);
   font-weight: 500;
   font-size: 10pt;
@@ -247,14 +264,14 @@ button {
 
   cursor: pointer;
 
-  border: 1px solid var(--highAccent);
+  border: none;
   transition: 0.5s;
 }
 
 button:hover {
-  background-color: var(--smallAccent);
+  color: var(--primaryColor);
   transition: 0.2s;
-  transform: scale(1.05);
+  transform: translateY(2px);
 }
 
 button:disabled {
@@ -423,7 +440,7 @@ th {
   left: 0;
   width: 100%;
   height: 100%;
-    border-radius: var(--borderRadius);
+  border-radius: 3px;
   color: white;
   display: flex;
   justify-content: center;
@@ -437,7 +454,7 @@ th {
   width: 400px;
   height: 250px;
   border-radius: var(--borderRadius);
-  background-color: lightblue;
+  background-color: var(--highAccent);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -447,16 +464,21 @@ th {
 ************ Display ***********
 *************************************/
 .boxed {
-  background: var(--smallAccent);
+  color: var(--text);
+  background: var(--mediumAccent);
 
   border-radius: var(--borderRadius);
 
   transition: 0.2s;
 }
 
+.boxed:hover, .boxedAccent:hover, .boxedDark:hover {
+  transform:translateY(5px)
+}
+
 .boxedAccent {
+  color: #eeeeee !important;
   border-radius: var(--borderRadius);
-  padding: 10px;
 
   background: var(--primaryColor);
   color: #111111;
@@ -465,9 +487,7 @@ th {
 }
 
 .boxedAccent:hover {
-  background-color: var(
-    --primaryColor
-  ) !important;
+  background-color: var(--primaryColor) !important;
 }
 
 .boxedSecondary {
@@ -481,16 +501,13 @@ th {
 }
 
 .boxedSecondary:hover {
-  background-color: var(
-    --secondaryColor
-  ) !important;
+  background-color: var(--secondaryColor) !important;
 }
 
 .boxedDark {
   border-radius: var(--borderRadius);
-  padding: 10px;
 
-  background: var(--background);
+  background: var(--highAccent);
   color: var(--text);
 
   transition: 0.2s;
@@ -569,16 +586,15 @@ th {
 }
 
 .clickable:hover {
-  background-color: var(--primaryColor);
-  opacity: 1;
+  fill: var(--primaryColor);
+  color: var(--primaryColor);
+  opacity: 0.8;
   transition: 0.3s;
   transform: translateY(5px);
 }
 
 .highlight {
-  background-color: var(
-    --primaryGradient
-  ) !important;
+  background-color: var(--primaryGradient) !important;
   color: #222222 !important;
 }
 
@@ -700,7 +716,6 @@ th {
   width: 20px;
   opacity: 0;
 }
-
 
 /*****************************
 Margin
@@ -884,10 +899,7 @@ Padding
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(250px, 350px)
-  );
+  grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
   gap: 10px;
 }
 
@@ -954,6 +966,9 @@ Padding
     align-items: space-between;
 
     width: 30%;
+  }
+  .shrinkCol {
+    flex-direction: column !important;
   }
   .shrinkWrap {
     flex-wrap: wrap;

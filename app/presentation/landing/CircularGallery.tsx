@@ -79,6 +79,7 @@ export default function CircularGallery({
       <div className="scroller__inner">
         {images.map((img, id) => (
           <div
+          key={id}
             className="container clickable"
             onMouseOver={() =>
               setHoveredImage(id)
