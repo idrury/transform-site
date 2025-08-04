@@ -7,9 +7,9 @@
   color-scheme: light;
   --text: #191919;
   --background: #e2e1d8;
-  --smallAccent: #d8d7ce72;
-  --mediumAccent: #b7b6ae72;
-  --highAccent: #92918b72;
+  --smallAccent: #d8d7ce;
+  --mediumAccent: #b7b6ae;
+  --highAccent: #92918b;
   --primaryColor: #436940;
   --secondaryColor: #de976f;
   --thirdColor: #94bc91;
@@ -88,6 +88,7 @@ p {
   font-family: "Placard-light", sans-serif;
   margin: 0px;
   font-size: 12pt;
+  line-height: 1.5;
   font-weight: 400 !important;
   color: var(--text);
 }
@@ -114,9 +115,10 @@ h2 {
 }
 
 h3 {
-  font-family: "Placard-light", sans-serif;
+  font-family: "Placard", sans-serif;
   font-weight: 800;
   text-align: start;
+  line-height: 1.5;
   font-size: 12pt;
   margin: 0;
   color: var(--text);
@@ -706,8 +708,8 @@ th {
 }
 
 .div10 {
-  height: 10px;
-  width: 10px;
+  min-height: 10px !important;
+  min-width: 10px !important;
   opacity: 0;
 }
 
@@ -969,6 +971,9 @@ Padding
   }
   .shrinkCol {
     flex-direction: column !important;
+  }
+    .shrinkRow {
+    flex-direction: row !important;
   }
   .shrinkWrap {
     flex-wrap: wrap;

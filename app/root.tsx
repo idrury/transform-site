@@ -23,7 +23,10 @@ import { NavBar } from "./presentation/elements/NavBar";
 import { HeaderBar } from "./presentation/HeaderBar";
 
 export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  {
+    rel: "preconnect",
+    href: "https://fonts.googleapis.com",
+  },
   {
     rel: "preconnect",
     href: "https://fonts.gstatic.com",
@@ -46,7 +49,11 @@ export function HydrateFallback() {
   );
 }
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <head>
@@ -68,21 +75,61 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  const [alert, setAlert] = useState<AlertType>({ active: false });
-  const [session, setSession] = useState<Session | null>();
+  const shrinkWidth = 1200;
+
+  const [alert, setAlert] = useState<AlertType>({
+    active: false,
+  });
+
+  const [session, setSession] =
+    useState<Session | null>();
+  const [inShrink, setInShrink] = useState(
+    window.innerWidth < shrinkWidth
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((_event, session) => {
-      if (_event == "SIGNED_IN" || _event == "TOKEN_REFRESHED") {
-        //Perform sign in actions here
+    supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        if (
+          _event == "SIGNED_IN" ||
+          _event == "TOKEN_REFRESHED"
+        ) {
+          //Perform sign in actions here
+        }
+        setSession(session);
       }
-      setSession(session);
-    });
+    );
+  }, []);
+
+  /******************************
+   * Check screen width
+   */
+  useEffect(() => {
+    const handleResize = () => {
+      setInShrink(
+        window.innerWidth < shrinkWidth
+      );
+    };
+    window.addEventListener(
+      "resize",
+      handleResize
+    );
+    handleResize();
+    return () => {
+      window.removeEventListener(
+        "resize",
+        handleResize
+      );
+    };
   }, []);
 
   /** Activate the saved popup box */
-  const popAlert: PopAlertFn = (header, body, isError = false) => {
+  const popAlert: PopAlertFn = (
+    header,
+    body,
+    isError = false
+  ) => {
     setAlert({
       active: true,
       header: header,
@@ -93,13 +140,14 @@ export default function App() {
 
   return (
     <>
-    <HeaderBar/>
+      <HeaderBar />
       <Outlet
         context={
           {
             popAlert: popAlert,
             session,
             navigate,
+            inShrink,
           } as SharedContextProps
         }
       />
@@ -108,25 +156,34 @@ export default function App() {
         header={alert.header}
         body={alert.body}
         active={alert.active}
-        onClose={() => setAlert({ active: false })}
+        onClose={() =>
+          setAlert({ active: false })
+        }
         state={alert.state}
       />
     </>
   );
 }
 
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+export function ErrorBoundary({
+  error,
+}: Route.ErrorBoundaryProps) {
   let message = "Oops!";
   let details = "An unexpected error occurred.";
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
+    message =
+      error.status === 404 ? "404" : "Error";
     details =
       error.status === 404
         ? "The requested page could not be found."
         : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
+  } else if (
+    import.meta.env.DEV &&
+    error &&
+    error instanceof Error
+  ) {
     details = error.message;
     stack = error.stack;
   }

@@ -27,6 +27,7 @@ export interface SharedContextProps {
   popAlert: PopAlertFn;
   session: Session | null;
   navigate: NavigateFunction;
+  inShrink:boolean;
 }
 
 /** An item that can be shown or hidden */
