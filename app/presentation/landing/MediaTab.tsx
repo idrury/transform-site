@@ -1,6 +1,9 @@
 import type { SharedContextProps } from "~/data/CommonTypes";
 import { useNavigate, useOutletContext } from "react-router";
 import { Icon } from "../elements/Icon";
+import "./landing.css";
+import ReactPlayer from "react-player";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 
 export interface MediaTabProps {}
 
@@ -9,59 +12,82 @@ export interface MediaTabProps {}
  * @todo Create description
  */
 export function MediaTab({}: MediaTabProps) {
-  const context: SharedContextProps =
-    useOutletContext();
-      const navigate = useNavigate();
+  const context: SharedContextProps = useOutletContext();
+  const [playerPlay, setPlayerPlay] = useState(false);
+  const [playerMuted, setPlayerMuted] = useState(true);
+  const [playerCursorOn, setPlayerCursorOn] = useState(false);
+  const reactPlayer = useRef<HTMLVideoElement>(null);
+  const navigate = useNavigate();
 
+  useEffect(() => {}, []);
+
+  function videoMouseOver(e: MouseEvent<HTMLVideoElement>) {
+    setPlayerCursorOn(true);
+    setTimeout(() => {
+      setPlayerPlay(true);
+    }, 500);
+  }
+
+  function videoMouseOff(e: MouseEvent<HTMLVideoElement>) {
+    setPlayerCursorOn(false);
+    setTimeout(() => setPlayerPlay(false), 500);
+  }
 
   return (
-    <section
-      id="media"
-      className="w50 col middle center"
-    >
+    <section id="media" className="w50 col middle">
+      <div style={{ minHeight: 150, width: 100 }} />
+
       <Icon
         name="film-outline"
         size={50}
         color="var(--primaryColor)"
       />
       <h4 className="mb3 mt3 textCenter">
-        From 15 second reels to full scale
-        productions, we're passionate about
-        creating videos that gain attention and
-        generate traction
+        We create videos that gain attention and generate traction
       </h4>
       <p className="pb3 textCenter">
-        Partner with us to create authentic
-        material that cuts through the dribble of
-        AI content.
+        Partner with us to create authentic material that cuts through
+        the dribble of AI content.
       </p>
-      <div className="w100 m3 col between">
-        <div className="row shrinkCol between">
+      <div className="w100 col">
+        <div className="row">
           <div
-            className="w100 boxed row middle center"
+            className="w100 boxed grow-y"
             style={{
-              overflow: "clip",
-              minHeight: 200,
-              maxHeight: 200,
+              overflow: "hidden",
             }}
           >
-            <img
+            {playerPlay && (
+              <Icon
+                name={playerMuted ? "volume-mute" : "volume-high"}
+                onClick={() => setPlayerMuted(!playerMuted)}
+                style={{
+                  position: "absolute",
+                  top: 10,
+                  right: 10,
+                  zIndex: 50,
+                }}
+                className="boxed p1"
+              />
+            )}
+            <ReactPlayer
+              ref={reactPlayer}
+              src="https://api.freeflex.com.au/storage/v1/object/public/transform//Reel%20v2.mov"
+              onMouseOver={(e) => videoMouseOver(e)}
+              onMouseOut={(e) => videoMouseOff(e)}
+              muted={playerMuted}
+              loop
               style={{
-                minHeight: "100%",
                 minWidth: "100%",
+                minHeight: "100%",
+                objectFit: "cover",
               }}
-              src="https://picsum.photos/seed/4/800/600?grayscale"
+              playing={playerPlay}
             />
           </div>
         </div>
         <div className="div10" />
-        <div
-          className="row shrinkCol between"
-          style={{
-            minHeight: 200,
-            maxHeight: 200,
-          }}
-        >
+        <div className="shrinkCol between h100">
           <div
             className="w75 boxed col"
             style={{
@@ -71,34 +97,26 @@ export function MediaTab({}: MediaTabProps) {
             }}
           >
             <div className="">
-              <h3 className="mt3 ml3">
-                {" "}
-                We have experience creating
-              </h3>
+              <h3 className="mt3 ml3">We have experience creating</h3>
               <ul className="textStart ml3 mr3 mb3">
                 <li>Long-form training series</li>
                 <li>Promotional videos</li>
                 <li>Social media reels</li>
-                <li>
-                  Videos for fundraising campaigns
-                </li>
+                <li>Videos for fundraising campaigns</li>
               </ul>
             </div>
           </div>
           <div className="div10" />
-          <div className="boxedAccent w25">
+          <div className="row boxedAccent w25">
             <div
               className={`${
                 context.inShrink
-                  ? "row middle between p3"
+                  ? "row middle between p3 w100"
                   : "col between h100"
               }`}
             >
               <h5
-                className={`${
-                  !context.inShrink &&
-                  "pl3 pr3 pt3"
-                }`}
+                className={`${!context.inShrink && "pl3 pr3 pt3"}`}
                 style={{
                   textAlign: "start",
                   zIndex: 500,
@@ -107,9 +125,7 @@ export function MediaTab({}: MediaTabProps) {
                 Find out more
               </h5>
               <Icon
-                onClick={() =>
-                  navigate("/media")
-                }
+                onClick={() => navigate("/media")}
                 name="arrow-forward-circle"
                 size={40}
                 color="var(--background)"

@@ -10,31 +10,32 @@ export interface HeaderBarProps {}
  * @todo Create description
  */
 export function HeaderBar({}: HeaderBarProps) {
-  const navigate: SharedContextProps =
-    useOutletContext();
+  const navigate: SharedContextProps = useOutletContext();
   const [scroll, setScroll] = useState(0);
 
   useEffect(() => {
     const updateScroll = () => {
       setScroll(window.scrollY);
     };
-    window.addEventListener(
-      "scroll",
-      updateScroll
-    );
+    window.addEventListener("scroll", updateScroll);
     updateScroll();
     return () => {
-      window.removeEventListener(
-        "scroll",
-        updateScroll
-      );
+      window.removeEventListener("scroll", updateScroll);
     };
   });
 
   return (
     <div
-      className={`row middle between sticky ${scroll>100 && "boxed"}`}
-      style={{ zIndex: 100 }}
+      className={`row middle between sticky ${
+        scroll > 100 && "boxed"
+      }`}
+      style={{
+        zIndex: 100,
+        backgroundColor: `${
+          scroll > 100 ? "#d8d7cecc" : "#00000000"
+        }`,
+        backdropFilter: "blur(5px)",
+      }}
     >
       <div className="ml3 mb2 mt2 mr3 row middle between w100">
         <Logo size={30} />

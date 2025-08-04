@@ -1,14 +1,12 @@
 import type { SharedContextProps } from "~/data/CommonTypes";
-import {
-  useNavigate,
-  useOutletContext,
-} from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
 import { TabPanel } from "./TabPanel";
 import CircularGallery from "./CircularGallery";
 import { Logo } from "../elements/Logo";
 import { Icon } from "../elements/Icon";
 import { DesignTab } from "./DesignTab";
 import { MediaTab } from "./MediaTab";
+import { SoftwareTab } from "./SoftwareTab";
 
 export interface LandingPageProps {}
 
@@ -68,57 +66,63 @@ const IMAGES = [
  * @todo Create description
  */
 export function LandingPage({}: LandingPageProps) {
-  const context: SharedContextProps =
-    useOutletContext();
+  const context: SharedContextProps = useOutletContext();
   const navigate = useNavigate();
 
   return (
     <div>
       <div className="vh80 col middle center">
         <div className="w50 col middle center">
+          <div className="row middle center">
+            <Icon
+              name="ellipse"
+              size={20}
+              color="var(--primaryColor)"
+            />
+            <Icon
+              name="ellipse"
+              size={20}
+              color="var(--thirdColor)"
+            />
+
+            <Icon
+              name="ellipse"
+              size={20}
+              color="var(--secondaryColor)"
+            />
+          </div>
           <h2
             className="mt3 textCenter pl3 pr3"
             style={{
               color: "var(--primaryColor)",
-              fontSize: 80,
             }}
           >
             Digital content that inspires change.
           </h2>
           <p className="p3 textCenter">
-            We work with Aussie organisations to
-            create <strong>media, software and designs</strong> that captivate your
-            audience.
+            We work with Aussie organisations to create media,
+            software and designs that captivate your audience.
           </p>
           <div className="row center w50 m3">
             <button
               className="row middle ml2 mr3"
               onClick={() => navigate("#media")}
             >
-              <Icon
-                name="film-outline"
-                className="mr1"
-              />
+              <Icon name="film-outline" className="mr1" />
               Media
             </button>
-            <button className="row middle ml3 mr3">
-              <Icon
-                name="code-outline"
-                className="mr1"
-                onClick={() =>
-                  navigate("#software")
-                }
-              />
+            <button
+              className="row middle ml3 mr3"
+              onClick={() => navigate("#software")}
+            >
+              <Icon name="code-outline" className="mr1" />
               Software
             </button>
-            <button className="row middle ml3 mr3">
-              <Icon
-                name="color-filter-outline"
-                className="mr1"
-                onClick={() =>
-                  navigate("#design")
-                }
-              />
+            <button
+              className="row middle ml3 mr3"
+              onClick={() => navigate("#design")}
+            >
+              <Icon name="color-filter-outline" className="mr1" />
               Design
             </button>
           </div>
@@ -129,9 +133,11 @@ export function LandingPage({}: LandingPageProps) {
           <CircularGallery images={IMAGES} />
         </div>
       </div>
-      <div className="col middle center p3 mb3">
+      <div className="col middle p3 mb3">
         <MediaTab />
+        <SoftwareTab />
+        <DesignTab />
       </div>
-      </div>
+    </div>
   );
 }

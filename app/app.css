@@ -1,5 +1,6 @@
 :root {
   font-family: "Placard", sans-serif;
+  font-weight: light;
   line-height: 1;
 
   background-repeat: no-repeat;
@@ -61,20 +62,16 @@
 
 @font-face {
   font-family: "Placard";
-  src: local("PlacardNext-Wide"),
-    url(./assets/PlacardNext-Wide.otf) format("opentype");
-}
-
-@font-face {
-  font-family: "Placard-light";
   src: local("PlacardNext-light"),
     url(./assets/PlacardNext-Widelight.otf) format("opentype");
+  font-weight: light;
 }
 
 @font-face {
-  font-family: "Placard-regular";
+  font-family: "Placard";
   src: local("PlacardNext-regular"),
-    url(./assets/PlacardNext-regular.otf) format("opentype");
+    url(./assets/PlacardNext-Wide.otf) format("opentype");
+  font-weight: bold;
 }
 
 body {
@@ -85,7 +82,8 @@ body {
 
 /** text */
 p {
-  font-family: "Placard-light", sans-serif;
+  font-family: "Placard", sans-serif;
+  font-weight: light;
   margin: 0px;
   font-size: 12pt;
   line-height: 1.5;
@@ -105,18 +103,17 @@ h1 {
 }
 
 h2 {
-  font-family: "Placard-light", sans-serif;
+  font-family: "Placard", sans-serif;
   font-weight: 400;
   margin: 0;
   text-align: start;
-  font-size: 30pt;
+  font-size: 60pt;
   line-height: 1.2;
   color: var(--primaryColor);
 }
 
 h3 {
   font-family: "Placard", sans-serif;
-  font-weight: 800;
   text-align: start;
   line-height: 1.5;
   font-size: 12pt;
@@ -126,10 +123,10 @@ h3 {
 
 h4 {
   font-family: "Placard", sans-serif;
+  font-weight: lighter;
   padding: 0;
   margin: 0;
   font-size: 30pt;
-  font-weight: bold;
   line-height: 1.5;
   color: var(--primaryColor);
 }
@@ -151,7 +148,7 @@ ul {
 
 li {
   font-size: 12pt;
-  font-family: "Placard-light", sans-serif;
+  font-family: "Placard", sans-serif;
   text-align: start;
   margin-bottom: 10pt;
 }
@@ -233,7 +230,7 @@ textarea:focus {
 }
 
 input {
-  font-family: "Placard-light", sans-serif;
+  font-family: "Placard", sans-serif;
   color: var(--text);
   background: var(--background);
   height: 50px;
@@ -252,7 +249,8 @@ input {
 }
 
 button {
-  font-family: "Placard-light", sans-serif;
+  font-family: "Placard", sans-serif;
+  font-weight: light;
   color: var(--text);
   font-weight: 500;
   font-size: 10pt;
@@ -474,8 +472,10 @@ th {
   transition: 0.2s;
 }
 
-.boxed:hover, .boxedAccent:hover, .boxedDark:hover {
-  transform:translateY(5px)
+.boxed:hover,
+.boxedAccent:hover,
+.boxedDark:hover {
+  transform: translateY(5px);
 }
 
 .boxedAccent {
@@ -802,7 +802,7 @@ Padding
 }
 
 .p3 {
-  padding: 40px;
+  padding: 20px;
 }
 
 .pr1 {
@@ -963,6 +963,12 @@ Padding
 }
 
 @media (max-width: 1200px) {
+  h2 {
+    font-size: 40pt;
+  }
+  h4 {
+    font-size: 25pt;
+  }
   .centerContainer .shrinkRow {
     flex-direction: column;
     align-items: space-between;
@@ -970,9 +976,10 @@ Padding
     width: 30%;
   }
   .shrinkCol {
-    flex-direction: column !important;
+    display: flex;
+    flex-direction: column;
   }
-    .shrinkRow {
+  .shrinkRow {
     flex-direction: row !important;
   }
   .shrinkWrap {

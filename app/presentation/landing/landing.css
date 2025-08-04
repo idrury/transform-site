@@ -1,0 +1,12 @@
+.grow-y {
+  aspect-ratio: 4 / 1;
+  transition: 0.5s;
+  filter: grayscale();
+  cursor:crosshair;
+}
+
+.grow-y:hover {
+  aspect-ratio: 16 / 9 !important;
+  transition: 0.5s;
+  filter: none;
+}
