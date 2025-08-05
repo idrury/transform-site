@@ -1,25 +1,27 @@
 import type { SharedContextProps } from "~/data/CommonTypes";
 import { useNavigate, useOutletContext } from "react-router";
-import { TabPanel } from "./TabPanel";
 import CircularGallery from "./CircularGallery";
-import { Logo } from "../elements/Logo";
 import { Icon } from "../elements/Icon";
 import { DesignTab } from "./DesignTab";
 import { MediaTab } from "./MediaTab";
 import { SoftwareTab } from "./SoftwareTab";
+import { ContactTab } from "./ContactTab";
+import { ProjectInfoPopup } from "./ProjectInfoPopup";
 
 export interface LandingPageProps {}
 
 const IMAGES = [
   {
+    id: 1,
     image: `https://picsum.photos/seed/1/800/600?grayscale`,
     text: "Bridge long text big img",
   },
   {
+    id: 2,
     image: `https://picsum.photos/seed/2/800/600?grayscale`,
     text: "Desk Setup",
   },
-  {
+  {id: 3,
     image: `https://picsum.photos/seed/3/800/600?grayscale`,
     text: "Waterfall",
   },
@@ -137,7 +139,9 @@ export function LandingPage({}: LandingPageProps) {
         <MediaTab />
         <SoftwareTab />
         <DesignTab />
+        <ContactTab/>
       </div>
+      {/* <ProjectInfoPopup active={true}/> */}
     </div>
   );
 }

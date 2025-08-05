@@ -89,7 +89,7 @@ export function MediaTab({}: MediaTabProps) {
         <div className="div10" />
         <div className="shrinkCol between h100">
           <div
-            className="w75 boxed col"
+            className="w75 boxed animate col"
             style={{
               overflow: "hidden",
               minHeight: 200,

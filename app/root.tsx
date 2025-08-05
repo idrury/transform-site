@@ -21,6 +21,8 @@ import { supabase } from "./database/SupabaseClient";
 import { Session } from "@supabase/supabase-js";
 import { NavBar } from "./presentation/elements/NavBar";
 import { HeaderBar } from "./presentation/HeaderBar";
+import { FooterBar } from "./presentation/FooterBar";
+import { Icon } from "./presentation/elements/Icon";
 
 export const links: Route.LinksFunction = () => [
   {
@@ -161,6 +163,7 @@ export default function App() {
         }
         state={alert.state}
       />
+      <FooterBar />
     </>
   );
 }
@@ -168,6 +171,7 @@ export default function App() {
 export function ErrorBoundary({
   error,
 }: Route.ErrorBoundaryProps) {
+  const navigate = useNavigate();
   let message = "Oops!";
   let details = "An unexpected error occurred.";
   let stack: string | undefined;
@@ -189,9 +193,32 @@ export function ErrorBoundary({
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
+    <main className="vh100 middle center col">
+      <h1
+        className="mb2"
+        style={{ color: "var(--primaryColor)" }}
+      >
+        {message}
+      </h1>
+      <div className="row middle center">
+        <Icon
+          name="information-circle"
+          className="mr1"
+          color="var(--primaryColor)"
+          size={15}
+        />
+        <p>{details}</p>
+      </div>
+      <button className="mt3 accentButton row middle center" onClick={() => navigate("/")}>
+        <Icon
+          name="home"
+          size={12}
+          color="var(--text)"
+          className="mr1"
+        />
+        Home
+      </button>
+
       {stack && (
         <pre className="w-full p-4 overflow-x-auto">
           <code>{stack}</code>

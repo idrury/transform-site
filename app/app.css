@@ -281,13 +281,22 @@ button:disabled {
 
 .accentButton {
   background: var(--primaryColor);
-  color: var(--text);
+  color: var(--background);
+}
+
+.accentButton * {
+  color: var(--background)
 }
 
 .accentButton:hover {
-  background-color: var(--text);
+  background-color: var(--highAccent);
   color: var(--background) !important;
   transform: scale(1.02);
+}
+
+button:hover * {
+color: var(--primaryColor);
+transition: .2s;
 }
 
 .accentButton:disabled {
@@ -472,10 +481,9 @@ th {
   transition: 0.2s;
 }
 
-.boxed:hover,
-.boxedAccent:hover,
-.boxedDark:hover {
+.animate:hover {
   transform: translateY(5px);
+  transition: .2s;
 }
 
 .boxedAccent {
@@ -483,9 +491,12 @@ th {
   border-radius: var(--borderRadius);
 
   background: var(--primaryColor);
-  color: #111111;
 
   transition: 0.2s;
+}
+
+.boxedAccent * {
+  color: #eeeeee;
 }
 
 .boxedAccent:hover {

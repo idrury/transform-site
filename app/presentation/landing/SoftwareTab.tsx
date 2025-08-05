@@ -88,7 +88,7 @@ export function SoftwareTab({}: SoftwareTabProps) {
         <div className="div10" />
         <div className="row shrinkCol between">
           <div
-            className="w75 boxed col"
+            className="w75 boxed col animate"
             style={{
               overflow: "hidden",
               minHeight: 200,

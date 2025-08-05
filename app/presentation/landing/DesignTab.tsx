@@ -2,7 +2,6 @@ import type { SharedContextProps } from "~/data/CommonTypes";
 import { useNavigate, useOutletContext } from "react-router";
 import { Icon } from "../elements/Icon";
 import "./landing.css";
-import ReactPlayer from "react-player";
 import { useEffect, useRef, useState } from "react";
 
 export interface DesignTabProps {}
@@ -88,7 +87,7 @@ export function DesignTab({}: DesignTabProps) {
         <div className="div10" />
         <div className="row shrinkCol between">
           <div
-            className="w75 boxed col"
+            className="w75 boxed col animate"
             style={{
               overflow: "hidden",
               minHeight: 200,
