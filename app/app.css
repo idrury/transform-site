@@ -161,6 +161,7 @@ label {
 }
 
 img {
+  border-radius: var(--borderRadius);
   flex-shrink: 0;
 }
 
@@ -280,6 +281,7 @@ button:disabled {
 }
 
 .accentButton {
+  border-radius: var(--borderRadius);
   background: var(--primaryColor);
   color: var(--background);
 }
@@ -912,7 +914,8 @@ Padding
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr;
   gap: 10px;
 }
 

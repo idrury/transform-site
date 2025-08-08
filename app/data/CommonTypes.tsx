@@ -48,3 +48,11 @@ interface SupabaseTable {
   id: number;
   created_at: Date;
 }
+
+export interface Project {
+  id: number,
+  name: string,
+  images: string[],
+  description: string,
+  link?:string;
+}

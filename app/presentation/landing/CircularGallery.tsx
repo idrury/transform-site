@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import "./CircularGallery.css";
+import { Project } from "~/data/CommonTypes";
 
 interface CircularGalleryProps {
-  images: { image: string; text: string }[];
+  projects:Project[];
+  onProjectClick: (id:number) => void;
 }
 
 export default function CircularGallery({
-  images,
+  projects,
+  onProjectClick,
 }: CircularGalleryProps) {
   const [hoveredImage, setHoveredImage] =
     useState<number>();
@@ -32,6 +35,8 @@ export default function CircularGallery({
           scrollerInner.children
         );
 
+        console.log(scrollerInner.children)
+
         scrollerContent.forEach((item) => {
           const duplicatedItem = item.cloneNode(
             true
@@ -47,10 +52,10 @@ export default function CircularGallery({
       });
     }
 
+
     // Cleanup function to remove animation and duplicated nodes
     return () => {
       scrollers.forEach((scroller) => {
-        scroller.removeAttribute("data-animated");
         const scrollerInner =
           scroller.querySelector(
             ".scroller__inner"
@@ -70,16 +75,14 @@ export default function CircularGallery({
         });
       });
     };
-  }, [images]);
+  }, [projects]);
 
   return (
-    <div
-      className={`scroller scroll slow`}
-    >
+    <div className={`scroller scroll slow`}>
       <div className="scroller__inner">
-        {images.map((img, id) => (
+        {projects.map((img, id) => (
           <div
-          key={id}
+            key={id}
             className="container clickable"
             onMouseOver={() =>
               setHoveredImage(id)
@@ -87,6 +90,7 @@ export default function CircularGallery({
             onMouseOut={() =>
               setHoveredImage(undefined)
             }
+            onClick={() => onProjectClick(id)}
           >
             {hoveredImage == id && (
               <div className="">
@@ -94,22 +98,27 @@ export default function CircularGallery({
                   style={{ zIndex: 20 }}
                   className="overlayDiv mediumFade"
                 >
-                  {img.text}
+                  {img.name}
                 </h3>
                 <div
                   className="overlayDiv"
                   style={{
                     opacity: 0.3,
                     zIndex: 10,
-                    background: "var(--smallAccent)"
+                    background:
+                      "var(--smallAccent)",
                   }}
                 />
               </div>
             )}
             <img
-              style={{ width: 400, height: 250,zIndex:1 }}
-              src={`${img.image}`}
-              alt={`image of ${img.text}`}
+              style={{
+                width: 400,
+                height: 250,
+                zIndex: 1,
+              }}
+              src={`${img.images[0]}`}
+              alt={`image of ${img.description}`}
             />
           </div>
         ))}
