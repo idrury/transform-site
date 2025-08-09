@@ -54,6 +54,6 @@ export interface Project {
   name: string,
   type: "software" | "media" | "design"
   images: string[],
-  description: string,
+  description: string[],
   link?:string;
 }

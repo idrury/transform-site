@@ -1,6 +1,6 @@
 
 .scroller {
-  height: 320px;
+  height: auto;
 }
 
 .scroller img {
@@ -35,11 +35,13 @@ border-radius: 3px;
 
 .paused:hover{
   animation-play-state: paused !important;
+  transition: .2s;
 }
 
 
+
 .fast {
-  --_animation-duration: 15s;
+  --_animation-duration: 25s;
 }
 
 .slow {

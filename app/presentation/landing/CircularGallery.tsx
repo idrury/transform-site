@@ -21,14 +21,13 @@ export default function CircularGallery({
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-      const galleryProjects = [...projects, ...projects];
-
+    const galleryProjects = [...projects, ...projects];
   }, [projects]);
 
   const scrollerCss = `scroller__inner paused fast`;
 
   return (
-    <div className={ `scroller scroll`}>
+    <div className={`scroller scroll`}>
       <div className={`${scrollerCss}`}>
         {galleryProjects.map((img, idx) => (
           <div
@@ -36,37 +35,44 @@ export default function CircularGallery({
             /*@ts-ignore*/
             ref={(el) => (itemRefs.current[idx] = el)}
             className="container clickable"
-            onMouseOver={() => setHoveredImage(img.id)}
+            onMouseOver={() => {
+              setHoveredImage(img.id);
+            }}
             onMouseOut={() => setHoveredImage(undefined)}
             onClick={() => onProjectClick(img.id)}
           >
             {hoveredImage == img.id && (
               <div className="">
                 <h3
-                  style={{ zIndex: 20, color: "#e9e9e9" }}
+                  style={{ zIndex: 20, color: "#eeeeee" }}
                   className="overlayDiv mediumFade"
                 >
-                  <Icon name={projectToIcon(img.type)} color="#e9e9e9" className="mr2"/>
+                  <Icon
+                    name={projectToIcon(img.type)}
+                    color="#eeeeee"
+                    className="mr2"
+                  />
                   {img.name}
                 </h3>
                 <div
                   className="overlayDiv"
                   style={{
-                    opacity: 0.3,
+                    opacity: 0.6,
                     zIndex: 10,
-                    background: "var(--smallAccent)",
+                    background: "var(--primaryColor)",
                   }}
                 />
               </div>
             )}
             <img
+              className="gallery-image"
               style={{
-                width: 400,
-                height: 250,
-                zIndex: 1,
+                filter: `${
+                  hoveredImage == img.id ? "contrast(0.8)" : "none"
+                }`,
               }}
               src={`${img.images[0]}`}
-              alt={`image of ${img.description}`}
+              alt={`image of ${img.name}`}
             />
           </div>
         ))}

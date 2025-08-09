@@ -83,7 +83,7 @@ body {
 /** text */
 p {
   font-family: "Placard", sans-serif;
-  font-weight: light;
+  font-weight: lighter;
   margin: 0px;
   font-size: 12pt;
   line-height: 1.5;
@@ -462,13 +462,19 @@ th {
 
 .container {
   position: relative; /* Essential for positioning the overlay */
-  width: 400px;
-  height: 250px;
+  width: auto;
   border-radius: var(--borderRadius);
   background-color: var(--highAccent);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.gallery-image {
+   transition: .3s;
+   height: 300px;
+   aspect-ratio: 16 / 9;
+   filter:contrast(100)
 }
 
 /************************************
@@ -1035,6 +1041,10 @@ Padding
     justify-content: start;
     flex-direction: row;
   }
+  .gallery-image {
+    height: 100px;
+  }
+
   .thirty,
   .fifty,
   .sixty,

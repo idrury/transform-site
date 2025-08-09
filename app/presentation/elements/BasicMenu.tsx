@@ -32,9 +32,8 @@ const BasicMenu = ({
   const handleEnter = () => {
     gsap.from(transitionRef?.current, {
       alpha: 0,
-      rotate: 20,
       duration: 0.5,
-      y: -300,
+      y: -100,
       ease: "back.inOut",
     });
   };
@@ -42,9 +41,8 @@ const BasicMenu = ({
   const handleExit = () => {
     gsap.to(transitionRef?.current, {
       opacity: 0,
-      y: 300,
+      y: 100,
       duration: 0.5,
-      rotate: 20,
       ease: "back.inOut",
     });
   };
@@ -77,15 +75,15 @@ const BasicMenu = ({
               height: "auto",
             }}
           >
-            <div onClick={() => onClose()} className="rightRow m0">
+            <div onClick={() => onClose()} className="rightRow m0" >
               <IonIcon
                 className="buttonIcon clickable"
                 name="close"
               />
             </div>
-            <div style={{ padding: 10 }}>
+            <div style={{ padding: 10,overflowY:'auto', overflowX: 'clip',maxHeight: "90vh" }}>
               {icon && (
-                <div className="center">
+                <div className="center" >
                   <IonIcon
                     style={{
                       width: icon.size,

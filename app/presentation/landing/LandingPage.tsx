@@ -8,44 +8,9 @@ import { SoftwareTab } from "./SoftwareTab";
 import { ContactTab } from "./ContactTab";
 import { ProjectInfoPopup } from "./ProjectInfoPopup";
 import { useState } from "react";
+import { PROJECTS } from "~/data/Objects";
 
 export interface LandingPageProps {}
-
-const PROJECTS: Project[] = [
-  {
-    id: 0,
-    name: "proj1",
-    images: [
-      `https://picsum.photos/seed/2/800/600?grayscale`,
-      `https://picsum.photos/seed/3/800/600?grayscale`,
-      `https://picsum.photos/seed/4/800/600?grayscale`,
-    ],
-    type: "software",
-    description: "Bridge long text big img",
-    link: "https://www.lightworksproductions.au",
-  },
-  {
-    id: 1,
-    type: "design",
-    name: "proj 2",
-    images: [`https://picsum.photos/seed/2/800/600?grayscale`],
-    description: "Desk Setup",
-  },
-  {
-    id: 2,
-    name: "proj 3",
-    type: "media",
-    images: [`https://picsum.photos/seed/3/800/600?grayscale`],
-    description: "Waterfall",
-  },
-  {
-    id: 3,
-    type: "software",
-    name: "proj 4",
-    images: [`https://picsum.photos/seed/4/800/600?grayscale`],
-    description: "Strawberries",
-  },
-];
 
 /******************************
  * LandingPage component
