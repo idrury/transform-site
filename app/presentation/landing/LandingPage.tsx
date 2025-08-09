@@ -1,11 +1,5 @@
-import {
-  Project,
-  type SharedContextProps,
-} from "~/data/CommonTypes";
-import {
-  useNavigate,
-  useOutletContext,
-} from "react-router";
+import { Project, type SharedContextProps } from "~/data/CommonTypes";
+import { useNavigate, useOutletContext } from "react-router";
 import CircularGallery from "./CircularGallery";
 import { Icon } from "../elements/Icon";
 import { DesignTab } from "./DesignTab";
@@ -19,38 +13,36 @@ export interface LandingPageProps {}
 
 const PROJECTS: Project[] = [
   {
-    id: 1,
+    id: 0,
     name: "proj1",
     images: [
       `https://picsum.photos/seed/2/800/600?grayscale`,
       `https://picsum.photos/seed/3/800/600?grayscale`,
       `https://picsum.photos/seed/4/800/600?grayscale`,
     ],
+    type: "software",
     description: "Bridge long text big img",
-    link: "https://www.lightworksproductions.au"
+    link: "https://www.lightworksproductions.au",
   },
   {
-    id: 2,
+    id: 1,
+    type: "design",
     name: "proj 2",
-    images: [
-      `https://picsum.photos/seed/2/800/600?grayscale`,
-    ],
+    images: [`https://picsum.photos/seed/2/800/600?grayscale`],
     description: "Desk Setup",
   },
   {
-    id: 3,
+    id: 2,
     name: "proj 3",
-    images: [
-      `https://picsum.photos/seed/3/800/600?grayscale`,
-    ],
+    type: "media",
+    images: [`https://picsum.photos/seed/3/800/600?grayscale`],
     description: "Waterfall",
   },
   {
-    id: 4,
+    id: 3,
+    type: "software",
     name: "proj 4",
-    images: [
-      `https://picsum.photos/seed/4/800/600?grayscale`,
-    ],
+    images: [`https://picsum.photos/seed/4/800/600?grayscale`],
     description: "Strawberries",
   },
 ];
@@ -60,10 +52,9 @@ const PROJECTS: Project[] = [
  * @todo Create description
  */
 export function LandingPage({}: LandingPageProps) {
-  const context: SharedContextProps =
-    useOutletContext();
-  const [selectedProject, setSelectedProject] =
-    useState<Project>();
+  const context: SharedContextProps = useOutletContext();
+  const [selectedProject, setSelectedProject] = useState<Project>();
+  const [viewProjectActive, setViewProjectActive] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -97,41 +88,29 @@ export function LandingPage({}: LandingPageProps) {
             Digital content that inspires change.
           </h2>
           <p className="p3 textCenter">
-            We work with Aussie organisations to
-            create media, software and designs
-            that captivate your audience.
+            We work with Aussie organisations to create media,
+            software and designs that captivate your audience.
           </p>
           <div className="row center w50 m3">
             <button
               className="row middle ml2 mr3"
               onClick={() => navigate("#media")}
             >
-              <Icon
-                name="film-outline"
-                className="mr1"
-              />
+              <Icon name="film-outline" className="mr1" />
               Media
             </button>
             <button
               className="row middle ml3 mr3"
-              onClick={() =>
-                navigate("#software")
-              }
+              onClick={() => navigate("#software")}
             >
-              <Icon
-                name="code-outline"
-                className="mr1"
-              />
+              <Icon name="code-outline" className="mr1" />
               Software
             </button>
             <button
               className="row middle ml3 mr3"
               onClick={() => navigate("#design")}
             >
-              <Icon
-                name="color-filter-outline"
-                className="mr1"
-              />
+              <Icon name="color-filter-outline" className="mr1" />
               Design
             </button>
           </div>
@@ -141,11 +120,10 @@ export function LandingPage({}: LandingPageProps) {
         <div className="mt3 w100">
           <CircularGallery
             projects={PROJECTS}
-            onProjectClick={(id) =>
-              setSelectedProject(
-                PROJECTS.find((p) => p.id == id)
-              )
-            }
+            onProjectClick={(id) => {
+              setViewProjectActive(true);
+              setSelectedProject(PROJECTS.find((p) => p.id == id));
+            }}
           />
         </div>
       </div>
@@ -156,11 +134,12 @@ export function LandingPage({}: LandingPageProps) {
         <ContactTab />
       </div>
       <ProjectInfoPopup
-        active={selectedProject != undefined}
+        active={viewProjectActive}
         project={selectedProject}
-        onClose={() =>
-          setSelectedProject(undefined)
-        }
+        onClose={() => {
+          setViewProjectActive(false);
+          setTimeout(() => setSelectedProject(undefined), 300);
+        }}
       />
     </div>
   );

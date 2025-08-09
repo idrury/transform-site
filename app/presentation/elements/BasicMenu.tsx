@@ -2,12 +2,11 @@ import IonIcon from "@reacticons/ionicons";
 
 import gsap from "gsap";
 import { Transition } from "react-transition-group";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import type { IoniconName } from "~/data/Ionicons";
 import type { ActivatableElement } from "~/data/CommonTypes";
 
-interface BasicMenuProps
-  extends ActivatableElement {
+interface BasicMenuProps extends ActivatableElement {
   children: any;
   width: number | string;
   icon?: {
@@ -28,8 +27,7 @@ const BasicMenu = ({
   zIndex = 20,
   disableClickOff = false,
 }: BasicMenuProps) => {
-  const transitionRef =
-    useRef<HTMLDivElement>(null);
+  const transitionRef = useRef<HTMLDivElement>(null);
 
   const handleEnter = () => {
     gsap.from(transitionRef?.current, {
@@ -61,7 +59,7 @@ const BasicMenu = ({
         in={active}
         timeout={300}
         onEnter={handleEnter}
-        onExit={handleExit}
+        onExiting={handleExit}
         unmountOnExit
       >
         <div
@@ -73,16 +71,13 @@ const BasicMenu = ({
           }}
         >
           <div
-            className="menu s2 p1 outline"
+            className="menu s2 p1"
             style={{
               width: width,
               height: "auto",
             }}
           >
-            <div
-              onClick={() => onClose()}
-              className="rightRow m0"
-            >
+            <div onClick={() => onClose()} className="rightRow m0">
               <IonIcon
                 className="buttonIcon clickable"
                 name="close"

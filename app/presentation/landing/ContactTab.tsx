@@ -48,12 +48,16 @@ export function ContactTab({}: ContactTabProps) {
         style={{ minHeight: 150, width: 100 }}
       />
       <div className="p3 col middle w100">
-          <h2 className="textCenter mb2">Got questions?</h2>
-          <h3 className="mb3"> We'd love to chat!</h3>
+          <div className="row middle center shrinkCol">
+            <Icon name="chatbubble-ellipses-outline" size={70} className="mr2" color="var(--primaryColor)"/>
+            <h2 className="textCenter mb2">Got questions?</h2>
+          </div>
+          <p className="mb3"> We'd love to chat!</p>
           <button className="row middle center p2 accentButton w100">
             <Icon name="mail" className="mr1" color="var(--background)"/>
             Email us</button>
       </div>
+      <div style={{height: 100}}/>
     </section>
   );
 }

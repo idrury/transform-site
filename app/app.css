@@ -623,11 +623,11 @@ th {
 }
 
 .s1 {
-  box-shadow: 0 0 10px 1px var(--background);
+  box-shadow: 0 0 10px 1px var(--highAccent);
 }
 
 .s2 {
-  box-shadow: 0 0 50px 1px var(--background);
+  box-shadow: 0 0 50px 1px var(--highAccent);
 }
 
 .circular-gallery {

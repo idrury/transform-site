@@ -26,7 +26,7 @@ export function FooterBar({}: FooterBarProps) {
         zIndex: 100,
       }}
     >
-      <div className="ml3 mb2 mt2 mr3 row middle between w100">
+      <div className="ml3 mb2 mt2 mr3 row middle center w100">
         <div>
           <button
             onClick={() => navigate("/contact")}
@@ -40,7 +40,7 @@ export function FooterBar({}: FooterBarProps) {
           </button>
 
           <button
-            onClick={() => navigate("/home")}
+            onClick={() => navigate("/")}
           >
             Home
           </button>

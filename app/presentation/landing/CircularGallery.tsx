@@ -1,103 +1,52 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./CircularGallery.css";
 import { Project } from "~/data/CommonTypes";
+import { Icon } from "../elements/Icon";
+import { projectToIcon } from "~/business/commonBL";
 
 interface CircularGalleryProps {
-  projects:Project[];
-  onProjectClick: (id:number) => void;
+  projects: Project[];
+  onProjectClick: (id: number) => void;
 }
 
 export default function CircularGallery({
   projects,
   onProjectClick,
 }: CircularGalleryProps) {
-  const [hoveredImage, setHoveredImage] =
-    useState<number>();
+  const [hoveredImage, setHoveredImage] = useState<number>();
+  const [galleryProjects, setGalleryProjects] = useState<Project[]>([
+    ...projects,
+    ...projects,
+  ]);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const scrollers =
-      document.querySelectorAll(".scroller");
+      const galleryProjects = [...projects, ...projects];
 
-    if (
-      !window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches
-    ) {
-      scrollers.forEach((scroller) => {
-        const scrollerInner =
-          scroller.querySelector(
-            ".scroller__inner"
-          );
-
-        if (!scrollerInner) return;
-
-        const scrollerContent = Array.from(
-          scrollerInner.children
-        );
-
-        console.log(scrollerInner.children)
-
-        scrollerContent.forEach((item) => {
-          const duplicatedItem = item.cloneNode(
-            true
-          ) as HTMLElement;
-          duplicatedItem.setAttribute(
-            "aria-hidden",
-            "true"
-          );
-          scrollerInner.appendChild(
-            duplicatedItem
-          );
-        });
-      });
-    }
-
-
-    // Cleanup function to remove animation and duplicated nodes
-    return () => {
-      scrollers.forEach((scroller) => {
-        const scrollerInner =
-          scroller.querySelector(
-            ".scroller__inner"
-          );
-        if (!scrollerInner) return;
-        // Remove all nodes with aria-hidden="true"
-        Array.from(
-          scrollerInner.children
-        ).forEach((child) => {
-          if (
-            (child as HTMLElement).getAttribute(
-              "aria-hidden"
-            ) === "true"
-          ) {
-            scrollerInner.removeChild(child);
-          }
-        });
-      });
-    };
   }, [projects]);
 
+  const scrollerCss = `scroller__inner paused fast`;
+
   return (
-    <div className={`scroller scroll slow`}>
-      <div className="scroller__inner">
-        {projects.map((img, id) => (
+    <div className={ `scroller scroll`}>
+      <div className={`${scrollerCss}`}>
+        {galleryProjects.map((img, idx) => (
           <div
-            key={id}
+            key={`${img.id} - ${idx}`}
+            /*@ts-ignore*/
+            ref={(el) => (itemRefs.current[idx] = el)}
             className="container clickable"
-            onMouseOver={() =>
-              setHoveredImage(id)
-            }
-            onMouseOut={() =>
-              setHoveredImage(undefined)
-            }
-            onClick={() => onProjectClick(id)}
+            onMouseOver={() => setHoveredImage(img.id)}
+            onMouseOut={() => setHoveredImage(undefined)}
+            onClick={() => onProjectClick(img.id)}
           >
-            {hoveredImage == id && (
+            {hoveredImage == img.id && (
               <div className="">
                 <h3
-                  style={{ zIndex: 20 }}
+                  style={{ zIndex: 20, color: "#e9e9e9" }}
                   className="overlayDiv mediumFade"
                 >
+                  <Icon name={projectToIcon(img.type)} color="#e9e9e9" className="mr2"/>
                   {img.name}
                 </h3>
                 <div
@@ -105,8 +54,7 @@ export default function CircularGallery({
                   style={{
                     opacity: 0.3,
                     zIndex: 10,
-                    background:
-                      "var(--smallAccent)",
+                    background: "var(--smallAccent)",
                   }}
                 />
               </div>

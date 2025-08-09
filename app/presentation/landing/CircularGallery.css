@@ -30,15 +30,20 @@ border-radius: 3px;
     var(--_animation-duration, 40s)
     var(--_animation-direction, forwards) linear
     infinite;
+    animation-play-state:running;
+}
+
+.paused:hover{
+  animation-play-state: paused !important;
 }
 
 
 .fast {
-  --_animation-duration: 20s;
+  --_animation-duration: 15s;
 }
 
 .slow {
-  --_animation-duration: 100s;
+  --_animation-duration: 10s;
 }
 
 @keyframes scroll {

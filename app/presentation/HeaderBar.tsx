@@ -37,7 +37,7 @@ export function HeaderBar({}: HeaderBarProps) {
         updateScroll
       );
     };
-  });
+  }, []);
 
   return (
     <div
