@@ -25,7 +25,7 @@ export function Logo({ size = 100 }: LogoProps) {
           <img
             className=""
             style={{ height: `${(size * 2)}px`, width: `${(size * 2)}px` }}
-            src="app/assets/transform-icon-color.png"
+            src="/transform-icon-color-donut.png"
           />
         </div>
         <div>
@@ -42,7 +42,6 @@ export function Logo({ size = 100 }: LogoProps) {
           </h1>
           <h2
             style={{
-              fontWeight: 400,
               fontSize: `${Math.round(size / 2)}pt`,
               color: "var(--primaryColor)",
             }}
