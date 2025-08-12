@@ -46,7 +46,7 @@ export const PROJECTS: Project[] = [
     ],
     description: ["Waterfall"],
   },
-    {
+  {
     id: 3,
     type: "software",
     name: "FreeFlex app",
@@ -92,3 +92,5 @@ export const PROJECTS: Project[] = [
     description: ["Strawberries"],
   },
 ];
+
+export const CONTACT = { email: "isaac@lightworksproductions.au" };

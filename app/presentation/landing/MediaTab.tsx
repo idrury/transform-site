@@ -19,16 +19,14 @@ export function MediaTab({}: MediaTabProps) {
   const reactPlayer = useRef<HTMLVideoElement>(null);
   const navigate = useNavigate();
 
-  useEffect(() => {}, []);
-
-  function videoMouseOver(e: MouseEvent<HTMLVideoElement>) {
+  async function videoMouseOver(e: MouseEvent<HTMLVideoElement>) {
     setPlayerCursorOn(true);
     setTimeout(() => {
       setPlayerPlay(true);
     }, 500);
   }
 
-  function videoMouseOff(e: MouseEvent<HTMLVideoElement>) {
+  async function videoMouseOff(e: MouseEvent<HTMLVideoElement>) {
     setPlayerCursorOn(false);
     setTimeout(() => setPlayerPlay(false), 500);
   }
@@ -58,17 +56,19 @@ export function MediaTab({}: MediaTabProps) {
             }}
           >
             {playerPlay && (
-              <Icon
-                name={playerMuted ? "volume-mute" : "volume-high"}
-                onClick={() => setPlayerMuted(!playerMuted)}
-                style={{
-                  position: "absolute",
-                  top: 10,
-                  right: 10,
-                  zIndex: 50,
-                }}
-                className="boxed p1"
-              />
+              <div style={{zIndex: 20, position: "relative"}}> 
+                <Icon
+                  name={playerMuted ? "volume-mute" : "volume-high"}
+                  onClick={() => setPlayerMuted(!playerMuted)}
+                  style={{
+                    position: "absolute",
+                    top: 10,
+                    right: 10,
+                    zIndex: 10,
+                  }}
+                  className="boxed p1"
+                />
+              </div>
             )}
             <ReactPlayer
               ref={reactPlayer}

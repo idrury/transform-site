@@ -6,6 +6,8 @@ import {
 } from "react-router";
 import { Logo } from "./elements/Logo";
 import { useEffect, useState } from "react";
+import { Icon } from "./elements/Icon";
+import { CONTACT } from "~/data/Objects";
 
 export interface HeaderBarProps {}
 
@@ -14,8 +16,7 @@ export interface HeaderBarProps {}
  * @todo Create description
  */
 export function HeaderBar({}: HeaderBarProps) {
-  const context: SharedContextProps =
-    useOutletContext();
+  const context: SharedContextProps = useOutletContext();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -26,16 +27,10 @@ export function HeaderBar({}: HeaderBarProps) {
     const updateScroll = () => {
       setScroll(window.scrollY);
     };
-    window.addEventListener(
-      "scroll",
-      updateScroll
-    );
+    window.addEventListener("scroll", updateScroll);
     updateScroll();
     return () => {
-      window.removeEventListener(
-        "scroll",
-        updateScroll
-      );
+      window.removeEventListener("scroll", updateScroll);
     };
   }, []);
 
@@ -54,36 +49,26 @@ export function HeaderBar({}: HeaderBarProps) {
     >
       <div className="ml3 mb2 mt2 mr3 row middle between w100">
         <Logo size={30} />
-        <div>
+        <div className="row">
           <button
-          disabled={                location.pathname == "/contact"
-}
+            disabled={location.pathname == "/"}
             style={{
               color: `${
-                location.pathname == "/contact"
-                  ? "var(--primaryColor)"
-                  : ""
+                location.pathname == "/" ? "var(--primaryColor)" : ""
               }`,
             }}
-            onClick={() => navigate("/contact")}
-          >
-            Contact
-          </button>
-
-          <button
-          disabled={                location.pathname == "/"
-}
-            style={{
-              color: `${
-                location.pathname == "/"
-                  ? "var(--primaryColor)"
-                  : ''
-              }`,
-            }}
-            onClick={() => navigate("/home")}
+            onClick={() => navigate("/")}
           >
             Home
           </button>
+          <a
+            style={{ textDecoration: "none" }}
+            className="p2 row center accentButton middle"
+            target="_blank"
+            href={`mailto:${CONTACT.email}`}
+          >
+            Contact
+          </a>
         </div>
       </div>
     </div>

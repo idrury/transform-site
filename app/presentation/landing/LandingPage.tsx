@@ -53,8 +53,8 @@ export function LandingPage({}: LandingPageProps) {
             Digital content that inspires change.
           </h2>
           <p className="p3 textCenter">
-            We work with Aussie organisations to create media,
-            software and designs that captivate your audience.
+            We work with Aussie organisations to create captivating media,
+            software and design.
           </p>
           <div className="row center w50 m3">
             <button

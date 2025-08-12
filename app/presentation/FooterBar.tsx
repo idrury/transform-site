@@ -5,6 +5,7 @@ import {
 } from "react-router";
 import { Logo } from "./elements/Logo";
 import { useEffect, useState } from "react";
+import { CONTACT } from "~/data/Objects";
 
 export interface FooterBarProps {}
 
@@ -27,17 +28,15 @@ export function FooterBar({}: FooterBarProps) {
       }}
     >
       <div className="ml3 mb2 mt2 mr3 row middle center w100">
-        <div>
-          <button
-            onClick={() => navigate("/contact")}
-          >
-            Contact
-          </button>
-          <button
-            onClick={() => navigate("/about")}
-          >
-            About
-          </button>
+        
+       <a
+                style={{ textDecoration: "none", fontSize: "12pt" }}
+                className="p2 row center middle"
+                target="_blank"
+                href={`mailto:${CONTACT.email}`}
+              >
+                Contact
+              </a>
 
           <button
             onClick={() => navigate("/")}
@@ -45,7 +44,7 @@ export function FooterBar({}: FooterBarProps) {
             Home
           </button>
         </div>
-      </div>
+      
     </div>
   );
 }

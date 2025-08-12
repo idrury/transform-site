@@ -62,14 +62,14 @@
 
 @font-face {
   font-family: "Placard";
-  src: local("PlacardNext-light"),
+  src: local("PlacardNext-Widelight"),
     url(./assets/PlacardNext-Widelight.otf) format("opentype");
   font-weight: light;
 }
 
 @font-face {
   font-family: "Placard";
-  src: local("PlacardNext-regular"),
+  src: local("PlacardNext-Wide"),
     url(./assets/PlacardNext-Wide.otf) format("opentype");
   font-weight: bold;
 }
@@ -83,7 +83,6 @@ body {
 /** text */
 p {
   font-family: "Placard", sans-serif;
-  font-weight: lighter;
   margin: 0px;
   font-size: 12pt;
   line-height: 1.5;
@@ -163,6 +162,10 @@ label {
 img {
   border-radius: var(--borderRadius);
   flex-shrink: 0;
+}
+
+a {
+  font-size: 12pt;
 }
 
 /********* Basic elements ***********/
@@ -254,7 +257,7 @@ button {
   font-weight: light;
   color: var(--text);
   font-weight: 500;
-  font-size: 10pt;
+  font-size: 12pt;
   text-wrap: "wrap";
   border-radius: var(--borderRadius);
   line-height: 1.2em;

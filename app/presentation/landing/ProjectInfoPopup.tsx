@@ -7,7 +7,7 @@ import type {
 import "./landing.css";
 import BasicMenu from "../elements/BasicMenu";
 import { Icon } from "../elements/Icon";
-import { useOutletContext } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
 
 export interface ProjectInfoPopupProps extends ActivatableElement {
   project: Project | undefined;
@@ -23,15 +23,20 @@ export function ProjectInfoPopup({
   onClose,
 }: ProjectInfoPopupProps) {
   const context: SharedContextProps = useOutletContext();
+  const navigate = useNavigate();
   return (
     <BasicMenu
-      width={context.inShrink ? "90%" : "60%"}
+      width={context.inShrink ? "90%" : "55%"}
       active={active}
       onClose={() => onClose()}
       zIndex={100}
     >
-      <div>
-        <div className={`row shrinkCol mb2 ${project?.link ? "between" : "center"}`}>
+      <div className="p3">
+        <div
+          className={`row shrinkCol mb2 ${
+            project?.link ? "between" : "center"
+          }`}
+        >
           <h4
             className={`row middle shrinkCol textCenter ${
               context.inShrink ? "center " : "between"
@@ -54,7 +59,7 @@ export function ProjectInfoPopup({
             {project?.name}
           </h4>
           {project?.link && (
-            <div className="row middle center mb2 mt2">
+            <div className="row middle center mt3 mb3">
               <a
                 style={{ textDecoration: "none" }}
                 className="p2 accentButton row center middle"
@@ -62,13 +67,13 @@ export function ProjectInfoPopup({
                 href={project.link}
               >
                 <Icon name="link" className="mr2" />
-                View project
+                View live project
               </a>
             </div>
           )}
         </div>
 
-        <div className="row shrinkCol ">
+        <div className="row shrinkCol">
           <div className="col between w50">
             <div className="col">
               {project?.description.map((d, i) => (
@@ -82,27 +87,19 @@ export function ProjectInfoPopup({
                 </p>
               ))}
             </div>
-            <div
-              className={`row mb2 mt2 w100 ${
-                context.inShrink && "center"
-              }`}
+            <button
+              className="accentButton row center middle w100"
+              onClick={() => navigate(`/${project?.type}`)}
             >
-              <a
-                style={{ textDecoration: "none" }}
-                className="p2 accentButton row center middle w100"
-                target="_blank"
-                href={`/${project?.type || ""}`}
-              >
-                <Icon name="link" className="mr2" />
-                More {project?.type}
-              </a>
-            </div>
+              <Icon name="link" className="mr2" />
+              More {project?.type}
+            </button>
           </div>
 
           <div className="div20" />
-          
+
           <div
-            className={`mb2 middle ${
+            className={`middle ${
               context.inShrink ? "center" : "start w100"
             }`}
             style={{
