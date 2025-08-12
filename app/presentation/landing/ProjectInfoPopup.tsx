@@ -8,6 +8,8 @@ import "./landing.css";
 import BasicMenu from "../elements/BasicMenu";
 import { Icon } from "../elements/Icon";
 import { useNavigate, useOutletContext } from "react-router";
+import { MouseEvent, useRef, useState } from "react";
+import ReactPlayer from "react-player";
 
 export interface ProjectInfoPopupProps extends ActivatableElement {
   project: Project | undefined;
@@ -24,12 +26,32 @@ export function ProjectInfoPopup({
 }: ProjectInfoPopupProps) {
   const context: SharedContextProps = useOutletContext();
   const navigate = useNavigate();
+  const [playerMuted, setPlayerMuted] = useState(true);
+  const [playerPlay, setPlayerPlay] = useState(false);
+  const reactPlayer = useRef<HTMLVideoElement>(null);
+  const [videoClicked, setVideoClicked] = useState(false);
+
+  async function videoMouseOver(e: MouseEvent<HTMLVideoElement>) {
+    setTimeout(() => {
+      setPlayerPlay(true);
+    }, 500);
+  }
+
+  async function videoMouseOff(e: MouseEvent<HTMLVideoElement>) {
+    setTimeout(() => setPlayerPlay(false), 500);
+  }
+
+  async function onVideoClick() {
+    setVideoClicked(!videoClicked);
+  }
+
   return (
     <BasicMenu
       width={context.inShrink ? "90%" : "55%"}
       active={active}
       onClose={() => onClose()}
       zIndex={100}
+      disableClickOff={!!project?.video}
     >
       <div className="p3">
         <div
@@ -79,6 +101,7 @@ export function ProjectInfoPopup({
               {project?.description.map((d, i) => (
                 <p
                   key={i}
+                  style={{ fontSize: "14pt" }}
                   className={`mb2 ${
                     context.inShrink ? "textCenter" : "textStart"
                   }`}
@@ -111,6 +134,63 @@ export function ProjectInfoPopup({
               gap: 10,
             }}
           >
+            {project?.video && (
+              <div
+                className="w100 boxed"
+                style={{
+                  overflow: "hidden",
+                  aspectRatio: "16 / 9",
+                }}
+              >
+                {playerPlay && (
+                  <div style={{ zIndex: 20, position: "relative" }}>
+                    <Icon
+                      name={
+                        playerMuted ? "volume-mute" : "volume-high"
+                      }
+                      onClick={() => setPlayerMuted(!playerMuted)}
+                      style={{
+                        position: "absolute",
+                        top: 10,
+                        right: 10,
+                        zIndex: 10,
+                      }}
+                      className="boxed p1"
+                    />
+                  </div>
+                )}
+                <ReactPlayer
+                  ref={reactPlayer}
+                  src={project.video}
+                  onMouseOver={(e) => videoMouseOver(e)}
+                  onMouseOut={(e) => videoMouseOff(e)}
+                  onClick={() => onVideoClick()}
+                  muted={playerMuted}
+                  loop
+                  style={
+                    videoClicked
+                      ? {
+                          width: "80vw",
+                          height: "80vh",
+                          objectFit: "cover",
+                          cursor: "pointer",
+                          position: "fixed",
+                          top: "10vh",
+                          left: "10vw",
+                          zIndex: 100,
+                          borderRadius: "var(--borderRadius)"
+                        }
+                      : {
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          cursor: "pointer",
+                        }
+                  }
+                  playing={true}
+                />
+              </div>
+            )}
             {project?.images?.map((img, idx) => (
               <div key={idx}>
                 <img

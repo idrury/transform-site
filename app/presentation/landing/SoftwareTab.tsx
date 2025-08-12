@@ -69,7 +69,7 @@ export function SoftwareTab({}: SoftwareTabProps) {
               />
             )}
             <img
-              src="https://c4.wallpaperflare.com/wallpaper/632/34/549/technology-monitor-alpha-coders-binary-wallpaper-preview.jpg"
+              src="https://xpifawxwcwazatwwhcpf.supabase.co/storage/v1/object/public/data/images/freeflex-budget.png"
               ref={reactPlayer}
               style={{
                 minWidth: "100%",

@@ -3,7 +3,7 @@ import { useNavigate, useOutletContext } from "react-router";
 import { Icon } from "../elements/Icon";
 import "./landing.css";
 import ReactPlayer from "react-player";
-import { MouseEvent, useEffect, useRef, useState } from "react";
+import { MouseEvent, useRef, useState } from "react";
 
 export interface MediaTabProps {}
 

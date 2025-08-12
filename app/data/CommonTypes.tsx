@@ -52,6 +52,7 @@ interface SupabaseTable {
 export interface Project {
   id: number,
   name: string,
+  video?: string,
   type: "software" | "media" | "design"
   images: string[],
   description: string[],
