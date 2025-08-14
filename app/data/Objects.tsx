@@ -77,6 +77,19 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://www.crossover.org.au/",
   },
+  // {
+  //   id: 10,
+  //   type: "media",
+  //   name: "National Baptism Week",
+  //   video:
+  //     "https://api.freeflex.com.au/storage/v1/object/public/transform/National_baptism_week%20-%20Draft_3_subs.mp4",
+  //   description: [
+  //     "National Baptism week is an annual event run by Crossover, which encourages churches to invite people in their community to consider baptism.",
+  //     "We worked with Crossover to create this heartfelt video about what it means to be baptised and give our lives to Jesus.",
+  //   ],
+  //   images: ["https://www.hello.com"],
+  //   link: "https://www.crossover.org.au/",
+  // },
   {
     id: 2,
     name: "RBC Alpha promo",
@@ -98,7 +111,7 @@ export const PROJECTS: Project[] = [
     id: 3,
     type: "software",
     name: "FreeFlex app",
-    link: "www.freeflex.com.au",
+    link: "https://www.freeflex.com.au",
     images: [
       `https://api.freeflex.com.au/storage/v1/object/public/transform/images/2.jpg`,
       "https://api.freeflex.com.au/storage/v1/object/public/transform/images/1.jpg",

@@ -73,7 +73,7 @@ export function LandingPage({}: LandingPageProps) {
           </div>
           <div style={{minHeight: 100}}>
             <HeaderText
-              text={["Digital content that inspires change."]}
+              text={["Digital content for positive change."]}
               typingSpeed={50}
               className="mt3"
               pauseDuration={500}

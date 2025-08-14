@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import { Icon } from "../elements/Icon";
 import { ProjectInfoPopup } from "../landing/ProjectInfoPopup";
 import HeaderText from "../landing/HeaderText";
+import { ContactTab } from "../landing/ContactTab";
 
 export interface PortfolioProps {}
 
@@ -36,16 +37,19 @@ export function Portfolio({}: PortfolioProps) {
 
   return (
     <div className="w100 col middle" style={{ minHeight: "100vh" }}>
-    <HeaderText
-            text={["Portfolio"]}
-            typingSpeed={50}
-            className="mb3 mt3"
-            pauseDuration={500}
-            showCursor={true}
-            cursorCharacter="|"
-            color="var(--primaryColor)"
-            textColors={["var(--primaryColor)"]}
-          />
+      <div className="row middle center shrinkCol">
+        <Icon name="albums-outline" className="mr2" size={context.inShrink ?30 :50} color="var(--primaryColor)"/>
+            <HeaderText
+              text={["Portfolio"]}
+              typingSpeed={50}
+              className="mb3 mt3"
+              pauseDuration={500}
+              showCursor={true}
+              cursorCharacter="|"
+              color="var(--primaryColor)"
+              textColors={["var(--primaryColor)"]}
+            />
+      </div>
       <p className="textCenter ml3 mr3">
         A selection of work we have completed for businesses and
         organisations accross South Australia.
@@ -165,7 +169,9 @@ export function Portfolio({}: PortfolioProps) {
             </div>
           ))}
         </div>
+      
       </div>
+        <ContactTab/>
       <ProjectInfoPopup
         project={project}
         onClose={() => setProject(undefined)}

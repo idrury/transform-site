@@ -136,7 +136,7 @@ export function MediaTab({}: MediaTabProps) {
             )}
             <ReactPlayer
               ref={reactPlayer}
-              src="https://api.freeflex.com.au/storage/v1/object/public/transform/Transform-reel-web.mp4"
+              src="https://api.freeflex.com.au/storage/v1/object/public/transform/transform-reel-web-2.mp4"
               onMouseOver={(e) => videoMouseOver(e)}
               onMouseOut={(e) => videoMouseOff(e)}
               muted={playerMuted}

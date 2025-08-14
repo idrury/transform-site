@@ -1,5 +1,5 @@
 :root {
-  font-family: "Placard", sans-serif;
+  font-family: "Placard", 'Roboto';
   font-weight: light;
   line-height: 1;
 
@@ -62,7 +62,7 @@
 
 @font-face {
   font-family: "Placard";
-  src: local("PlacardNext-Widelight"), format("opentype");
+  src: local("PlacardNext-WideLight"), format("opentype");
   font-weight: light;
 }
 
@@ -80,7 +80,7 @@ body {
 
 /** text */
 p {
-  font-family: "Placard", sans-serif;
+  font-family: "Placard", 'Roboto';
   margin: 0px;
   font-size: 12pt;
   line-height: 1.5;
@@ -89,7 +89,7 @@ p {
 }
 
 h1 {
-  font-family: "Sifon", sans-serif;
+  font-family: "Sifon", 'Roboto';
   text-align: start;
   color: var(--text);
   font-weight: 700;
@@ -100,7 +100,7 @@ h1 {
 }
 
 h2 {
-  font-family: "Placard", sans-serif;
+  font-family: "Placard", 'Roboto';
   font-weight: 400;
   margin: 0;
   text-align: start;
@@ -110,7 +110,7 @@ h2 {
 }
 
 h3 {
-  font-family: "Placard", sans-serif;
+  font-family: "Placard",'Roboto';
   text-align: start;
   line-height: 1.5;
   font-size: 12pt;
@@ -119,7 +119,7 @@ h3 {
 }
 
 h4 {
-  font-family: "Placard", sans-serif;
+  font-family: 'Placard', 'Roboto';
   font-weight: lighter;
   padding: 0;
   margin: 0;
@@ -129,7 +129,7 @@ h4 {
 }
 
 h5 {
-  font-family: "Placard", sans-serif;
+  font-family: "Placard", 'Roboto';
   padding: 0;
   margin: 0;
   font-size: 15pt;
@@ -145,13 +145,13 @@ ul {
 
 li {
   font-size: 12pt;
-  font-family: "Placard", sans-serif;
+  font-family: "Placard", 'Roboto';
   text-align: start;
   margin-bottom: 10pt;
 }
 
 label {
-  font-family: "Placard", sans-serif;
+  font-family: "Placard", 'Roboto';
   text-align: start !important;
   justify-content: start;
   font-size: 10pt !important;
@@ -168,7 +168,7 @@ a {
 
 /********* Basic elements ***********/
 input {
-  font-family: "Placard", sans-serif;
+  font-family: "Placard", 'Roboto';
   color: var(--text);
   background: var(--background);
   height: 50px;
@@ -201,7 +201,7 @@ input:disabled {
 }
 
 textarea {
-  font-family: "Placard", sans-serif;
+  font-family: "Placard", 'Roboto';
   background-color: var(--background);
 
   resize: vertical;
@@ -232,7 +232,7 @@ textarea:focus {
 }
 
 input {
-  font-family: "Placard", sans-serif;
+  font-family: "Placard", 'Roboto';
   color: var(--text);
   background: var(--background);
   height: 50px;
@@ -251,7 +251,7 @@ input {
 }
 
 button {
-  font-family: "Placard", sans-serif;
+  font-family: "Placard", 'Roboto';
   font-weight: light;
   color: var(--text);
   font-weight: 500;
