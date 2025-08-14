@@ -18,8 +18,6 @@ export function SoftwareTab({}: SoftwareTabProps) {
   const reactPlayer = useRef(null);
   const navigate = useNavigate();
 
-  useEffect(() => {}, []);
-
   function videoMouseOver() {
     setTimeout(() => {
       setPlayerPlay(true);
@@ -56,20 +54,22 @@ export function SoftwareTab({}: SoftwareTabProps) {
             }}
           >
             {playerPlay && (
-              <Icon
-                name={playerMuted ? "volume-mute" : "volume-high"}
-                onClick={() => setPlayerMuted(!playerMuted)}
-                style={{
-                  position: "absolute",
-                  top: 10,
-                  right: 10,
-                  zIndex: 50,
-                }}
-                className="boxed p1"
-              />
+             <div style={{zIndex: 20, position: "relative"}}> 
+                <Icon
+                  name={playerMuted ? "volume-mute" : "volume-high"}
+                  onClick={() => setPlayerMuted(!playerMuted)}
+                  style={{
+                    position: "absolute",
+                    top: 10,
+                    right: 10,
+                    zIndex: 10,
+                  }}
+                  className="boxed p1"
+                />
+              </div>
             )}
-            <img
-              src="https://xpifawxwcwazatwwhcpf.supabase.co/storage/v1/object/public/data/images/freeflex-budget.png"
+            <ReactPlayer
+              src="https://api.freeflex.com.au/storage/v1/object/public/transform/Software-video.mp4"
               ref={reactPlayer}
               style={{
                 minWidth: "100%",
@@ -78,10 +78,10 @@ export function SoftwareTab({}: SoftwareTabProps) {
               }}
               onMouseOver={() => videoMouseOver()}
               onMouseOut={() => videoMouseOff()}
-              // muted={playerMuted}
-              // loop
+              muted={playerMuted}
+              loop
 
-              //playing={playerPlay}
+              playing={playerPlay}
             />
           </div>
         </div>

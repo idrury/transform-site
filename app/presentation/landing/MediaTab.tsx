@@ -20,14 +20,12 @@ export function MediaTab({}: MediaTabProps) {
   const navigate = useNavigate();
 
   async function videoMouseOver(e: MouseEvent<HTMLVideoElement>) {
-    setPlayerCursorOn(true);
     setTimeout(() => {
       setPlayerPlay(true);
     }, 500);
   }
 
   async function videoMouseOff(e: MouseEvent<HTMLVideoElement>) {
-    setPlayerCursorOn(false);
     setTimeout(() => setPlayerPlay(false), 500);
   }
 
@@ -72,7 +70,7 @@ export function MediaTab({}: MediaTabProps) {
             )}
             <ReactPlayer
               ref={reactPlayer}
-              src="https://api.freeflex.com.au/storage/v1/object/public/transform//Reel%20v2.mov"
+              src="https://api.freeflex.com.au/storage/v1/object/public/transform/Transform-reel-web.mp4"
               onMouseOver={(e) => videoMouseOver(e)}
               onMouseOut={(e) => videoMouseOff(e)}
               muted={playerMuted}
