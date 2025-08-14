@@ -18,18 +18,36 @@ export function MediaTab({}: MediaTabProps) {
   const context: SharedContextProps = useOutletContext();
   const [playerPlay, setPlayerPlay] = useState(false);
   const [playerMuted, setPlayerMuted] = useState(true);
-  const [playerCursorOn, setPlayerCursorOn] = useState(false);
   const reactPlayer = useRef<HTMLVideoElement>(null);
   const navigate = useNavigate();
+
   gsap.registerPlugin(SplitText);
   gsap.registerPlugin(ScrollTrigger);
 
+  /***************************************************
+   * GSAP Animation
+   */
   useGSAP(() => {
-    const titleSplit = SplitText.create("#media-title", {
-      type: "words",
+     document.fonts.ready.then(() => {
+      const titleSplit = SplitText.create("#media-title", {
+        type: "words",
+      });
+
+      gsap.from(titleSplit.words, {
+        scrollTrigger: {
+          scrub: 1,
+          trigger: "#media",
+          start: "top center",
+          end: "+=300",
+          toggleActions: "pause pause reverse pause",
+        },
+        opacity: 0,
+        y: -10,
+        stagger: 0.2,
+      });
     });
 
-     gsap.from("#media-icon", {
+    gsap.from("#media-icon", {
       scrollTrigger: {
         scrub: 1,
         trigger: "#media",
@@ -41,7 +59,7 @@ export function MediaTab({}: MediaTabProps) {
       y: -300,
     });
 
-      gsap.from("#media-boxes", {
+    gsap.from("#media-boxes", {
       scrollTrigger: {
         scrub: 1,
         trigger: "#media",
@@ -53,7 +71,7 @@ export function MediaTab({}: MediaTabProps) {
       y: 300,
     });
 
-      gsap.from("#media-sub", {
+    gsap.from("#media-sub", {
       scrollTrigger: {
         scrub: 1,
         trigger: "#media",
@@ -63,19 +81,6 @@ export function MediaTab({}: MediaTabProps) {
       },
       opacity: 0,
       y: 300,
-    });
-
-    gsap.from(titleSplit.words, {
-      scrollTrigger: {
-        scrub: 1,
-        trigger: "#media",
-        start: "top center",
-        end: "+=300",
-        toggleActions: "pause pause reverse pause",
-      },
-      opacity: 0,
-      y: -10,
-      stagger: 0.2,
     });
   }, []);
 
@@ -94,7 +99,7 @@ export function MediaTab({}: MediaTabProps) {
       <div style={{ minHeight: 150, width: 100 }} />
 
       <Icon
-      id="media-icon"
+        id="media-icon"
         name="film-outline"
         size={50}
         color="var(--primaryColor)"

@@ -4,6 +4,9 @@ import { Icon } from "../elements/Icon";
 import "./landing.css";
 import ReactPlayer from "react-player";
 import { useEffect, useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger, SplitText } from "gsap/all";
 
 export interface SoftwareTabProps {}
 
@@ -17,6 +20,69 @@ export function SoftwareTab({}: SoftwareTabProps) {
   const [playerMuted, setPlayerMuted] = useState(true);
   const reactPlayer = useRef(null);
   const navigate = useNavigate();
+
+  gsap.registerPlugin(SplitText);
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Gsap animation
+  useGSAP(() => {
+     document.fonts.ready.then(() => {
+    const titleSplit = SplitText.create("#software-title", {
+      type: "words",
+    });
+
+     gsap.from(titleSplit.words, {
+      scrollTrigger: {
+        scrub: 1,
+        trigger: "#software",
+        start: "top center",
+        end: "+=300",
+        toggleActions: "pause pause reverse pause",
+      },
+      opacity: 0,
+      y: -10,
+      stagger: 0.2,
+    });
+     })
+
+     gsap.from("#software-icon", {
+      scrollTrigger: {
+        scrub: 1,
+        trigger: "#software",
+        start: "center bottom",
+        end: "+=300",
+        toggleActions: "pause pause reverse pause",
+      },
+      opacity: 0,
+      y: -300,
+    });
+
+      gsap.from("#software-boxes", {
+      scrollTrigger: {
+        scrub: 1,
+        trigger: "#software",
+        start: "top 300",
+        end: "+=300",
+        toggleActions: "pause pause reverse pause",
+      },
+      opacity: 0,
+      y: 300,
+    });
+
+      gsap.from("#software-sub", {
+      scrollTrigger: {
+        scrub: 1,
+        trigger: "#software",
+        start: "top 60%",
+        end: "+=300",
+        toggleActions: "pause pause reverse pause",
+      },
+      opacity: 0,
+      y: 300,
+    });
+
+   
+  }, []);
 
   function videoMouseOver() {
     setTimeout(() => {
@@ -33,18 +99,20 @@ export function SoftwareTab({}: SoftwareTabProps) {
       <div style={{ minHeight: 150, width: 100 }} />
 
       <Icon
+      id="software-icon"
         name="code-outline"
         size={50}
         color="var(--primaryColor)"
       />
-      <h4 className="mb3 mt3 textCenter">
+      <h4 className="mb3 mt3 textCenter" id="software-title">
         We develop software that pushes boundaries and invites
         participation
       </h4>
-      <p className="pb3 textCenter">
+      <p className="pb3 textCenter" id="software-sub">
         Bring us your website or app idea and we'll make it a reality.
       </p>
-      <div className="w100 col between">
+
+      <div className="w100 col" id="software-boxes">
         <div className="row shrinkCol between">
           <div
             className="w100 boxed row middle center grow-y"

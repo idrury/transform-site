@@ -57,20 +57,18 @@
 @font-face {
   font-family: "Sifon";
   src: local("SIFONN_PRO"),
-    url(./assets/SIFONN_PRO.otf) format("opentype");
+    url(/SIFONN_PRO.otf) format("opentype");
 }
 
 @font-face {
   font-family: "Placard";
-  src: local("PlacardNext-Widelight"),
-    url(./assets/PlacardNext-Widelight.otf) format("opentype");
+  src: local("PlacardNext-Widelight"), format("opentype");
   font-weight: light;
 }
 
 @font-face {
   font-family: "Placard";
-  src: local("PlacardNext-Wide"),
-    url(./assets/PlacardNext-Wide.otf) format("opentype");
+  src: local("PlacardNext-Wide"), format("opentype");
   font-weight: bold;
 }
 
@@ -496,7 +494,16 @@ th {
   transform: translateY(5px);
   transition: 0.2s;
 }
+/* Rotates any element with the .spin360 class */
+.spin360 {
+  animation: spin360 1s linear infinite;
+}
 
+@keyframes spin360 {
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .boxedAccent {
   color: #eeeeee !important;
   border-radius: var(--borderRadius);

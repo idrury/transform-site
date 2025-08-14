@@ -3,6 +3,10 @@ import { useNavigate, useOutletContext } from "react-router";
 import { Icon } from "../elements/Icon";
 import "./landing.css";
 import { useEffect, useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/all";
+import { ScrollTrigger } from "gsap/all";
+import gsap from "gsap";
 
 export interface DesignTabProps {}
 
@@ -17,7 +21,65 @@ export function DesignTab({}: DesignTabProps) {
   const reactPlayer = useRef(null);
   const navigate = useNavigate();
 
-  useEffect(() => {}, []);
+  gsap.registerPlugin(SplitText);
+  gsap.registerPlugin(ScrollTrigger);
+
+  //GSAP animation
+  useGSAP(() => {
+    document.fonts.ready.then(() => {
+      const titleSplit = SplitText.create("#design-title", {
+        type: "words",
+      });
+      gsap.from(titleSplit.words, {
+        scrollTrigger: {
+          scrub: 1,
+          trigger: "#design",
+          start: "top center",
+          end: "+=300",
+          toggleActions: "pause pause reverse pause",
+        },
+        opacity: 0,
+        y: -10,
+        stagger: 0.2,
+      });
+    });
+
+    gsap.from("#design-icon", {
+      scrollTrigger: {
+        scrub: 1,
+        trigger: "#design",
+        start: "center bottom",
+        end: "+=300",
+        toggleActions: "pause pause reverse pause",
+      },
+      opacity: 0,
+      y: -300,
+    });
+
+    gsap.from("#design-boxes", {
+      scrollTrigger: {
+        scrub: 1,
+        trigger: "#design",
+        start: "top 300",
+        end: "+=300",
+        toggleActions: "pause pause reverse pause",
+      },
+      opacity: 0,
+      y: 300,
+    });
+
+    gsap.from("#design-sub", {
+      scrollTrigger: {
+        scrub: 1,
+        trigger: "#design",
+        start: "top 60%",
+        end: "+=300",
+        toggleActions: "pause pause reverse pause",
+      },
+      opacity: 0,
+      y: 300,
+    });
+  }, []);
 
   function videoMouseOver() {
     setTimeout(() => {
@@ -34,18 +96,20 @@ export function DesignTab({}: DesignTabProps) {
       <div style={{ minHeight: 150, width: 100 }} />
 
       <Icon
+        id="design-icon"
         name="color-filter-outline"
         size={50}
         color="var(--primaryColor)"
       />
-      <h4 className="mb3 mt3 textCenter">
+      <h4 className="mb3 mt3 textCenter" id="design-title">
         We turn colors, fonts and shapes into brands that people trust
       </h4>
-      <p className="pb3 textCenter">
+      <p className="pb3 textCenter" id="design-sub">
         Tell us who you are and we'll help you develop a style that is
         uniquely you.
       </p>
-      <div className="w100 m3 col between">
+
+      <div className="w100 m3 col between" id="design-boxes">
         <div className="row shrinkCol between">
           <div
             className="w100 boxed row middle center grow-y"

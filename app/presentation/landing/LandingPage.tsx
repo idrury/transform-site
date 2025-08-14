@@ -26,14 +26,23 @@ export function LandingPage({}: LandingPageProps) {
   const [viewProjectActive, setViewProjectActive] = useState(false);
   const titleSplit = useRef(null);
   const navigate = useNavigate();
-gsap.registerPlugin(SplitText)
-  useGSAP(() => {
-    const titleSplit = SplitText.create("#title", { type: "words" });
 
-    gsap.from(titleSplit.words, {
-      opacity: 0,
-      y: -10,
-      stagger: 0.1,
+  gsap.registerPlugin(SplitText);
+
+  /*******************************************************
+   * GSAP
+   */
+  useGSAP(() => {
+    document.fonts.ready.then(() => {
+      const titleSplit = SplitText.create("#title", {
+        type: "words",
+      });
+
+      gsap.from(titleSplit.words, {
+        opacity: 0,
+        y: -10,
+        stagger: 0.1,
+      });
     });
   }, []);
 
@@ -62,16 +71,18 @@ gsap.registerPlugin(SplitText)
               color="var(--secondaryColor)"
             />
           </div>
-          <HeaderText
-            text={["Digital content that inspires change."]}
-            typingSpeed={50}
-            className="mt3"
-            pauseDuration={500}
-            showCursor={false}
-            cursorCharacter="|"
-            color="var(--primaryColor)"
-            textColors={["var(--primaryColor)"]}
-          />
+          <div style={{minHeight: 100}}>
+            <HeaderText
+              text={["Digital content that inspires change."]}
+              typingSpeed={50}
+              className="mt3"
+              pauseDuration={500}
+              showCursor={false}
+              cursorCharacter="|"
+              color="var(--primaryColor)"
+              textColors={["var(--primaryColor)"]}
+            />
+          </div>
           <p id="title" className="p3 textCenter">
             We work with Aussie organisations to create captivating
             media, software and design.

@@ -23,7 +23,6 @@ export function HeaderBar({}: HeaderBarProps) {
   const [scroll, setScroll] = useState(0);
 
   useEffect(() => {
-    console.log(location);
     const updateScroll = () => {
       setScroll(window.scrollY);
     };
@@ -60,6 +59,17 @@ export function HeaderBar({}: HeaderBarProps) {
             onClick={() => navigate("/")}
           >
             Home
+          </button>
+          <button
+            disabled={location.pathname == "/portfolio"}
+            style={{
+              color: `${
+                location.pathname == "/" ? "var(--primaryColor)" : ""
+              }`,
+            }}
+            onClick={() => navigate("/portfolio")}
+          >
+            Portfolio
           </button>
           <a
             style={{ textDecoration: "none" }}

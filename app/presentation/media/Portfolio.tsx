@@ -9,6 +9,7 @@ import ReactPlayer from "react-player";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "../elements/Icon";
 import { ProjectInfoPopup } from "../landing/ProjectInfoPopup";
+import HeaderText from "../landing/HeaderText";
 
 export interface PortfolioProps {}
 
@@ -35,8 +36,17 @@ export function Portfolio({}: PortfolioProps) {
 
   return (
     <div className="w100 col middle" style={{ minHeight: "100vh" }}>
-      <h2 className="mb3">Portfolio</h2>
-      <p>
+    <HeaderText
+            text={["Portfolio"]}
+            typingSpeed={50}
+            className="mb3 mt3"
+            pauseDuration={500}
+            showCursor={true}
+            cursorCharacter="|"
+            color="var(--primaryColor)"
+            textColors={["var(--primaryColor)"]}
+          />
+      <p className="textCenter ml3 mr3">
         A selection of work we have completed for businesses and
         organisations accross South Australia.
       </p>
