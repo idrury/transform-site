@@ -84,7 +84,7 @@ export function LandingPage({}: LandingPageProps) {
       <div className="col middle between pt2 pb2">
         <div className="mt3 w100">
           <CircularGallery
-            projects={PROJECTS}
+            projects={PROJECTS.slice(0,8)}
             onProjectClick={(id) => {
               setViewProjectActive(true);
               setSelectedProject(PROJECTS.find((p) => p.id == id));

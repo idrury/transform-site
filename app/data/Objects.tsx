@@ -10,6 +10,8 @@ export const PROJECTS: Project[] = [
   {
     id: 0,
     name: "The Great Tim Tam Experiment",
+    video:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/Tim-Tam%20Experiment%20draft4.mp4",
     images: [
       `https://api.freeflex.com.au/storage/v1/object/public/transform/images/tim%20tam%203-min.png`,
       `https://api.freeflex.com.au/storage/v1/object/public/transform/images/tim%20tam%202-min.png`,
@@ -24,26 +26,63 @@ export const PROJECTS: Project[] = [
     link: "https://www.crossover.org.au",
   },
   {
-    id: 1,
+    id: 7,
     type: "media",
-    name: "King's Ping-pong-a-thon promo",
+    name: "BCSANT Merger",
     video:
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/Pong%2025%20promo%202.mp4",
-    images: [
-      `https://api.freeflex.com.au/storage/v1/object/public/transform/images/kings-pong-2-min.png`,
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/images/kings-pong-1-min.png",
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/images/kings-pong-4-min.png",
-    ],
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/BCSANT%20merger%20-%20Draft%203.mp4",
     description: [
-      "For King's Baptist Youth's 2025 campaign we made this fun video to encourage people to donate.",
-      "The video was played in church services and youth group leading up to the event.",
-      "Their ping-pong-a-thon went on to raise $3000!",
+      "In 2024 Baptist Churches SA merged with Baptist Churches NT to create the Baptist Churches Of South Australia and The Northern Territory.",
+      "To help communicate this change to churches, we worked with the organisation to put this 3 minute video together.",
     ],
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/bcsant-2.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/bcsant-1.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/bcsant-3.png",
+    ],
+    link: "https://bcsant.org.au/",
+  },
+  {
+    id: 8,
+    type: "media",
+    name: "Churches of Christ - Who We Are",
+    video:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/Churches-of-christ.mp4",
+    description: [
+      "Churches of Christ SA came to us and asked if we could help them put together a video which would help reignite a passion for their mission.",
+      "We worked with them to help script and produce this video, which was played to leaders and churches throughout the movement.",
+    ],
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/coc-2-min.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/coc-1-min.png",
+
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/coc-3-min.png",
+    ],
+    link: "https://churchesofchrist-sa.org.au/",
+  },
+  {
+    id: 9,
+    type: "media",
+    name: "Crossover - About us",
+    video:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/Infomercial-subs3.mp4",
+    description: [
+      "When Crossover Australia needed a video to help tell people about who they are, and help raise money for their easter campaign, we worked with them to create this 'informercial'",
+      "The video has been played in churches all around Australia, and helped Crossover raise the neccessary funds to run their organisation.",
+    ],
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/crossover-info-1.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/crossover-info-2.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/crossover-info-3.png",
+    ],
+    link: "https://www.crossover.org.au/",
   },
   {
     id: 2,
     name: "RBC Alpha promo",
     type: "media",
+    video:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/Alpha%20RBC.mp4",
     link: "https://www.rbc.org.au/wordpress/",
     images: [
       `https://api.freeflex.com.au/storage/v1/object/public/transform/images/RBC-alpha-interview-1-min.png`,
@@ -73,7 +112,7 @@ export const PROJECTS: Project[] = [
     id: 4,
     type: "media",
     name: "RBC Easter Service promo",
-        link: "https://www.rbc.org.au/wordpress/",
+    link: "https://www.rbc.org.au/wordpress/",
 
     video:
       "https://api.freeflex.com.au/storage/v1/object/public/transform/RBC%20Easter%20Spoken%20Word%20-%20Ben%20-%20v3.mp4",
@@ -108,6 +147,8 @@ export const PROJECTS: Project[] = [
     type: "media",
     name: "KBC Alpha Marriage promos",
     link: "https://kingsbaptist.org.au/",
+    video:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/Nigel%20+%20Mandy.mp4",
     images: [
       `https://api.freeflex.com.au/storage/v1/object/public/transform/images/Kings-alpha-marriage-1-min.png`,
       "https://api.freeflex.com.au/storage/v1/object/public/transform/images/kings-alpha-marriage-2-min.png",
@@ -116,6 +157,23 @@ export const PROJECTS: Project[] = [
     description: [
       "A series of couch couple interviews to help King's Baptist Church increase number of signups to the 2025 alpha marriage course.",
       "The course went on to sell out completely!",
+    ],
+  },
+  {
+    id: 1,
+    type: "media",
+    name: "King's Ping-pong-a-thon promo",
+    video:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/Pong%2025%20promo%202.mp4",
+    images: [
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/images/kings-pong-2-min.png`,
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/images/kings-pong-1-min.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/images/kings-pong-4-min.png",
+    ],
+    description: [
+      "For King's Baptist Youth's 2025 campaign we made this fun video to encourage people to donate.",
+      "The video was played in church services and youth group leading up to the event.",
+      "Their ping-pong-a-thon went on to raise $3000!",
     ],
   },
 ];

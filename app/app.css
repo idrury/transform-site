@@ -923,9 +923,14 @@ Padding
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-columns: repeat(auto-fill,100px);
   gap: 10px;
+}
+
+.grid-auto {
+ display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 2fr)); /* Auto-fill columns, min 200px, max 1fr */
+  gap: 10px; /* Space between grid items */
 }
 
 .middle {
