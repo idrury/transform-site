@@ -7,8 +7,12 @@ import { MediaTab } from "./MediaTab";
 import { SoftwareTab } from "./SoftwareTab";
 import { ContactTab } from "./ContactTab";
 import { ProjectInfoPopup } from "./ProjectInfoPopup";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { PROJECTS } from "~/data/Objects";
+import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/all";
+import gsap from "gsap";
+import HeaderText from "./HeaderText";
 
 export interface LandingPageProps {}
 
@@ -20,7 +24,18 @@ export function LandingPage({}: LandingPageProps) {
   const context: SharedContextProps = useOutletContext();
   const [selectedProject, setSelectedProject] = useState<Project>();
   const [viewProjectActive, setViewProjectActive] = useState(false);
+  const titleSplit = useRef(null);
   const navigate = useNavigate();
+gsap.registerPlugin(SplitText)
+  useGSAP(() => {
+    const titleSplit = SplitText.create("#title", { type: "words" });
+
+    gsap.from(titleSplit.words, {
+      opacity: 0,
+      y: -10,
+      stagger: 0.1,
+    });
+  }, []);
 
   return (
     <div>
@@ -28,33 +43,38 @@ export function LandingPage({}: LandingPageProps) {
         <div className="w50 col middle center">
           <div className="row middle center">
             <Icon
+              id="ellipse"
               name="ellipse"
               size={20}
               color="var(--primaryColor)"
             />
             <Icon
+              id="ellipse"
               name="ellipse"
               size={20}
               color="var(--thirdColor)"
             />
 
             <Icon
+              id="ellipse"
               name="ellipse"
               size={20}
               color="var(--secondaryColor)"
             />
           </div>
-          <h2
-            className="mt3 textCenter pl3 pr3"
-            style={{
-              color: "var(--primaryColor)",
-            }}
-          >
-            Digital content that inspires change.
-          </h2>
-          <p className="p3 textCenter">
-            We work with Aussie organisations to create captivating media,
-            software and design.
+          <HeaderText
+            text={["Digital content that inspires change."]}
+            typingSpeed={50}
+            className="mt3"
+            pauseDuration={500}
+            showCursor={false}
+            cursorCharacter="|"
+            color="var(--primaryColor)"
+            textColors={["var(--primaryColor)"]}
+          />
+          <p id="title" className="p3 textCenter">
+            We work with Aussie organisations to create captivating
+            media, software and design.
           </p>
           <div className="row center w50 m3">
             <button
@@ -84,7 +104,7 @@ export function LandingPage({}: LandingPageProps) {
       <div className="col middle between pt2 pb2">
         <div className="mt3 w100">
           <CircularGallery
-            projects={PROJECTS.slice(0,8)}
+            projects={PROJECTS.slice(0, 8)}
             onProjectClick={(id) => {
               setViewProjectActive(true);
               setSelectedProject(PROJECTS.find((p) => p.id == id));

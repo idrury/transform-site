@@ -6,7 +6,6 @@ import {
 
 export default [
   index("routes/LandingRoute.tsx"),
-  route("/media", "routes/MediaRoute.tsx"),
-  route("/software", "routes/SoftwareRoute.tsx"),
-  route("/design", "routes/DesignRoute.tsx"),
+  route("/portfolio", "routes/MediaRoute.tsx"),
+  route("", "routes/ErrorBoundary.tsx")
 ] satisfies RouteConfig;

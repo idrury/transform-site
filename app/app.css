@@ -290,7 +290,7 @@ button:disabled {
 }
 
 .accentButton * {
-  color: var(--background)
+  color: var(--background);
 }
 
 .accentButton:hover {
@@ -300,8 +300,8 @@ button:disabled {
 }
 
 button:hover * {
-color: var(--primaryColor);
-transition: .2s;
+  color: var(--primaryColor);
+  transition: 0.2s;
 }
 
 .accentButton:disabled {
@@ -474,10 +474,10 @@ th {
 }
 
 .gallery-image {
-   transition: .3s;
-   height: 300px;
-   aspect-ratio: 16 / 9;
-   filter:contrast(100)
+  transition: 0.3s;
+  height: 300px;
+  aspect-ratio: 16 / 9;
+  filter: contrast(100);
 }
 
 /************************************
@@ -494,7 +494,7 @@ th {
 
 .animate:hover {
   transform: translateY(5px);
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .boxedAccent {
@@ -923,13 +923,16 @@ Padding
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill,100px);
+  grid-template-columns: repeat(auto-fill, 100px);
   gap: 10px;
 }
 
 .grid-auto {
- display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 2fr)); /* Auto-fill columns, min 200px, max 1fr */
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(300px, 2fr)
+  ); /* Auto-fill columns, min 200px, max 1fr */
   gap: 10px; /* Space between grid items */
 }
 
@@ -1052,7 +1055,6 @@ Padding
   .gallery-image {
     height: 150px;
   }
-
   .thirty,
   .fifty,
   .sixty,

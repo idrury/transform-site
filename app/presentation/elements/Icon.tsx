@@ -5,6 +5,7 @@ import { IoniconName } from "~/data/Ionicons";
 import { CSSProperties } from "react";
 
 export interface IconProps {
+  id?: string,
   name: IoniconName;
   style?:CSSProperties
   size?: number;
@@ -18,6 +19,7 @@ export interface IconProps {
  * @todo Create description
  */
 export function Icon({
+  id,
   name,
   style,
   color="var(--text)",
@@ -28,7 +30,7 @@ export function Icon({
   const context: SharedContextProps = useOutletContext();
 
   return (
-    <div>
+    <div id={id}>
       <IonIcon
       onClick={() => onClick && onClick()}
         name={name}

@@ -122,10 +122,10 @@ export function DesignTab({}: DesignTabProps) {
                   zIndex: 500,
                 }}
               >
-                Find out more
+                See more
               </h5>
               <Icon
-                onClick={() => navigate("/design")}
+                onClick={() => navigate("/portfolio?type=design")}
                 name="arrow-forward-circle"
                 size={40}
                 color="var(--background)"

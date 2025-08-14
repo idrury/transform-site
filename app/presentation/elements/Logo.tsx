@@ -1,5 +1,5 @@
 import type { SharedContextProps } from "~/data/CommonTypes";
-import { useOutletContext } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
 
 export interface LogoProps {
   size?: number;
@@ -11,10 +11,14 @@ export interface LogoProps {
  */
 export function Logo({ size = 100 }: LogoProps) {
   const context: SharedContextProps = useOutletContext();
+  const navigate = useNavigate();
 
   return (
     <div>
-      <div className="row">
+      <div className="row"
+      style={{cursor: "pointer"}}
+      onClick={() => navigate("/")}
+      >
         <div
           style={{
             height: size * 2,
@@ -24,7 +28,10 @@ export function Logo({ size = 100 }: LogoProps) {
         >
           <img
             className=""
-            style={{ height: `${(size * 2)}px`, width: `${(size * 2)}px` }}
+            style={{
+              height: `${size * 2}px`,
+              width: `${size * 2}px`,
+            }}
             src="/transform-icon-color-donut.png"
           />
         </div>

@@ -10,3 +10,39 @@
   transition: 0.5s;
   filter: none;
 }
+
+.text-type {
+  font-size: 60pt;
+  color: var(--primaryColor) !important;
+  display: inline-block;
+  white-space: pre-wrap;
+}
+
+.text-type__cursor {
+  margin-left: 0.25rem;
+  display: inline-block;
+  opacity: 1;
+}
+
+.text-type__cursor--hidden {
+  display: none;
+}
+
+.text-type__content {
+  text-align: center;
+}
+
+#ellipse {
+  animation: scroll
+    var(--_animation-duration, 40s)
+    var(--_animation-direction, forwards) linear
+    infinite;
+    animation-play-state:running;
+}
+
+@media (max-width: 1200px) {
+    .text-type {
+    font-size: 35pt;
+  }
+
+}

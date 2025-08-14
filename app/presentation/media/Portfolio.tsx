@@ -1,42 +1,90 @@
 import { Project, type SharedContextProps } from "~/data/CommonTypes";
-import { useNavigate, useOutletContext } from "react-router";
+import {
+  useNavigate,
+  useOutletContext,
+  useSearchParams,
+} from "react-router";
 import { PROJECTS } from "~/data/Objects";
 import ReactPlayer from "react-player";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Icon } from "../elements/Icon";
 import { ProjectInfoPopup } from "../landing/ProjectInfoPopup";
 
-export interface MediaProps {}
+export interface PortfolioProps {}
 
 /******************************
- * Media component
+ * Portfolio component
  * @todo Create description
  */
-export function Media({}: MediaProps) {
+export function Portfolio({}: PortfolioProps) {
   const context: SharedContextProps = useOutletContext();
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [playing, setPlaying] = useState<number>();
   const [project, setProject] = useState<Project>();
-  const [muted, setMuted] = useState(false);
+  const [filter, setFilter] = useState<string | null>(
+    searchParams.get("type")
+  );
   const reactPlayer = useRef(null);
 
-  const navigate = useNavigate();
-
   function videoMouseOver(id: number) {
-    console.log("Hi");
     setPlaying(id);
   }
 
   function videoMouseOff() {}
 
   return (
-    <div className="w100 col middle center">
-      <h1 className="mb3">Media</h1>
-      <div className="m3 col middle center">
-        <div
-          className="grid-auto w75"
+    <div className="w100 col middle" style={{ minHeight: "100vh" }}>
+      <h2 className="mb3">Portfolio</h2>
+      <p>
+        A selection of work we have completed for businesses and
+        organisations accross South Australia.
+      </p>
+      <div className="row center w50 m3">
+        <button
+          className={`row middle ml2 mr3 ${
+            filter == "media" && "boxedAccent"
+          }`}
+          onClick={() => {
+            setFilter("media");
+            setSearchParams("type=media");
+          }}
         >
-          {PROJECTS.filter((p) => p.type == "media").map((p) => (
+          <Icon name="film-outline" className="mr1" />
+          Media
+        </button>
+        <button
+          className={`row middle ml2 mr3 ${
+            filter == "software" && "boxedAccent"
+          }`}
+          onClick={() => {
+            setFilter("software");
+            setSearchParams("type=software");
+          }}
+        >
+          <Icon name="code-outline" className="mr1" />
+          Software
+        </button>
+        <button
+          className={`row middle ml2 mr3 ${
+            filter == "design" && "boxedAccent"
+          }`}
+          onClick={() => {
+            setFilter("design");
+            setSearchParams("type=design");
+          }}
+        >
+          <Icon name="color-filter-outline" className="mr1" />
+          Design
+        </button>
+      </div>
+      <div className="m3 col middle center">
+        <div className="grid-auto w75">
+          {PROJECTS.filter((p) =>
+            filter ? p.type == filter : true
+          ).map((p) => (
             <div
+            key={p.id}
               style={{
                 minWidth: 300,
                 aspectRatio: "16/9",

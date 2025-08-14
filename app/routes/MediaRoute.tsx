@@ -1,4 +1,4 @@
-import { Media } from "~/presentation/media/Media";
+import { Portfolio } from "~/presentation/media/Portfolio";
 import { Route } from "../+types/root";
 
 export function meta({}: Route.MetaArgs) {
@@ -9,5 +9,5 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function LandingRoute() {
-  return (<Media/>);
+  return (<Portfolio/>);
 }

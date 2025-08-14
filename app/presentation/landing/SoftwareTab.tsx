@@ -123,10 +123,10 @@ export function SoftwareTab({}: SoftwareTabProps) {
                   zIndex: 500,
                 }}
               >
-                Find out more
+                See more
               </h5>
               <Icon
-                onClick={() => navigate("/software")}
+                onClick={() => navigate("/portfolio?type=software")}
                 name="arrow-forward-circle"
                 size={40}
                 color="var(--background)"

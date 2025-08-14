@@ -41,8 +41,10 @@ export function ProjectInfoPopup({
     setTimeout(() => setPlayerPlay(false), 500);
   }
 
-  async function onVideoClick() {
-    setVideoClicked(!videoClicked);
+  async function onVideoClick(e:MouseEvent<HTMLVideoElement>) {
+    e.stopPropagation();
+    setPlayerMuted(false)
+    if(!context.inShrink) setVideoClicked(!videoClicked);
   }
 
   return (
@@ -51,7 +53,6 @@ export function ProjectInfoPopup({
       active={active}
       onClose={() => onClose()}
       zIndex={100}
-      disableClickOff={!!project?.video}
     >
       <div className="p3">
         <div
@@ -112,7 +113,9 @@ export function ProjectInfoPopup({
             </div>
             <button
               className="accentButton row center middle w100"
-              onClick={() => navigate(`/${project?.type}`)}
+              onClick={() =>
+                navigate(`/Portfolio?type=${project?.type}`)
+              }
             >
               <Icon name="link" className="mr2" />
               More {project?.type}
@@ -164,7 +167,7 @@ export function ProjectInfoPopup({
                   src={project.video}
                   onMouseOver={(e) => videoMouseOver(e)}
                   onMouseOut={(e) => videoMouseOff(e)}
-                  onClick={() => onVideoClick()}
+                  onClick={(e) => onVideoClick(e)}
                   muted={playerMuted}
                   loop
                   style={
@@ -178,7 +181,7 @@ export function ProjectInfoPopup({
                           top: "10vh",
                           left: "10vw",
                           zIndex: 100,
-                          borderRadius: "var(--borderRadius)"
+                          borderRadius: "var(--borderRadius)",
                         }
                       : {
                           width: "100%",

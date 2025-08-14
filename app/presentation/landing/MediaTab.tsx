@@ -4,6 +4,9 @@ import { Icon } from "../elements/Icon";
 import "./landing.css";
 import ReactPlayer from "react-player";
 import { MouseEvent, useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger, SplitText } from "gsap/all";
 
 export interface MediaTabProps {}
 
@@ -18,6 +21,63 @@ export function MediaTab({}: MediaTabProps) {
   const [playerCursorOn, setPlayerCursorOn] = useState(false);
   const reactPlayer = useRef<HTMLVideoElement>(null);
   const navigate = useNavigate();
+  gsap.registerPlugin(SplitText);
+  gsap.registerPlugin(ScrollTrigger);
+
+  useGSAP(() => {
+    const titleSplit = SplitText.create("#media-title", {
+      type: "words",
+    });
+
+     gsap.from("#media-icon", {
+      scrollTrigger: {
+        scrub: 1,
+        trigger: "#media",
+        start: "center bottom",
+        end: "+=300",
+        toggleActions: "pause pause reverse pause",
+      },
+      opacity: 0,
+      y: -300,
+    });
+
+      gsap.from("#media-boxes", {
+      scrollTrigger: {
+        scrub: 1,
+        trigger: "#media",
+        start: "top 300",
+        end: "+=300",
+        toggleActions: "pause pause reverse pause",
+      },
+      opacity: 0,
+      y: 300,
+    });
+
+      gsap.from("#media-sub", {
+      scrollTrigger: {
+        scrub: 1,
+        trigger: "#media",
+        start: "top 60%",
+        end: "+=300",
+        toggleActions: "pause pause reverse pause",
+      },
+      opacity: 0,
+      y: 300,
+    });
+
+    gsap.from(titleSplit.words, {
+      scrollTrigger: {
+        scrub: 1,
+        trigger: "#media",
+        start: "top center",
+        end: "+=300",
+        toggleActions: "pause pause reverse pause",
+      },
+      opacity: 0,
+      y: -10,
+      stagger: 0.2,
+    });
+  }, []);
 
   async function videoMouseOver(e: MouseEvent<HTMLVideoElement>) {
     setTimeout(() => {
@@ -34,18 +94,19 @@ export function MediaTab({}: MediaTabProps) {
       <div style={{ minHeight: 150, width: 100 }} />
 
       <Icon
+      id="media-icon"
         name="film-outline"
         size={50}
         color="var(--primaryColor)"
       />
-      <h4 className="mb3 mt3 textCenter">
+      <h4 className="mb3 mt3 textCenter" id="media-title">
         We create videos that gain attention and generate traction
       </h4>
-      <p className="pb3 textCenter">
+      <p className="pb3 textCenter" id="media-sub">
         Partner with us to create authentic material that cuts through
         the dribble of AI content.
       </p>
-      <div className="w100 col">
+      <div className="w100 col" id="media-boxes">
         <div className="row">
           <div
             className="w100 boxed grow-y"
@@ -54,7 +115,7 @@ export function MediaTab({}: MediaTabProps) {
             }}
           >
             {playerPlay && (
-              <div style={{zIndex: 20, position: "relative"}}> 
+              <div style={{ zIndex: 20, position: "relative" }}>
                 <Icon
                   name={playerMuted ? "volume-mute" : "volume-high"}
                   onClick={() => setPlayerMuted(!playerMuted)}
@@ -120,10 +181,10 @@ export function MediaTab({}: MediaTabProps) {
                   zIndex: 500,
                 }}
               >
-                Find out more
+                See more
               </h5>
               <Icon
-                onClick={() => navigate("/media")}
+                onClick={() => navigate("/portfolio?type=media")}
                 name="arrow-forward-circle"
                 size={40}
                 color="var(--background)"
