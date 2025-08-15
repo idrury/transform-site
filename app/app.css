@@ -58,18 +58,24 @@
   font-family: "Sifon";
   src: local("SIFONN_PRO"),
     url(/SIFONN_PRO.otf) format("opentype");
+    font-display: swap;
+    font-style: normal;
 }
 
 @font-face {
   font-family: "Placard";
   src: local("PlacardNext-WideLight"), url(/PlacardNext-WideLight.otf) format("opentype");
   font-weight: light;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Placard";
   src: local("PlacardNext-Wide"), url(/PlacardNext-Wide.otf) format("opentype");
   font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 
 body {

@@ -47,12 +47,21 @@ export function HydrateFallback() {
       style={{ width: "100%", height: "100vh" }}
       className="col middle center"
     >
-      <img src="transform-icon-color-donut.png" className="spin360 mediumFade" style={{height: 100, width: 100}} alt="Transform creative digital australia logo icon"/>
+      <img
+        src="transform-icon-color-donut.png"
+        className="spin360 mediumFade"
+        style={{ height: 100, width: 100 }}
+        alt="Transform creative digital australia logo icon"
+      />
     </div>
   );
 }
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <head>
@@ -61,7 +70,31 @@ export function Layout({ children }: { children: React.ReactNode }) {
           name="viewport"
           content="width=device-width, initial-scale=1"
         />
-        <link rel="icon" href="/transform-icon-color-donut.png" />
+        <link
+          rel="icon"
+          href="/transform-icon-color-donut.png"
+        />
+        <link
+          rel="preload"
+          href="/SIFONN_PRO.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/PlacardNext-WideLight.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/PlacardNext-Wide.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin="anonymous"
+        />
 
         <Meta />
         <Links />
@@ -82,19 +115,25 @@ export default function App() {
     active: false,
   });
 
-  const [session, setSession] = useState<Session | null>();
+  const [session, setSession] =
+    useState<Session | null>();
   const [inShrink, setInShrink] = useState(
     window.innerWidth < shrinkWidth
   );
   const navigate = useNavigate();
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((_event, session) => {
-      if (_event == "SIGNED_IN" || _event == "TOKEN_REFRESHED") {
-        //Perform sign in actions here
+    supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        if (
+          _event == "SIGNED_IN" ||
+          _event == "TOKEN_REFRESHED"
+        ) {
+          //Perform sign in actions here
+        }
+        setSession(session);
       }
-      setSession(session);
-    });
+    );
   }, []);
 
   /******************************
@@ -102,17 +141,29 @@ export default function App() {
    */
   useEffect(() => {
     const handleResize = () => {
-      setInShrink(window.innerWidth < shrinkWidth);
+      setInShrink(
+        window.innerWidth < shrinkWidth
+      );
     };
-    window.addEventListener("resize", handleResize);
+    window.addEventListener(
+      "resize",
+      handleResize
+    );
     handleResize();
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener(
+        "resize",
+        handleResize
+      );
     };
   }, []);
 
   /** Activate the saved popup box */
-  const popAlert: PopAlertFn = (header, body, isError = false) => {
+  const popAlert: PopAlertFn = (
+    header,
+    body,
+    isError = false
+  ) => {
     setAlert({
       active: true,
       header: header,
@@ -123,7 +174,7 @@ export default function App() {
 
   return (
     <>
-      <HeaderBar inShrink={inShrink}/>
+      <HeaderBar inShrink={inShrink} />
       <Outlet
         context={
           {
@@ -139,7 +190,9 @@ export default function App() {
         header={alert.header}
         body={alert.body}
         active={alert.active}
-        onClose={() => setAlert({ active: false })}
+        onClose={() =>
+          setAlert({ active: false })
+        }
         state={alert.state}
       />
       <FooterBar />
@@ -147,45 +200,53 @@ export default function App() {
   );
 }
 
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+export function ErrorBoundary({
+  error,
+}: Route.ErrorBoundaryProps) {
   const navigate = useNavigate();
   let message = "Oops!";
   let details = "An unexpected error occurred.";
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
+    message =
+      error.status === 404 ? "404" : "Error";
     details =
       error.status === 404
         ? "The requested page could not be found."
         : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
+  } else if (
+    import.meta.env.DEV &&
+    error &&
+    error instanceof Error
+  ) {
     details = error.message;
     stack = error.stack;
   }
 
   return (
     <main className="vh100 middle center col">
-      
-        <h1 className="mb2" style={{ color: "var(--primaryColor)" }}>
-          {message}
-        </h1>
-        <div className="row middle center">
-          <p>{details || ""}</p>
-        </div>
-        <button
-          className="mt3 accentButton row middle center"
-          onClick={() => navigate("/")}
-        >
-          Home
-        </button>
-        
-        {stack && (
-           <pre className="w-full p-4 overflow-x-auto">
-             <code>{stack}</code>
-           </pre>
-         )}
+      <h1
+        className="mb2"
+        style={{ color: "var(--primaryColor)" }}
+      >
+        {message}
+      </h1>
+      <div className="row middle center">
+        <p>{details || ""}</p>
+      </div>
+      <button
+        className="mt3 accentButton row middle center"
+        onClick={() => navigate("/")}
+      >
+        Home
+      </button>
 
+      {stack && (
+        <pre className="w-full p-4 overflow-x-auto">
+          <code>{stack}</code>
+        </pre>
+      )}
     </main>
   );
 }

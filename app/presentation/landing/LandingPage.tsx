@@ -75,7 +75,7 @@ export function LandingPage({}: LandingPageProps) {
             <HeaderText
               text={["Digital content for positive change."]}
               typingSpeed={50}
-              className="mt3"
+              className="m3"
               pauseDuration={500}
               showCursor={false}
               cursorCharacter="|"
