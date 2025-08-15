@@ -1,4 +1,7 @@
-import { Project, type SharedContextProps } from "~/data/CommonTypes";
+import {
+  Project,
+  type SharedContextProps,
+} from "~/data/CommonTypes";
 import {
   useNavigate,
   useOutletContext,
@@ -6,7 +9,11 @@ import {
 } from "react-router";
 import { PROJECTS } from "~/data/Objects";
 import ReactPlayer from "react-player";
-import { useEffect, useRef, useState } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Icon } from "../elements/Icon";
 import { ProjectInfoPopup } from "../landing/ProjectInfoPopup";
 import HeaderText from "../landing/HeaderText";
@@ -19,14 +26,18 @@ export interface PortfolioProps {}
  * @todo Create description
  */
 export function Portfolio({}: PortfolioProps) {
-  const context: SharedContextProps = useOutletContext();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const context: SharedContextProps =
+    useOutletContext();
+  const [searchParams, setSearchParams] =
+    useSearchParams();
 
-  const [playing, setPlaying] = useState<number>();
-  const [project, setProject] = useState<Project>();
-  const [filter, setFilter] = useState<string | null>(
-    searchParams.get("type")
-  );
+  const [playing, setPlaying] =
+    useState<number>();
+  const [project, setProject] =
+    useState<Project>();
+  const [filter, setFilter] = useState<
+    string | null
+  >(searchParams.get("type"));
   const reactPlayer = useRef(null);
 
   function videoMouseOver(id: number) {
@@ -36,23 +47,32 @@ export function Portfolio({}: PortfolioProps) {
   function videoMouseOff() {}
 
   return (
-    <div className="w100 col middle" style={{ minHeight: "100vh" }}>
+    <div
+      className="w100 col middle"
+      style={{ minHeight: "100vh" }}
+    >
       <div className="row middle center shrinkCol">
-        <Icon name="albums-outline" className="mr2" size={context.inShrink ?30 :50} color="var(--primaryColor)"/>
-            <HeaderText
-              text={["Portfolio"]}
-              typingSpeed={50}
-              className="mb3 mt3"
-              pauseDuration={500}
-              showCursor={true}
-              cursorCharacter="|"
-              color="var(--primaryColor)"
-              textColors={["var(--primaryColor)"]}
-            />
+        <Icon
+          name="albums-outline"
+          className="mr2"
+          size={context.inShrink ? 30 : 50}
+          color="var(--primaryColor)"
+        />
+        <HeaderText
+          text={["Portfolio"]}
+          typingSpeed={50}
+          className="mb3 mt3"
+          pauseDuration={500}
+          showCursor={true}
+          cursorCharacter="|"
+          color="var(--primaryColor)"
+          textColors={["var(--primaryColor)"]}
+        />
       </div>
       <p className="textCenter ml3 mr3">
-        A selection of work we have completed for businesses and
-        organisations accross South Australia.
+        A selection of work we have completed for
+        businesses and organisations accross South
+        Australia.
       </p>
       <div className="row center w50 m3">
         <button
@@ -64,7 +84,10 @@ export function Portfolio({}: PortfolioProps) {
             setSearchParams("type=media");
           }}
         >
-          <Icon name="film-outline" className="mr1" />
+          <Icon
+            name="film-outline"
+            className="mr1"
+          />
           Media
         </button>
         <button
@@ -76,7 +99,10 @@ export function Portfolio({}: PortfolioProps) {
             setSearchParams("type=software");
           }}
         >
-          <Icon name="code-outline" className="mr1" />
+          <Icon
+            name="code-outline"
+            className="mr1"
+          />
           Software
         </button>
         <button
@@ -88,7 +114,10 @@ export function Portfolio({}: PortfolioProps) {
             setSearchParams("type=design");
           }}
         >
-          <Icon name="color-filter-outline" className="mr1" />
+          <Icon
+            name="color-filter-outline"
+            className="mr1"
+          />
           Design
         </button>
       </div>
@@ -98,14 +127,19 @@ export function Portfolio({}: PortfolioProps) {
             filter ? p.type == filter : true
           ).map((p) => (
             <div
-            key={p.id}
+              key={p.id}
               style={{
                 minWidth: 300,
                 aspectRatio: "16/9",
                 borderRadius: 5,
               }}
             >
-              <div style={{ zIndex: 20, position: "relative" }}>
+              <div
+                style={{
+                  zIndex: 20,
+                  position: "relative",
+                }}
+              >
                 <Icon
                   name={"information-circle"}
                   onClick={() => {
@@ -135,14 +169,21 @@ export function Portfolio({}: PortfolioProps) {
                     borderRadius: 5,
                   }}
                   muted={true}
-                  onMouseOver={() => videoMouseOver(p.id)}
-                  onMouseOut={() => videoMouseOff()}
+                  onMouseOver={() =>
+                    videoMouseOver(p.id)
+                  }
+                  onMouseOut={() =>
+                    videoMouseOff()
+                  }
                   controls={true}
                   playing={p.id == playing}
                   light={
-                    playing == p.id ? undefined : (
+                    playing ==
+                    p.id ? undefined : (
                       <img
-                        onMouseOver={() => videoMouseOver(p.id)}
+                        onMouseOver={() =>
+                          videoMouseOver(p.id)
+                        }
                         src={p.images[0]}
                         style={{
                           height: "100%",
@@ -150,6 +191,7 @@ export function Portfolio({}: PortfolioProps) {
                           objectFit: "cover",
                           borderRadius: 5,
                         }}
+                        alt={`Cover image for ${p.name} created by Transform Creative in Australia`}
                       />
                     )
                   }
@@ -164,14 +206,14 @@ export function Portfolio({}: PortfolioProps) {
                     width: "100%",
                     borderRadius: 5,
                   }}
+                  alt={`Image for ${p.name} - ${p.type} created by Transform Creative in Australia`}
                 />
               )}
             </div>
           ))}
         </div>
-      
       </div>
-        <ContactTab/>
+      <ContactTab />
       <ProjectInfoPopup
         project={project}
         onClose={() => setProject(undefined)}

@@ -141,10 +141,7 @@ export function DesignTab({}: DesignTabProps) {
               }}
               onMouseOver={() => videoMouseOver()}
               onMouseOut={() => videoMouseOff()}
-              // muted={playerMuted}
-              // loop
-
-              //playing={playerPlay}
+              alt=""
             />
           </div>
         </div>

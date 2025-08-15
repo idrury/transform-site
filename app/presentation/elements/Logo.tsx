@@ -83,6 +83,7 @@ export function Logo({ size = 100 }: LogoProps) {
               height: `${size * 2}px`,
               width: `${size * 2}px`,
             }}
+            alt="transform creative icon"
             src="/transform-icon-color-donut.png"
           />
         </div>

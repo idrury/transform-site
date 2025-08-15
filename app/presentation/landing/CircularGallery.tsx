@@ -72,7 +72,7 @@ export default function CircularGallery({
                 }`,
               }}
               src={`${img.images[0]}`}
-              alt={`image of ${img.name}`}
+              alt={`image of ${img.name} - a piece of digital content created by transform creative australia`}
             />
           </div>
         ))}

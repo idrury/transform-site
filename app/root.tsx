@@ -47,7 +47,7 @@ export function HydrateFallback() {
       style={{ width: "100%", height: "100vh" }}
       className="col middle center"
     >
-      <img src="transform-icon-color-donut.png" className="spin360 mediumFade" style={{height: 100, width: 100}} />
+      <img src="transform-icon-color-donut.png" className="spin360 mediumFade" style={{height: 100, width: 100}} alt="Transform creative digital australia logo icon"/>
     </div>
   );
 }
