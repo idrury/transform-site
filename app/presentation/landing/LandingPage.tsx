@@ -48,7 +48,7 @@ export function LandingPage({}: LandingPageProps) {
 
   return (
     <div>
-      <div className="vh80 col middle center">
+      <div className="col middle center">
         <div className="w50 col middle center">
           <div className="row middle center">
             <Icon
@@ -71,7 +71,7 @@ export function LandingPage({}: LandingPageProps) {
               color="var(--secondaryColor)"
             />
           </div>
-          <div style={{minHeight: 100}}>
+          <div style={{minHeight: 50}}>
             <HeaderText
               text={["Digital content for positive change."]}
               typingSpeed={50}

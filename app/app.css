@@ -1,5 +1,5 @@
 :root {
-  font-family: "Placard", sans-serif;
+  font-family: "Onest", sans-serif;
   font-weight: light;
   line-height: 1;
 
@@ -62,9 +62,9 @@
     font-style: normal;
 }
 
-@font-face {
+/* @font-face {
   font-family: "Placard";
-  src: local("PlacardNext-WideLight"), url(/PlacardNext-WideLight.otf) format("opentype");
+  src: local("Placard-WideLight"), url(/PlacardNext-WideLight.otf) format("opentype");
   font-weight: light;
   font-style: normal;
   font-display: swap;
@@ -72,11 +72,11 @@
 
 @font-face {
   font-family: "Placard";
-  src: local("PlacardNext-Wide"), url(/PlacardNext-Wide.otf) format("opentype");
+  src: local("Placard-Wide"), url(/PlacardNext-Wide.otf) format("opentype");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
-}
+} */
 
 body {
   background: linear-gradient(to right, #d6d1c9, #bdb7ae);
@@ -86,7 +86,7 @@ body {
 
 /** text */
 p {
-  font-family: "Placard", sans-serif;
+  font-family: "Onest", sans-serif;
   margin: 0px;
   font-size: 12pt;
   line-height: 1.5;
@@ -106,8 +106,8 @@ h1 {
 }
 
 h2 {
-  font-family: "Placard", sans-serif;
-  font-weight: 400;
+  font-family: "Onest", sans-serif;
+  font-weight: 200;
   margin: 0;
   text-align: start;
   font-size: 60pt;
@@ -116,7 +116,7 @@ h2 {
 }
 
 h3 {
-  font-family: "Placard",sans-serif;
+  font-family: "Onest",sans-serif;
   text-align: start;
   line-height: 1.5;
   font-size: 12pt;
@@ -125,7 +125,7 @@ h3 {
 }
 
 h4 {
-  font-family: 'Placard', sans-serif;
+  font-family: 'Onest', sans-serif;
   font-weight: lighter;
   padding: 0;
   margin: 0;
@@ -135,7 +135,7 @@ h4 {
 }
 
 h5 {
-  font-family: "Placard", sans-serif;
+  font-family: "Onest", sans-serif;
   padding: 0;
   margin: 0;
   font-size: 15pt;
@@ -151,13 +151,13 @@ ul {
 
 li {
   font-size: 12pt;
-  font-family: "Placard", sans-serif;
+  font-family: "Onest", sans-serif;
   text-align: start;
   margin-bottom: 10pt;
 }
 
 label {
-  font-family: "Placard", sans-serif;
+  font-family: "Onest", sans-serif;
   text-align: start !important;
   justify-content: start;
   font-size: 10pt !important;
@@ -174,7 +174,7 @@ a {
 
 /********* Basic elements ***********/
 input {
-  font-family: "Placard", sans-serif;
+  font-family: "Onest", sans-serif;
   color: var(--text);
   background: var(--background);
   height: 50px;
@@ -207,7 +207,7 @@ input:disabled {
 }
 
 textarea {
-  font-family: "Placard", sans-serif;
+  font-family: "Onest", sans-serif;
   background-color: var(--background);
 
   resize: vertical;
@@ -238,7 +238,7 @@ textarea:focus {
 }
 
 input {
-  font-family: "Placard", sans-serif;
+  font-family: "Onest", sans-serif;
   color: var(--text);
   background: var(--background);
   height: 50px;
@@ -257,7 +257,7 @@ input {
 }
 
 button {
-  font-family: "Placard", sans-serif;
+  font-family: "Onest", sans-serif;
   font-weight: light;
   color: var(--text);
   font-weight: 500;

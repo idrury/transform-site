@@ -34,12 +34,23 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap",
+  },
+  {
+    rel: "icon",
+    href: "/transform-icon-color-donut.png",
+  },
+  {
+    rel: "preload",
+    href: "/SIFONN_PRO.otf",
+    as: "font",
+    type: "font/otf",
+    crossOrigin: "anonymous",
   },
 ];
 
 export function HydrateFallback() {
-  console.log("Falling back")
+  console.log("Falling back");
   return (
     <div
       style={{ width: "100%", height: "100vh" }}
@@ -67,31 +78,6 @@ export function Layout({
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1"
-        />
-        <link
-          rel="icon"
-          href="/transform-icon-color-donut.png"
-        />
-        <link
-          rel="preload"
-          href="/SIFONN_PRO.otf"
-          as="font"
-          type="font/otf"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/PlacardNext-WideLight.otf"
-          as="font"
-          type="font/otf"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/PlacardNext-Wide.otf"
-          as="font"
-          type="font/otf"
-          crossOrigin="anonymous"
         />
 
         <Meta />

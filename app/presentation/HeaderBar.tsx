@@ -39,13 +39,14 @@ export function HeaderBar({
   }, []);
 
   return (
-    <div>
+    <div style={{height: 120}}>
       <div
-        className={`row middle between sticky ${
+        className={`row middle between fixed w100 ${
           scroll > 100 && "boxed"
         }`}
         style={{
           zIndex: 50,
+          top: 0,
           backgroundColor: `${
             scroll > 100
               ? "#d8d7cecc"
