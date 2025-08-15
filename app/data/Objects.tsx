@@ -191,4 +191,4 @@ export const PROJECTS: Project[] = [
   },
 ];
 
-export const CONTACT = { email: "isaac@lightworksproductions.au" };
+export const CONTACT = { email: "isaac@transformcreative.com.au" };

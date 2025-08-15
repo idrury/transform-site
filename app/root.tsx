@@ -123,7 +123,7 @@ export default function App() {
 
   return (
     <>
-      <HeaderBar />
+      <HeaderBar inShrink={inShrink}/>
       <Outlet
         context={
           {

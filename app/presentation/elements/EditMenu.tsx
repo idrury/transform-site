@@ -1,12 +1,12 @@
 import { useRef } from "react";
-import { HashLoader } from "react-spinners";
 import { Transition } from "react-transition-group";
 import gsap from "gsap";
 import type { ActivatableElement } from "~/data/CommonTypes";
 
-interface EditMenuProps extends ActivatableElement {
+interface EditMenuProps
+  extends ActivatableElement {
   children: any;
-  width: number;
+  width: number | string;
   height: number;
   isLoading?: boolean;
 }
@@ -19,34 +19,36 @@ function EditMenu({
   height,
   isLoading = false,
 }: EditMenuProps) {
-  const transitionRef = useRef<HTMLDivElement>(null);
+  const transitionRef =
+    useRef<HTMLDivElement>(null);
 
   function handleMainClick(e: any) {
     e.stopPropagation();
   }
 
   const handleEnter = () => {
-    gsap.from(transitionRef?.current, {
+    gsap.fromTo(transitionRef?.current, {
       opacity: 0,
-      x: 300,
-      duration: 0.5,
-      ease: "power3.inOut",
+      duration:0.5,
+    }, {
+      opacity: 1,
+            duration:0.5,
     });
   };
 
   const handleExit = () => {
     gsap.to(transitionRef?.current, {
       opacity: 0,
-      x: 300,
-      duration: 0.5,
-      ease: "power3.inOut",
+            x: "100%",
+      duration: 0.1,
+      ease: "ease.inOut",
     });
   };
 
   return (
     <div>
       {active && (
-        <div className="moveableMenuBackground mediumFade" />
+        <div style={{zIndex: 100}} className="moveableMenuBackground mediumFade" />
       )}
       <Transition
         nodeRef={transitionRef}
@@ -58,43 +60,22 @@ function EditMenu({
       >
         <div
           ref={transitionRef}
-          className="fillScreen"
+          className="fillScreen boxed"
+          style={{zIndex: 101}}
           onClick={() => onClose()}
         >
-          {isLoading && (
-            <HashLoader
-              className=""
-              style={{
-                position: "fixed",
-                left: "50%",
-                top: "40%",
-                zIndex: 15,
-              }}
-              color="var(--primaryColor)"
-            />
-          )}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "end",
-            }}
-          >
+          <div className="m0 p0">
             <div
-              className=""
-              style={{ margin: 0, padding: 0 }}
               onClick={(e) => handleMainClick(e)}
             >
               <div
-                className="boxedDark p2"
+                className=""
                 style={{
-                  minWidth: width,
-                  minHeight: height,
+                  width: width,
                   height: "100vh",
-                  margin: "0 15px 0 0",
                 }}
               >
-                {children}
+                <div className="">{children}</div>
               </div>
             </div>
           </div>

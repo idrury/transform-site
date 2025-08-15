@@ -1,4 +1,5 @@
 import type { SharedContextProps } from '~/data/CommonTypes';
+import { CONTACT } from '~/data/Objects';
 import { supabaseSignOut } from '~/database/Auth';
 
 export interface NavBarProps {
@@ -20,7 +21,7 @@ export function NavBar ({context}:NavBarProps)  {
     } catch (error) {
       context.popAlert(
         "An error occurred signing you out!",
-        "Contact elizabethsouth@terrywhitechemmart.com.au for support",
+        `Contact ${CONTACT.email} for support`,
         true
       );
     }
