@@ -22,6 +22,13 @@ export function Logo({ size = 100 }: LogoProps) {
 
   gsap.registerPlugin(SplitText);
 
+  const iconSpin = {
+    rotate: -180,
+    duration: 2,
+    opacity: 0,
+    ease: "bounce.out",
+  };
+
   useGSAP(() => {
     document.fonts.ready.then(() => {
       const titleSplit = SplitText.create(
@@ -40,32 +47,34 @@ export function Logo({ size = 100 }: LogoProps) {
 
       gsap.fromTo(
         "#logo-sub",
-        { opacity: 0, 
-          y: -10 
-        },
+        { opacity: 0, y: -10 },
         {
           opacity: 1,
           y: 0,
           duration: 1,
-          ease: "bounce"
+          ease: "bounce",
         }
       );
     });
 
-    gsap.from("#icon", {
-      rotate: -180,
-      duration: 1,
-      opacity: 0,
-      ease: "expo.inOut",
-    });
+    gsap.from("#icon", iconSpin);
   }, []);
+
+  function onIconHover() {
+    gsap.to("#icon", {
+      rotate: "+=180",
+      ease: "circle.out",
+      duration: .5
+    });
+  }
 
   return (
     <div>
       <div
-        className="row"
+        className="row clickable"
         style={{ cursor: "pointer" }}
         onClick={() => navigate("/")}
+        onMouseEnter={() => onIconHover()}
       >
         <div
           style={{

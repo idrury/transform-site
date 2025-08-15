@@ -19,11 +19,8 @@ import Alert from "./presentation/elements/Alert";
 import { useEffect, useState } from "react";
 import { supabase } from "./database/SupabaseClient";
 import { Session } from "@supabase/supabase-js";
-import { NavBar } from "./presentation/elements/NavBar";
 import { HeaderBar } from "./presentation/HeaderBar";
 import { FooterBar } from "./presentation/FooterBar";
-import { Icon } from "./presentation/elements/Icon";
-import IonIcon from "@reacticons/ionicons";
 
 export const links: Route.LinksFunction = () => [
   {
@@ -42,6 +39,7 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function HydrateFallback() {
+  console.log("Falling back")
   return (
     <div
       style={{ width: "100%", height: "100vh" }}
@@ -49,7 +47,7 @@ export function HydrateFallback() {
     >
       <img
         src="transform-icon-color-donut.png"
-        className="spin360 mediumFade"
+        className="spin360"
         style={{ height: 100, width: 100 }}
         alt="Transform creative digital australia logo icon"
       />
