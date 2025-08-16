@@ -28,7 +28,7 @@ export function MediaTab({}: MediaTabProps) {
    * GSAP Animation
    */
   useGSAP(() => {
-     document.fonts.ready.then(() => {
+    document.fonts.ready.then(() => {
       const titleSplit = SplitText.create("#media-title", {
         type: "words",
       });
@@ -55,9 +55,47 @@ export function MediaTab({}: MediaTabProps) {
         end: "+=300",
         toggleActions: "pause pause reverse pause",
       },
-      opacity: 0,
-      y: -300,
+      y: "-100px",
+      opacity: 1,
     });
+
+    gsap.fromTo(
+      "#software-icon-media",
+      {
+        y: "-100px",
+        opacity: 1,
+      },
+      {
+        scrollTrigger: {
+          scrub: 1,
+          trigger: "#media",
+          start: "center bottom",
+          end: "+=300",
+          toggleActions: "pause pause reverse pause",
+        },
+        y: 0,
+        opacity: 0,
+      }
+    );
+
+     gsap.fromTo(
+      "#design-icon-media",
+      {
+        y: "-100px",
+        opacity: 1,
+      },
+      {
+        scrollTrigger: {
+          scrub: 1,
+          trigger: "#media",
+          start: "center bottom",
+          end: "+=300",
+          toggleActions: "pause pause reverse pause",
+        },
+        y: 0,
+        opacity: 0,
+      }
+    );
 
     gsap.from("#media-boxes", {
       scrollTrigger: {
@@ -98,12 +136,27 @@ export function MediaTab({}: MediaTabProps) {
     <section id="media" className="w50 col middle">
       <div style={{ minHeight: 150, width: 100 }} />
 
-      <Icon
-        id="media-icon"
-        name="film-outline"
-        size={50}
-        color="var(--primaryColor)"
-      />
+      <div className="row w50 between">
+        <Icon
+          id="software-icon-media"
+          name="code-outline"
+          size={50}
+          color="var(--primaryColor)"
+        />
+        <Icon
+          id="media-icon"
+          name="film-outline"
+          size={50}
+          color="var(--primaryColor)"
+        />
+        <Icon
+          id="design-icon-media"
+          name="color-filter-outline"
+          size={50}
+          color="var(--primaryColor)"
+        />
+      </div>
+
       <h4 className="mb3 mt3 textCenter" id="media-title">
         We create videos that gain attention and generate traction
       </h4>

@@ -2,7 +2,7 @@ import type { SharedContextProps } from "~/data/CommonTypes";
 import { useNavigate, useOutletContext } from "react-router";
 import { Icon } from "../elements/Icon";
 import "./landing.css";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
 import { ScrollTrigger } from "gsap/all";

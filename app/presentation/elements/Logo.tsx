@@ -1,27 +1,11 @@
-import type { SharedContextProps } from "~/data/CommonTypes";
-import {
-  useNavigate,
-  useOutletContext,
-} from "react-router";
+import { useNavigate } from "react-router";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 import { SplitText } from "gsap/all";
+import gsap from "gsap";
 
 export interface LogoProps {
   size?: number;
 }
-
-/******************************
- * Logo component
- * @todo Create description
- */
-export function Logo({ size = 100 }: LogoProps) {
-  const context: SharedContextProps =
-    useOutletContext();
-  const navigate = useNavigate();
-
-  gsap.registerPlugin(SplitText);
-
   const iconSpin = {
     rotate: -180,
     duration: 2,
@@ -29,20 +13,22 @@ export function Logo({ size = 100 }: LogoProps) {
     ease: "bounce.out",
   };
 
+  
+/******************************
+ * Logo component
+ * @todo Create description
+ */
+export function Logo({ size = 100 }: LogoProps) {
+  const navigate = useNavigate();
+
   useGSAP(() => {
     document.fonts.ready.then(() => {
-      const titleSplit = SplitText.create(
-        "#logo-title",
-        {
-          type: "words",
-        }
-      );
-
-      gsap.from(titleSplit.words, {
+      gsap.fromTo("#logo-title-text", {
         opacity: 0,
-        y: -10,
-        stagger: 0.1,
         ease: "bounce",
+      },{
+        opacity: 1,
+        duration: 1
       });
 
       gsap.fromTo(
@@ -60,11 +46,14 @@ export function Logo({ size = 100 }: LogoProps) {
     gsap.from("#icon", iconSpin);
   }, []);
 
+  /*****************************
+   * Make icon spin on hover
+   */
   function onIconHover() {
     gsap.to("#icon", {
       rotate: "+=180",
       ease: "circle.out",
-      duration: .5
+      duration: 0.5,
     });
   }
 
@@ -80,9 +69,7 @@ export function Logo({ size = 100 }: LogoProps) {
           style={{
             height: size * 2,
             width: size * 2,
-            marginRight: `${Math.round(
-              size / 5
-            )}px`,
+            marginRight: `${Math.round(size / 5)}px`,
           }}
         >
           <img
@@ -98,7 +85,7 @@ export function Logo({ size = 100 }: LogoProps) {
         </div>
         <div>
           <h1
-            id="logo-title"
+            id="logo-title-text"
             className="mt3"
             style={{
               padding: 0,
@@ -112,9 +99,7 @@ export function Logo({ size = 100 }: LogoProps) {
           <h2
             id="logo-sub"
             style={{
-              fontSize: `${Math.round(
-                size / 2
-              )}pt`,
+              fontSize: `${Math.round(size / 2)}pt`,
               color: "var(--primaryColor)",
             }}
           >
