@@ -6,14 +6,13 @@ import gsap from "gsap";
 export interface LogoProps {
   size?: number;
 }
-  const iconSpin = {
-    rotate: -180,
-    duration: 2,
-    opacity: 0,
-    ease: "bounce.out",
-  };
+const iconSpin = {
+  rotate: -180,
+  duration: 2,
+  opacity: 0,
+  ease: "bounce.out",
+};
 
-  
 /******************************
  * Logo component
  * @todo Create description
@@ -23,38 +22,61 @@ export function Logo({ size = 100 }: LogoProps) {
 
   useGSAP(() => {
     document.fonts.ready.then(() => {
-      gsap.fromTo("#logo-title-text", {
-        opacity: 0,
-        ease: "bounce",
-      },{
-        opacity: 1,
-        duration: 1
-      });
+      const tl = gsap.timeline();
 
-      gsap.fromTo(
-        "#logo-sub",
-        { opacity: 0, y: -10 },
+      tl.fromTo(
+        "#icon",
+        {
+          opacity: 0,
+        },
         {
           opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "bounce",
-        }
-      );
+          ease: "bounce.out",
+          rotate: -180,
+          duration: 2,
+        },1
+      )
+        .fromTo(
+          "#logo-title-text",
+          {
+            opacity: 0,
+            x: -100,
+            ease: "power3",
+          },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.5,
+          },"-=1"
+        )
+        .fromTo(
+          "#logo-sub",
+          { opacity: 0, y: -10 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "bounce",
+          },"-=0.3"
+        )
     });
-
-    gsap.from("#icon", iconSpin);
   }, []);
 
   /*****************************
    * Make icon spin on hover
    */
   function onIconHover() {
-    gsap.to("#icon", {
-      rotate: "+=180",
-      ease: "circle.out",
-      duration: 0.5,
-    });
+    gsap.fromTo(
+      "#icon",
+      {
+        rotate: 0,
+      },
+      {
+        rotate: "90",
+        ease: "elastic.out",
+        duration: 2,
+      }
+    );
   }
 
   return (
@@ -76,6 +98,7 @@ export function Logo({ size = 100 }: LogoProps) {
             id="icon"
             className=""
             style={{
+              opacity: 0,
               height: `${size * 2}px`,
               width: `${size * 2}px`,
             }}
@@ -86,8 +109,8 @@ export function Logo({ size = 100 }: LogoProps) {
         <div>
           <h1
             id="logo-title-text"
-            className="mt3"
             style={{
+              opacity: 0,
               padding: 0,
               margin: 0,
               color: "var(--primaryColor)",
@@ -99,6 +122,7 @@ export function Logo({ size = 100 }: LogoProps) {
           <h2
             id="logo-sub"
             style={{
+              opacity: 0,
               fontSize: `${Math.round(size / 2)}pt`,
               color: "var(--primaryColor)",
             }}

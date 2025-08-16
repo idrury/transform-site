@@ -479,7 +479,7 @@ th {
 
 .gallery-image {
   transition: 0.3s;
-  height: 300px;
+  height: 350px;
   aspect-ratio: 16 / 9;
   filter: contrast(100);
 }
@@ -962,6 +962,11 @@ Padding
   justify-content: space-between;
 }
 
+.around {
+  display: flex;
+  justify-content: space-around;
+}
+
 .center {
   display: flex;
   justify-content: center;
@@ -1069,7 +1074,7 @@ Padding
     flex-direction: row;
   }
   .gallery-image {
-    height: 150px;
+    height: 200px;
   }
   .thirty,
   .fifty,

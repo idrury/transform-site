@@ -101,7 +101,7 @@ export function SoftwareTab({}: SoftwareTabProps) {
       <Icon
       id="software-icon"
         name="code-outline"
-        size={50}
+        size={40}
         color="var(--primaryColor)"
       />
       <h4 className="mb3 mt3 textCenter" id="software-title">

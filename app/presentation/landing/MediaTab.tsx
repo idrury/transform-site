@@ -136,23 +136,29 @@ export function MediaTab({}: MediaTabProps) {
     <section id="media" className="w50 col middle">
       <div style={{ minHeight: 150, width: 100 }} />
 
-      <div className="row w50 between">
+      <div className="row w50 around">
         <Icon
           id="software-icon-media"
+          className="lateFade"
+          style={{opacity: 0}}
           name="code-outline"
-          size={50}
+          size={40}
           color="var(--primaryColor)"
         />
         <Icon
           id="media-icon"
           name="film-outline"
-          size={50}
+            className="lateFade"
+           style={{opacity: 0}}
+          size={40}
           color="var(--primaryColor)"
         />
         <Icon
           id="design-icon-media"
           name="color-filter-outline"
-          size={50}
+            className="lateFade"
+           style={{opacity: 0}}
+          size={40}
           color="var(--primaryColor)"
         />
       </div>

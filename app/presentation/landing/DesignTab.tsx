@@ -98,7 +98,7 @@ export function DesignTab({}: DesignTabProps) {
       <Icon
         id="design-icon"
         name="color-filter-outline"
-        size={50}
+        size={40}
         color="var(--primaryColor)"
       />
       <h4 className="mb3 mt3 textCenter" id="design-title">

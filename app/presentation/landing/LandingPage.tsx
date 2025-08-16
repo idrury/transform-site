@@ -7,7 +7,7 @@ import { MediaTab } from "./MediaTab";
 import { SoftwareTab } from "./SoftwareTab";
 import { ContactTab } from "./ContactTab";
 import { ProjectInfoPopup } from "./ProjectInfoPopup";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PROJECTS } from "~/data/Objects";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
@@ -29,49 +29,152 @@ export function LandingPage({}: LandingPageProps) {
 
   gsap.registerPlugin(SplitText);
 
+  useEffect(() => {
+setTimeout(() => {
+  onDotsHover()
+}, 3000)
+  }, [])
+
   /*******************************************************
    * GSAP
    */
   useGSAP(() => {
+    let tl = gsap.timeline();
+
     document.fonts.ready.then(() => {
       const titleSplit = SplitText.create("#title", {
         type: "words",
       });
 
-      gsap.from(titleSplit.words, {
-        opacity: 0,
-        y: -10,
-        stagger: 0.1,
-      });
+      tl.to("#title", {opacity: 1},1.5)
+      .fromTo(
+        titleSplit.words,
+        {
+          opacity: 0,
+          y: -10,
+        },
+        { 
+          opacity: 1, 
+          y: 0, 
+          stagger: 0.1 },
+        "-=1"
+      );
     });
+
+    tl.from(
+      "#ellipse-1",
+      {
+        y: "-30px",
+        ease: "bounce.out",
+        duration: 0.6,
+        opacity: 0,
+      },
+      1
+    )
+      .from(
+        "#ellipse-2",
+        {
+          y: "-30px",
+          ease: "bounce.out",
+          duration: 0.6,
+          opacity: 0,
+        },
+        "-=0.5"
+      )
+      .from(
+        "#ellipse-3",
+        {
+          y: "-30px",
+          ease: "bounce.out",
+          duration: 0.6,
+          opacity: 0,
+        },
+        "-=0.5"
+      )
+      .to(".lateFade", { opacity: 1, duration: 1, ease: "power3" });
   }, []);
+
+  function onDotsHover() {
+    let tl = gsap.timeline();
+    tl.to("#ellipse-1", {
+      y: "-=20px",
+      ease: "power1.out",
+      duration: 0.2,
+    })
+      .to(
+        "#ellipse-2",
+        {
+          y: "-=20px",
+          ease: "power1.out",
+          duration: 0.2,
+        },
+        "-=0.15"
+      )
+      .to(
+        "#ellipse-3",
+        {
+          y: "-=20px",
+          ease: "power1.out",
+          duration: 0.2,
+        },
+        "-=0.15"
+      )
+      .to("#ellipse-1", {
+        y: "0",
+        ease: "bounce.out",
+        duration: 0.6,
+      })
+      .to(
+        "#ellipse-2",
+        {
+          y: "0",
+          ease: "bounce.out",
+          duration: 0.6,
+        },
+        "-=0.5"
+      )
+      .to(
+        "#ellipse-3",
+        {
+          y: "0",
+          ease: "bounce.out",
+          duration: 0.6,
+        },
+        "-=0.5"
+      );
+  }
 
   return (
     <div>
       <div className="col middle center">
         <div className="w50 col middle center">
-          <div className="row middle center">
+          <div
+            className="row middle center"
+            style={{zIndex: 1}}
+            onMouseEnter={() => onDotsHover()}
+          >
             <Icon
-              id="ellipse"
+              id="ellipse-1"
               name="ellipse"
+              style={{zIndex: 1}}
               size={20}
               color="var(--primaryColor)"
             />
             <Icon
-              id="ellipse"
+              id="ellipse-2"
               name="ellipse"
               size={20}
               color="var(--thirdColor)"
             />
 
             <Icon
-              id="ellipse"
+              id="ellipse-3"
               name="ellipse"
               size={20}
               color="var(--secondaryColor)"
             />
           </div>
-          <div style={{minHeight: 50}}>
+          <div style={{ minHeight: 50 }}>
             <HeaderText
               text={["Digital content for positive change."]}
               typingSpeed={50}
@@ -83,27 +186,38 @@ export function LandingPage({}: LandingPageProps) {
               textColors={["var(--primaryColor)"]}
             />
           </div>
-          <p id="title" className="p3 textCenter">
+          <p
+            id="title"
+            className="p3 textCenter"
+            style={{ opacity: 0 }}
+          >
             We work with Aussie organisations to create captivating
             media, software and design.
           </p>
           <div className="row center w50 m3">
             <button
-              className="row middle ml2 mr3"
-              onClick={() => navigate("#media")}
-            >
-              <Icon name="film-outline" className="mr1" />
-              Media
-            </button>
-            <button
-              className="row middle ml3 mr3"
+              id="landing-software-button"
+              className="row middle ml3 mr3 lateFade"
+              style={{ opacity: 0 }}
               onClick={() => navigate("#software")}
             >
               <Icon name="code-outline" className="mr1" />
               Software
             </button>
             <button
-              className="row middle ml3 mr3"
+              id="landing-media-button"
+              className="row middle ml2 mr3 lateFade"
+              style={{ opacity: 0 }}
+              onClick={() => navigate("#media")}
+            >
+              <Icon name="film-outline" className="mr1" />
+              Media
+            </button>
+
+            <button
+              id="landing-design-button"
+              className="row middle ml3 mr3 lateFade"
+              style={{ opacity: 0 }}
               onClick={() => navigate("#design")}
             >
               <Icon name="color-filter-outline" className="mr1" />
