@@ -3,7 +3,7 @@ import { useNavigate, useOutletContext } from "react-router";
 import { Icon } from "../elements/Icon";
 import "./landing.css";
 import ReactPlayer from "react-player";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger, SplitText } from "gsap/all";
