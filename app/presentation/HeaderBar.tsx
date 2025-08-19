@@ -124,6 +124,7 @@ function MenuOptions({ inShrink, onClose }: MenuOptionsProps) {
           color: `${
             location.pathname == "/" ? "var(--primaryColor)" : ""
           }`,
+           opacity: 1
         }}
         onClick={() => {
           navigate("/");
@@ -139,8 +140,9 @@ function MenuOptions({ inShrink, onClose }: MenuOptionsProps) {
         style={{
           fontSize: textSize,
           color: `${
-            location.pathname == "/" ? "var(--primaryColor)" : ""
+            location.pathname == "/portfolio" ? "var(--primaryColor)" : ""
           }`,
+          opacity: 1
         }}
         onClick={() => {
           navigate("/portfolio");
@@ -150,17 +152,16 @@ function MenuOptions({ inShrink, onClose }: MenuOptionsProps) {
         Portfolio
       </button>
       <div className="div20" />
-      <a
+      <button
+      onClick={() => navigate('/contact')}
         style={{
           textDecoration: "none",
           fontSize: textSize,
         }}
         className="p2 row center accentButton middle"
-        target="_blank"
-        href={`mailto:${CONTACT.email}`}
       >
         Contact
-      </a>
+      </button>
       {inShrink && (
         <div className="col w100 middle center mt2">
           <Icon

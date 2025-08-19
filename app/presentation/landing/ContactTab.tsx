@@ -32,7 +32,6 @@ export function ContactTab({}: ContactTabProps) {
 
   return (
     <section id="contact" className="w50 col middle center">
-      <div style={{ minHeight: 150, width: 100 }} />
       <div className="p3 col middle w100">
         <div className="col middle center mb2">
           <Icon

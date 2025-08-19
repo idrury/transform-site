@@ -30,10 +30,10 @@ export function LandingPage({}: LandingPageProps) {
   gsap.registerPlugin(SplitText);
 
   useEffect(() => {
-setTimeout(() => {
-  onDotsHover()
-}, 3000)
-  }, [])
+    setTimeout(() => {
+      onDotsHover();
+    }, 3000);
+  }, []);
 
   /*******************************************************
    * GSAP
@@ -46,17 +46,17 @@ setTimeout(() => {
         type: "words",
       });
 
-      tl.to("#title", {opacity: 1},1.5)
-      .fromTo(
+      tl.to("#title", { opacity: 1 }, 1.5).fromTo(
         titleSplit.words,
         {
           opacity: 0,
           y: -10,
         },
-        { 
-          opacity: 1, 
-          y: 0, 
-          stagger: 0.1 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.1,
+        },
         "-=1"
       );
     });
@@ -150,13 +150,13 @@ setTimeout(() => {
         <div className="w50 col middle center">
           <div
             className="row middle center"
-            style={{zIndex: 1}}
+            style={{ zIndex: 1 }}
             onMouseEnter={() => onDotsHover()}
           >
             <Icon
               id="ellipse-1"
               name="ellipse"
-              style={{zIndex: 1}}
+              style={{ zIndex: 1 }}
               size={20}
               color="var(--primaryColor)"
             />
@@ -191,8 +191,9 @@ setTimeout(() => {
             className="p3 textCenter"
             style={{ opacity: 0 }}
           >
-            We work with Aussie organisations to create captivating
-            media, software and design.
+            On a mission to help a thousand Aussie organisations
+            achieve meaningful change by crafting compelling online
+            resources.
           </p>
           <div className="row center w50 m3">
             <button
@@ -241,6 +242,7 @@ setTimeout(() => {
         <MediaTab />
         <SoftwareTab />
         <DesignTab />
+        <div style={{ minHeight: 150, width: 100 }} />
         <ContactTab />
       </div>
       <ProjectInfoPopup

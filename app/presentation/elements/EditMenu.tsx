@@ -27,10 +27,10 @@ function EditMenu({
   const handleEnter = () => {
     console.log("ENTERING")
     gsap.from(
-      transitionRef?.current,
+      "#edit-menu-main",
       {
         opacity: 0,
-        x: -"100%",
+        x: "100%",
         duration: 0.5,
         ease: "power1",
       },
@@ -64,6 +64,7 @@ function EditMenu({
         unmountOnExit
       >
         <div
+        id="edit-menu-main"
           ref={transitionRef}
           className="fillScreen boxed"
           style={{ zIndex: 101 }}
