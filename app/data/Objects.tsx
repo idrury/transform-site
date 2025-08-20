@@ -42,6 +42,18 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://bcsant.org.au/",
   },
+     {
+    id: 12,
+    type: "software",
+    name: "Ping-pong-a-thon leaderboard",
+    description: ["We created this leaderboard and rally tracking application to help increase engagement in the ping-pong-a-thon.", "The application allows users to log their rallies, and show users when a high score has been achieved!"],
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/pong-4.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/pong-highscore-min.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/pong-2.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/pong-3.png"
+    ]
+  },
   {
     id: 8,
     type: "media",
@@ -77,19 +89,7 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://www.crossover.org.au/",
   },
-  // {
-  //   id: 10,
-  //   type: "media",
-  //   name: "National Baptism Week",
-  //   video:
-  //     "https://api.freeflex.com.au/storage/v1/object/public/transform/National_baptism_week%20-%20Draft_3_subs.mp4",
-  //   description: [
-  //     "National Baptism week is an annual event run by Crossover, which encourages churches to invite people in their community to consider baptism.",
-  //     "We worked with Crossover to create this heartfelt video about what it means to be baptised and give our lives to Jesus.",
-  //   ],
-  //   images: ["https://www.hello.com"],
-  //   link: "https://www.crossover.org.au/",
-  // },
+
   {
     id: 2,
     name: "RBC Alpha promo",
@@ -113,6 +113,8 @@ export const PROJECTS: Project[] = [
     name: "FreeFlex app",
     link: "https://www.freeflex.com.au",
     images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/FF-landing.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/FF-dash.png",
       `https://api.freeflex.com.au/storage/v1/object/public/transform/images/2.jpg`,
       "https://api.freeflex.com.au/storage/v1/object/public/transform/images/1.jpg",
     ],
@@ -188,6 +190,37 @@ export const PROJECTS: Project[] = [
       "The video was played in church services and youth group leading up to the event.",
       "Their ping-pong-a-thon went on to raise $3000!",
     ],
+  },
+  {
+    id: 10,
+    type: "media",
+    name: "National Baptism Week",
+    video:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/National_baptism_week%20-%20Draft_3_subs.mp4",
+    description: [
+      "National Baptism week is an annual event run by Crossover, which encourages churches to invite people in their community to consider baptism.",
+      "We worked with Crossover to create this heartfelt video about what it means to be baptised and give our lives to Jesus.",
+    ],
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/nbw-2.png",
+
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/nbw-1.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/nbw-3.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/nbw-4.png",
+    ],
+    link: "https://www.crossover.org.au/",
+  },
+  {
+    id: 11,
+    type: "software",
+    name: "Healthy Collective ticketing app",
+    description: ["The TWC Healthy Collective group hired us to build an application to help them keep better track of issues in their processes.", "The app features an easy to use ticket logdgement system, and allows admins to respond to user issues with ease."],
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-0.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-1.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-2.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-3.png"
+    ]
   },
 ];
 
