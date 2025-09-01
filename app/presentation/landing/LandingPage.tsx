@@ -146,6 +146,10 @@ export function LandingPage({}: LandingPageProps) {
 
   return (
     <div>
+      <div
+        className="horizontal-line mediumFade"
+        style={{ top: -30 }}
+      />
       <div className="col middle center">
         <div className="w50 col middle center">
           <div
@@ -243,8 +247,18 @@ export function LandingPage({}: LandingPageProps) {
         <SoftwareTab />
         <DesignTab />
         <div style={{ minHeight: 150, width: 100 }} />
+        <div
+          className="horizontal-line mediumFade"
+          style={{ top: -30 }}
+        />
+
         <ContactTab />
+         <div
+          className="horizontal-line mediumFade"
+          style={{ top: -30 }}
+        />
       </div>
+
       <ProjectInfoPopup
         active={viewProjectActive}
         project={selectedProject}

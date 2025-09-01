@@ -66,11 +66,7 @@ export function HydrateFallback() {
   );
 }
 
-export function Layout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
@@ -99,25 +95,19 @@ export default function App() {
     active: false,
   });
 
-  const [session, setSession] =
-    useState<Session | null>();
+  const [session, setSession] = useState<Session | null>();
   const [inShrink, setInShrink] = useState(
     window.innerWidth < shrinkWidth
   );
   const navigate = useNavigate();
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        if (
-          _event == "SIGNED_IN" ||
-          _event == "TOKEN_REFRESHED"
-        ) {
-          //Perform sign in actions here
-        }
-        setSession(session);
+    supabase.auth.onAuthStateChange((_event, session) => {
+      if (_event == "SIGNED_IN" || _event == "TOKEN_REFRESHED") {
+        //Perform sign in actions here
       }
-    );
+      setSession(session);
+    });
   }, []);
 
   /******************************
@@ -125,29 +115,17 @@ export default function App() {
    */
   useEffect(() => {
     const handleResize = () => {
-      setInShrink(
-        window.innerWidth < shrinkWidth
-      );
+      setInShrink(window.innerWidth < shrinkWidth);
     };
-    window.addEventListener(
-      "resize",
-      handleResize
-    );
+    window.addEventListener("resize", handleResize);
     handleResize();
     return () => {
-      window.removeEventListener(
-        "resize",
-        handleResize
-      );
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   /** Activate the saved popup box */
-  const popAlert: PopAlertFn = (
-    header,
-    body,
-    isError = false
-  ) => {
+  const popAlert: PopAlertFn = (header, body, isError = false) => {
     setAlert({
       active: true,
       header: header,
@@ -157,7 +135,22 @@ export default function App() {
   };
 
   return (
-    <>
+    <div style={{}}>
+      <div
+        className="vertical-line slowFade"
+        style={{
+          left: `${inShrink ? "2%" : "10%"}`,
+          top: 0,
+        }}
+      />
+      <div
+        className="vertical-line mediumFade"
+        style={{
+          right: `${inShrink ? "2%" : "10%"}`,
+          top: 0,
+          width: 1,
+        }}
+      />
       <HeaderBar inShrink={inShrink} />
       <Outlet
         context={
@@ -174,46 +167,34 @@ export default function App() {
         header={alert.header}
         body={alert.body}
         active={alert.active}
-        onClose={() =>
-          setAlert({ active: false })
-        }
+        onClose={() => setAlert({ active: false })}
         state={alert.state}
       />
       <FooterBar />
-    </>
+    </div>
   );
 }
 
-export function ErrorBoundary({
-  error,
-}: Route.ErrorBoundaryProps) {
+export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   const navigate = useNavigate();
   let message = "Oops!";
   let details = "An unexpected error occurred.";
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message =
-      error.status === 404 ? "404" : "Error";
+    message = error.status === 404 ? "404" : "Error";
     details =
       error.status === 404
         ? "The requested page could not be found."
         : error.statusText || details;
-  } else if (
-    import.meta.env.DEV &&
-    error &&
-    error instanceof Error
-  ) {
+  } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;
   }
 
   return (
     <main className="vh100 middle center col">
-      <h1
-        className="mb2"
-        style={{ color: "var(--primaryColor)" }}
-      >
+      <h1 className="mb2" style={{ color: "var(--primaryColor)" }}>
         {message}
       </h1>
       <div className="row middle center">

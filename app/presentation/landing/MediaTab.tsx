@@ -3,7 +3,7 @@ import { useNavigate, useOutletContext } from "react-router";
 import { Icon } from "../elements/Icon";
 import "./landing.css";
 import ReactPlayer from "react-player";
-import { MouseEvent, useRef, useState } from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger, SplitText } from "gsap/all";
@@ -16,13 +16,37 @@ export interface MediaTabProps {}
  */
 export function MediaTab({}: MediaTabProps) {
   const context: SharedContextProps = useOutletContext();
+  const reactPlayer = useRef<HTMLVideoElement>(null);
+
   const [playerPlay, setPlayerPlay] = useState(false);
   const [playerMuted, setPlayerMuted] = useState(true);
-  const reactPlayer = useRef<HTMLVideoElement>(null);
   const navigate = useNavigate();
 
   gsap.registerPlugin(SplitText);
   gsap.registerPlugin(ScrollTrigger);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          console.log(entry);
+
+          if (entry.isIntersecting) {
+            setPlayerPlay(true);
+          } else setPlayerPlay(false);
+        });
+      },
+      { threshold: 0.1 }
+    );
+    if (reactPlayer.current) {
+      observer.observe(reactPlayer.current);
+    }
+    return () => {
+      if (reactPlayer.current) {
+        observer.unobserve(reactPlayer.current);
+      }
+    };
+  }, []);
 
   /***************************************************
    * GSAP Animation
@@ -78,7 +102,7 @@ export function MediaTab({}: MediaTabProps) {
       }
     );
 
-     gsap.fromTo(
+    gsap.fromTo(
       "#design-icon-media",
       {
         y: "-100px",
@@ -122,16 +146,6 @@ export function MediaTab({}: MediaTabProps) {
     });
   }, []);
 
-  async function videoMouseOver(e: MouseEvent<HTMLVideoElement>) {
-    setTimeout(() => {
-      setPlayerPlay(true);
-    }, 500);
-  }
-
-  async function videoMouseOff(e: MouseEvent<HTMLVideoElement>) {
-    setTimeout(() => setPlayerPlay(false), 500);
-  }
-
   return (
     <section id="media" className="w50 col middle">
       <div style={{ minHeight: 150, width: 100 }} />
@@ -140,7 +154,7 @@ export function MediaTab({}: MediaTabProps) {
         <Icon
           id="software-icon-media"
           className="lateFade"
-          style={{opacity: 0}}
+          style={{ opacity: 0 }}
           name="code-outline"
           size={40}
           color="var(--primaryColor)"
@@ -148,16 +162,16 @@ export function MediaTab({}: MediaTabProps) {
         <Icon
           id="media-icon"
           name="film-outline"
-            className="lateFade"
-           style={{opacity: 0}}
+          className="lateFade"
+          style={{ opacity: 0 }}
           size={40}
           color="var(--primaryColor)"
         />
         <Icon
           id="design-icon-media"
           name="color-filter-outline"
-            className="lateFade"
-           style={{opacity: 0}}
+          className="lateFade"
+          style={{ opacity: 0 }}
           size={40}
           color="var(--primaryColor)"
         />
@@ -173,31 +187,18 @@ export function MediaTab({}: MediaTabProps) {
       <div className="w100 col" id="media-boxes">
         <div className="row">
           <div
-            className="w100 boxed grow-y"
+            className="w100 boxed clickable"
             style={{
-              overflow: "hidden",
+              aspectRatio: "16 / 9",
             }}
           >
-            {playerPlay && (
-              <div style={{ zIndex: 20, position: "relative" }}>
-                <Icon
-                  name={playerMuted ? "volume-mute" : "volume-high"}
-                  onClick={() => setPlayerMuted(!playerMuted)}
-                  style={{
-                    position: "absolute",
-                    top: 10,
-                    right: 10,
-                    zIndex: 10,
-                  }}
-                  className="boxed p1"
-                />
-              </div>
-            )}
             <ReactPlayer
               ref={reactPlayer}
               src="https://api.freeflex.com.au/storage/v1/object/public/transform/transform-reel-web-2.mp4"
-              onMouseOver={(e) => videoMouseOver(e)}
-              onMouseOut={(e) => videoMouseOff(e)}
+              onClick={() => {
+                setPlayerMuted(!playerMuted);
+                !playerPlay && setPlayerPlay(true);
+              }}
               muted={playerMuted}
               loop
               style={{

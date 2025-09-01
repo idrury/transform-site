@@ -51,7 +51,11 @@ export function HeaderBar({ inShrink }: HeaderBarProps) {
   }, []);
 
   return (
-    <div className="sticky" style={{ height: 120, zIndex: 100,top:0 }} id="header-menu">
+    <div
+      className="sticky"
+      style={{ height: 120, zIndex: 100, top: 0 }}
+      id="header-menu"
+    >
       <div
         className={`row middle between fixed w100 ${
           scroll > 100 && "boxed"
@@ -59,10 +63,8 @@ export function HeaderBar({ inShrink }: HeaderBarProps) {
         style={{
           zIndex: 50,
           top: 0,
-          backgroundColor: `${
-            scroll > 100 ? "#d8d7cecc" : "#00000000"
-          }`,
-          backdropFilter: "blur(5px)",
+          backgroundColor: `#00000000`,
+          backdropFilter:  scroll > 100 ? "blur(5px)" : "none",
         }}
       >
         <div className="ml3 mb2 mt2 mr3 row middle between w100">
@@ -124,7 +126,7 @@ function MenuOptions({ inShrink, onClose }: MenuOptionsProps) {
           color: `${
             location.pathname == "/" ? "var(--primaryColor)" : ""
           }`,
-           opacity: 1
+          opacity: 1,
         }}
         onClick={() => {
           navigate("/");
@@ -140,9 +142,11 @@ function MenuOptions({ inShrink, onClose }: MenuOptionsProps) {
         style={{
           fontSize: textSize,
           color: `${
-            location.pathname == "/portfolio" ? "var(--primaryColor)" : ""
+            location.pathname == "/portfolio"
+              ? "var(--primaryColor)"
+              : ""
           }`,
-          opacity: 1
+          opacity: 1,
         }}
         onClick={() => {
           navigate("/portfolio");
@@ -153,7 +157,7 @@ function MenuOptions({ inShrink, onClose }: MenuOptionsProps) {
       </button>
       <div className="div20" />
       <button
-      onClick={() => navigate('/contact')}
+        onClick={() => navigate("/contact")}
         style={{
           textDecoration: "none",
           fontSize: textSize,

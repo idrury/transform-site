@@ -496,6 +496,22 @@ th {
   transition: 0.2s;
 }
 
+.vertical-line {
+  top: 0;
+  width: 1px;
+  height: 100vh;
+  position: fixed;
+  background-color: var(--primaryColor);
+}
+
+.horizontal-line {
+  height: 1px;
+  width: 100%;
+  position: relative;
+  background-color: var(--primaryColor);
+}
+
+
 .animate:hover {
   transform: translateY(5px);
   transition: 0.2s;
