@@ -42,17 +42,20 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://bcsant.org.au/",
   },
-     {
-    id: 12,
+  {
+    id: 19,
     type: "software",
     name: "Ping-pong-a-thon leaderboard",
-    description: ["We created this leaderboard and rally tracking application to help increase engagement in the ping-pong-a-thon.", "The application allows users to log their rallies, and show users when a high score has been achieved!"],
+    description: [
+      "We created this leaderboard and rally tracking application to help increase engagement in the ping-pong-a-thon.",
+      "The application allows users to log their rallies, and show users when a high score has been achieved!",
+    ],
     images: [
       "https://api.freeflex.com.au/storage/v1/object/public/transform/pong-4.png",
       "https://api.freeflex.com.au/storage/v1/object/public/transform/pong-highscore-min.png",
       "https://api.freeflex.com.au/storage/v1/object/public/transform/pong-2.png",
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/pong-3.png"
-    ]
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/pong-3.png",
+    ],
   },
   {
     id: 8,
@@ -214,14 +217,99 @@ export const PROJECTS: Project[] = [
     id: 11,
     type: "software",
     name: "Healthy Collective ticketing app",
-    description: ["The TWC Healthy Collective group hired us to build an application to help them keep better track of issues in their processes.", "The app features an easy to use ticket logdgement system, and allows admins to respond to user issues with ease."],
+    description: [
+      "The TWC Healthy Collective group hired us to build an application to help them keep better track of issues in their processes.",
+      "The app features an easy to use ticket logdgement system, and allows admins to respond to user issues with ease.",
+    ],
     images: [
       "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-0.png",
       "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-1.png",
       "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-2.png",
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-3.png"
-    ]
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-3.png",
+    ],
   },
+  {
+    id: 12,
+    type: "design",
+    name: "sermon slide designs",
+    description: [
+      "Slides we designed for King's Baptist Church sermon series.",
+    ],
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-6-min.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-10-min.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-11-min.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-12-min.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-13-min.png",
+    ],
+  },
+  {
+    id: 13,
+    type: "design",
+    name: "Video end cards",
+    description: [
+      "We've created hundreds of cards like this which help organisations give their audience a clear call to action at the end of a video.",
+    ],
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-1-min.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-5-min.png",
+
+    ],
+  },
+  {
+    id: 14,
+    type: "design",
+    name: "KBC Alpha marriage course",
+    description: [
+      "Created to help promote the 2025 alpha marriage course at King's Baptist Church.",
+    ],
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-2-min.png",
+    ],
+  },
+  {
+    id: 15,
+    type: "design",
+    name: "A logo for King's kids",
+    description: ["Created for King's Baptist Church."],
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-3-min.png",
+    ],
+  },
+  {
+    id: 16,
+    type: "design",
+    name: "The Middle Sister Project",
+    description: [
+      "We worked with Crossover to create designs for The Middle Sister Project. The film series had a fun light hearted feel, and we use the colours to represent different episodes.",
+    ],
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-4-min.jpg",
+    ],
+  },
+    {
+    id: 17,
+    type: "design",
+    name: "Lifewell social media cards",
+    description: [
+      "We worked with LifeWell North East to create these cards to be used as placeholder cards for their reels.",
+    ],
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-7-min.jpg",
+    ],
+  },
+  {
+     id: 18,
+    type: "design",
+    name: "print designs",
+    description: [
+      "Created for King's Baptist Church.",
+    ],
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-8-min.jpg",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-9-min.jpg",
+    ],
+  }
 ];
 
 export const CONTACT = { email: "isaac@transformcreative.com.au" };

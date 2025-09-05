@@ -80,8 +80,14 @@ export function Portfolio({}: PortfolioProps) {
             filter == "media" && "boxedAccent"
           }`}
           onClick={() => {
+            if(filter== "media") {
+              setFilter(null) 
+              setSearchParams("?");
+            }
+            else {
             setFilter("media");
             setSearchParams("type=media");
+            }
           }}
         >
           <Icon
@@ -94,9 +100,15 @@ export function Portfolio({}: PortfolioProps) {
           className={`row middle ml2 mr3 ${
             filter == "software" && "boxedAccent"
           }`}
-          onClick={() => {
+          onClick={() =>  {
+            if(filter== "software") {
+              setFilter(null) 
+              setSearchParams("?");
+            }
+            else {
             setFilter("software");
             setSearchParams("type=software");
+            }
           }}
         >
           <Icon
@@ -110,8 +122,14 @@ export function Portfolio({}: PortfolioProps) {
             filter == "design" && "boxedAccent"
           }`}
           onClick={() => {
+            if(filter== "design") {
+              setFilter(null) 
+              setSearchParams("?");
+            }
+            else {
             setFilter("design");
             setSearchParams("type=design");
+            }
           }}
         >
           <Icon

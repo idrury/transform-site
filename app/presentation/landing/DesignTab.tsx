@@ -2,10 +2,11 @@ import type { SharedContextProps } from "~/data/CommonTypes";
 import { useNavigate, useOutletContext } from "react-router";
 import { Icon } from "../elements/Icon";
 import "./landing.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
 import { ScrollTrigger } from "gsap/all";
+import ReactPlayer from "react-player";
 import gsap from "gsap";
 
 export interface DesignTabProps {}
@@ -23,6 +24,27 @@ export function DesignTab({}: DesignTabProps) {
 
   gsap.registerPlugin(SplitText);
   gsap.registerPlugin(ScrollTrigger);
+
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {  
+            if (entry.isIntersecting) {
+              setPlayerPlay(true);
+            } else setPlayerPlay(false);
+          });
+        },
+        { threshold: 0.1 }
+      );
+      if (reactPlayer.current) {
+        observer.observe(reactPlayer.current);
+      }
+      return () => {
+        if (reactPlayer.current) {
+          observer.unobserve(reactPlayer.current);
+        }
+      };
+    }, []);
 
   //GSAP animation
   useGSAP(() => {
@@ -81,16 +103,6 @@ export function DesignTab({}: DesignTabProps) {
     });
   }, []);
 
-  function videoMouseOver() {
-    setTimeout(() => {
-      setPlayerPlay(true);
-    }, 500);
-  }
-
-  function videoMouseOff() {
-    setTimeout(() => setPlayerPlay(false), 500);
-  }
-
   return (
     <section id="design" className="w50 col middle center">
       <div style={{ minHeight: 150, width: 100 }} />
@@ -110,39 +122,31 @@ export function DesignTab({}: DesignTabProps) {
       </p>
 
       <div className="w100 m3 col between" id="design-boxes">
-        <div className="row shrinkCol between">
+      <div className="w100 col" id="media-boxes">
+        <div className="row">
           <div
-            className="w100 boxed row middle center grow-y"
+            className="w100 boxed"
             style={{
-              position: "relative",
-              overflow: "hidden",
+              aspectRatio: "16 / 9",
             }}
-          >
-            {playerPlay && (
-              <Icon
-                name={playerMuted ? "volume-mute" : "volume-high"}
-                onClick={() => setPlayerMuted(!playerMuted)}
-                style={{
-                  position: "absolute",
-                  top: 10,
-                  right: 10,
-                  zIndex: 50,
+            >
+              <ReactPlayer
+                ref={reactPlayer}
+                src="https://api.freeflex.com.au/storage/v1/object/public/transform/graphics-min.mp4"
+                onClick={() => {
+                  setPlayerMuted(!playerMuted);
+                  !playerPlay && setPlayerPlay(true);
                 }}
-                className="boxed p1"
+                muted={playerMuted}
+                loop
+                style={{
+                  minWidth: "100%",
+                  minHeight: "100%",
+                  objectFit: "cover",
+                }}
+                playing={playerPlay}
               />
-            )}
-            <img
-              src="https://c4.wallpaperflare.com/wallpaper/632/34/549/technology-monitor-alpha-coders-binary-wallpaper-preview.jpg"
-              ref={reactPlayer}
-              style={{
-                minWidth: "100%",
-                minHeight: "100%",
-                objectFit: "cover",
-              }}
-              onMouseOver={() => videoMouseOver()}
-              onMouseOut={() => videoMouseOff()}
-              alt=""
-            />
+            </div>
           </div>
         </div>
         <div className="div10" />

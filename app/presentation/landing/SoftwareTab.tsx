@@ -29,8 +29,6 @@ export function SoftwareTab({}: SoftwareTabProps) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log(entry);
-
           if (entry.isIntersecting) {
             setPlayerPlay(true);
           } else setPlayerPlay(false);
@@ -132,21 +130,6 @@ export function SoftwareTab({}: SoftwareTabProps) {
               aspectRatio: "16 / 9",
             }}
           >
-            {/* {playerPlay && (
-              <div style={{ zIndex: 20, position: "relative" }}>
-                <Icon
-                  name={playerMuted ? "volume-mute" : "volume-high"}
-                  onClick={() => setPlayerMuted(!playerMuted)}
-                  style={{
-                    position: "absolute",
-                    top: 10,
-                    right: 10,
-                    zIndex: 10,
-                  }}
-                  className="boxed p1"
-                />
-              </div>
-            )} */}
             <ReactPlayer
               src="https://api.freeflex.com.au/storage/v1/object/public/transform/Software-video.mp4"
               ref={reactPlayer}

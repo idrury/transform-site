@@ -63,8 +63,8 @@ export function HeaderBar({ inShrink }: HeaderBarProps) {
         style={{
           zIndex: 50,
           top: 0,
-          backgroundColor: `#00000000`,
-          backdropFilter:  scroll > 100 ? "blur(5px)" : "none",
+          backgroundColor: `#92918b22`,
+          backdropFilter: "blur(3px)",
         }}
       >
         <div className="ml3 mb2 mt2 mr3 row middle between w100">
