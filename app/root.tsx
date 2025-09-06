@@ -49,6 +49,13 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+export const meta: Route.MetaFunction = () => [
+  {
+    title: "Transform Creative",
+    name: "Transform Creative | Home",
+  }
+]
+
 export function HydrateFallback() {
   console.log("Falling back");
   return (
@@ -60,7 +67,7 @@ export function HydrateFallback() {
         src="transform-icon-color-donut.png"
         className="spin360"
         style={{ height: 100, width: 100 }}
-        alt="Transform creative digital australia logo icon"
+        alt="digital content for positive change | Adelaide based film, software and design business"
       />
     </div>
   );
