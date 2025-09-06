@@ -18,7 +18,7 @@ export default function LandingRoute() {
   return (
     <div className="col middle w100 vh100 center">
       <ContactTab />
-      <h3 className="m3">isaac@transformcreative.org.au</h3>
+      <h3 className="m3">{CONTACT.email}</h3>
     </div>
   );
 }
