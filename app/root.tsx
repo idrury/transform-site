@@ -51,13 +51,13 @@ export const links: Route.LinksFunction = () => [
 
 export const meta: Route.MetaFunction = () => [
   {
-    title: "Transform Creative",
-    name: "Transform Creative | Home",
+    title: "Transform Creative | Digital content for positive change",
+    name: "On a mission to help a thousand Aussie organisations achieve meaningful change by crafting compelling online resources",
   }
 ]
 
 export function HydrateFallback() {
-  console.log("Falling back");
+
   return (
     <div
       style={{ width: "100%", height: "100vh" }}
