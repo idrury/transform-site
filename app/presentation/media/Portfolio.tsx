@@ -209,7 +209,7 @@ export function Portfolio({}: PortfolioProps) {
                           objectFit: "cover",
                           borderRadius: 5,
                         }}
-                        alt={`Cover image for ${p.name} created by Transform Creative in Australia`}
+                        alt={`Cover image for ${p.name} created by Transform Creative in Adelaide, South Australia`}
                       />
                     )
                   }
@@ -224,7 +224,7 @@ export function Portfolio({}: PortfolioProps) {
                     width: "100%",
                     borderRadius: 5,
                   }}
-                  alt={`Image for ${p.name} - ${p.type} created by Transform Creative in Australia`}
+                  alt={`Image for ${p.name} - ${p.type} created by Transform Creative in Adelaide, South Australia`}
                 />
               )}
             </div>
