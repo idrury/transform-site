@@ -253,7 +253,6 @@ export const PROJECTS: Project[] = [
     images: [
       "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-1-min.png",
       "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-5-min.png",
-
     ],
   },
   {
@@ -271,7 +270,9 @@ export const PROJECTS: Project[] = [
     id: 15,
     type: "design",
     name: "A logo for King's kids",
-    description: ["Created for King's Baptist Church."],
+    description: [
+      "Created for King's Baptist Church.",
+    ],
     images: [
       "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-3-min.png",
     ],
@@ -287,7 +288,7 @@ export const PROJECTS: Project[] = [
       "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-4-min.jpg",
     ],
   },
-    {
+  {
     id: 17,
     type: "design",
     name: "Lifewell social media cards",
@@ -299,7 +300,7 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
-     id: 18,
+    id: 18,
     type: "design",
     name: "print designs",
     description: [
@@ -309,7 +310,67 @@ export const PROJECTS: Project[] = [
       "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-8-min.jpg",
       "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-9-min.jpg",
     ],
-  }
+  },
 ];
 
-export const CONTACT = { email: "idrury@transformcreative.com.au" };
+export const CONTACT = {
+  email: "idrury@transformcreative.com.au",
+};
+
+export const WORKED_WITH_LOGOS: {
+  name: string;
+  image: string;
+  url?: string;
+}[] = [
+  {
+    name: "Access The Story",
+    image:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_ats.png",
+  },
+        {
+    name: "xp film series",
+    image:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_xp.png",
+ 
+  },
+    {
+    name: "Baptist Care",
+    image:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_baptist_care.png",
+  },
+        {
+    name: "Ping-pong-a-thon",
+    image:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_pong_3.png",
+ 
+  },
+    {
+    name: "Baptist Chuches South Australia & Northern Territory",
+    image:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_baptist_2.png",
+  },
+    {
+    name: "Catholic Education South Australia",
+    image:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_cesa.png",
+  },
+      {
+    name: "Crossover Australia",
+    image:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_crossover.png",
+  },
+  {
+    name: "Emerging Minds",
+    image:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_em.png",
+ 
+  },
+    {
+    name: "One Rehabilitation Service",
+    image:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_onerehab.png",
+ 
+  },
+
+  
+];

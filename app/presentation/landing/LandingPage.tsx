@@ -13,6 +13,7 @@ import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
 import gsap from "gsap";
 import HeaderText from "./HeaderText";
+import WorkedWith from "./WorkedWith";
 
 export interface LandingPageProps {}
 
@@ -242,6 +243,7 @@ export function LandingPage({}: LandingPageProps) {
           />
         </div>
       </div>
+      <WorkedWith/>
       <div className="col middle p3 mb3">
         <MediaTab />
         <SoftwareTab />

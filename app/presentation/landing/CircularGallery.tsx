@@ -23,7 +23,6 @@ export default function CircularGallery({
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const galleryProjects = [...projects, ...projects];
   }, [projects]);
 
   useGSAP(() => {

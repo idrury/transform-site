@@ -33,6 +33,12 @@ border-radius: 3px;
     animation-play-state:running;
 }
 
+.scroll .back {
+animation: scroll
+    var(--_animation-duration, 40s)
+    var(--_animation-direction, reverse) linear
+    infinite;
+}
 .paused:hover{
   animation-play-state: paused !important;
   transition: .2s;
@@ -45,7 +51,7 @@ border-radius: 3px;
 }
 
 .slow {
-  --_animation-duration: 10s;
+  --_animation-duration: 80s;
 }
 
 @keyframes scroll {
