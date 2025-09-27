@@ -1,5 +1,9 @@
 import { Project, type SharedContextProps } from "~/data/CommonTypes";
-import { useNavigate, useOutletContext } from "react-router";
+import {
+  useNavigate,
+  useOutletContext,
+  useSearchParams,
+} from "react-router";
 import CircularGallery from "./CircularGallery";
 import { Icon } from "../elements/Icon";
 import { DesignTab } from "./DesignTab";
@@ -24,12 +28,20 @@ export function LandingPage({}: LandingPageProps) {
   const context: SharedContextProps = useOutletContext();
   const [selectedProject, setSelectedProject] = useState<Project>();
   const [viewProjectActive, setViewProjectActive] = useState(false);
-  const titleSplit = useRef(null);
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
   gsap.registerPlugin(SplitText);
 
   useEffect(() => {
+    if (searchParams.get("project")) {
+      setSelectedProject(
+        PROJECTS.find(
+          (p) => p.id == parseInt(searchParams.get("project") || "")
+        )
+      );
+      setViewProjectActive(true);
+    }
     setTimeout(() => {
       onDotsHover();
     }, 3000);
@@ -238,6 +250,7 @@ export function LandingPage({}: LandingPageProps) {
             onProjectClick={(id) => {
               setViewProjectActive(true);
               setSelectedProject(PROJECTS.find((p) => p.id == id));
+              setSearchParams({ project: id.toString()})
             }}
           />
         </div>
@@ -253,7 +266,7 @@ export function LandingPage({}: LandingPageProps) {
         />
 
         <ContactTab />
-         <div
+        <div
           className="horizontal-line mediumFade"
           style={{ top: -30 }}
         />
@@ -265,6 +278,8 @@ export function LandingPage({}: LandingPageProps) {
         onClose={() => {
           setViewProjectActive(false);
           setTimeout(() => setSelectedProject(undefined), 300);
+          searchParams.delete("project")
+          setSearchParams(searchParams);
         }}
       />
     </div>
