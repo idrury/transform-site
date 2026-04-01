@@ -113,7 +113,7 @@ export function Logo({ size = 100 }: LogoProps) {
               opacity: 0,
               padding: 0,
               margin: 0,
-              color: "var(--primaryColor)",
+              color: "var(--accent)",
               fontSize: `${size}pt`,
             }}
           >
@@ -124,7 +124,7 @@ export function Logo({ size = 100 }: LogoProps) {
             style={{
               opacity: 0,
               fontSize: `${Math.round(size / 2)}pt`,
-              color: "var(--primaryColor)",
+              color: "var(--accent)",
             }}
           >
             Creative

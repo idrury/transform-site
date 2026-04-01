@@ -76,7 +76,7 @@ export default function CircularGallery({
                   style={{
                     opacity: 0.6,
                     zIndex: 10,
-                    background: "var(--primaryColor)",
+                    background: "var(--accent)",
                   }}
                 />
               </div>

@@ -175,7 +175,7 @@ export function LandingPage({}: LandingPageProps) {
               name="ellipse"
               style={{ zIndex: 1 }}
               size={20}
-              color="var(--primaryColor)"
+              color="var(--accent)"
             />
             <Icon
               id="ellipse-2"
@@ -199,8 +199,8 @@ export function LandingPage({}: LandingPageProps) {
               pauseDuration={500}
               showCursor={false}
               cursorCharacter="|"
-              color="var(--primaryColor)"
-              textColors={["var(--primaryColor)"]}
+              color="var(--accent)"
+              textColors={["var(--accent)"]}
             />
           </div>
           <p

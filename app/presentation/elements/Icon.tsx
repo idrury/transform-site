@@ -22,7 +22,7 @@ export function Icon({
   id,
   name,
   style,
-  color="var(--text)",
+  color="var(--txt)",
   className = "",
   size = 12,
   onClick

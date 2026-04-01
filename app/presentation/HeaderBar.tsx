@@ -76,7 +76,7 @@ export function HeaderBar({ inShrink }: HeaderBarProps) {
                 className="clickable"
                 onClick={() => setMenuActive(true)}
                 size={25}
-                color="var(--primaryColor)"
+                color="var(--accent)"
               />
             </div>
           ) : (
@@ -124,7 +124,7 @@ function MenuOptions({ inShrink, onClose }: MenuOptionsProps) {
         style={{
           fontSize: textSize,
           color: `${
-            location.pathname == "/" ? "var(--primaryColor)" : ""
+            location.pathname == "/" ? "var(--accent)" : ""
           }`,
           opacity: 1,
         }}
@@ -143,7 +143,7 @@ function MenuOptions({ inShrink, onClose }: MenuOptionsProps) {
           fontSize: textSize,
           color: `${
             location.pathname == "/portfolio"
-              ? "var(--primaryColor)"
+              ? "var(--accent)"
               : ""
           }`,
           opacity: 1,
@@ -172,7 +172,7 @@ function MenuOptions({ inShrink, onClose }: MenuOptionsProps) {
             name="close-outline"
             className="clickable"
             onClick={() => onClose()}
-            color="var(--primaryColor)"
+            color="var(--accent)"
             size={50}
           />
         </div>

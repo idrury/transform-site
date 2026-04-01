@@ -29,6 +29,11 @@ const BasicMenu = ({
 }: BasicMenuProps) => {
   const transitionRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    document.body.style.overflow = active ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [active]);
+
   const handleEnter = () => {
     gsap.from(transitionRef?.current, {
       alpha: 0,

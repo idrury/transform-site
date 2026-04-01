@@ -112,7 +112,7 @@ export function SoftwareTab({}: SoftwareTabProps) {
         id="software-icon"
         name="code-outline"
         size={40}
-        color="var(--primaryColor)"
+        color="var(--accent)"
       />
       <h4 className="mb3 mt3 textCenter" id="software-title">
         We develop software that pushes boundaries and invites
@@ -193,7 +193,7 @@ export function SoftwareTab({}: SoftwareTabProps) {
               <Icon
                 name="arrow-forward-circle"
                 size={40}
-                color="var(--background)"
+                color="var(--bkg)"
                 className={`clickable ${
                   !context.inShrink && "pl3 pb3"
                 }`}

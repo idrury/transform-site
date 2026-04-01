@@ -111,7 +111,7 @@ export function DesignTab({}: DesignTabProps) {
         id="design-icon"
         name="color-filter-outline"
         size={40}
-        color="var(--primaryColor)"
+        color="var(--accent)"
       />
       <h4 className="mb3 mt3 textCenter" id="design-title">
         We turn colors, fonts and shapes into brands that people trust
@@ -193,7 +193,7 @@ export function DesignTab({}: DesignTabProps) {
                 onClick={() => navigate("/portfolio?type=design")}
                 name="arrow-forward-circle"
                 size={40}
-                color="var(--background)"
+                color="var(--bkg)"
                 className={`clickable ${
                   !context.inShrink && "pl3 pb3"
                 }`}

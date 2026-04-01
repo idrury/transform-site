@@ -201,7 +201,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 
   return (
     <main className="vh100 middle center col">
-      <h1 className="mb2" style={{ color: "var(--primaryColor)" }}>
+      <h1 className="mb2" style={{ color: "var(--accent)" }}>
         {message}
       </h1>
       <div className="row middle center">

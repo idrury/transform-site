@@ -38,7 +38,7 @@ export function ContactTab({}: ContactTabProps) {
             name="chatbubble-ellipses-outline"
             size={60}
             className="mb2"
-            color="var(--primaryColor)"
+            color="var(--accent)"
           />
           <h2 className="textCenter mb2">Got questions? Let's talk.</h2>
         </div>

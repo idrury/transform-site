@@ -6,17 +6,17 @@
   background-repeat: no-repeat;
 
   color-scheme: light;
-  --text: #191919;
-  --background: #e2e1d8;
-  --smallAccent: #d8d7ce;
+  --txt: #191919;
+  --bkg: #e2e1d8;
+  --accent-sm: #d8d7ce;
   --mediumAccent: #b7b6ae;
   --highAccent: #92918b;
-  --primaryColor: #436940;
+  --accent: #436940;
   --secondaryColor: #de976f;
   --thirdColor: #94bc91;
   --primaryGradient: linear-gradient(
     to left,
-    var(--primaryColor),
+    var(--accent),
     var(--mediumAccent)
   );
   --warningColor: #faae88;
@@ -33,25 +33,25 @@
 }
 
 :root [data-theme="light"] {
-  --text: #111111;
-  --background: #eeeeee;
-  --smallAccent: #aaaaaa;
+  --txt: #111111;
+  --bkg: #eeeeee;
+  --accent-sm: #aaaaaa;
   --mediumAccent: #666666;
   --highAccent: #cccccc;
 
   background-color: #eeeeee;
-  color: var(--text);
+  color: var(--txt);
 }
 
 :root [data-theme="dark"] {
-  --text: #dddddd;
-  --background: #111111;
-  --smallAccent: #444444;
+  --txt: #dddddd;
+  --bkg: #111111;
+  --accent-sm: #444444;
   --mediumAccent: #aaaaaa;
   --highAccent: #181818;
 
   background-color: #111111;
-  color: var(--text);
+  color: var(--txt);
 }
 
 @font-face {
@@ -91,13 +91,13 @@ p {
   font-size: 12pt;
   line-height: 1.5;
   font-weight: 400 !important;
-  color: var(--text);
+  color: var(--txt);
 }
 
 h1 {
   font-family: "Sifon", sans-serif;
   text-align: start;
-  color: var(--text);
+  color: var(--txt);
   font-weight: 700;
   font-size: 60pt;
   line-height: 1;
@@ -112,7 +112,7 @@ h2 {
   text-align: start;
   font-size: 60pt;
   line-height: 1.2;
-  color: var(--primaryColor);
+  color: var(--accent);
 }
 
 h3 {
@@ -121,7 +121,7 @@ h3 {
   line-height: 1.5;
   font-size: 12pt;
   margin: 0;
-  color: var(--text);
+  color: var(--txt);
 }
 
 h4 {
@@ -131,7 +131,7 @@ h4 {
   margin: 0;
   font-size: 30pt;
   line-height: 1.5;
-  color: var(--primaryColor);
+  color: var(--accent);
 }
 
 h5 {
@@ -141,7 +141,7 @@ h5 {
   font-size: 15pt;
   font-weight: bold;
   line-height: 1.5;
-  color: var(--background);
+  color: var(--bkg);
 }
 
 ul {
@@ -175,8 +175,8 @@ a {
 /********* Basic elements ***********/
 input {
   font-family: "Onest", sans-serif;
-  color: var(--text);
-  background: var(--background);
+  color: var(--txt);
+  background: var(--bkg);
   height: 50px;
   height: 3em;
 
@@ -194,21 +194,21 @@ input {
 
 input:focus {
   outline: none;
-  color: var(--text);
-  box-shadow: 0 0 0px 3px var(--primaryColor) inset;
+  color: var(--txt);
+  box-shadow: 0 0 0px 3px var(--accent) inset;
 
-  background-color: var(--background);
+  background-color: var(--bkg);
   transition: 0.25s;
 }
 
 input:disabled {
-  color: var(--text);
+  color: var(--txt);
   background-color: var(--mediumAccent);
 }
 
 textarea {
   font-family: "Onest", sans-serif;
-  background-color: var(--background);
+  background-color: var(--bkg);
 
   resize: vertical;
   border: 1px solid var(--highAccent);
@@ -226,10 +226,10 @@ textarea {
 
 textarea:focus {
   outline: none;
-  color: var(--text);
-  box-shadow: 0 0 0px 3px var(--primaryColor) inset;
+  color: var(--txt);
+  box-shadow: 0 0 0px 3px var(--accent) inset;
 
-  background-color: var(--background);
+  background-color: var(--bkg);
   transition: 0.25s;
 }
 
@@ -239,8 +239,8 @@ textarea:focus {
 
 input {
   font-family: "Onest", sans-serif;
-  color: var(--text);
-  background: var(--background);
+  color: var(--txt);
+  background: var(--bkg);
   height: 50px;
   height: 3em;
 
@@ -259,7 +259,7 @@ input {
 button {
   font-family: "Onest", sans-serif;
   font-weight: light;
-  color: var(--text);
+  color: var(--txt);
   font-weight: 500;
   font-size: 12pt;
   text-wrap: "wrap";
@@ -277,7 +277,7 @@ button {
 }
 
 button:hover {
-  color: var(--primaryColor);
+  color: var(--accent);
   transition: 0.2s;
   transform: translateY(2px);
 }
@@ -289,28 +289,28 @@ button:disabled {
 
 .accentButton {
   border-radius: var(--borderRadius);
-  background: var(--primaryColor);
-  color: var(--background);
+  background: var(--accent);
+  color: var(--bkg);
 }
 
 .accentButton * {
-  color: var(--background);
+  color: var(--bkg);
 }
 
 .accentButton:hover {
   background-color: var(--highAccent);
-  color: var(--background) !important;
+  color: var(--bkg) !important;
   transform: scale(1.02);
 }
 
 button:hover * {
-  color: var(--primaryColor);
+  color: var(--accent);
   transition: 0.2s;
 }
 
 .accentButton:disabled {
-  background: var(--background);
-  color: var(--text);
+  background: var(--bkg);
+  color: var(--txt);
 }
 
 .dangerButton {
@@ -329,12 +329,12 @@ button:hover * {
 }
 
 .lightButton {
-  color: var(--background);
-  background-color: var(--smallAccent);
+  color: var(--bkg);
+  background-color: var(--accent-sm);
 }
 
 .lightButton:hover {
-  color: var(--text);
+  color: var(--txt);
   background-color: var(--highAccent);
 }
 
@@ -354,7 +354,7 @@ select {
 }
 
 select:hover {
-  background-color: var(--smallAccent);
+  background-color: var(--accent-sm);
   transition: 0.2s;
 }
 
@@ -376,10 +376,10 @@ input[type="checkbox"] {
   padding: 10px 10px;
 
   justify-self: unset;
-  background-color: var(--background);
+  background-color: var(--bkg);
   appearance: none;
 
-  border: 1px solid var(--smallAccent);
+  border: 1px solid var(--accent-sm);
 
   cursor: pointer;
 
@@ -387,7 +387,7 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked {
-  background-color: var(--primaryColor);
+  background-color: var(--accent);
   transition: 0.2s;
 }
 
@@ -445,7 +445,7 @@ th {
 }
 
 .buttonIcon:hover {
-  color: var(--smallAccent);
+  color: var(--accent-sm);
   opacity: 50%;
   transform: scale(1.1);
 
@@ -488,7 +488,7 @@ th {
 ************ Display ***********
 *************************************/
 .boxed {
-  color: var(--text);
+  color: var(--txt);
   background: var(--mediumAccent);
 
   border-radius: var(--borderRadius);
@@ -501,14 +501,14 @@ th {
   width: 1px;
   height: 100vh;
   position: fixed;
-  background-color: var(--primaryColor);
+  background-color: var(--accent);
 }
 
 .horizontal-line {
   height: 1px;
   width: 100%;
   position: relative;
-  background-color: var(--primaryColor);
+  background-color: var(--accent);
 }
 
 
@@ -530,7 +530,7 @@ th {
   color: #eeeeee !important;
   border-radius: var(--borderRadius);
 
-  background: var(--primaryColor);
+  background: var(--accent);
 
   transition: 0.2s;
 }
@@ -540,7 +540,7 @@ th {
 }
 
 .boxedAccent:hover {
-  background-color: var(--primaryColor) !important;
+  background-color: var(--accent) !important;
 }
 
 .boxedSecondary {
@@ -561,7 +561,7 @@ th {
   border-radius: var(--borderRadius);
 
   background: var(--highAccent);
-  color: var(--text);
+  color: var(--txt);
 
   transition: 0.2s;
 }
@@ -571,15 +571,15 @@ th {
 
   padding: 5px;
 
-  background: var(--text);
-  color: var(--background);
+  background: var(--txt);
+  color: var(--bkg);
 
   transition: 0.2s;
 }
 
 .outline {
   border-radius: var(--borderRadius);
-  border: 2px solid var(--text);
+  border: 2px solid var(--txt);
   transition: 0.2s;
 }
 
@@ -624,7 +624,7 @@ th {
   display: flex;
   flex-direction: column;
 
-  background: var(--background);
+  background: var(--bkg);
   backdrop-filter: 10px;
 
   border-radius: var(--borderRadius);
@@ -642,8 +642,8 @@ th {
 }
 
 .clickable:hover {
-  fill: var(--primaryColor);
-  color: var(--primaryColor);
+  fill: var(--accent);
+  color: var(--accent);
   opacity: 0.8;
   transition: 0.3s;
   transform: translateY(5px);
@@ -656,7 +656,7 @@ th {
 
 .light {
   background-color: var(--mediumAccent);
-  color: var(--background);
+  color: var(--bkg);
 }
 
 .noBorder {

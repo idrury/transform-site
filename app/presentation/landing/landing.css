@@ -14,7 +14,7 @@
 .text-type {
   font-size: 60pt;
   font-weight: 200;
-  color: var(--primaryColor) !important;
+  color: var(--accent) !important;
   display: inline-block;
   white-space: pre-wrap;
 }

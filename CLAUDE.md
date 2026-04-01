@@ -90,9 +90,9 @@ No dynamic database queries exist yet. Supabase is initialised (env vars configu
 
 **CSS Variables (defined in app.css):**
 ```css
---text: #191919
---background: #e2e1d8   /* cream/beige */
---primaryColor: #436940  /* sage green */
+--txt: #191919
+--bkg: #e2e1d8   /* cream/beige */
+--accent: #436940  /* sage green */
 --secondaryColor: #de976f /* terracotta */
 --thirdColor: #94bc91   /* light green */
 ```

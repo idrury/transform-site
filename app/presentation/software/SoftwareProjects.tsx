@@ -31,7 +31,7 @@ export default function SoftwareProjects() {
                 right: 10,
                 zIndex: 10,
               }}
-              color="var(--primaryColor)"
+              color="var(--accent)"
               className="clickable boxed p1"
             />
             <img

@@ -56,7 +56,7 @@ export function Portfolio({}: PortfolioProps) {
           name="albums-outline"
           className="mr2"
           size={context.inShrink ? 30 : 50}
-          color="var(--primaryColor)"
+          color="var(--accent)"
         />
         <HeaderText
           text={["Portfolio"]}
@@ -65,8 +65,8 @@ export function Portfolio({}: PortfolioProps) {
           pauseDuration={500}
           showCursor={true}
           cursorCharacter="|"
-          color="var(--primaryColor)"
-          textColors={["var(--primaryColor)"]}
+          color="var(--accent)"
+          textColors={["var(--accent)"]}
         />
       </div>
       <p className="textCenter ml3 mr3">
@@ -170,7 +170,7 @@ export function Portfolio({}: PortfolioProps) {
                     right: 10,
                     zIndex: 10,
                   }}
-                  color="var(--primaryColor)"
+                  color="var(--accent)"
                   className="clickable boxed p1"
                 />
               </div>

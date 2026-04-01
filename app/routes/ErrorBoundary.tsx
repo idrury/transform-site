@@ -25,14 +25,14 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 
   return (
     <main className="vh100 middle center col">
-      <h1 className="mb2" style={{ color: "var(--primaryColor)" }}>
+      <h1 className="mb2" style={{ color: "var(--accent)" }}>
         {message}
       </h1>
       <div className="row middle center">
         <Icon
           name="information-circle"
           className="mr1"
-          color="var(--primaryColor)"
+          color="var(--accent)"
           size={15}
         />
         <p>{details}</p>
@@ -44,7 +44,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
         <Icon
           name="home"
           size={12}
-          color="var(--text)"
+          color="var(--txt)"
           className="mr1"
         />
         Home

@@ -2,7 +2,7 @@ import { Project } from "./CommonTypes";
 
 export const tabColors = {
   design: "var(--thirdColor)",
-  media: "var(--primaryColor)",
+  media: "var(--accent)",
   software: "var(--secondaryColor)",
 };
 

@@ -38,11 +38,11 @@ export function TabPanel({}: TabPanelProps) {
         >
           <h4
             className="middle center"
-            style={{ color: "var(--background)" }}
+            style={{ color: "var(--bkg)" }}
           >
             <Icon
               name="videocam"
-              color={"var(--background)"}
+              color={"var(--bkg)"}
               size={23}
               className="mr2"
             />
@@ -58,12 +58,12 @@ export function TabPanel({}: TabPanelProps) {
           onClick={() => setPanel("software")}
         >  <Icon
               name="keypad"
-              color={"var(--background)"}
+              color={"var(--bkg)"}
               size={23}
               className="mr2"
             />
           <h4
-            style={{ color: "var(--background)" }}
+            style={{ color: "var(--bkg)" }}
           >
            
             
@@ -80,12 +80,12 @@ export function TabPanel({}: TabPanelProps) {
         >
             <Icon
               name="brush"
-              color={"var(--background)"}
+              color={"var(--bkg)"}
               size={23}
               className="mr2"
             />
           <h4
-            style={{ color: "var(--background)" }}
+            style={{ color: "var(--bkg)" }}
           >
            
             Design

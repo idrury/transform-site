@@ -6,7 +6,7 @@ interface BannerProps {
 
 export default function Banner({
   top = 0,
-  background = "var(--primaryColor)",
+  background = "var(--accent)",
   children,
 }: BannerProps) {
   return (

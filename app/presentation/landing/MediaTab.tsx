@@ -156,7 +156,7 @@ export function MediaTab({}: MediaTabProps) {
           style={{ opacity: 0 }}
           name="code-outline"
           size={40}
-          color="var(--primaryColor)"
+          color="var(--accent)"
         />
         <Icon
           id="media-icon"
@@ -164,7 +164,7 @@ export function MediaTab({}: MediaTabProps) {
           className="lateFade"
           style={{ opacity: 0 }}
           size={40}
-          color="var(--primaryColor)"
+          color="var(--accent)"
         />
         <Icon
           id="design-icon-media"
@@ -172,7 +172,7 @@ export function MediaTab({}: MediaTabProps) {
           className="lateFade"
           style={{ opacity: 0 }}
           size={40}
-          color="var(--primaryColor)"
+          color="var(--accent)"
         />
       </div>
 
@@ -251,7 +251,7 @@ export function MediaTab({}: MediaTabProps) {
                 onClick={() => navigate("/portfolio?type=media")}
                 name="arrow-forward-circle"
                 size={40}
-                color="var(--background)"
+                color="var(--bkg)"
                 className={`clickable ${
                   !context.inShrink && "pl3 pb3"
                 }`}
