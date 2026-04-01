@@ -33,7 +33,7 @@ const BasicMenu = ({
     gsap.from(transitionRef?.current, {
       alpha: 0,
       duration: 0.5,
-      y: -100,
+      y: 100,
       ease: "back.inOut",
     });
   };
@@ -55,7 +55,7 @@ const BasicMenu = ({
       <Transition
         nodeRef={transitionRef}
         in={active}
-        timeout={300}
+        timeout={500}
         onEnter={handleEnter}
         onExiting={handleExit}
         unmountOnExit
@@ -63,7 +63,7 @@ const BasicMenu = ({
         <div
           ref={transitionRef}
           style={{ zIndex: zIndex }}
-          className="fillScreen center middle"
+          className="fillScreen col end"
           onClick={() => {
             if (!disableClickOff) onClose();
           }}

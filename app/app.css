@@ -934,16 +934,6 @@ Padding
 /************************************
 ************ Layout ***********
 *************************************/
-.row {
-  display: flex;
-  flex-direction: row;
-}
-
-.col {
-  display: flex;
-  flex-direction: column;
-}
-
 .loadingContainer {
   height: 80vh;
   width: 100vw;
@@ -968,9 +958,26 @@ Padding
   gap: 10px; /* Space between grid items */
 }
 
+
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
 .middle {
   display: flex;
   align-items: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
 }
 
 .between {
@@ -981,11 +988,6 @@ Padding
 .around {
   display: flex;
   justify-content: space-around;
-}
-
-.center {
-  display: flex;
-  justify-content: center;
 }
 
 .stretch {

@@ -33,6 +33,7 @@ export function FooterBar({}: FooterBarProps) {
                 style={{ textDecoration: "none", fontSize: "12pt" }}
                 className="p2 row center middle"
                 target="_blank"
+                rel="noreferrer"
                 href={`mailto:${CONTACT.email}`}
               >
                 Contact

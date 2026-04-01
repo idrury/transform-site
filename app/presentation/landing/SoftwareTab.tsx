@@ -173,7 +173,9 @@ export function SoftwareTab({}: SoftwareTabProps) {
           <div className="div10" />
           <div className="boxedAccent w25">
             <div
-              className={`${
+                            onClick={() => navigate("/development")}
+
+              className={`clickable ${
                 context.inShrink
                   ? "row middle between p3"
                   : "col between h100"
@@ -189,7 +191,6 @@ export function SoftwareTab({}: SoftwareTabProps) {
                 See more
               </h5>
               <Icon
-                onClick={() => navigate("/portfolio?type=software")}
                 name="arrow-forward-circle"
                 size={40}
                 color="var(--background)"

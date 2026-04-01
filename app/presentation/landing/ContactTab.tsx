@@ -48,6 +48,7 @@ export function ContactTab({}: ContactTabProps) {
               style={{ textDecoration: "none" }}
               className="pt2 pb2 accentButton row center middle w100"
               target="_blank"
+              rel="noreferrer"
               href={`mailto:${CONTACT.email}`}
             >
               <Icon name="mail-open" className="mr2" />
