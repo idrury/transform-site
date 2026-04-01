@@ -311,6 +311,19 @@ export const PROJECTS: Project[] = [
       "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-9-min.jpg",
     ],
   },
+   {
+    id: 19,
+    type: "software",
+    name: "Crossover website",
+    description: [
+      "A modern, responsive website for Crossover Australia.",
+    ],
+    link: "https://www.crossover.org.au/",
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-8-min.jpg",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-9-min.jpg",
+    ],
+  },
 ];
 
 export const CONTACT = {
