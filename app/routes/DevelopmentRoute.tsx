@@ -5,6 +5,7 @@ import FeatureSelector, {
   type Feature,
 } from "~/presentation/software/FeatureSelector";
 import SoftwareProjects from "~/presentation/software/SoftwareProjects";
+import { FeeStructure } from "~/presentation/software/FeeStructure";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -22,16 +23,23 @@ export default function DevelopmentRoute() {
     {
       className: "center col middle",
       icon: { name: "card-outline", size: 50 },
-      text: "Opt out of the 'raisley fee'",
+      text: "No exorbitant 'platform fee'",
       description: [
         "Built for you fundraising platforms are great to get started, but as your organisation grows, that ~4% fee becomes a significant amount of your income.",
         "We charge a modest fee, not a percentage of your donations, so you keep more of the money you raise.",
       ],
+      component: (
+        <div className="col middle ">
+          <button className="row middle center gap-5 accentButton">
+            <Icon name="arrow-down"/>
+            Find out more about our pricing structure</button>
+        </div>
+      )
     },
     {
       className: "center col middle",
       icon: { name: "lock-closed-outline", size: 50 },
-      text: "Security built for your specific use case",
+      text: "Security customised for you",
       description: [
         "By building a custom site, we know exactly where your data is stored, and where the biggest risks are.",
       ],
@@ -87,7 +95,12 @@ export default function DevelopmentRoute() {
 
       <div className="" style={{ height: 100 }} />
 
-      <SoftwareProjects />
+      <div className="col middle">
+        <SoftwareProjects />
+      </div>
+      <div className="w-75">
+        <FeeStructure />
+      </div>
     </div>
   );
 }

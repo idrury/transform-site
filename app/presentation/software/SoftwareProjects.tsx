@@ -12,9 +12,9 @@ export default function SoftwareProjects() {
     <div className="col middle center gap-20 w-75 m-20">
       <h2>Projects we're proud of</h2>
       <div className="grid-auto w-100">
-        {softwareProjects.map((p) => (
+        {softwareProjects.map((p,idx) => (
           <div
-            key={p.id}
+            key={`${idx}-${p.id}`}
             style={{
               minWidth: 300,
               aspectRatio: "16/9",

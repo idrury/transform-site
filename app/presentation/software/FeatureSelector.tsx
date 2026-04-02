@@ -1,4 +1,4 @@
-import { useState, useRef, useLayoutEffect } from "react";
+import { useState, useRef, useLayoutEffect, ReactElement } from "react";
 import { Icon } from "~/presentation/elements/Icon";
 import type { IoniconName } from "~/data/Ionicons";
 
@@ -7,6 +7,7 @@ export interface Feature {
   icon: { name: IoniconName; size: number };
   text: string;
   description: string[];
+  component?: ReactElement
 }
 
 interface Props {
@@ -59,7 +60,7 @@ export default function FeatureSelector({ features }: Props) {
                     ? (feature.icon.name.split("-outline")[0]) as IoniconName
                     : feature.icon.name
                 }
-                size={feature.icon.size}
+                size={25}
                 color={
                   index === selectedIndex
                     ? "var(--accent)"
@@ -91,20 +92,21 @@ export default function FeatureSelector({ features }: Props) {
       <div
         key={selectedIndex}
         className="col gap-10 center middle fade-sm w-100"
-        style={{ minHeight: 80, textAlign: "center" }}
+        style={{ minHeight: 50, textAlign: "center" }}
       >
         <div className="w-75">
-          <div className="p-20">
+          <div className="p-0">
             {selected.description.map((para, i) => (
               <div key={i}>
                 {i === 0 ? (
-                  <h4 className="center mb-20">{para}</h4>
+                  <h4 className="center mb-20  p-20">{para}</h4>
                 ) : (
                   <p className="center mb-20"> {para}</p>
                 )}
               </div>
             ))}
           </div>
+          {selected.component || null}
         </div>
       </div>
     </div>
