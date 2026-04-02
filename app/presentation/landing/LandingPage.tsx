@@ -18,6 +18,8 @@ import { SplitText } from "gsap/all";
 import gsap from "gsap";
 import HeaderText from "./HeaderText";
 import WorkedWith from "./WorkedWith";
+import { Carousel } from "../elements/Carousel";
+import { projectToIcon } from "~/business/commonBL";
 
 export interface LandingPageProps {}
 
@@ -30,6 +32,8 @@ export function LandingPage({}: LandingPageProps) {
   const [selectedProject, setSelectedProject] = useState<Project>();
   const [viewProjectActive, setViewProjectActive] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [hoveredImage, setHoveredImage] = useState<number>();
+
   const navigate = useNavigate();
 
   gsap.registerPlugin(SplitText);
@@ -38,8 +42,8 @@ export function LandingPage({}: LandingPageProps) {
     if (searchParams.get("project")) {
       setSelectedProject(
         PROJECTS.find(
-          (p) => p.id == parseInt(searchParams.get("project") || "")
-        )
+          (p) => p.id == parseInt(searchParams.get("project") || ""),
+        ),
       );
       setViewProjectActive(true);
     }
@@ -70,7 +74,7 @@ export function LandingPage({}: LandingPageProps) {
           y: 0,
           stagger: 0.1,
         },
-        "-=1"
+        "-=1",
       );
     });
 
@@ -82,7 +86,7 @@ export function LandingPage({}: LandingPageProps) {
         duration: 0.6,
         opacity: 0,
       },
-      1
+      1,
     )
       .from(
         "#ellipse-2",
@@ -92,7 +96,7 @@ export function LandingPage({}: LandingPageProps) {
           duration: 0.6,
           opacity: 0,
         },
-        "-=0.5"
+        "-=0.5",
       )
       .from(
         "#ellipse-3",
@@ -102,7 +106,7 @@ export function LandingPage({}: LandingPageProps) {
           duration: 0.6,
           opacity: 0,
         },
-        "-=0.5"
+        "-=0.5",
       )
       .to(".lateFade", { opacity: 1, duration: 1, ease: "power3" });
   }, []);
@@ -121,7 +125,7 @@ export function LandingPage({}: LandingPageProps) {
           ease: "power1.out",
           duration: 0.2,
         },
-        "-=0.15"
+        "-=0.15",
       )
       .to(
         "#ellipse-3",
@@ -130,7 +134,7 @@ export function LandingPage({}: LandingPageProps) {
           ease: "power1.out",
           duration: 0.2,
         },
-        "-=0.15"
+        "-=0.15",
       )
       .to("#ellipse-1", {
         y: "0",
@@ -144,7 +148,7 @@ export function LandingPage({}: LandingPageProps) {
           ease: "bounce.out",
           duration: 0.6,
         },
-        "-=0.5"
+        "-=0.5",
       )
       .to(
         "#ellipse-3",
@@ -153,7 +157,7 @@ export function LandingPage({}: LandingPageProps) {
           ease: "bounce.out",
           duration: 0.6,
         },
-        "-=0.5"
+        "-=0.5",
       );
   }
 
@@ -244,19 +248,82 @@ export function LandingPage({}: LandingPageProps) {
           </div>
         </div>
       </div>
-      <div className="col middle between pt2 pb2">
-        <div className="mt3 w100">
-          <CircularGallery
+      <div className="col middle center">
+        <div className="mt3 w100 col middle center">
+          {/* <CircularGallery
             projects={PROJECTS.slice(0, 8)}
             onProjectClick={(id) => {
               setViewProjectActive(true);
               setSelectedProject(PROJECTS.find((p) => p.id == id));
               setSearchParams({ project: id.toString()})
             }}
-          />
+          /> */}
+          <Carousel
+            interval={3}
+            showDots
+            showArrows
+            autoplay
+            snapOffset={20}
+            width={100}
+            onClick={() => {}}
+          >
+            {PROJECTS.map((img, idx) => (
+              <div
+                key={`${img.id} - ${idx}`}
+                className="gap-20"
+                onMouseOver={() => {
+                  setHoveredImage(img.id);
+                }}
+                onMouseOut={() => setHoveredImage(undefined)}
+                onClick={() => {
+                  setViewProjectActive(true);
+                  setSelectedProject(
+                    PROJECTS.find((p) => p.id == img.id),
+                  );
+                  setSearchParams({ project: img.id?.toString() });
+                }}
+              >
+                {hoveredImage == img.id && (
+                  <div className="">
+                    <h3
+                      style={{ zIndex: 20, color: "#eeeeee" }}
+                      className="overlayDiv mediumFade"
+                    >
+                      <Icon
+                        name={projectToIcon(img.type)}
+                        color="#eeeeee"
+                        className="mr2"
+                      />
+                      {img.name}
+                    </h3>
+                    <div
+                      className="overlayDiv"
+                      style={{
+                        opacity: 0.6,
+                        zIndex: 10,
+                        background: "var(--accent)",
+                      }}
+                    />
+                  </div>
+                )}
+                <img
+                  className="gallery-image"
+                  style={{
+                    filter: `${
+                      hoveredImage == img.id
+                        ? "contrast(0.8)"
+                        : "none"
+                    }`,
+                  }}
+                  src={`${img.images[0]}`}
+                  alt={`image of ${img.name} - a piece of digital content created by transform creative australia`}
+                />
+              </div>
+            ))}
+          </Carousel>
         </div>
       </div>
-      <WorkedWith/>
+      <WorkedWith />
       <div className="col middle p3 mb3">
         <MediaTab />
         <SoftwareTab />
@@ -280,7 +347,7 @@ export function LandingPage({}: LandingPageProps) {
         onClose={() => {
           setViewProjectActive(false);
           setTimeout(() => setSelectedProject(undefined), 300);
-          searchParams.delete("project")
+          searchParams.delete("project");
           setSearchParams(searchParams);
         }}
       />

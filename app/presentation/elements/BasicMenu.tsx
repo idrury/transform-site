@@ -5,6 +5,7 @@ import { Transition } from "react-transition-group";
 import { useEffect, useRef } from "react";
 import type { IoniconName } from "~/data/Ionicons";
 import type { ActivatableElement } from "~/data/CommonTypes";
+import { Icon } from "./Icon";
 
 interface BasicMenuProps extends ActivatableElement {
   children: any;
@@ -80,13 +81,15 @@ const BasicMenu = ({
               height: "auto",
             }}
           >
-            <div onClick={() => onClose()} className="rightRow m0" >
-              <IonIcon
+            <div onClick={() => onClose()} className="row center middle m0" >
+              <Icon
+              size={40}
                 className="buttonIcon clickable"
-                name="close"
+                name="close-circle"
+                color="var(--accent-lg)"
               />
             </div>
-            <div style={{ padding: 10,overflowY:'auto', overflowX: 'clip',maxHeight: "90vh" }}>
+            <div style={{ padding: 10,overflowY:'auto', overflowX: 'clip', maxHeight: "75vh"}}>
               {icon && (
                 <div className="center" >
                   <IonIcon

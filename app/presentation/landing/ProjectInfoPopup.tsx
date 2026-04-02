@@ -55,7 +55,7 @@ export function ProjectInfoPopup({
       onClose={() => onClose()}
       zIndex={100}
     >
-      <div className="p3 col middle" style={{ gap: 20 }}>
+      <div className="col middle" style={{ gap: 20, overflow: "auto" }}>
         {project?.link && (
           <div className="row middle center">
             <a

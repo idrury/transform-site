@@ -18,7 +18,7 @@ const colorStyles = {
       ? "0 0 0 2px var(--accent) inset"
       : "none",
     border:
-      "1px solid var(--highAccent) !important",
+      "1px solid var(--accent-lg) !important",
     fontSize: "10pt",
     borderRadius: "var(--borderRadius)",
     height: "3em",
@@ -39,7 +39,7 @@ const colorStyles = {
   ) => ({
     gridArea: "1 / 1 / 1 / 1",
     display: "flex",
-    color: "var(--mediumAccent)",
+    color: "var(--accent-md)",
     padding: "0",
   }),
 
@@ -98,7 +98,7 @@ const colorStyles = {
     justifyContent: "start",
     alignItems: "center",
     boxShadow: isFocused
-      ? "0 0 0 1px var(--highAccent) inset"
+      ? "0 0 0 1px var(--accent-lg) inset"
       : "none",
 
     color: isDisabled
