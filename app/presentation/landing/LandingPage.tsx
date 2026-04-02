@@ -249,7 +249,7 @@ export function LandingPage({}: LandingPageProps) {
         </div>
       </div>
       <div className="col middle center">
-        <div className="mt3 w100 col middle center">
+        <div className="mt3 w100 col middle center lateFade" style={{ opacity: 0 }}>
           {/* <CircularGallery
             projects={PROJECTS.slice(0, 8)}
             onProjectClick={(id) => {
@@ -265,12 +265,14 @@ export function LandingPage({}: LandingPageProps) {
             autoplay
             snapOffset={20}
             width={100}
+            centerFocused
             onClick={() => {}}
           >
             {PROJECTS.map((img, idx) => (
               <div
                 key={`${img.id} - ${idx}`}
                 className="gap-20"
+                style={{ position: "relative" }}
                 onMouseOver={() => {
                   setHoveredImage(img.id);
                 }}

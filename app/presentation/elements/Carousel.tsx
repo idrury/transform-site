@@ -31,6 +31,7 @@ export interface ResourceLaneProps {
   startIndex?: number;
   resistance?: number;
   snapOffset?: number;
+  centerFocused?: boolean;
 }
 
 export function Carousel({
@@ -49,6 +50,7 @@ export function Carousel({
   startIndex = 0,
   resistance = 6000,
   snapOffset = 10,
+  centerFocused = false,
 }: ResourceLaneProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -56,6 +58,7 @@ export function Carousel({
   const [selectedIndex, setSelectedIndex] = useState<number>(
     startIndex < 0 ? 0 : startIndex,
   );
+  const selectedIndexRef = useRef(startIndex < 0 ? 0 : startIndex);
   const items = Children.toArray(children);
   const moveAmount = autoplay === true ? 50 : 100;
   const pauseRef = useRef(false);
@@ -78,7 +81,7 @@ export function Carousel({
       };
 
   useEffect(() => {
-    scrollToIndex(startIndex);
+    requestAnimationFrame(() => scrollToIndex(startIndex));
 
     // Controls the loop if autoplaying
 
@@ -90,7 +93,7 @@ export function Carousel({
     const int = setInterval(() => {
       if (pauseRef.current === true) return;
 
-      scrollToIndex((getTargetIndex() || 0) + 1);
+      scrollToIndex(selectedIndexRef.current + 1);
     }, interval * 1000);
 
     return () => {
@@ -157,13 +160,20 @@ export function Carousel({
    * based on the current x position
    */
   function getTargetIndex() {
-    const box = trackRef.current?.getBoundingClientRect();
-    if (!box) return;
-    const xPercent = -box?.x / box.width;
-    const index = Math.floor(
-      items.length * (xPercent + snapOffset / 100),
-    );
-    return index;
+    const track = trackRef.current?.getBoundingClientRect();
+    const container = containerRef.current?.getBoundingClientRect();
+    if (!track || !container) return 0;
+    const scrolled = container.x - track.x;
+    if (centerFocused) {
+      const itemWidth = track.width / items.length;
+      const centerOffset = container.width / 2 - itemWidth / 2;
+      return Math.round(
+        ((scrolled + centerOffset) / track.width) * items.length +
+          snapOffset / 100,
+      );
+    }
+    const xPercent = scrolled / track.width;
+    return Math.round(items.length * xPercent + snapOffset / 100);
   }
 
   /*********************************************
@@ -242,6 +252,19 @@ export function Carousel({
       loopTo = "end";
     }
 
+    // Apply centering offset
+    let finalPercent = percent;
+    if (centerFocused && trackWidth > containerWidth) {
+      const itemWidth = trackWidth / items.length;
+      const centerOffsetPercent =
+        (containerWidth / 2 - itemWidth / 2) / trackWidth;
+      const maxPercent = (trackWidth - containerWidth) / trackWidth;
+      finalPercent = Math.max(
+        0,
+        Math.min(percent - centerOffsetPercent, maxPercent),
+      );
+    }
+
     // Animate
     const tl = gsap.timeline();
 
@@ -269,12 +292,13 @@ export function Carousel({
 
     tl.to(trackRef.current, {
       x: 0,
-      xPercent: -percent * 100,
+      xPercent: -finalPercent * 100,
       duration: speed,
       ease: "back.out",
     });
 
     setSelectedIndex(index);
+    selectedIndexRef.current = index;
   }
 
   /*********************
@@ -309,35 +333,7 @@ export function Carousel({
         overflowY: "visible",
       }}
     >
-      {showDots && items.length > 1 && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "var(--space-10)",
-            marginTop: "var(--space-10)",
-          }}
-        >
-          {items.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => scrollToIndex(i)}
-              style={{
-                width: 15,
-                height: 15,
-                borderRadius: "50%",
-                background:
-                  selectedIndex === i ? "var(--accent)" : "var(--accent-md)",
-                border: "none",
-                padding: 0,
-                cursor: "pointer",
-                transition: "background 0.3s ease, transform 0.3s ease",
-                transform: selectedIndex === i ? "scale(1.3)" : "scale(1)",
-              }}
-            />
-          ))}
-        </div>
-      )}
+      
       <div
         style={{
           position: "relative",
@@ -403,9 +399,38 @@ export function Carousel({
               <Icon name="caret-forward" color="var(--accent-lg)" />
             </button>
           )}
+          
       </div>
 
-      
+      {showDots && items.length > 1 && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "10px",
+            padding: "10px 0",
+          }}
+        >
+          {items.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => scrollToIndex(i)}
+              style={{
+                width: 15,
+                height: 15,
+                borderRadius: "50%",
+                background:
+                  selectedIndex === i ? "var(--accent)" : "var(--accent-md)",
+                border: "none",
+                padding: 0,
+                cursor: "pointer",
+                transition: "background 0.3s ease, transform 0.3s ease",
+                transform: selectedIndex === i ? "scale(1.3)" : "scale(1)",
+              }}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
