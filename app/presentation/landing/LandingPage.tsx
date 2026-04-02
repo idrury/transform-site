@@ -260,7 +260,7 @@ export function LandingPage({}: LandingPageProps) {
           /> */}
           <Carousel
             interval={3}
-            showDots
+            showDots={!context.inShrink}
             showArrows
             autoplay
             snapOffset={20}
