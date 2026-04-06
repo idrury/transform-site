@@ -84,6 +84,7 @@ a[role="button"] {
   background: var(--accent);
   border-radius: var(--border-lg);
   transition: 1s;
+  font-size: 14pt;
   text-decoration: none;
 }
 a[role="button"]:hover {

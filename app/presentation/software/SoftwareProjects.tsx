@@ -46,8 +46,8 @@ export default function SoftwareProjects() {
   }, []);
 
   return (
-    <div className="col middle center gap-20 w-75 m-20" style={{height: "80vh"}}>
-      <h2 id="software-projects-title">Projects we're proud of</h2>
+    <div className="col middle center gap-20 w-75 m-20" style={{minHeight: "80vh"}}>
+      <h2 id="software-projects-title" style={{textAlign: "center"}}>Projects we're proud of</h2>
       <div className="grid-auto w-100" id="software-projects-grid">
         {softwareProjects.map((p,idx) => (
           <div

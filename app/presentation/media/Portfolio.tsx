@@ -234,12 +234,18 @@ export function Portfolio({}: PortfolioProps) {
           ))}
         </div>
       </div>
-      <ContactTab />
+      <div className="horizontal-line mediumFade mt-20"/>
+      <div className="col middle center" style={{minHeight: "80vh"}}>
+        <ContactTab />
+      </div>
+            <div className="horizontal-line mediumFade mb-20"/>
+
       <ProjectInfoPopup
         project={project}
         onClose={() => setProject(undefined)}
         active={!!project}
       />
+      
     </div>
   );
 }

@@ -19,11 +19,11 @@ import { ContactTab } from "~/presentation/landing/ContactTab";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Software Development in adelaide" },
+    { title: "Software Development in Adelaide" },
     {
       name: "description",
       content:
-        "Lightning fast, secure sites that build trust by reflecting not for profits true brand identity.",
+        "Custom built giving platforms for Australian not for profit organisations.",
     },
   ];
 }

@@ -183,7 +183,7 @@ export function SoftwareTab({}: SoftwareTabProps) {
                   zIndex: 500,
                 }}
               >
-                See more
+                Find out more
               </h5>
               <Icon
                 name="arrow-forward-circle"
