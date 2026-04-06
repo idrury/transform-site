@@ -170,7 +170,7 @@ export function ProjectInfoPopup({
         {/* Image gallery */}
         {project?.images && project.images.length > 0 && (
           <div
-            className="boxed"
+            className=""
             style={{
               display: "grid",
               gridTemplateColumns: context.inShrink

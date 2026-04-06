@@ -1,7 +1,4 @@
-import {
-  Project,
-  type SharedContextProps,
-} from "~/data/CommonTypes";
+import { Project, type SharedContextProps } from "~/data/CommonTypes";
 import {
   useNavigate,
   useOutletContext,
@@ -9,11 +6,7 @@ import {
 } from "react-router";
 import { PROJECTS } from "~/data/Objects";
 import ReactPlayer from "react-player";
-import {
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useRef, useState } from "react";
 import { Icon } from "../elements/Icon";
 import { ProjectInfoPopup } from "../landing/ProjectInfoPopup";
 import HeaderText from "../landing/HeaderText";
@@ -28,19 +21,14 @@ export interface PortfolioProps {}
  * @todo Create description
  */
 export function Portfolio({}: PortfolioProps) {
-  const context: SharedContextProps =
-    useOutletContext();
-  const [searchParams, setSearchParams] =
-    useSearchParams();
+  const context: SharedContextProps = useOutletContext();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [playing, setPlaying] =
-    useState<number>();
-  const [project, setProject] =
-    useState<Project>();
+  const [playing, setPlaying] = useState<number>();
+  const [project, setProject] = useState<Project>();
   const filter = searchParams.get("type");
   const reactPlayer = useRef(null);
-  const filterSectionRef =
-    useRef<HTMLDivElement>(null);
+  const filterSectionRef = useRef<HTMLDivElement>(null);
 
   function videoMouseOver(id: number) {
     setPlaying(id);
@@ -49,10 +37,7 @@ export function Portfolio({}: PortfolioProps) {
   function videoMouseOff() {}
 
   return (
-    <div
-      className="w100 col middle"
-      style={{ minHeight: "100vh" }}
-    >
+    <div className="w100 col middle" style={{ minHeight: "100vh" }}>
       <AnimatedDots autoPlayDelay={0} />
 
       <div
@@ -70,8 +55,7 @@ export function Portfolio({}: PortfolioProps) {
           textColors={["var(--accent)"]}
         />
         <p className="textCenter ml3 mr3 w-100">
-          A selection of some of our favourite
-          work.
+          A selection of some of our favourite work.
         </p>
         <ScrollMoreButton
           targetRef={filterSectionRef}
@@ -80,10 +64,7 @@ export function Portfolio({}: PortfolioProps) {
         />
       </div>
 
-      <div
-        className="row center w50 m3"
-        ref={filterSectionRef}
-      >
+      <div className="row center w50 m3" ref={filterSectionRef}>
         <button
           className={`row middle ml2 mr3 ${
             filter == "media" && "boxedAccent"
@@ -92,32 +73,32 @@ export function Portfolio({}: PortfolioProps) {
             if (filter == "media") {
               setSearchParams({}, { preventScrollReset: true });
             } else {
-              setSearchParams({ type: "media" }, { preventScrollReset: true });
+              setSearchParams(
+                { type: "media" },
+                { preventScrollReset: true },
+              );
             }
           }}
         >
-          <Icon
-            name="film-outline"
-            className="mr1"
-          />
+          <Icon name="film-outline" className="mr1" />
           Media
         </button>
         <button
           className={`row middle ml2 mr3 ${
-            filter == "software" && "boxedAccent"
+            filter == "software" && "boxedAccent p-0"
           }`}
           onClick={() => {
             if (filter == "software") {
               setSearchParams({}, { preventScrollReset: true });
             } else {
-              setSearchParams({ type: "software" }, { preventScrollReset: true });
+              setSearchParams(
+                { type: "software" },
+                { preventScrollReset: true },
+              );
             }
           }}
         >
-          <Icon
-            name="code-outline"
-            className="mr1"
-          />
+          <Icon name="code-outline" className="mr1" />
           Software
         </button>
         {/* <button
@@ -190,21 +171,14 @@ export function Portfolio({}: PortfolioProps) {
                     borderRadius: 5,
                   }}
                   muted={true}
-                  onMouseOver={() =>
-                    videoMouseOver(p.id)
-                  }
-                  onMouseOut={() =>
-                    videoMouseOff()
-                  }
+                  onMouseOver={() => videoMouseOver(p.id)}
+                  onMouseOut={() => videoMouseOff()}
                   controls={true}
                   playing={p.id == playing}
                   light={
-                    playing ==
-                    p.id ? undefined : (
+                    playing == p.id ? undefined : (
                       <img
-                        onMouseOver={() =>
-                          videoMouseOver(p.id)
-                        }
+                        onMouseOver={() => videoMouseOver(p.id)}
                         src={p.images[0]}
                         style={{
                           height: "100%",
@@ -234,18 +208,20 @@ export function Portfolio({}: PortfolioProps) {
           ))}
         </div>
       </div>
-      <div className="horizontal-line mediumFade mt-20"/>
-      <div className="col middle center" style={{minHeight: "80vh"}}>
+      <div className="horizontal-line mediumFade mt-20" />
+      <div
+        className="col middle center"
+        style={{ minHeight: "80vh" }}
+      >
         <ContactTab />
       </div>
-            <div className="horizontal-line mediumFade mb-20"/>
+      <div className="horizontal-line mediumFade mb-20" />
 
       <ProjectInfoPopup
         project={project}
         onClose={() => setProject(undefined)}
         active={!!project}
       />
-      
     </div>
   );
 }

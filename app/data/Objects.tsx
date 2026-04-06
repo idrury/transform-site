@@ -245,6 +245,11 @@ export const PROJECTS: Project[] = [
       "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-3.png",
     ],
   },
+  
+  
+];
+
+const ARCHIVED = [
   {
     id: 12,
     type: "design",
@@ -328,8 +333,7 @@ export const PROJECTS: Project[] = [
       "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-9-min.jpg",
     ],
   },
-  
-];
+]
 
 export const CONTACT = {
   email: "hello@transformcreative.com.au",
