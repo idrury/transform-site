@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Icon } from "~/presentation/elements/Icon";
 import { Route } from "../+types/root";
 import "../app-v2.css";
@@ -6,6 +7,14 @@ import FeatureSelector, {
 } from "~/presentation/software/FeatureSelector";
 import SoftwareProjects from "~/presentation/software/SoftwareProjects";
 import { FeeStructure } from "~/presentation/software/FeeStructure";
+import { AnimatedDots } from "~/presentation/elements/AnimatedDots";
+import { useGSAP } from "@gsap/react";
+import { SplitText, ScrollTrigger } from "gsap/all";
+import gsap from "gsap";
+import HeaderText from "~/presentation/landing/HeaderText";
+import { ScrollMoreButton } from "~/presentation/elements/ScrollMoreButton";
+import { SharedContextProps } from "~/data/CommonTypes";
+import { useOutletContext } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -19,37 +28,88 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function DevelopmentRoute() {
+  const featureSectionRef = useRef<HTMLDivElement>(null);
+  const feeStructureRef = useRef<HTMLDivElement>(null);
+  const headerTextRef = useRef<HTMLHeadingElement>(null);
+  const context: SharedContextProps = useOutletContext();
+
+  gsap.registerPlugin(SplitText, ScrollTrigger);
+
+  useGSAP(() => {
+    document.fonts.ready.then(() => {
+      const titleSplit = SplitText.create("#dev-header", { type: "words" });
+      gsap.from(titleSplit.words, {
+        scrollTrigger: {
+          scrub: 1,
+          start: '85vh',
+          end: context.inShrink ? "+400" : '+1000',
+          toggleActions: "pause pause reverse pause",
+        },
+        opacity: 0,
+        y: -10,
+        stagger: 0.2,
+      });
+    });
+
+    gsap.fromTo("#dev-more-btn", {opacity: 0,
+      y: -10,},{
+      duration: 0.5,
+      opacity: 1,
+      y: 0,
+    });
+  }, []);
+
   const buttons: Feature[] = [
     {
       className: "center col middle",
       icon: { name: "card-outline", size: 50 },
       text: "No exorbitant 'platform fee'",
       description: [
-        "Built for you fundraising platforms are great to get started, but as your organisation grows, that ~4% fee becomes a significant amount of your income.",
+        "'Percentage based' giving platforms make it easy to get started but that ~4% fee adds up as you scale.",
         "We charge a modest fee, not a percentage of your donations, so you keep more of the money you raise.",
       ],
       component: (
         <div className="col middle ">
-          <button className="row middle center gap-5 accentButton">
-            <Icon name="arrow-down"/>
-            Find out more about our pricing structure</button>
+          <button
+            className="row middle center gap-5 accentButton"
+            onClick={() => {
+              const top =
+                (feeStructureRef.current?.getBoundingClientRect().top ?? 0) +
+                window.scrollY -
+                100;
+              window.scrollTo({ top, behavior: "smooth" });
+            }}
+          >
+            <Icon name="arrow-down" />
+            Find out more about our pricing
+            structure
+          </button>
         </div>
-      )
+      ),
     },
+
     {
       className: "center col middle",
-      icon: { name: "lock-closed-outline", size: 50 },
-      text: "Security customised for you",
+      icon: {
+        name: "sparkles-outline",
+        size: 50,
+      },
+      text: "Your dream features",
       description: [
-        "By building a custom site, we know exactly where your data is stored, and where the biggest risks are.",
+        "Your out of the box giving solution is generic - it can't support all of your amazing ideas. (We can).",
+        "If you're sick of your admin team telling you 'it's not possible with the current system', let's chat.",
       ],
     },
     {
       className: "center col middle",
-      icon: { name: "sparkles-outline", size: 50 },
-      text: "Your dream features",
+      icon: {
+        name: "lock-closed-outline",
+        size: 50,
+      },
+      text: "Security customised for you",
       description: [
-        "Instead of spending hours finding hacky work-arounds to make your cool ideas work, give them to us!",
+        "We know exactly how your users' data is stored, and what's required to keep it safe.",
+        "As your database grows you become a bigger target. Generic providers give you generic security. We take an active role in protecting you.",
       ],
     },
     {
@@ -57,15 +117,17 @@ export default function DevelopmentRoute() {
       icon: { name: "people-outline", size: 50 },
       text: "Face to face support",
       description: [
-        "Our local team is here to help you, and your clients every step of the way.",
+        "Our local team is here to help you, (and your clients).",
+        "No more waiting on hold... Send us a 'slack message' and have your problems fixed in minutes.",
       ],
     },
     {
       className: "center col middle",
       icon: { name: "flash-outline", size: 50 },
-      text: "Lightning fast performance",
+      text: "User focused optimisation",
       description: [
-        "Our local team is here to help you, and your clients every step of the way.",
+        "You current platform doesn't provide granular control over loading speed, and general user experience. (We do).",
+        "In the modern era, a site that loads slowly can be the difference between a user making a donation or giving up.",
       ],
     },
   ];
@@ -75,30 +137,70 @@ export default function DevelopmentRoute() {
       style={{ minHeight: "85vh" }}
       className="col middle center gap-20 m-20 "
     >
-      <div className="w-50 center col middle gap-20">
-        <h2 className="" style={{ textAlign: "center" }}>
-          We love working with <b>Aussie not for profits</b> to create
-          lightning fast, secure sites that <b>build trust</b> by
-          reflecting your true brand identity.
-        </h2>
-        <button className="row gap-5">
-          <Icon name="arrow-down" />
-          More info
-        </button>
-        <div className="" style={{ height: 100 }} />
+      <div className="w-100 center col middle gap-20">
+        <AnimatedDots autoPlayDelay={0} />
+        <div className="col middle center" style={{height: "70vh"}}>
+          <HeaderText
+            text={["Software development"]}
+            typingSpeed={50}
+            pauseDuration={500}
+            showCursor={true}
+            cursorCharacter="|"
+            color="var(--accent)"
+            textColors={["var(--accent)"]}
+            as="h2"
+            className="center"
+          />
+            <ScrollMoreButton
+              id="dev-more-btn"
+              targetRef={headerTextRef}
+            />
+        </div>
+        <div className="w-50">
+          <h2
+            id="dev-header"
+            ref={headerTextRef}
+            className=""
+            style={{ textAlign: "center" }}
+          >
+            We love working with{" "}
+            <b>Aussie not for profits</b> to create
+            lightning fast, secure sites that{" "}
+            <b>build trust</b> by reflecting your
+            true brand identity.
+          </h2>
+        </div>
+      
+        <div
+          className=""
+          style={{ height: 100 }}
+        />
       </div>
-      <div className="w-75 center">
+       <div
+        className="horizontal-line mediumFade"
+        style={{ top: -30 }}
+      />
+      <div className="w-75 center" ref={featureSectionRef}>
         <div className="p-20 w-100">
           <FeatureSelector features={buttons} />
         </div>
       </div>
 
-      <div className="" style={{ height: 100 }} />
+       <div
+        className="horizontal-line mediumFade mt-20"
+        style={{ top: 0 }}
+      />
 
       <div className="col middle">
         <SoftwareProjects />
       </div>
-      <div className="w-75">
+
+       <div
+        className="horizontal-line mediumFade mb-20"
+        style={{ top: 0 }}
+      />
+
+      <div className="w-75" ref={feeStructureRef}>
         <FeeStructure />
       </div>
     </div>

@@ -18,6 +18,8 @@ import { Icon } from "../elements/Icon";
 import { ProjectInfoPopup } from "../landing/ProjectInfoPopup";
 import HeaderText from "../landing/HeaderText";
 import { ContactTab } from "../landing/ContactTab";
+import { AnimatedDots } from "../elements/AnimatedDots";
+import { ScrollMoreButton } from "../elements/ScrollMoreButton";
 
 export interface PortfolioProps {}
 
@@ -35,10 +37,10 @@ export function Portfolio({}: PortfolioProps) {
     useState<number>();
   const [project, setProject] =
     useState<Project>();
-  const [filter, setFilter] = useState<
-    string | null
-  >(searchParams.get("type"));
+  const filter = searchParams.get("type");
   const reactPlayer = useRef(null);
+  const filterSectionRef =
+    useRef<HTMLDivElement>(null);
 
   function videoMouseOver(id: number) {
     setPlaying(id);
@@ -51,13 +53,12 @@ export function Portfolio({}: PortfolioProps) {
       className="w100 col middle"
       style={{ minHeight: "100vh" }}
     >
-      <div className="row middle center shrinkCol">
-        <Icon
-          name="albums-outline"
-          className="mr2"
-          size={context.inShrink ? 30 : 50}
-          color="var(--accent)"
-        />
+      <AnimatedDots autoPlayDelay={0} />
+
+      <div
+        className="col middle center shrinkCol"
+        style={{ height: "80vh" }}
+      >
         <HeaderText
           text={["Portfolio"]}
           typingSpeed={50}
@@ -68,25 +69,30 @@ export function Portfolio({}: PortfolioProps) {
           color="var(--accent)"
           textColors={["var(--accent)"]}
         />
+        <p className="textCenter ml3 mr3 w-100">
+          A selection of some of our favourite
+          work.
+        </p>
+        <ScrollMoreButton
+          targetRef={filterSectionRef}
+          offset={100}
+          label="View"
+        />
       </div>
-      <p className="textCenter ml3 mr3">
-        A selection of work we have completed for
-        businesses and organisations accross South
-        Australia.
-      </p>
-      <div className="row center w50 m3">
+
+      <div
+        className="row center w50 m3"
+        ref={filterSectionRef}
+      >
         <button
           className={`row middle ml2 mr3 ${
             filter == "media" && "boxedAccent"
           }`}
           onClick={() => {
-            if(filter== "media") {
-              setFilter(null) 
-              setSearchParams("?");
-            }
-            else {
-            setFilter("media");
-            setSearchParams("type=media");
+            if (filter == "media") {
+              setSearchParams({}, { preventScrollReset: true });
+            } else {
+              setSearchParams({ type: "media" }, { preventScrollReset: true });
             }
           }}
         >
@@ -100,14 +106,11 @@ export function Portfolio({}: PortfolioProps) {
           className={`row middle ml2 mr3 ${
             filter == "software" && "boxedAccent"
           }`}
-          onClick={() =>  {
-            if(filter== "software") {
-              setFilter(null) 
-              setSearchParams("?");
-            }
-            else {
-            setFilter("software");
-            setSearchParams("type=software");
+          onClick={() => {
+            if (filter == "software") {
+              setSearchParams({}, { preventScrollReset: true });
+            } else {
+              setSearchParams({ type: "software" }, { preventScrollReset: true });
             }
           }}
         >
@@ -117,7 +120,7 @@ export function Portfolio({}: PortfolioProps) {
           />
           Software
         </button>
-        <button
+        {/* <button
           className={`row middle ml2 mr3 ${
             filter == "design" && "boxedAccent"
           }`}
@@ -137,15 +140,15 @@ export function Portfolio({}: PortfolioProps) {
             className="mr1"
           />
           Design
-        </button>
+        </button> */}
       </div>
       <div className="m3 col middle center">
         <div className="grid-auto w75">
           {PROJECTS.filter((p) =>
-            filter ? p.type == filter : true
+            filter ? p.type == filter : true,
           ).map((p) => (
             <div
-              key={p.id}
+              key={`${p.name}-${p.id}`}
               style={{
                 minWidth: 300,
                 aspectRatio: "16/9",

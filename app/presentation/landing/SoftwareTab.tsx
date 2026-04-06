@@ -159,15 +159,10 @@ export function SoftwareTab({}: SoftwareTabProps) {
             }}
           >
             <div className="">
-              <h3 className="mt3 ml3">
-                We have experience developing
+              <h3 className="mt3 ml3" style={{fontSize: "14pt"}}>
+                Partner with us for your website rebuild.
               </h3>
-              <ul className="textStart ml3 mr3 mb3">
-                <li>Donation management systems</li>
-                <li>Custom CRMS</li>
-                <li>Android and IOS apps</li>
-                <li>Landing pages</li>
-              </ul>
+              <p className="m-20">We specialise in helping medium to large not-for-profit organisations custom build websites that perfectly meet your needs.</p>
             </div>
           </div>
           <div className="div10" />

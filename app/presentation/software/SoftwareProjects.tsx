@@ -3,15 +3,51 @@ import { PROJECTS } from "~/data/Objects";
 import type { Project } from "~/data/CommonTypes";
 import { Icon } from "~/presentation/elements/Icon";
 import { ProjectInfoPopup } from "~/presentation/landing/ProjectInfoPopup";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger, SplitText } from "gsap/all";
+import gsap from "gsap";
 
 export default function SoftwareProjects() {
   const [project, setProject] = useState<Project>();
   const softwareProjects = PROJECTS.filter((p) => p.type === "software");
 
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  useGSAP(() => {
+    document.fonts.ready.then(() => {
+      const titleSplit = SplitText.create("#software-projects-title", { type: "words" });
+      gsap.from(titleSplit.words, {
+        scrollTrigger: {
+          scrub: 1,
+          trigger: "#software-projects-title",
+          start: "top 95%",
+          end: "top 40%",
+          toggleActions: "pause pause reverse pause",
+        },
+        opacity: 0,
+        y: -10,
+        stagger: 0.2,
+      });
+    });
+
+    gsap.from("#software-projects-grid > div", {
+      scrollTrigger: {
+        trigger: "#software-projects-grid",
+        start: "top bottom",
+        once: true,
+      },
+      opacity: 0,
+      y: -10,
+      stagger: 0.1,
+      ease: "power3",
+      duration: 0.6,
+    });
+  }, []);
+
   return (
     <div className="col middle center gap-20 w-75 m-20">
-      <h2>Projects we're proud of</h2>
-      <div className="grid-auto w-100">
+      <h2 id="software-projects-title">Projects we're proud of</h2>
+      <div className="grid-auto w-100" id="software-projects-grid">
         {softwareProjects.map((p,idx) => (
           <div
             key={`${idx}-${p.id}`}

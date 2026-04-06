@@ -180,7 +180,7 @@ const HeaderText = ({
       className: `text-type ${className}`,
       ...props,
     },
-    <span style={{textAlign: "center", display: "flex",alignItems: "end"}}>
+    <span style={{textAlign: "center"}}>
         <span
           className="text-type__content"
           style={{ color: getCurrentTextColor() }}

@@ -1,23 +1,32 @@
 import { useRef } from "react";
+import * as spinners from "react-spinners";
 import { Transition } from "react-transition-group";
 import gsap from "gsap";
-import type { ActivatableElement } from "~/data/CommonTypes";
+import type {
+  ActivatableElement,
+  SharedContextProps,
+} from "~/data/CommonTypes";
+import { Icon } from "./Icon";
 
-interface EditMenuProps extends ActivatableElement {
+interface SlideOutModalProps extends ActivatableElement {
   children: any;
   width: number | string;
-  height: number;
+  height?: number;
+  style?: React.CSSProperties;
   isLoading?: boolean;
+  context: SharedContextProps | undefined;
 }
 
-function EditMenu({
+export default function EditMenu({
   active,
   onClose,
   children,
   width,
   height,
+  style,
+  context,
   isLoading = false,
-}: EditMenuProps) {
+}: SlideOutModalProps) {
   const transitionRef = useRef<HTMLDivElement>(null);
 
   function handleMainClick(e: any) {
@@ -25,36 +34,28 @@ function EditMenu({
   }
 
   const handleEnter = () => {
-    console.log("ENTERING")
-    gsap.from(
-      "#edit-menu-main",
-      {
-        opacity: 0,
-        x: "100%",
-        duration: 0.5,
-        ease: "power1",
-      },
-     
-    );
+    gsap.from(transitionRef?.current, {
+      opacity: 0,
+      x: 300,
+      duration: 0.5,
+      ease: "power3.inOut",
+    });
   };
 
   const handleExit = () => {
     gsap.to(transitionRef?.current, {
       opacity: 0,
-      x: "100%",
-      duration: 0.1,
-      ease: "power1.out",
+      x: 300,
+      duration: 0.5,
+      ease: "power3.inOut",
     });
   };
 
   return (
-    <div>
-      {active && (
-        <div
-          style={{ zIndex: 100 }}
-          className="moveableMenuBackground mediumFade"
-        />
-      )}
+    <div
+      style={{ position: "relative", ...style }}
+    >
+      {active && <div className="modal-bkg fade-sm" />}
       <Transition
         nodeRef={transitionRef}
         in={active}
@@ -64,22 +65,59 @@ function EditMenu({
         unmountOnExit
       >
         <div
-        id="edit-menu-main"
           ref={transitionRef}
-          className="fillScreen boxed"
-          style={{ zIndex: 101 }}
+          className="fill-screen"
+          style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%" }}
           onClick={() => onClose()}
         >
-          <div className="m0 p0">
-            <div onClick={(e) => handleMainClick(e)}>
+          {isLoading && (
+            <spinners.HashLoader
+              className=""
+              style={{
+                position: "fixed",
+                left: "50%",
+                top: "40%",
+                zIndex: 15,
+              }}
+              color="var(--accent)"
+            />
+          )}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "end",
+            }}
+          >
+            <div
+              className=""
+              style={{ margin: 0, padding: 0 }}
+              onClick={(e) => handleMainClick(e)}
+            >
               <div
-                className=""
+                className="boxed p-10"
                 style={{
-                  width: width,
-                  height: "100vh",
+                  minWidth: width,
+                  maxWidth: width,
+                  minHeight: height,
+                  height: "100dvh",
+                  marginRight: context?.inShrink ? 0 : 15,
                 }}
               >
-                <div className="">{children}</div>
+                <div
+                  style={{
+                    position: "absolute",
+                    right: context?.inShrink ? 10 : 20,
+                  }}
+                >
+                  <Icon
+                    name="close"
+                    className="clickable"
+                    onClick={onClose}
+                  />
+                </div>
+
+                {children}
               </div>
             </div>
           </div>
@@ -88,4 +126,3 @@ function EditMenu({
     </div>
   );
 }
-export default EditMenu;

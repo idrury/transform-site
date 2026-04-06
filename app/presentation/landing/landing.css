@@ -17,6 +17,7 @@
   color: var(--accent) !important;
   display: inline-block;
   white-space: pre-wrap;
+  text-align: center;
 }
 
 .text-type__cursor {

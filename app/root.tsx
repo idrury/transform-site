@@ -140,6 +140,13 @@ export default function App() {
       state: isError ? "fail" : "success",
     });
   };
+const CONTEXT =  {
+            popAlert: popAlert,
+            session,
+            navigate,
+            inShrink,
+          } as SharedContextProps;
+
 
   return (
     <div style={{}}>
@@ -158,15 +165,10 @@ export default function App() {
           width: 1,
         }}
       />
-      <HeaderBar inShrink={inShrink} />
+      <HeaderBar inShrink={inShrink}  context={CONTEXT}/>
       <Outlet
         context={
-          {
-            popAlert: popAlert,
-            session,
-            navigate,
-            inShrink,
-          } as SharedContextProps
+         CONTEXT
         }
       />
 

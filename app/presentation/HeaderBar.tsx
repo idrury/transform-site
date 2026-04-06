@@ -7,16 +7,18 @@ import EditMenu from "./elements/EditMenu";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Z_BINARY } from "zlib";
+import { SharedContextProps } from "~/data/CommonTypes";
 
 export interface HeaderBarProps {
   inShrink: boolean;
+  context: SharedContextProps
 }
 
 /******************************
  * HeaderBar component
  * @todo Create description
  */
-export function HeaderBar({ inShrink }: HeaderBarProps) {
+export function HeaderBar({ inShrink, context }: HeaderBarProps) {
   const [menuActive, setMenuActive] = useState(false);
 
   const [scroll, setScroll] = useState(0);
@@ -91,14 +93,17 @@ export function HeaderBar({ inShrink }: HeaderBarProps) {
       </div>
       <EditMenu
         width={"100%"}
+        context={context}
         height={300}
+        style={{zIndex: 50}}
         active={menuActive}
         onClose={() => setMenuActive(false)}
       >
-        <div>
+        <div className="col">
           <MenuOptions
             inShrink={inShrink}
             onClose={() => setMenuActive(false)}
+            context={context}
           />
         </div>
       </EditMenu>
@@ -111,13 +116,14 @@ interface MenuOptionsProps {
   onClose: () => void;
 }
 
-function MenuOptions({ inShrink, onClose }: MenuOptionsProps) {
+function MenuOptions({ inShrink,  onClose }: MenuOptionsProps) {
   const navigate = useNavigate();
+
 
   const textSize = inShrink ? "30px" : undefined;
 
   return (
-    <div className="row shrinkCol w100">
+    <div className={`${inShrink ? "col" : 'row'}`} style={{zIndex: 30, width: inShrink ? "300px" : "100%"}}>
       {inShrink && <div style={{ height: 50 }} />}
       <button
         disabled={location.pathname == "/"}
@@ -154,6 +160,24 @@ function MenuOptions({ inShrink, onClose }: MenuOptionsProps) {
         }}
       >
         Portfolio
+      </button>
+        <button
+        disabled={location.pathname == "/development"}
+        style={{
+          fontSize: textSize,
+          color: `${
+            location.pathname == "/development"
+              ? "var(--accent)"
+              : ""
+          }`,
+          opacity: 1,
+        }}
+        onClick={() => {
+          navigate("/development");
+          onClose();
+        }}
+      >
+        Software
       </button>
       <div className="div20" />
       <button

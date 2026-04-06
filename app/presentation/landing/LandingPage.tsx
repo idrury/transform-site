@@ -4,14 +4,13 @@ import {
   useOutletContext,
   useSearchParams,
 } from "react-router";
-import CircularGallery from "./CircularGallery";
 import { Icon } from "../elements/Icon";
 import { DesignTab } from "./DesignTab";
 import { MediaTab } from "./MediaTab";
 import { SoftwareTab } from "./SoftwareTab";
 import { ContactTab } from "./ContactTab";
 import { ProjectInfoPopup } from "./ProjectInfoPopup";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { PROJECTS } from "~/data/Objects";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
@@ -20,6 +19,7 @@ import HeaderText from "./HeaderText";
 import WorkedWith from "./WorkedWith";
 import { Carousel } from "../elements/Carousel";
 import { projectToIcon } from "~/business/commonBL";
+import { AnimatedDots } from "../elements/AnimatedDots";
 
 export interface LandingPageProps {}
 
@@ -47,9 +47,6 @@ export function LandingPage({}: LandingPageProps) {
       );
       setViewProjectActive(true);
     }
-    setTimeout(() => {
-      onDotsHover();
-    }, 3000);
   }, []);
 
   /*******************************************************
@@ -78,88 +75,8 @@ export function LandingPage({}: LandingPageProps) {
       );
     });
 
-    tl.from(
-      "#ellipse-1",
-      {
-        y: "-30px",
-        ease: "bounce.out",
-        duration: 0.6,
-        opacity: 0,
-      },
-      1,
-    )
-      .from(
-        "#ellipse-2",
-        {
-          y: "-30px",
-          ease: "bounce.out",
-          duration: 0.6,
-          opacity: 0,
-        },
-        "-=0.5",
-      )
-      .from(
-        "#ellipse-3",
-        {
-          y: "-30px",
-          ease: "bounce.out",
-          duration: 0.6,
-          opacity: 0,
-        },
-        "-=0.5",
-      )
-      .to(".lateFade", { opacity: 1, duration: 1, ease: "power3" });
+    tl.to(".lateFade", { opacity: 1, duration: 1, ease: "power3" }, 2);
   }, []);
-
-  function onDotsHover() {
-    let tl = gsap.timeline();
-    tl.to("#ellipse-1", {
-      y: "-=20px",
-      ease: "power1.out",
-      duration: 0.2,
-    })
-      .to(
-        "#ellipse-2",
-        {
-          y: "-=20px",
-          ease: "power1.out",
-          duration: 0.2,
-        },
-        "-=0.15",
-      )
-      .to(
-        "#ellipse-3",
-        {
-          y: "-=20px",
-          ease: "power1.out",
-          duration: 0.2,
-        },
-        "-=0.15",
-      )
-      .to("#ellipse-1", {
-        y: "0",
-        ease: "bounce.out",
-        duration: 0.6,
-      })
-      .to(
-        "#ellipse-2",
-        {
-          y: "0",
-          ease: "bounce.out",
-          duration: 0.6,
-        },
-        "-=0.5",
-      )
-      .to(
-        "#ellipse-3",
-        {
-          y: "0",
-          ease: "bounce.out",
-          duration: 0.6,
-        },
-        "-=0.5",
-      );
-  }
 
   return (
     <div>
@@ -169,39 +86,14 @@ export function LandingPage({}: LandingPageProps) {
       />
       <div className="col middle center">
         <div className="w50 col middle center">
-          <div
-            className="row middle center"
-            style={{ zIndex: 1 }}
-            onMouseEnter={() => onDotsHover()}
-          >
-            <Icon
-              id="ellipse-1"
-              name="ellipse"
-              style={{ zIndex: 1 }}
-              size={20}
-              color="var(--accent)"
-            />
-            <Icon
-              id="ellipse-2"
-              name="ellipse"
-              size={20}
-              color="var(--thirdColor)"
-            />
-
-            <Icon
-              id="ellipse-3"
-              name="ellipse"
-              size={20}
-              color="var(--secondaryColor)"
-            />
-          </div>
-          <div style={{ minHeight: 50 }}>
+          <AnimatedDots autoPlayDelay={3000} />
+          <div className="col  middle" style={{ minHeight: 50 }}>
             <HeaderText
               text={["Digital content for positive change."]}
               typingSpeed={50}
               className="m3"
               pauseDuration={500}
-              showCursor={false}
+              showCursor={true}
               cursorCharacter="|"
               color="var(--accent)"
               textColors={["var(--accent)"]}
@@ -233,10 +125,10 @@ export function LandingPage({}: LandingPageProps) {
               onClick={() => navigate("#media")}
             >
               <Icon name="film-outline" className="mr1" />
-              Media
+              Video
             </button>
 
-            <button
+            {/* <button
               id="landing-design-button"
               className="row middle ml3 mr3 lateFade"
               style={{ opacity: 0 }}
@@ -244,7 +136,7 @@ export function LandingPage({}: LandingPageProps) {
             >
               <Icon name="color-filter-outline" className="mr1" />
               Design
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
@@ -329,7 +221,7 @@ export function LandingPage({}: LandingPageProps) {
       <div className="col middle p3 mb3">
         <MediaTab />
         <SoftwareTab />
-        <DesignTab />
+        {/* <DesignTab /> */}
         <div style={{ minHeight: 150, width: 100 }} />
         <div
           className="horizontal-line mediumFade"

@@ -2,8 +2,8 @@
 ************ Display ***********
 *************************************/
 .accent {
-  background: var(--accent-gradient);
-  color: var(--txt);
+  background: var(--accent);
+  color: var(--bkg);
 }
 
 .secondary {
@@ -73,7 +73,7 @@ span.clickable.danger:hover {
 .accent h5,
 .accent label,
 a {
-  color: var(--txt);
+  color: var(--bkg);
 }
 
 a[role="button"] {
@@ -95,6 +95,7 @@ a[role="button"]:hover {
 a[role="button"].accent {
   color: var(--bkg);
 }
+
 
 
 h1.accent.boxed,

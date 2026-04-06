@@ -25,6 +25,23 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://www.crossover.org.au",
   },
+   {
+    id: 19,
+    type: "software",
+    name: "Crossover website",
+    description: [
+      "A modern, responsive and more secure website for Crossover Australia.",
+    ],
+    link: "https://www.crossover.org.au/",
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_1.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_2.png",
+            "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_3.png",
+                  "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_4.png",
+                        "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_5.png",
+                              "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_6.png",
+    ],
+  },
   {
     id: 7,
     type: "media",
@@ -311,19 +328,7 @@ export const PROJECTS: Project[] = [
       "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-9-min.jpg",
     ],
   },
-   {
-    id: 19,
-    type: "software",
-    name: "Crossover website",
-    description: [
-      "A modern, responsive website for Crossover Australia.",
-    ],
-    link: "https://www.crossover.org.au/",
-    images: [
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-8-min.jpg",
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-9-min.jpg",
-    ],
-  },
+  
 ];
 
 export const CONTACT = {
