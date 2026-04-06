@@ -159,9 +159,9 @@ export function SoftwareTab({}: SoftwareTabProps) {
             }}
           >
             <div className="">
-              <h3 className="mt3 ml3" style={{fontSize: "14pt"}}>
+             {context.inShrink || <h3 className="mt3 ml3" style={{fontSize: "14pt"}}>
                 Partner with us for your website rebuild.
-              </h3>
+              </h3>}
               <p className="m-20">We specialise in helping medium to large not-for-profit organisations custom build websites that perfectly meet your needs.</p>
             </div>
           </div>

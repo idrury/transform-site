@@ -15,6 +15,7 @@ import HeaderText from "~/presentation/landing/HeaderText";
 import { ScrollMoreButton } from "~/presentation/elements/ScrollMoreButton";
 import { SharedContextProps } from "~/data/CommonTypes";
 import { useOutletContext } from "react-router";
+import { ContactTab } from "~/presentation/landing/ContactTab";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -30,6 +31,7 @@ export function meta({}: Route.MetaArgs) {
 export default function DevelopmentRoute() {
   const featureSectionRef = useRef<HTMLDivElement>(null);
   const feeStructureRef = useRef<HTMLDivElement>(null);
+  const examplesRef = useRef<HTMLDivElement>(null);
   const headerTextRef = useRef<HTMLHeadingElement>(null);
   const context: SharedContextProps = useOutletContext();
 
@@ -37,12 +39,14 @@ export default function DevelopmentRoute() {
 
   useGSAP(() => {
     document.fonts.ready.then(() => {
-      const titleSplit = SplitText.create("#dev-header", { type: "words" });
+      const titleSplit = SplitText.create("#dev-header", {
+        type: "words",
+      });
       gsap.from(titleSplit.words, {
         scrollTrigger: {
           scrub: 1,
-          start: '85vh',
-          end: context.inShrink ? "+400" : '+1000',
+          start: "85vh",
+          end: context.inShrink ? "+400" : "+1000",
           toggleActions: "pause pause reverse pause",
         },
         opacity: 0,
@@ -51,12 +55,15 @@ export default function DevelopmentRoute() {
       });
     });
 
-    gsap.fromTo("#dev-more-btn", {opacity: 0,
-      y: -10,},{
-      duration: 0.5,
-      opacity: 1,
-      y: 0,
-    });
+    gsap.fromTo(
+      "#dev-more-btn",
+      { opacity: 0, y: -10 },
+      {
+        duration: 0.5,
+        opacity: 1,
+        y: 0,
+      },
+    );
   }, []);
 
   const buttons: Feature[] = [
@@ -65,7 +72,7 @@ export default function DevelopmentRoute() {
       icon: { name: "card-outline", size: 50 },
       text: "No exorbitant 'platform fee'",
       description: [
-        "'Percentage based' giving platforms make it easy to get started but that ~4% fee adds up as you scale.",
+        "'Percentage based' giving platforms make it easy to get started, but that ~4% fee adds up as you scale.",
         "We charge a modest fee, not a percentage of your donations, so you keep more of the money you raise.",
       ],
       component: (
@@ -74,15 +81,15 @@ export default function DevelopmentRoute() {
             className="row middle center gap-5 accentButton"
             onClick={() => {
               const top =
-                (feeStructureRef.current?.getBoundingClientRect().top ?? 0) +
+                (feeStructureRef.current?.getBoundingClientRect()
+                  .top ?? 0) +
                 window.scrollY -
                 100;
               window.scrollTo({ top, behavior: "smooth" });
             }}
           >
             <Icon name="arrow-down" />
-            Find out more about our pricing
-            structure
+            Find out more about our pricing structure
           </button>
         </div>
       ),
@@ -99,6 +106,13 @@ export default function DevelopmentRoute() {
         "Your out of the box giving solution is generic - it can't support all of your amazing ideas. (We can).",
         "If you're sick of your admin team telling you 'it's not possible with the current system', let's chat.",
       ],
+      component: (
+        <ContactTab
+          headerText="Let's chat."
+          buttonText="Book a 'no obligations' chat."
+          showHeader={false}
+        />
+      ),
     },
     {
       className: "center col middle",
@@ -108,9 +122,16 @@ export default function DevelopmentRoute() {
       },
       text: "Security customised for you",
       description: [
-        "We know exactly how your users' data is stored, and what's required to keep it safe.",
+        "We know exactly how your users' data is stored and what's required to keep it safe.",
         "As your database grows you become a bigger target. Generic providers give you generic security. We take an active role in protecting you.",
       ],
+      component: (
+        <ContactTab
+          headerText="Let's chat."
+          buttonText="Book a 'no obligations' chat."
+          showHeader={false}
+        />
+      ),
     },
     {
       className: "center col middle",
@@ -120,15 +141,40 @@ export default function DevelopmentRoute() {
         "Our local team is here to help you, (and your clients).",
         "No more waiting on hold... Send us a 'slack message' and have your problems fixed in minutes.",
       ],
+      component: (
+        <ContactTab
+          headerText="Let's chat."
+          buttonText="Book a 'no obligations' chat."
+          showHeader={false}
+        />
+      ),
     },
     {
       className: "center col middle",
       icon: { name: "flash-outline", size: 50 },
       text: "User focused optimisation",
       description: [
-        "You current platform doesn't provide granular control over loading speed, and general user experience. (We do).",
-        "In the modern era, a site that loads slowly can be the difference between a user making a donation or giving up.",
+        "You current platform doesn't provide granular control over loading speed and dynamic user experience. (We do).",
+        "In the modern era, a site that loads slowly can be the difference between a user making a donation or giving up. We're here to make sure your users get where you want them to.",
       ],
+      component: (
+        <div className="col middle ">
+          <button
+            className="row middle center gap-5 accentButton"
+            onClick={() => {
+              const top =
+                (examplesRef.current?.getBoundingClientRect().top ??
+                  0) +
+                window.scrollY -
+                100;
+              window.scrollTo({ top, behavior: "smooth" });
+            }}
+          >
+            <Icon name="arrow-down" />
+            See examples of how we've helped other organisations
+          </button>
+        </div>
+      ),
     },
   ];
 
@@ -139,7 +185,7 @@ export default function DevelopmentRoute() {
     >
       <div className="w-100 center col middle gap-20">
         <AnimatedDots autoPlayDelay={0} />
-        <div className="col middle center" style={{height: "70vh"}}>
+        <div className="col middle center" style={{ height: "70vh" }}>
           <HeaderText
             text={["Software development"]}
             typingSpeed={50}
@@ -151,10 +197,12 @@ export default function DevelopmentRoute() {
             as="h2"
             className="center"
           />
-            <ScrollMoreButton
-              id="dev-more-btn"
-              targetRef={headerTextRef}
-            />
+          <ScrollMoreButton
+            id="dev-more-btn"
+            targetRef={headerTextRef}
+            label="More info"
+            offset={context.inShrink ? 150 : 100}
+          />
         </div>
         <div className="w-50">
           <h2
@@ -163,20 +211,15 @@ export default function DevelopmentRoute() {
             className=""
             style={{ textAlign: "center" }}
           >
-            We love working with{" "}
-            <b>Aussie not for profits</b> to create
-            lightning fast, secure sites that{" "}
-            <b>build trust</b> by reflecting your
-            true brand identity.
+            We love working with <b>Aussie not for profits</b> to
+            create lightning fast, secure sites that{" "}
+            <b>build trust</b> by reflecting your true brand identity.
           </h2>
         </div>
-      
-        <div
-          className=""
-          style={{ height: 100 }}
-        />
+
+        <div className="" style={{ height: 100 }} />
       </div>
-       <div
+      <div
         className="horizontal-line mediumFade"
         style={{ top: -30 }}
       />
@@ -186,22 +229,31 @@ export default function DevelopmentRoute() {
         </div>
       </div>
 
-       <div
+      <div
         className="horizontal-line mediumFade mt-20"
         style={{ top: 0 }}
       />
 
-      <div className="col middle">
+      <div className="col middle" ref={examplesRef}>
         <SoftwareProjects />
       </div>
 
-       <div
+      <div
         className="horizontal-line mediumFade mb-20"
         style={{ top: 0 }}
       />
 
       <div className="w-75" ref={feeStructureRef}>
         <FeeStructure />
+      </div>
+
+      <div
+        className="horizontal-line mediumFade"
+        style={{ top: 0, marginTop: 100, marginBottom: 80 }}
+      />
+
+      <div className="w-100 col middle">
+        <ContactTab />
       </div>
     </div>
   );

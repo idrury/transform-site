@@ -194,7 +194,7 @@ export function ProjectInfoPopup({
         <div className="row center w100">
           <a
           role="button"
-          href={`/Portfolio?type=${project?.type}`}
+          href={project?.type==="software" ? "/development" :`/Portfolio?type=${project?.type}`}
             className="accentButton row center middle"
             style={{ maxWidth: 400, width: "100%" }}
           >

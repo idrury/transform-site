@@ -55,12 +55,12 @@ export function FeeStructure({}: FeeStructureProps) {
 
   return (
     <div>
-      <h2 className="center" id="fee-structure-title" ref={titleRef}>
+      <h2 className="center mb-10" id="fee-structure-title" ref={titleRef}>
         Our fee structure
       </h2>
       <div className="row shrink-wrap gap-10" id="fee-structure-boxes" ref={boxesRef}>
         <div
-          className="col boxed w-100 p-20 middle"
+          className="col boxed w-100 p-20 middle accent"
           style={{
             textAlign: context.inShrink
               ? "center"
@@ -71,8 +71,7 @@ export function FeeStructure({}: FeeStructureProps) {
             <h3
               className="pl-10 pr-10"
               style={{
-                background: "var(--accent)",
-                color: "var(--bkg)",
+
                 borderRadius:
                   "var(--borderRadius)",
               }}
@@ -90,7 +89,7 @@ export function FeeStructure({}: FeeStructureProps) {
         </div>
 
         <div
-          className="col boxed w-100 p-20 middle"
+          className="col boxed w-100 p-20 middle accent"
           style={{
             textAlign: context.inShrink
               ? "center"
@@ -100,7 +99,6 @@ export function FeeStructure({}: FeeStructureProps) {
           <h3
             className="pl-10 pr-10"
             style={{
-              background: "var(--accent)",
               color: "var(--bkg)",
               borderRadius: "var(--borderRadius)",
             }}
@@ -130,8 +128,6 @@ export function FeeStructure({}: FeeStructureProps) {
           <h3
             className="pl-10 pr-10"
             style={{
-              background: "var(--accent)",
-              color: "var(--bkg)",
               borderRadius: "var(--borderRadius)",
             }}
           >

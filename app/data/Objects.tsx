@@ -34,8 +34,8 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://www.crossover.org.au/",
     images: [
+            "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_2.png",
       "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_1.png",
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_2.png",
             "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_3.png",
                   "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_4.png",
                         "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_5.png",
@@ -60,7 +60,7 @@ export const PROJECTS: Project[] = [
     link: "https://bcsant.org.au/",
   },
   {
-    id: 19,
+    id: 20,
     type: "software",
     name: "Ping-pong-a-thon leaderboard",
     description: [
@@ -332,7 +332,7 @@ export const PROJECTS: Project[] = [
 ];
 
 export const CONTACT = {
-  email: "idrury@transformcreative.com.au",
+  email: "hello@transformcreative.com.au",
 };
 
 export const WORKED_WITH_LOGOS: {

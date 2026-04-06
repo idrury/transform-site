@@ -9,6 +9,7 @@ import gsap from "gsap";
 
 export default function SoftwareProjects() {
   const [project, setProject] = useState<Project>();
+  const [infoActive, setInfoActive] = useState(false);
   const softwareProjects = PROJECTS.filter((p) => p.type === "software");
 
   gsap.registerPlugin(ScrollTrigger, SplitText);
@@ -45,7 +46,7 @@ export default function SoftwareProjects() {
   }, []);
 
   return (
-    <div className="col middle center gap-20 w-75 m-20">
+    <div className="col middle center gap-20 w-75 m-20" style={{height: "80vh"}}>
       <h2 id="software-projects-title">Projects we're proud of</h2>
       <div className="grid-auto w-100" id="software-projects-grid">
         {softwareProjects.map((p,idx) => (
@@ -60,7 +61,7 @@ export default function SoftwareProjects() {
           >
             <Icon
               name="information-circle"
-              onClick={() => setProject(p)}
+              onClick={() => {setProject(p); setInfoActive(true)}}
               style={{
                 position: "absolute",
                 top: 10,
@@ -71,7 +72,7 @@ export default function SoftwareProjects() {
               className="clickable boxed p1"
             />
             <img
-              onClick={() => setProject(p)}
+              onClick={() => {setProject(p); setInfoActive(true)}}
               src={p.images[0]}
               style={{
                 cursor: "pointer",
@@ -87,8 +88,8 @@ export default function SoftwareProjects() {
       </div>
       <ProjectInfoPopup
         project={project}
-        onClose={() => setProject(undefined)}
-        active={!!project}
+        onClose={() => setInfoActive(false)}
+        active={infoActive}
       />
     </div>
   );
