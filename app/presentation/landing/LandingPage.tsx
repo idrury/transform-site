@@ -98,6 +98,7 @@ export function LandingPage({}: LandingPageProps) {
               cursorCharacter="|"
               color="var(--accent)"
               textColors={["var(--accent)"]}
+              as="h1"
             />
           </div>
           <p
@@ -108,6 +109,10 @@ export function LandingPage({}: LandingPageProps) {
             On a mission to help a thousand Aussie organisations
             achieve meaningful change by crafting compelling online
             resources.
+          </p>
+          <p className="p3 textCenter lateFade" style={{ opacity: 0 }}>
+            We partner with <strong>not-for-profit organisations across South Australia</strong> and
+            Australia to create websites, videos and software that build trust, attract donors, and tell your story.
           </p>
           <div className="row center w50 m3">
             <button
@@ -229,6 +234,11 @@ export function LandingPage({}: LandingPageProps) {
           </div>
         </div>
       )}
+      <div className="col middle center p3">
+        <p className="textCenter" style={{ color: "var(--accent)", fontWeight: 600 }}>
+          Trusted by nonprofits and community organisations across South Australia.
+        </p>
+      </div>
       <WorkedWith />
       <div className="col middle p3 mb3">
         <MediaTab />

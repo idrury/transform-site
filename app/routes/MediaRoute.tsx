@@ -3,45 +3,39 @@ import { Route } from "../+types/root";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Portfolio" },
+    { title: "Portfolio | Nonprofit Video & Web Projects | Transform Creative" },
     {
       name: "description",
       content:
-        "Examples of videos, software and design we've created for organisations across South Australia. Partner with us to create authentic material that cuts through the dribble of AI content.",
-    },
-     // Open Graph (for social media sharing)
-    { property: "og:title", content: "Transform Creative | Portfolio" },
-    {
-      property: "og:description",
-      content:
-        "On a mission to help a thousand Aussie organisations achieve meaningful change by crafting compelling online resources.",
-    },
-    {
-      property: "og:image",
-      content: "/transform-icon-color-donut.png",
-    }, // Use your logo or a relevant image
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: "https://www.transformcreative.com.au/portfolio" }, // Replace with your actual URL
-
-    // Twitter Card
-    { name: "twitter:card", content:"/transform-icon-color-donut.png" },
-    { name: "twitter:title", content: "Transform Creative" },
-    {
-      name: "twitter:description",
-      content:
-        "On a mission to help a thousand Aussie organisations achieve meaningful change by crafting compelling online resources.",
-    },
-    {
-      name: "twitter:image",
-      content: "/transform-icon-color-donut.png",
+        "Browse our work with South Australian and Australian nonprofits — video production, custom websites, and software that builds trust and drives impact.",
     },
     {
       name: "keywords",
       content:
-        "digital content, video production, web design, software, Adelaide, South Australia, creative agency",
+        "nonprofit video production portfolio, charity website examples South Australia, NFP digital content Adelaide, video production portfolio Adelaide",
     },
+    // Open Graph
+    { property: "og:title", content: "Portfolio | Nonprofit Video & Web Projects | Transform Creative" },
+    {
+      property: "og:description",
+      content:
+        "Browse our work with South Australian and Australian nonprofits — video production, custom websites, and software that builds trust and drives impact.",
+    },
+    { property: "og:image", content: "/og-image.jpg" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: "https://www.transformcreative.com.au/portfolio" },
+    // Twitter Card
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: "Portfolio | Transform Creative" },
+    {
+      name: "twitter:description",
+      content:
+        "Browse our work with South Australian and Australian nonprofits — video production, custom websites, and software that builds trust.",
+    },
+    { name: "twitter:image", content: "/og-image.jpg" },
   ];
-
 }
 
 export default function LandingRoute() {

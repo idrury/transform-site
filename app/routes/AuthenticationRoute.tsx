@@ -3,8 +3,9 @@ import { Route } from "../+types/root";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Sign in' },
-    { name: "description", content: '' },
+    { title: "Sign In | Transform Creative" },
+    { name: "description", content: "Sign in to your Transform Creative account." },
+    { name: "robots", content: "noindex, nofollow" },
   ];
 }
 

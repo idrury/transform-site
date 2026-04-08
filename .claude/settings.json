@@ -4,7 +4,8 @@
       "Bash(ls -la /c/Users/isaac/source/transform-site/*.config.*)",
       "Bash(npm outdated:*)",
       "Bash(npm audit:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(xargs grep:*)"
     ]
   }
 }

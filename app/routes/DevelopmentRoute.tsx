@@ -19,12 +19,38 @@ import { ContactTab } from "~/presentation/landing/ContactTab";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Software Development in Adelaide" },
+    { title: "Nonprofit Website Development Adelaide | Transform Creative" },
     {
       name: "description",
       content:
-        "Custom built giving platforms for Australian not for profit organisations.",
+        "Custom websites for Australian not-for-profits. Fast, accessible, on-brand sites that build donor trust — designed and built in Adelaide, SA.",
     },
+    {
+      name: "keywords",
+      content:
+        "nonprofit website development Adelaide, not for profit website design South Australia, charity website Australia, NFP software development, giving platform nonprofit",
+    },
+    // Open Graph
+    { property: "og:title", content: "Nonprofit Website Development Adelaide | Transform Creative" },
+    {
+      property: "og:description",
+      content:
+        "Custom websites for Australian not-for-profits. Fast, accessible, on-brand sites that build donor trust — designed and built in Adelaide, SA.",
+    },
+    { property: "og:image", content: "/og-image.jpg" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: "https://www.transformcreative.com.au/development" },
+    // Twitter Card
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: "Nonprofit Website Development Adelaide | Transform Creative" },
+    {
+      name: "twitter:description",
+      content:
+        "Custom websites for Australian not-for-profits. Fast, accessible, on-brand sites that build donor trust.",
+    },
+    { name: "twitter:image", content: "/og-image.jpg" },
   ];
 }
 

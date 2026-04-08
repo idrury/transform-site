@@ -50,10 +50,12 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export const meta: Route.MetaFunction = () => [
+  { title: "Transform Creative | Website & Video for Nonprofits" },
   {
-    title: "Transform Creative | Digital content for positive change",
-    name: "On a mission to help a thousand Aussie organisations achieve meaningful change by crafting compelling online resources",
-  }
+    name: "description",
+    content:
+      "Adelaide creative agency specialising in websites, video production and software for Australian not-for-profits and charities. Built to drive real change.",
+  },
 ]
 
 export function HydrateFallback() {
@@ -73,6 +75,50 @@ export function HydrateFallback() {
   );
 }
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Transform Creative",
+  url: "https://www.transformcreative.com.au",
+  logo: "https://www.transformcreative.com.au/transform-icon-color-donut.png",
+  description:
+    "Adelaide creative agency specialising in websites, video production and software for Australian not-for-profits and charities.",
+  areaServed: ["South Australia", "Australia"],
+  knowsAbout: [
+    "Nonprofit website design",
+    "Video production",
+    "Software development",
+    "Charity digital content",
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Adelaide",
+    addressRegion: "SA",
+    addressCountry: "AU",
+  },
+};
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Transform Creative",
+  description:
+    "Adelaide creative agency specialising in websites, video production and software for Australian not-for-profits and charities.",
+  url: "https://www.transformcreative.com.au",
+  priceRange: "$$",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Adelaide",
+    addressRegion: "SA",
+    addressCountry: "AU",
+  },
+  knowsAbout: [
+    "Nonprofit digital content",
+    "Video production South Australia",
+    "Charity website design",
+  ],
+};
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -85,6 +131,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
         <Meta />
         <Links />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
       </head>
       <body>
         {children}

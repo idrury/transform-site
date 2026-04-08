@@ -53,6 +53,7 @@ export function Portfolio({}: PortfolioProps) {
           cursorCharacter="|"
           color="var(--accent)"
           textColors={["var(--accent)"]}
+          as="h1"
         />
         <p className="textCenter ml3 mr3 w-100">
           A selection of some of our favourite work.
