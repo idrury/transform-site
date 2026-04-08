@@ -20,6 +20,7 @@ import WorkedWith from "./WorkedWith";
 import { Carousel } from "../elements/Carousel";
 import { projectToIcon } from "~/business/commonBL";
 import { AnimatedDots } from "../elements/AnimatedDots";
+import { EndorsementCard } from "../elements/EndorsementCard";
 
 export interface LandingPageProps {}
 
@@ -142,14 +143,6 @@ export function LandingPage({}: LandingPageProps) {
       </div>
       <div className="col middle center">
         <div className="mt3 w100 col middle center lateFade" style={{ opacity: 0 }}>
-          {/* <CircularGallery
-            projects={PROJECTS.slice(0, 8)}
-            onProjectClick={(id) => {
-              setViewProjectActive(true);
-              setSelectedProject(PROJECTS.find((p) => p.id == id));
-              setSearchParams({ project: id.toString()})
-            }}
-          /> */}
           <Carousel
             interval={3}
             showDots={!context.inShrink}
@@ -217,6 +210,25 @@ export function LandingPage({}: LandingPageProps) {
           </Carousel>
         </div>
       </div>
+      {/* What our clients love */}
+      {PROJECTS.filter((p) => p.endorsement).length > 0 && (
+        <div className="col middle center p3 mt3">
+          <div
+          className="row gap-10 shrink-wrap"
+            style={{}}
+          >
+            {PROJECTS.filter((p) => p.endorsement).map((p) => (
+              <EndorsementCard
+                key={p.id}
+                text={p.endorsement!.text}
+                name={p.endorsement!.name}
+                width={context.inShrink ? "100vw" : 400}
+                organisation={p.organisation || p.name}
+              />
+            ))}
+          </div>
+        </div>
+      )}
       <WorkedWith />
       <div className="col middle p3 mb3">
         <MediaTab />

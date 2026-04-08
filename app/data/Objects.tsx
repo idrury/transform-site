@@ -9,6 +9,7 @@ export const tabColors = {
 export const PROJECTS: Project[] = [
   {
     id: 0,
+    organisation: "Crossover",
     name: "The Great Tim Tam Experiment",
     video:
       "https://api.freeflex.com.au/storage/v1/object/public/transform/Tim-Tam%20Experiment%20draft4.mp4",
@@ -25,26 +26,32 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://www.crossover.org.au",
   },
-   {
+  {
     id: 19,
     type: "software",
     name: "Crossover website",
+    organisation: "Crossover",
     description: [
       "A modern, responsive and more secure website for Crossover Australia.",
     ],
     link: "https://www.crossover.org.au/",
     images: [
-            "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_2.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_2.png",
       "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_1.png",
-            "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_3.png",
-                  "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_4.png",
-                        "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_5.png",
-                              "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_6.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_3.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_4.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_5.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_6.png",
     ],
+    // endorsement: {
+    //   name: "Andrew",
+    //   text: "Endorsement will be here.",
+    // },
   },
   {
     id: 7,
     type: "media",
+    organisation: "BCSANT",
     name: "BCSANT Merger",
     video:
       "https://api.freeflex.com.au/storage/v1/object/public/transform/BCSANT%20merger%20-%20Draft%203.mp4",
@@ -62,6 +69,7 @@ export const PROJECTS: Project[] = [
   {
     id: 20,
     type: "software",
+    organisation: "King's Baptist",
     name: "Ping-pong-a-thon leaderboard",
     description: [
       "We created this leaderboard and rally tracking application to help increase engagement in the ping-pong-a-thon.",
@@ -77,6 +85,7 @@ export const PROJECTS: Project[] = [
   {
     id: 8,
     type: "media",
+    organisation: "Churches of Christ SA",
     name: "Churches of Christ - Who We Are",
     video:
       "https://api.freeflex.com.au/storage/v1/object/public/transform/Churches-of-christ.mp4",
@@ -95,6 +104,7 @@ export const PROJECTS: Project[] = [
   {
     id: 9,
     type: "media",
+    organisation: "Crossover",
     name: "Crossover - About us",
     video:
       "https://api.freeflex.com.au/storage/v1/object/public/transform/Infomercial-subs3.mp4",
@@ -114,6 +124,7 @@ export const PROJECTS: Project[] = [
     id: 2,
     name: "RBC Alpha promo",
     type: "media",
+    organisation: "Rostrevor Baptist Church",
     video:
       "https://api.freeflex.com.au/storage/v1/object/public/transform/Alpha%20RBC.mp4",
     link: "https://www.rbc.org.au/wordpress/",
@@ -146,6 +157,7 @@ export const PROJECTS: Project[] = [
   {
     id: 4,
     type: "media",
+    organisation: "Rostrevor Baptist Church",
     name: "RBC Easter Service promo",
     link: "https://www.rbc.org.au/wordpress/",
 
@@ -165,6 +177,8 @@ export const PROJECTS: Project[] = [
     id: 5,
     type: "media",
     name: "Baptist Care",
+    organisation: "Baptist Care",
+
     link: "https://tumbelinfarm.org.au/",
     images: [
       `https://api.freeflex.com.au/storage/v1/object/public/transform/images/tumb-farm-3-min.png`,
@@ -176,10 +190,15 @@ export const PROJECTS: Project[] = [
       "We interviewed a client of Baptist Care, to help the organisation raise money to put up a new shed on their property.",
       "The video was played live at several events to encourage people to donate towards the project.",
     ],
+    endorsement: {
+      name: "Tobin",
+      text: "Isaac’s storytelling is outstanding. He takes the time to truly understand what matters, executes effortlessly, and produces a final product that beautifully captures the impact of our programs.",
+    },
   },
   {
     id: 6,
     type: "media",
+    organisation: "King's Baptist",
     name: "KBC Alpha Marriage promos",
     link: "https://kingsbaptist.org.au/",
     video:
@@ -197,6 +216,7 @@ export const PROJECTS: Project[] = [
   {
     id: 1,
     type: "media",
+    organisation: "King's Baptist",
     name: "King's Ping-pong-a-thon promo",
     video:
       "https://api.freeflex.com.au/storage/v1/object/public/transform/Pong%2025%20promo%202.mp4",
@@ -214,6 +234,7 @@ export const PROJECTS: Project[] = [
   {
     id: 10,
     type: "media",
+    organisation: "Crossover",
     name: "National Baptism Week",
     video:
       "https://api.freeflex.com.au/storage/v1/object/public/transform/National_baptism_week%20-%20Draft_3_subs.mp4",
@@ -233,6 +254,7 @@ export const PROJECTS: Project[] = [
   {
     id: 11,
     type: "software",
+    organisation: "TWC Healthy Collective",
     name: "Healthy Collective ticketing app",
     description: [
       "The TWC Healthy Collective group hired us to build an application to help them keep better track of issues in their processes.",
@@ -245,8 +267,6 @@ export const PROJECTS: Project[] = [
       "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-3.png",
     ],
   },
-  
-  
 ];
 
 const ARCHIVED = [
@@ -292,9 +312,7 @@ const ARCHIVED = [
     id: 15,
     type: "design",
     name: "A logo for King's kids",
-    description: [
-      "Created for King's Baptist Church.",
-    ],
+    description: ["Created for King's Baptist Church."],
     images: [
       "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-3-min.png",
     ],
@@ -325,15 +343,13 @@ const ARCHIVED = [
     id: 18,
     type: "design",
     name: "print designs",
-    description: [
-      "Created for King's Baptist Church.",
-    ],
+    description: ["Created for King's Baptist Church."],
     images: [
       "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-8-min.jpg",
       "https://api.freeflex.com.au/storage/v1/object/public/transform/slide-9-min.jpg",
     ],
   },
-]
+];
 
 export const CONTACT = {
   email: "hello@transformcreative.com.au",
@@ -349,34 +365,32 @@ export const WORKED_WITH_LOGOS: {
     image:
       "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_ats.png",
   },
-        {
+  {
     name: "xp film series",
     image:
       "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_xp.png",
- 
   },
-    {
+  {
     name: "Baptist Care",
     image:
       "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_baptist_care.png",
   },
-        {
+  {
     name: "Ping-pong-a-thon",
     image:
       "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_pong_3.png",
- 
   },
-    {
+  {
     name: "Baptist Chuches South Australia & Northern Territory",
     image:
       "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_baptist_2.png",
   },
-    {
+  {
     name: "Catholic Education South Australia",
     image:
       "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_cesa.png",
   },
-      {
+  {
     name: "Crossover Australia",
     image:
       "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_crossover.png",
@@ -385,14 +399,10 @@ export const WORKED_WITH_LOGOS: {
     name: "Emerging Minds",
     image:
       "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_em.png",
- 
   },
-    {
+  {
     name: "One Rehabilitation Service",
     image:
       "https://api.freeflex.com.au/storage/v1/object/public/transform/worked_with_onerehab.png",
- 
   },
-
-  
 ];

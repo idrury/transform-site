@@ -82,7 +82,7 @@ a[role="button"] {
   font-weight: 600;
   padding: 10px 0;
   background: var(--accent);
-  border-radius: var(--border-lg);
+  border-radius: var(--borderRadius);
   transition: 1s;
   font-size: 14pt;
   text-decoration: none;

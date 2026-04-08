@@ -24,7 +24,7 @@
   --dangerColor: #ed7373;
 
   --nav-bar-spacing: 300px;
-  --borderRadius: 3px;
+  --borderRadius: 5px;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -302,7 +302,7 @@ button:disabled {
 .accentButton:hover {
   background-color: var(--accent-lg);
   color: var(--bkg) !important;
-  transform: scale(1.02);
+  transform: translateY(2px);
 }
 
 button:hover * {
@@ -449,7 +449,7 @@ th {
 .buttonIcon:hover {
   color: var(--accent-sm);
   opacity: 50%;
-  transform: scale(1.1);
+  transform: translateY(2px);
 
   transition: 0.2s;
 }
@@ -585,6 +585,12 @@ th {
   transition: 0.2s;
 }
 
+.outline-accent {
+   border-radius: var(--borderRadius);
+  border: 1px solid var(--accent);
+  transition: 0.2s;
+}
+
 .moveableMenuBackground {
   position: fixed;
   backdrop-filter: blur(1.5px);
@@ -648,7 +654,7 @@ th {
   color: var(--accent);
   opacity: 0.8;
   transition: 0.3s;
-  transform: translateY(5px);
+  transform: translateY(2px);
 }
 
 .highlight {

@@ -11,6 +11,8 @@ import { useNavigate, useOutletContext } from "react-router";
 import { MouseEvent, useRef, useState } from "react";
 import ReactPlayer from "react-player";
 import "../../app-v2.css";
+import { EndorsementCard } from "../elements/EndorsementCard";
+import { PROJECTS } from "~/data/Objects";
 
 export interface ProjectInfoPopupProps extends ActivatableElement {
   project: Project | undefined;
@@ -55,7 +57,10 @@ export function ProjectInfoPopup({
       onClose={() => onClose()}
       zIndex={100}
     >
-      <div className="col middle" style={{ gap: 20, overflow: "auto" }}>
+      <div
+        className="col middle"
+        style={{ gap: 20, overflow: "auto" }}
+      >
         {project?.link && (
           <div className="row middle center">
             <a
@@ -190,11 +195,33 @@ export function ProjectInfoPopup({
           </div>
         )}
 
+        {/* Endorsement */}
+        <div className="col middle center">
+          {(() => {
+            const org = project?.organisation || project?.name;
+            const endorsement = PROJECTS.find(
+              (p) =>
+                (p.organisation || p.name) === org && p.endorsement,
+            )?.endorsement;
+            return endorsement && org ? (
+              <EndorsementCard
+                text={endorsement.text}
+                name={endorsement.name}
+                organisation={org}
+              />
+            ) : null;
+          })()}
+        </div>
+
         {/* More CTA */}
-        <div className="row center w100">
+        <div className="row center w100" style={{overflow: "clip"}}>
           <a
-          role="button"
-          href={project?.type==="software" ? "/development" :`/Portfolio?type=${project?.type}`}
+            role="button"
+            href={
+              project?.type === "software"
+                ? "/development"
+                : `/Portfolio?type=${project?.type}`
+            }
             className="accentButton row center middle"
             style={{ maxWidth: 400, width: "100%" }}
           >

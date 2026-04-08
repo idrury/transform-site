@@ -53,8 +53,10 @@ export interface Project {
   id: number,
   name: string,
   video?: string,
+  organisation?: string,
   type: "software" | "media" | "design"
   images: string[],
   description: string[],
   link?:string;
+  endorsement?: {name: string, text: string} 
 }
