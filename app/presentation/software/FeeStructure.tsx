@@ -76,7 +76,7 @@ export function FeeStructure({}: FeeStructureProps) {
                   "var(--borderRadius)",
               }}
             >
-              $20-40k
+              $15-40k
             </h3>
           </div>
           <h4 className="">1. Intital Build</h4>
@@ -103,7 +103,7 @@ export function FeeStructure({}: FeeStructureProps) {
               borderRadius: "var(--borderRadius)",
             }}
           >
-            $800 - 1.5k (per month)
+            $600 - $1500 (per month)
           </h3>
           <h4 className="center">
             2. Maintenance

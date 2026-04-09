@@ -72,11 +72,20 @@ export function LandingPage({}: LandingPageProps) {
           y: 0,
           stagger: 0.1,
         },
-        "-=1",
+        "-=2",
       );
     });
 
-    tl.to(".lateFade", { opacity: 1, duration: 1, ease: "power3" }, 2);
+    tl.to(
+      ".lateFade",
+      { opacity: 1, duration: 3, ease: "power3" },
+      0.5,
+    ).fromTo(
+      ".endorsementSection",
+      { opacity: 0, y: -20 },
+      { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+      3,
+    );
   }, []);
 
   return (
@@ -110,9 +119,16 @@ export function LandingPage({}: LandingPageProps) {
             achieve meaningful change by crafting compelling online
             resources.
           </p>
-          <p className="p3 textCenter lateFade" style={{ opacity: 0 }}>
-            We partner with <strong>not-for-profit organisations across South Australia</strong> and
-            Australia to create websites, videos and software that build trust, attract donors, and tell your story.
+          <p
+            className="p3 textCenter lateFade"
+            style={{ opacity: 0 }}
+          >
+            We partner with{" "}
+            <strong>
+              not-for-profit organisations across South Australia
+            </strong>{" "}
+            and Australia to create websites, videos and software that
+            build trust, attract donors, and tell your story.
           </p>
           <div className="row center w50 m3">
             <button
@@ -147,10 +163,12 @@ export function LandingPage({}: LandingPageProps) {
         </div>
       </div>
       <div className="col middle center">
-        <div className="mt3 w100 col middle center lateFade" style={{ opacity: 0 }}>
+        <div
+          className="mt3 w100 col middle center lateFade"
+          style={{ opacity: 0 }}
+        >
           <Carousel
             interval={3}
-            showDots={!context.inShrink}
             showArrows
             autoplay
             snapOffset={20}
@@ -217,29 +235,45 @@ export function LandingPage({}: LandingPageProps) {
       </div>
       {/* What our clients love */}
       {PROJECTS.filter((p) => p.endorsement).length > 0 && (
-        <div className="col middle center p3 mt3">
-          <div
-          className="row gap-10 shrink-wrap"
-            style={{}}
-          >
-            {PROJECTS.filter((p) => p.endorsement).map((p) => (
-              <EndorsementCard
-                key={p.id}
-                text={p.endorsement!.text}
-                name={p.endorsement!.name}
-                width={context.inShrink ? "100vw" : 400}
-                organisation={p.organisation || p.name}
-              />
-            ))}
+        <div className="col middle center p3 mt3 endorsementSection" style={{ opacity: 0 }}>
+          <div className="row gap-10 shrink-wrap pt-20 mt-20 mb-20 " style={{ minHeight: 500}}>
+            <Carousel interval={4} showDots="start" autoplay mode="fade" loop>
+              {PROJECTS.filter((p) => p.endorsement).map((p) => (
+                <EndorsementCard
+                  key={p.id}
+                  text={p.endorsement!.text}
+                  name={p.endorsement!.name}
+                  width={context.inShrink ? "100vw" : "50vw"}
+                  organisation={p.organisation || p.name}
+                />
+              ))}
+            </Carousel>
           </div>
         </div>
       )}
+   <div
+          className="horizontal-line mediumFade"
+          style={{ top: -30 }}
+        />
+
       <div className="col middle center p3">
-        <p className="textCenter" style={{ color: "var(--accent)", fontWeight: 600 }}>
-          Trusted by nonprofits and community organisations across South Australia.
-        </p>
+        <h3
+          className="textCenter"
+          style={{ color: "var(--accent)" }}
+        >
+          Trusted by nonprofits and community organisations across
+          South Australia.
+        </h3>
       </div>
       <WorkedWith />
+<div className="p-20">
+  <ContactTab showHeader={false} buttonText="Get in touch with us"/>
+</div>
+
+         <div
+          className="horizontal-line mediumFade"
+          style={{ top: -50 }}
+        />
       <div className="col middle p3 mb3">
         <MediaTab />
         <SoftwareTab />

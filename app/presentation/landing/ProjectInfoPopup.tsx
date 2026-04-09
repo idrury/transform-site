@@ -196,21 +196,26 @@ export function ProjectInfoPopup({
         )}
 
         {/* Endorsement */}
-        <div className="col middle center">
-          {(() => {
-            const org = project?.organisation || project?.name;
-            const endorsement = PROJECTS.find(
-              (p) =>
-                (p.organisation || p.name) === org && p.endorsement,
-            )?.endorsement;
-            return endorsement && org ? (
-              <EndorsementCard
-                text={endorsement.text}
-                name={endorsement.name}
-                organisation={org}
-              />
-            ) : null;
-          })()}
+        <div>
+          <div className="col middle center">
+            {(() => {
+              const org = project?.organisation || project?.name;
+              const endorsement = PROJECTS.find(
+                (p) =>
+                  (p.organisation || p.name) === org &&
+                  p.type === project?.type &&
+                  p.endorsement,
+              )?.endorsement;
+              return endorsement && org ? (
+                <EndorsementCard
+                width={context.inShrink ? "90%" : "70%"}
+                  text={endorsement.text}
+                  name={endorsement.name}
+                  organisation={org}
+                />
+              ) : null;
+            })()}
+          </div>
         </div>
 
         {/* More CTA */}

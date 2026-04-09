@@ -43,10 +43,10 @@ export const PROJECTS: Project[] = [
       "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_5.png",
       "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_6.png",
     ],
-    // endorsement: {
-    //   name: "Andrew",
-    //   text: "Endorsement will be here.",
-    // },
+    endorsement: {
+      name: "Andrew",
+      text: "We couldn't be happier with the website Transform Creative set up for us. Isaac quickly grasped all our complex requirements and created a solution perfect for our needs. It all came in on budget and weeks ahead of time. Highly recommend!",
+    },
   },
   {
     id: 7,
@@ -118,6 +118,10 @@ export const PROJECTS: Project[] = [
       "https://api.freeflex.com.au/storage/v1/object/public/transform/crossover-info-3.png",
     ],
     link: "https://www.crossover.org.au/",
+    endorsement: {
+      name: "Andrew",
+      text: "Transform Creative is simply our go-to for all our videography needs. We work to tight timelines and a very tight budget - and sometimes get ourselves in a tight spot with a need for quality content of just a little brainstorming. Isaac gets all that and is usually at least one step ahead. The final product's never failed to be well above our expectations",
+    },
   },
 
   {

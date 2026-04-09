@@ -20,7 +20,7 @@ export interface ResourceLaneProps {
   onDragStart?: () => void;
   onDragEnd?: () => void;
   showArrows?: boolean;
-  showDots?: boolean;
+  showDots?: "start" | "end";
   children: ReactNode;
   fullScreen?: boolean;
   speed?: number;
@@ -32,11 +32,12 @@ export interface ResourceLaneProps {
   resistance?: number;
   snapOffset?: number;
   centerFocused?: boolean;
+  mode?: 'slide' | 'fade';
 }
 
 export function Carousel({
   showArrows = false,
-  showDots = false,
+  showDots,
   children,
   onClick,
   onDragStart,
@@ -51,6 +52,7 @@ export function Carousel({
   resistance = 6000,
   snapOffset = 10,
   centerFocused = false,
+  mode = 'slide',
 }: ResourceLaneProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -60,6 +62,7 @@ export function Carousel({
   );
   const selectedIndexRef = useRef(startIndex < 0 ? 0 : startIndex);
   const items = Children.toArray(children);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
   const moveAmount = autoplay === true ? 50 : 100;
   const pauseRef = useRef(false);
 
@@ -81,12 +84,20 @@ export function Carousel({
       };
 
   useEffect(() => {
-    requestAnimationFrame(() => scrollToIndex(startIndex));
+    requestAnimationFrame(() => {
+      scrollToIndex(startIndex);
+      if (mode === 'fade') {
+        itemRefs.current.forEach((el, i) => {
+          if (el) gsap.set(el, { opacity: i === startIndex ? 1 : 0 });
+        });
+      }
+    });
 
     // Controls the loop if autoplaying
 
     const shouldAutoPlay =
-      autoplay === true && carouselExtendsScreen() === true;
+      autoplay === true &&
+      (mode === 'fade' ? items.length > 1 : carouselExtendsScreen() === true);
 
     if (shouldAutoPlay !== true) return;
 
@@ -118,31 +129,33 @@ export function Carousel({
         });
       }
 
-      Draggable.create(trackRef.current, {
-        type: "x",
-        inertia: true,
-        throwResistance: resistance,
-        onThrowUpdate: function () {
-          if (isPastEnd() && this.tween?.timeScale() === 1)
-            gsap.to(this.tween, {
-              timeScale: 10,
-              duration: 0.2,
-            });
-        },
-        onThrowComplete: (e) => {
-          scrollToIndex(getTargetIndex() || 0);
-        },
-        onRelease: function () {
-          gsap.set(this.target, { zIndex: 1 });
-        },
-        onDragStart: (e) => {
-          onDragStart && onDragStart();
-        },
-        onDrag: function () {},
-        onDragEnd: () => {
-          onDragEnd && onDragEnd();
-        },
-      });
+      if (mode !== 'fade') {
+        Draggable.create(trackRef.current, {
+          type: "x",
+          inertia: true,
+          throwResistance: resistance,
+          onThrowUpdate: function () {
+            if (isPastEnd() && this.tween?.timeScale() === 1)
+              gsap.to(this.tween, {
+                timeScale: 10,
+                duration: 0.2,
+              });
+          },
+          onThrowComplete: (e) => {
+            scrollToIndex(getTargetIndex() || 0);
+          },
+          onRelease: function () {
+            gsap.set(this.target, { zIndex: 1 });
+          },
+          onDragStart: (e) => {
+            onDragStart && onDragStart();
+          },
+          onDrag: function () {},
+          onDragEnd: () => {
+            onDragEnd && onDragEnd();
+          },
+        });
+      }
 
       return () => {
         if (Draggable.get(trackRef.current))
@@ -217,6 +230,21 @@ export function Carousel({
    * Scroll to a spefic element on the carousel
    */
   function scrollToIndex(index: number) {
+    if (mode === 'fade') {
+      if (loop === false) index = Math.max(0, Math.min(index, items.length - 1));
+      else if (index < 0) index = items.length - 1;
+      else if (index >= items.length) index = 0;
+
+      const prevEl = itemRefs.current[selectedIndexRef.current];
+      const nextEl = itemRefs.current[index];
+      if (prevEl && prevEl !== nextEl) gsap.to(prevEl, { opacity: 0, duration: speed });
+      if (nextEl) gsap.to(nextEl, { opacity: 1, duration: speed });
+
+      setSelectedIndex(index);
+      selectedIndexRef.current = index;
+      return;
+    }
+
     if (index < 0 && loop === false) index = 0;
 
     let percent = index * (1 / items.length);
@@ -330,10 +358,39 @@ export function Carousel({
         ...breakoutStyles,
         minHeight: "100px",
         overflowX: "hidden",
-        overflowY: "visible",
+        overflowY: "clip",
       }}
     >
       
+      {showDots=="start" && items.length > 1 && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "10px",
+            padding: "10px 0",
+          }}
+        >
+          {items.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => scrollToIndex(i)}
+              style={{
+                width: 15,
+                height: 15,
+                borderRadius: "50%",
+                background:
+                  selectedIndex === i ? "var(--accent)" : "var(--accent-md)",
+                border: "none",
+                padding: 0,
+                cursor: "pointer",
+                transition: "background 0.3s ease, transform 0.3s ease",
+                transform: selectedIndex === i ? "scale(1.3)" : "scale(1)",
+              }}
+            />
+          ))}
+        </div>
+      )}
       <div
         style={{
           position: "relative",
@@ -364,21 +421,30 @@ export function Carousel({
           className="carousel-track"
           style={{
             display: "flex",
-            width: "max-content",
-            gap: fullScreen ? "0px" : "10px",
+            width: mode === 'fade' ? "100%" : "max-content",
+            position: mode === 'fade' ? "relative" : undefined,
+            gap: fullScreen || mode === 'fade' ? "0px" : "10px",
             willChange: "transform",
-            cursor: "grab", // Visual hint for users
+            cursor: mode === 'fade' ? "default" : "grab",
           }}
         >
           {[...items].map((child, i) => (
             <div
               key={i}
+              ref={(el) => { itemRefs.current[i] = el; }}
               className={`${selectedIndex === i && ""}`}
               onClick={() => onClick && onClick(child)}
               style={{
                 userSelect: "none",
-                zIndex: 1,
-              }} // Prevent text selection while dragging
+                zIndex: selectedIndex === i ? 1 : 0,
+                ...(mode === 'fade' ? {
+                  position: selectedIndex === i ? "relative" : "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  opacity: i === startIndex ? 1 : 0,
+                } : {}),
+              }}
             >
               {child}
             </div>
@@ -402,7 +468,7 @@ export function Carousel({
           
       </div>
 
-      {showDots && items.length > 1 && (
+      {showDots=="end" && items.length > 1 && (
         <div
           style={{
             display: "flex",
