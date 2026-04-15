@@ -111,7 +111,15 @@ export function ProjectInfoPopup({
             </p>
           ))}
         </div>
-
+        <div className="horizontal-line fade-md"/>
+        <button  className="row gap-10 middle"  onClick={(e) => {e.stopPropagation(); setPlayerMuted(!playerMuted)}}>
+          <Icon
+            name={playerMuted ? "volume-high" : "volume-mute"}
+        
+            className=""
+          />
+          {playerMuted ? "Unmute" : "Mute"}
+        </button>
         {/* Hero video */}
         {project?.video && (
           <div
@@ -124,21 +132,6 @@ export function ProjectInfoPopup({
               position: "relative",
             }}
           >
-            {playerPlay && (
-              <div style={{ zIndex: 20, position: "relative" }}>
-                <Icon
-                  name={playerMuted ? "volume-mute" : "volume-high"}
-                  onClick={() => setPlayerMuted(!playerMuted)}
-                  style={{
-                    position: "absolute",
-                    top: 10,
-                    right: 10,
-                    zIndex: 10,
-                  }}
-                  className="boxed p1"
-                />
-              </div>
-            )}
             <ReactPlayer
               ref={reactPlayer}
               src={project.video}
@@ -194,6 +187,7 @@ export function ProjectInfoPopup({
             ))}
           </div>
         )}
+        <div className="horizontal-line fade-md"/>
 
         {/* Endorsement */}
         <div>
@@ -208,7 +202,7 @@ export function ProjectInfoPopup({
               )?.endorsement;
               return endorsement && org ? (
                 <EndorsementCard
-                width={context.inShrink ? "90%" : "70%"}
+                  width={context.inShrink ? "90%" : "70%"}
                   text={endorsement.text}
                   name={endorsement.name}
                   organisation={org}
@@ -219,7 +213,7 @@ export function ProjectInfoPopup({
         </div>
 
         {/* More CTA */}
-        <div className="row center w100" style={{overflow: "clip"}}>
+        <div className="row center w100" style={{ overflow: "clip" }}>
           <a
             role="button"
             href={

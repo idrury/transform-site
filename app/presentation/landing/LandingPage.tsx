@@ -110,26 +110,7 @@ export function LandingPage({}: LandingPageProps) {
               as="h1"
             />
           </div>
-          <p
-            id="title"
-            className="p3 textCenter"
-            style={{ opacity: 0 }}
-          >
-            On a mission to help a thousand Aussie organisations
-            achieve meaningful change by crafting compelling online
-            resources.
-          </p>
-          <p
-            className="p3 textCenter lateFade"
-            style={{ opacity: 0 }}
-          >
-            We partner with{" "}
-            <strong>
-              not-for-profit organisations across South Australia
-            </strong>{" "}
-            and Australia to create websites, videos and software that
-            build trust, attract donors, and tell your story.
-          </p>
+       
           <div className="row center w50 m3">
             <button
               id="landing-software-button"
@@ -175,6 +156,7 @@ export function LandingPage({}: LandingPageProps) {
             width={100}
             centerFocused
             onClick={() => {}}
+            resistance={PROJECTS.length * 1000}
           >
             {PROJECTS.map((img, idx) => (
               <div
@@ -233,11 +215,43 @@ export function LandingPage({}: LandingPageProps) {
           </Carousel>
         </div>
       </div>
+
+
+         <div className="w-100 col middle mt-20 pt-20">
+           <div className="w-50">
+             <p
+                className="textCenter m-20"
+              >
+                On a mission to help a thousand Aussie organisations{" "}
+                <strong>achieve meaningful change</strong>{" "}by crafting compelling online
+                resources.
+              </p>
+              <p
+                className="textCenter m-20"
+              >
+                We partner with{" "}
+                <strong>
+                  not-for-profit organisations across South Australia
+                </strong>{" "}
+                and Australia to create websites, videos and software that
+                build trust, attract donors, and tell your story.
+              </p>
+           </div>
+         </div>
+
       {/* What our clients love */}
       {PROJECTS.filter((p) => p.endorsement).length > 0 && (
         <div className="col middle center p3 mt3 endorsementSection" style={{ opacity: 0 }}>
+          <h3
+          className="textCenter"
+          style={{ color: "var(--accent)", fontSize: '14pt' }}
+        >
+          Trusted by nonprofits and community organisations across
+          South Australia.
+        </h3>
           <div className="row gap-10 shrink-wrap pt-20 mt-20 mb-20 " style={{ minHeight: 500}}>
-            <Carousel interval={8} showDots="start" autoplay mode="fade" loop>
+               
+            <Carousel interval={8} showDots="start" autoplay mode="fade" loop >
               {PROJECTS.filter((p) => p.endorsement).map((p) => (
                 <EndorsementCard
                   key={p.id}
@@ -256,15 +270,7 @@ export function LandingPage({}: LandingPageProps) {
           style={{ top: -30 }}
         />
 
-      <div className="col middle center p3">
-        <h3
-          className="textCenter"
-          style={{ color: "var(--accent)" }}
-        >
-          Trusted by nonprofits and community organisations across
-          South Australia.
-        </h3>
-      </div>
+    
       <WorkedWith />
 <div className="p-20">
   <ContactTab showHeader={false} buttonText="Get in touch with us"/>
@@ -284,7 +290,7 @@ export function LandingPage({}: LandingPageProps) {
           style={{ top: -30 }}
         />
 
-        <ContactTab />
+        <ContactTab buttonText="Get in touch"/>
         <div
           className="horizontal-line mediumFade"
           style={{ top: -30 }}

@@ -62,9 +62,19 @@ export function Carousel({
   );
   const selectedIndexRef = useRef(startIndex < 0 ? 0 : startIndex);
   const items = Children.toArray(children);
+  const useInfiniteLoop = mode !== 'fade' && loop && items.length > 1;
+  // Clone a fixed number of items on each side — enough for the centering
+  // offset to stay positive without tripling the entire array.
+  const clonesPerSide = useInfiniteLoop ? Math.min(items.length, 5) : 0;
+  const domItems = useInfiniteLoop
+    ? [...items.slice(-clonesPerSide), ...items, ...items.slice(0, clonesPerSide)]
+    : items;
+  const domCount = domItems.length;           // N + 2*clonesPerSide when looping, else N
+  const cloneOffset = clonesPerSide;          // real items start at this DOM index
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
   const moveAmount = autoplay === true ? 50 : 100;
   const pauseRef = useRef(false);
+  const stoppedRef = useRef(false);
 
   /******************************
    * Control css for fullscreen mode
@@ -85,7 +95,14 @@ export function Carousel({
 
   useEffect(() => {
     requestAnimationFrame(() => {
-      scrollToIndex(startIndex);
+      // Instantly position to starting index — no entry animation
+      if (mode !== 'fade' && trackRef.current) {
+        const safeStart = Math.max(0, startIndex);
+        gsap.set(trackRef.current, {
+          x: 0,
+          xPercent: -centeredPercent(safeStart + cloneOffset) * 100,
+        });
+      }
       if (mode === 'fade') {
         itemRefs.current.forEach((el, i) => {
           if (el) gsap.set(el, { opacity: i === startIndex ? 1 : 0 });
@@ -102,7 +119,7 @@ export function Carousel({
     if (shouldAutoPlay !== true) return;
 
     const int = setInterval(() => {
-      if (pauseRef.current === true) return;
+      if (pauseRef.current === true || stoppedRef.current === true) return;
 
       scrollToIndex(selectedIndexRef.current + 1);
     }, interval * 1000);
@@ -152,6 +169,7 @@ export function Carousel({
           },
           onDrag: function () {},
           onDragEnd: () => {
+            stoppedRef.current = true;
             onDragEnd && onDragEnd();
           },
         });
@@ -178,15 +196,15 @@ export function Carousel({
     if (!track || !container) return 0;
     const scrolled = container.x - track.x;
     if (centerFocused) {
-      const itemWidth = track.width / items.length;
+      const itemWidth = track.width / domCount;
       const centerOffset = container.width / 2 - itemWidth / 2;
       return Math.round(
-        ((scrolled + centerOffset) / track.width) * items.length +
+        ((scrolled + centerOffset) / track.width) * domCount +
           snapOffset / 100,
-      );
+      ) - cloneOffset;
     }
     const xPercent = scrolled / track.width;
-    return Math.round(items.length * xPercent + snapOffset / 100);
+    return Math.round(domCount * xPercent + snapOffset / 100) - cloneOffset;
   }
 
   /*********************************************
@@ -227,6 +245,22 @@ export function Carousel({
   }
 
   /***************************************
+   * Returns the xPercent fraction (0–1) for a given DOM index,
+   * applying the centering offset and clamping when centerFocused is on.
+   */
+  function centeredPercent(domIndex: number): number {
+    const raw = domIndex / domCount;
+    if (!centerFocused) return raw;
+    const tw = trackRef.current?.getBoundingClientRect().width || 0;
+    const cw = containerRef.current?.getBoundingClientRect().width || 0;
+    if (!tw) return raw;
+    const itemW = tw / domCount;
+    const offset = (cw / 2 - itemW / 2) / tw;
+    const max = (tw - cw) / tw;
+    return Math.max(0, Math.min(raw - offset, max));
+  }
+
+  /***************************************
    * Scroll to a spefic element on the carousel
    */
   function scrollToIndex(index: number) {
@@ -245,6 +279,48 @@ export function Carousel({
       return;
     }
 
+    // Infinite clone-based loop
+    if (useInfiniteLoop) {
+      if (index < 0 || index >= items.length) {
+        // Wrap to [0, N-1] — works for any distance into clone territory
+        const normalized = ((index % items.length) + items.length) % items.length;
+        const realDomIndex = cloneOffset + normalized;
+        const cloneDomIndex = cloneOffset + index; // the clone slot to animate through
+
+        if (cloneDomIndex >= 0 && cloneDomIndex < domCount) {
+          // Animate to the clone that mirrors the target, then silently jump to the real item
+          const tl = gsap.timeline();
+          tl.to(trackRef.current, {
+            x: 0,
+            xPercent: -centeredPercent(cloneDomIndex) * 100,
+            duration: speed,
+            ease: "power2.out",
+          }).set(trackRef.current, {
+            x: 0,
+            xPercent: -centeredPercent(realDomIndex) * 100,
+          });
+        } else {
+          // Dragged so far that no clone exists at that depth — teleport directly
+          gsap.set(trackRef.current, { x: 0, xPercent: -centeredPercent(realDomIndex) * 100 });
+        }
+
+        setSelectedIndex(normalized);
+        selectedIndexRef.current = normalized;
+        return;
+      }
+      // Normal navigation within real items (middle third of DOM)
+      gsap.to(trackRef.current, {
+        x: 0,
+        xPercent: -centeredPercent(index + cloneOffset) * 100,
+        duration: speed,
+        ease: "back.out",
+      });
+      setSelectedIndex(index);
+      selectedIndexRef.current = index;
+      return;
+    }
+
+    // Non-loop slide mode
     if (index < 0 && loop === false) index = 0;
 
     let percent = index * (1 / items.length);
@@ -255,29 +331,18 @@ export function Carousel({
       containerRef.current?.getBoundingClientRect().width || 0;
     const isPastEnd =
       trackWidth - trackWidth * percent < containerWidth;
-    let loopTo: "start" | "end" | null = null;
 
     if (trackWidth < containerWidth) {
       percent = 0;
       index = 0;
     } else if (isPastEnd) {
       if (index >= selectedIndex) {
-        if (loop === true && index > selectedIndex) {
-          percent = 0;
-          index = 0;
-          loopTo = "start";
-        } else {
-          percent = (trackWidth - containerWidth) / trackWidth;
-          index = items.length - 1;
-        }
+        percent = (trackWidth - containerWidth) / trackWidth;
+        index = items.length - 1;
       } else if (index < selectedIndex && loop === false) {
         percent = 0;
         index = 0;
       }
-    } else if (loop === true && index < 0) {
-      index = items.length - 1;
-      percent = index * (1 / items.length);
-      loopTo = "end";
     }
 
     // Apply centering offset
@@ -293,32 +358,7 @@ export function Carousel({
       );
     }
 
-    // Animate
-    const tl = gsap.timeline();
-
-    if (loopTo === "start") {
-      tl.to(trackRef.current, {
-        x: 0,
-        xPercent: -100,
-        duration: 0.3,
-      }).to(trackRef.current, {
-        x: 0,
-        xPercent: 30,
-        duration: 0,
-      });
-    } else if (loopTo === "end") {
-      tl.to(trackRef.current, {
-        x: 0,
-        xPercent: 30,
-        duration: 0.3,
-      }).to(trackRef.current, {
-        x: 0,
-        xPercent: -100,
-        duration: 0,
-      });
-    }
-
-    tl.to(trackRef.current, {
+    gsap.to(trackRef.current, {
       x: 0,
       xPercent: -finalPercent * 100,
       duration: speed,
@@ -374,7 +414,7 @@ export function Carousel({
           {items.map((_, i) => (
             <button
               key={i}
-              onClick={() => scrollToIndex(i)}
+              onClick={() => { stoppedRef.current = false; scrollToIndex(i); }}
               style={{
                 width: 15,
                 height: 15,
@@ -402,6 +442,7 @@ export function Carousel({
         {showArrows && (loop || selectedIndex !== 0) && (
           <button
             onClick={() => {
+              stoppedRef.current = false;
               scrollToIndex(selectedIndex - 1);
             }}
             className=""
@@ -428,33 +469,37 @@ export function Carousel({
             cursor: mode === 'fade' ? "default" : "grab",
           }}
         >
-          {[...items].map((child, i) => (
-            <div
-              key={i}
-              ref={(el) => { itemRefs.current[i] = el; }}
-              className={`${selectedIndex === i && ""}`}
-              onClick={() => onClick && onClick(child)}
-              style={{
-                userSelect: "none",
-                zIndex: selectedIndex === i ? 1 : 0,
-                ...(mode === 'fade' ? {
-                  position: selectedIndex === i ? "relative" : "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  opacity: i === startIndex ? 1 : 0,
-                } : {}),
-              }}
-            >
-              {child}
-            </div>
-          ))}
+          {[...domItems].map((child, i) => {
+            const logicalIndex = i - cloneOffset;
+            const isSelected = selectedIndex === logicalIndex;
+            const isClone = useInfiniteLoop && (i < cloneOffset || i >= cloneOffset + items.length);
+            return (
+              <div
+                key={i}
+                ref={(el) => { if (!isClone) itemRefs.current[logicalIndex] = el; }}
+                onClick={() => { if (!isClone) { stoppedRef.current = true; onClick && onClick(child); } }}
+                style={{
+                  userSelect: "none",
+                  zIndex: isSelected ? 1 : 0,
+                  ...(mode === 'fade' ? {
+                    position: isSelected ? "relative" : "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    opacity: logicalIndex === startIndex ? 1 : 0,
+                  } : {}),
+                }}
+              >
+                {child}
+              </div>
+            );
+          })}
         </div>
 
         {showArrows &&
           (loop || selectedIndex !== items.length - 1) && (
             <button
-              onClick={() => scrollToIndex(selectedIndex + 1)}
+              onClick={() => { stoppedRef.current = false; scrollToIndex(selectedIndex + 1); }}
               style={{
                 background: "var(--accent-sm)",
                 right: 10,
@@ -480,7 +525,7 @@ export function Carousel({
           {items.map((_, i) => (
             <button
               key={i}
-              onClick={() => scrollToIndex(i)}
+              onClick={() => { stoppedRef.current = false; scrollToIndex(i); }}
               style={{
                 width: 15,
                 height: 15,

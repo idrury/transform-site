@@ -225,7 +225,7 @@ export default function DevelopmentRoute() {
             as="h2"
             className="center"
           />
-          <p>We build custom websites for non-profit organisations with a focus on maximising every donation.</p>
+          <p className="center fade-md m-10">We build custom websites for non-profit organisations with a focus on maximising every donation.</p>
           <ScrollMoreButton
             id="dev-more-btn"
             targetRef={headerTextRef}

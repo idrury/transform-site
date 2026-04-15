@@ -491,7 +491,7 @@ th {
 
 .gallery-image {
   transition: 0.3s;
-  height: 350px;
+  height: 500px;
   aspect-ratio: 16 / 9;
   filter: contrast(100);
 }
@@ -1051,8 +1051,14 @@ Padding
 }
 
 @media (max-width: 1200px) {
+  p {
+    font-size: 14pt;
+  }
   h2 {
     font-size: 40pt;
+  }
+  h3 {
+    font-size: 14pt;
   }
   h4 {
     font-size: 25pt;

@@ -275,24 +275,7 @@ export const PROJECTS: Project[] = [
     },
   },
 
-  {
-    id: 2,
-    name: "RBC Alpha promo",
-    type: "media",
-    organisation: "Rostrevor Baptist Church",
-    video:
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/Alpha%20RBC.mp4",
-    link: "https://www.rbc.org.au/wordpress/",
-    images: [
-      `https://api.freeflex.com.au/storage/v1/object/public/transform/images/RBC-alpha-interview-1-min.png`,
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/images/RBC-alpha-interview-2-min.png",
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/images/RBC-alpha-interview-3-min.png",
-    ],
-    description: [
-      "For their 2025 alpha launch, Rostrevor Baptist church decided to create a relaxed, interview style welcome video.",
-      "The video is designed to help people who have never attended an alpha course feel welcomed, and know exactly what to expect!",
-    ],
-  },
+ 
   {
     id: 3,
     type: "software",
@@ -368,6 +351,22 @@ export const PROJECTS: Project[] = [
       "The course went on to sell out completely!",
     ],
   },
+   {
+    id: 11,
+    type: "software",
+    organisation: "TWC Healthy Collective",
+    name: "Healthy Collective ticketing app",
+    description: [
+      "The TWC Healthy Collective group hired us to build an application to help them keep better track of issues in their processes.",
+      "The app features an easy to use ticket logdgement system, and allows admins to respond to user issues with ease.",
+    ],
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-0.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-1.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-2.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-3.png",
+    ],
+  },
   {
     id: 1,
     type: "media",
@@ -406,20 +405,23 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://www.crossover.org.au/",
   },
-  {
-    id: 11,
-    type: "software",
-    organisation: "TWC Healthy Collective",
-    name: "Healthy Collective ticketing app",
-    description: [
-      "The TWC Healthy Collective group hired us to build an application to help them keep better track of issues in their processes.",
-      "The app features an easy to use ticket logdgement system, and allows admins to respond to user issues with ease.",
-    ],
+ 
+   {
+    id: 2,
+    name: "RBC Alpha promo",
+    type: "media",
+    organisation: "Rostrevor Baptist Church",
+    video:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/Alpha%20RBC.mp4",
+    link: "https://www.rbc.org.au/wordpress/",
     images: [
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-0.png",
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-1.png",
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-2.png",
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/twc-3.png",
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/images/RBC-alpha-interview-1-min.png`,
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/images/RBC-alpha-interview-2-min.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/images/RBC-alpha-interview-3-min.png",
+    ],
+    description: [
+      "For their 2025 alpha launch, Rostrevor Baptist church decided to create a relaxed, interview style welcome video.",
+      "The video is designed to help people who have never attended an alpha course feel welcomed, and know exactly what to expect!",
     ],
   },
 ];

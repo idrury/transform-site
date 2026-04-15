@@ -9,6 +9,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { OutletProps, useOutlet, useOutletContext } from "react-router";
 import { SharedContextProps } from "~/data/CommonTypes";
+import { Carousel } from "../elements/Carousel";
 
 export default function WorkedWith() {
 
@@ -44,21 +45,22 @@ export default function WorkedWith() {
 
   return (
     <div
-      className={`scroller scroll`}
       id="images-main"
     >
       <div className={`${scrollerCss}`}>
-        {galleryProjects.map((img, idx) => (
-          <div key={`${img.id} - ${idx}`}>
-            <img
-              style={{ maxHeight: `${context.inShrink ? "100" : "200"}px` }}
-              key={img.name}
-              src={img.image}
-              alt={img.name}
-              className="ml2 mr2"
-            />
-          </div>
-        ))}
+        <Carousel interval={1} autoplay loop resistance={20000}>
+          {galleryProjects.map((img, idx) => (
+            <div key={`${img.id} - ${idx}`}>
+              <img
+                style={{ maxHeight: `${context.inShrink ? "100" : "200"}px` }}
+                key={img.name}
+                src={img.image}
+                alt={img.name}
+                className="ml2 mr2"
+              />
+            </div>
+          ))}
+        </Carousel>
       </div>
     </div>
   );
