@@ -54,13 +54,12 @@ export function ProjectInfoPopup({
     <BasicMenu
       width={context.inShrink ? "100%" : "100vw"}
       active={active}
-      onClose={() => onClose()}
+      onClose={() => {
+        !playerMuted ? setPlayerMuted(true) : onClose();
+      }}
       zIndex={100}
     >
-      <div
-        className="col middle"
-        style={{ gap: 20, overflow: "auto" }}
-      >
+      <div className="col middle" style={{ gap: 20 }}>
         {project?.link && (
           <div className="row middle center">
             <a
@@ -111,58 +110,95 @@ export function ProjectInfoPopup({
             </p>
           ))}
         </div>
-        <div className="horizontal-line fade-md"/>
-        <button  className="row gap-10 middle"  onClick={(e) => {e.stopPropagation(); setPlayerMuted(!playerMuted)}}>
-          <Icon
-            name={playerMuted ? "volume-high" : "volume-mute"}
-        
-            className=""
-          />
-          {playerMuted ? "Unmute" : "Mute"}
-        </button>
+        <div className="horizontal-line fade-md" />
+        {project?.video && (
+          <button
+            className="row gap-10 middle bkg fade-md"
+            style={{
+              position: playerMuted ? "sticky" : "relative",
+              top: 0,
+              zIndex: 25,
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setPlayerMuted(!playerMuted);
+            }}
+          >
+            <Icon
+              name={playerMuted ? "volume-high" : "volume-mute"}
+              className=""
+            />
+            {playerMuted ? "Unmute" : "Mute"}
+          </button>
+        )}
         {/* Hero video */}
         {project?.video && (
           <div
-            className="boxed"
+            className="w-100  col middle h-100"
             style={{
-              maxWidth: 800,
-              width: "100%",
-              overflow: "hidden",
-              aspectRatio: "16 / 9",
-              position: "relative",
+              position: !playerMuted ? "sticky" : "relative",
+              top: 0,
+              zIndex: 20,
             }}
           >
-            <ReactPlayer
-              ref={reactPlayer}
-              src={project.video}
-              onMouseOver={(e) => videoMouseOver(e)}
-              onMouseOut={(e) => videoMouseOff(e)}
-              onClick={(e) => onVideoClick(e)}
-              muted={playerMuted}
-              loop
-              style={
-                videoClicked
-                  ? {
-                      width: "80vw",
-                      height: "80vh",
-                      objectFit: "cover",
-                      cursor: "pointer",
-                      position: "fixed",
-                      top: "10vh",
-                      left: "10vw",
-                      zIndex: 100,
-                      borderRadius: "var(--borderRadius)",
-                    }
-                  : {
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      cursor: "pointer",
-                    }
-              }
-              playing={true}
+            <div
+              style={{
+                position: "absolute",
+                height: !playerMuted ? "100vh" : "100%",
+                zIndex: 10,
+                top: 0,
+                background: "#11111100",
+                backdropFilter: "blur(10px)",
+              }}
+              className="w-100 h-100"
             />
+            <div
+              className="boxed"
+              style={{
+                boxShadow: playerMuted ? undefined : "0 0 0px 2px var(--accent)",
+                maxWidth: context.inShrink ? 800 : "60%",
+                width: "100%",
+                overflow: "hidden",
+                zIndex: 20,
+
+                aspectRatio: "16 / 9",
+              }}
+            >
+              <ReactPlayer
+                ref={reactPlayer}
+                src={project.video}
+                onMouseOver={(e) => videoMouseOver(e)}
+                onMouseOut={(e) => videoMouseOff(e)}
+                onClick={(e) => onVideoClick(e)}
+                muted={playerMuted}
+                loop
+                style={
+                  videoClicked
+                    ? {
+                        width: "80vw",
+                        height: "80vh",
+                        objectFit: "cover",
+                        cursor: "pointer",
+                        position: "fixed",
+                        top: "10vh",
+                        left: "10vw",
+                        zIndex: 100,
+                        borderRadius: "var(--borderRadius)",
+                      }
+                    : {
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        cursor: "pointer",
+                      }
+                }
+                playing={true}
+              />
+            </div>
           </div>
+        )}
+        {context.inShrink && (
+          <div className="horizontal-line fade-md" />
         )}
 
         {/* Image gallery */}
@@ -187,7 +223,7 @@ export function ProjectInfoPopup({
             ))}
           </div>
         )}
-        <div className="horizontal-line fade-md"/>
+        <div className="horizontal-line fade-md" />
 
         {/* Endorsement */}
         <div>

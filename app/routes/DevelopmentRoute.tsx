@@ -20,7 +20,10 @@ import { AnimatedPageIcon } from "~/presentation/elements/AnimatedPageIcon";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Nonprofit Website Development Adelaide | Transform Creative" },
+    {
+      title:
+        "Nonprofit Website Development Adelaide | Transform Creative",
+    },
     {
       name: "description",
       content:
@@ -32,7 +35,11 @@ export function meta({}: Route.MetaArgs) {
         "nonprofit website development Adelaide, not for profit website design South Australia, charity website Australia, NFP software development, giving platform nonprofit",
     },
     // Open Graph
-    { property: "og:title", content: "Nonprofit Website Development Adelaide | Transform Creative" },
+    {
+      property: "og:title",
+      content:
+        "Nonprofit Website Development Adelaide | Transform Creative",
+    },
     {
       property: "og:description",
       content:
@@ -42,10 +49,17 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
     { property: "og:type", content: "website" },
-    { property: "og:url", content: "https://www.transformcreative.com.au/development" },
+    {
+      property: "og:url",
+      content: "https://www.transformcreative.com.au/development",
+    },
     // Twitter Card
     { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: "Nonprofit Website Development Adelaide | Transform Creative" },
+    {
+      name: "twitter:title",
+      content:
+        "Nonprofit Website Development Adelaide | Transform Creative",
+    },
     {
       name: "twitter:description",
       content:
@@ -225,7 +239,10 @@ export default function DevelopmentRoute() {
             as="h2"
             className="center"
           />
-          <p className="center fade-md m-10">We build custom websites for non-profit organisations with a focus on maximising every donation.</p>
+          <p className="center fade-md m-10">
+            We build custom websites for non-profit organisations with
+            a focus on increasing user trust and engagement.
+          </p>
           <ScrollMoreButton
             id="dev-more-btn"
             targetRef={headerTextRef}

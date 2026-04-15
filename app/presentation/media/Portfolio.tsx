@@ -42,7 +42,6 @@ export function Portfolio({}: PortfolioProps) {
     <div className="w100 col middle" style={{ minHeight: "100vh" }}>
       <AnimatedDots autoPlayDelay={0} />
 
-
       <div
         className="col middle center shrinkCol"
         style={{ height: "80vh" }}
@@ -59,9 +58,11 @@ export function Portfolio({}: PortfolioProps) {
           textColors={["var(--accent)"]}
           as="h1"
         />
-        <p className="textCenter ml3 mr3 w-100">
-          A selection of some of our favourite work.
-        </p>
+        <div className="ml-20 mr-20">
+          <p className="textCenter  w-100">
+            A selection of some of our favourite work.
+          </p>
+        </div>
         <ScrollMoreButton
           targetRef={filterSectionRef}
           offset={100}
@@ -105,27 +106,6 @@ export function Portfolio({}: PortfolioProps) {
           <Icon name="code-outline" className="mr1" />
           Software
         </button>
-        {/* <button
-          className={`row middle ml2 mr3 ${
-            filter == "design" && "boxedAccent"
-          }`}
-          onClick={() => {
-            if(filter== "design") {
-              setFilter(null) 
-              setSearchParams("?");
-            }
-            else {
-            setFilter("design");
-            setSearchParams("type=design");
-            }
-          }}
-        >
-          <Icon
-            name="color-filter-outline"
-            className="mr1"
-          />
-          Design
-        </button> */}
       </div>
       <div className="m3 col middle center">
         <div className="grid-auto w75">
@@ -146,22 +126,25 @@ export function Portfolio({}: PortfolioProps) {
                   position: "relative",
                 }}
               >
-                <Icon
-                  name={"information-circle"}
+                <button
                   onClick={() => {
                     setProject(p);
                     setProjectPopupActive(true);
                     setPlaying(undefined);
                   }}
+                  className="row gap-5 middle"
                   style={{
+                    background: "var(--bkg)",
+                    padding: "2px 5px",
                     position: "absolute",
                     top: 10,
                     right: 10,
                     zIndex: 10,
                   }}
-                  color="var(--accent)"
-                  className="clickable boxed p1"
-                />
+                >
+                  <Icon name={"information-circle"} />
+                  <p>More info</p>
+                </button>
               </div>
               {p.video ? (
                 <ReactPlayer

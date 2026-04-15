@@ -172,7 +172,7 @@ export function LandingPage({}: LandingPageProps) {
                   setSelectedProject(
                     PROJECTS.find((p) => p.id == img.id),
                   );
-                  setSearchParams({ project: img.id?.toString() });
+                  setSearchParams({ project: img.id?.toString() }, { preventScrollReset: true });
                 }}
               >
                 {hoveredImage == img.id && (
@@ -304,7 +304,7 @@ export function LandingPage({}: LandingPageProps) {
           setViewProjectActive(false);
           setTimeout(() => setSelectedProject(undefined), 300);
           searchParams.delete("project");
-          setSearchParams(searchParams);
+          setSearchParams(searchParams, { preventScrollReset: true });
         }}
       />
     </div>
