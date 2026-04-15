@@ -8,25 +8,62 @@ export const tabColors = {
 
 export const PROJECTS: Project[] = [
   {
-    id: 0,
-    organisation: "Crossover",
-    name: "The Great Tim Tam Experiment",
-    video:
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/Tim-Tam%20Experiment%20draft4.mp4",
+    id: 102,
+    organisation: "BaptistCare",
+    name: "Breaking Free Program",
+    video: "https://youtu.be/BEAUVPc4ufU",
     images: [
-      `https://api.freeflex.com.au/storage/v1/object/public/transform/images/tim%20tam%203-min.png`,
-      `https://api.freeflex.com.au/storage/v1/object/public/transform/images/tim%20tam%202-min.png`,
-      `https://api.freeflex.com.au/storage/v1/object/public/transform/images/tim%20tam%201-min.png`,
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/images/tim-tam-4-min.png",
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/BreakingFree-1.png`,
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/BreakingFree-2.png`,
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/BreakingFree-3.png`,
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/BreakingFree-4.png",
     ],
     type: "media",
     description: [
-      "Part of Crossover Australia's 2025 campaign, The Great Tim Tam Experiement is a light-hearted video which we created to help Crossover share about God's love in an innovative way.",
-      "We subtitled the video in 5 different languages.",
+      "This video was played in churches across South Australia in an effort to support the Breaking Free prison advocacy program.",
     ],
-    link: "https://www.crossover.org.au",
+    link: "https://breaking-free.raiselysite.com/",
   },
   {
+    id: 105,
+    organisation: "Crossover",
+    name: "The Middle Sister Project",
+    video: "https://youtu.be/kuazOnc255k",
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/MSP%20Basic%20horizontal.png",
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/MSP-1.png`,
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/MSP-2.png`,
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/MSP-3.png`,
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/MSP-4.png`,
+    ],
+    type: "media",
+    description: [
+      "The Middle Sister Project is a 6 part evangelism training series, and is possibly our favourite project we've ever worked on.",
+      "Transform Creative worked with Crossover from conception to final product - helping write scripts, organise talent, hire crew, lock in locations, not to mention filming it over 6 days and then editing all 6 episodes!",
+      "We are proud and thankful of our team and crew who helped us to pull this whole production together on a limited budget, and we truly believe the Lord brought all sorts of pieces of the puzzle together to make this something we're super proud of.",
+    ],
+    link: "https://www.crossover.org.au/?resource=49",
+  },
+   {
+    id: 8,
+    type: "media",
+    organisation: "Churches of Christ SA",
+    name: "Churches of Christ - Who We Are",
+    video:
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/Churches-of-christ.mp4",
+    description: [
+      "Churches of Christ SA came to us and asked if we could help them put together a video which would help reignite a passion for their mission.",
+      "We worked with them to help script and produce this video, which was played to leaders and churches throughout the movement.",
+    ],
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/coc-2-min.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/coc-1-min.png",
+
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/coc-3-min.png",
+    ],
+    link: "https://churchesofchrist-sa.org.au/",
+  },
+    {
     id: 19,
     type: "software",
     name: "Crossover website",
@@ -48,7 +85,44 @@ export const PROJECTS: Project[] = [
       text: "We couldn't be happier with the website Transform Creative set up for us. Isaac quickly grasped all our complex requirements and created a solution perfect for our needs. It all came in on budget and weeks ahead of time. Highly recommend!",
     },
   },
+   {
+    id: 106,
+    organisation: "Red Frogs",
+    name: "A Day at The Cricket",
+    video: "https://youtu.be/WVEFzkTxw2g",
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/RedFrogs-4.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/RedFrogs-1.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/RedFrogs-2.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/RedFrogs-3.png",
+    ],
+    type: "media",
+    description: [
+      "We love the work that Red Frogs do around Australia.",
+      "So when they asked Transform Creative to help them put together a short video to show an insight into what it's like volunteering at the cricket, we couldn't wait to help!",
+    ],
+    link: "https://redfrogs.com.au/",
+  },
   {
+    id: 103,
+    organisation: "Crossover",
+    name: "Help Where It's Needed Most",
+    video: "https://youtu.be/uuSdZ9qB1pM",
+    images: [
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/HelpNeededMost-4.png`,
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/HelpNeededMost-1.png`,
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/HelpNeededMost-2.png`,
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/HelpNeededMost-3.png",
+    ],
+    type: "media",
+    description: [
+      "When we first started chatting about this video and throwing around ideas like 'trick shots', 'baking' and 'card stacks' we thought this video might be impossible! But with a bit of creativity, careful use of sticky tape and some incredible skill from our actors, we managed to pull it off.",
+      "Crossover have curated and created an awesome list of resources specifically for Aussie Baptists (which you can check out on the NEW WEBSITE (https://www.crossover.org.au) we just created for them)! And we highly recommend contributing to their easter offering campaign :)",
+    ],
+    link: "https://www.crossover.org.au/offering?section=promote",
+  },
+ 
+   {
     id: 7,
     type: "media",
     organisation: "BCSANT",
@@ -66,6 +140,83 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://bcsant.org.au/",
   },
+   {
+    id: 107,
+    organisation: "Sonder",
+    name: "EOY Celebration",
+    video: "https://youtu.be/Elgg6WyI5WM",
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/Sonder-3.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/Sonder-1.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/Sonder-2.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/Sonder-4.png",
+    ],
+    type: "media",
+    description: [
+      "We worked with Sonder to create this video for their end of year Christmas party in 2025.",
+    ],
+    link: "https://sonder.net.au/",
+  },
+   {
+    id: 108,
+    organisation: "BaptistCare",
+    name: "Wright Street Program",
+    video: "https://youtu.be/Hqe1naF86QM",
+    images: [
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/WrightStreet-4.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/WrightStreet-1.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/WrightStreet-2.png",
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/WrightStreet-3.png",
+    ],
+    type: "media",
+    description: [
+      "Transform Creative created this video as part of series to support fundraising for BaptistCare's Wright Street women's shelter program in South Australia.",
+    ],
+    link: "https://wrightplace.raiselysite.com/",
+  },
+  
+  {
+    id: 101,
+    organisation: "Crossover",
+    name: "Baptism Week 2025",
+    video: "https://youtu.be/V-3_UYeukKc?si=xX8LlopwfJczmWAy",
+    images: [
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/BaptismWeek25-3.png`,
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/BaptismWeek25-2.png`,
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/BaptismWeek25-1.png`,
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/BaptismWeek25-4.png",
+    ],
+    type: "media",
+    description: [
+      "Transform Creative worked with Crossover to create this short video to be played in churches across Australia for Baptism week 2025. The video playfully invites people to follow Jesus.",
+    ],
+    link: "https://www.crossover.org.au/?search=national&resource=69",
+  },
+  
+  
+  {
+    id: 104,
+    organisation: "Crossover",
+    name: "Life is now an offering",
+    video: "https://youtu.be/tlK0KfNtmJ0",
+    images: [
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/LifeOffering-4.png`,
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/LifeOffering-1.png`,
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/LifeOffering-2.png`,
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/LifeOffering-3.png",
+    ],
+    type: "media",
+    description: [
+      "A deliberately 'seeker sensitive' video which was played in churches around Australia to support Crossover's 2026 easter offering campaign. This video balances the serious implications of the easter message, with a gentle call to support the work Crossover is doing.",
+    ],
+    link: "https://www.crossover.org.au/offering?section=promote",
+  },
+  
+ 
+ 
+ 
+ 
+ 
   {
     id: 20,
     type: "software",
@@ -82,24 +233,24 @@ export const PROJECTS: Project[] = [
       "https://api.freeflex.com.au/storage/v1/object/public/transform/pong-3.png",
     ],
   },
-  {
-    id: 8,
-    type: "media",
-    organisation: "Churches of Christ SA",
-    name: "Churches of Christ - Who We Are",
+ {
+    id: 0,
+    organisation: "Crossover",
+    name: "The Great Tim Tam Experiment",
     video:
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/Churches-of-christ.mp4",
-    description: [
-      "Churches of Christ SA came to us and asked if we could help them put together a video which would help reignite a passion for their mission.",
-      "We worked with them to help script and produce this video, which was played to leaders and churches throughout the movement.",
-    ],
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/Tim-Tam%20Experiment%20draft4.mp4",
     images: [
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/coc-2-min.png",
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/coc-1-min.png",
-
-      "https://api.freeflex.com.au/storage/v1/object/public/transform/coc-3-min.png",
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/images/tim%20tam%203-min.png`,
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/images/tim%20tam%202-min.png`,
+      `https://api.freeflex.com.au/storage/v1/object/public/transform/images/tim%20tam%201-min.png`,
+      "https://api.freeflex.com.au/storage/v1/object/public/transform/images/tim-tam-4-min.png",
     ],
-    link: "https://churchesofchrist-sa.org.au/",
+    type: "media",
+    description: [
+      "Part of Crossover Australia's 2025 campaign, The Great Tim Tam Experiement is a light-hearted video which we created to help Crossover share about God's love in an innovative way.",
+      "We subtitled the video in 5 different languages.",
+    ],
+    link: "https://www.crossover.org.au",
   },
   {
     id: 9,

@@ -237,7 +237,7 @@ export function LandingPage({}: LandingPageProps) {
       {PROJECTS.filter((p) => p.endorsement).length > 0 && (
         <div className="col middle center p3 mt3 endorsementSection" style={{ opacity: 0 }}>
           <div className="row gap-10 shrink-wrap pt-20 mt-20 mb-20 " style={{ minHeight: 500}}>
-            <Carousel interval={4} showDots="start" autoplay mode="fade" loop>
+            <Carousel interval={8} showDots="start" autoplay mode="fade" loop>
               {PROJECTS.filter((p) => p.endorsement).map((p) => (
                 <EndorsementCard
                   key={p.id}

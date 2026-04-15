@@ -16,6 +16,7 @@ import { ScrollMoreButton } from "~/presentation/elements/ScrollMoreButton";
 import { SharedContextProps } from "~/data/CommonTypes";
 import { useOutletContext } from "react-router";
 import { ContactTab } from "~/presentation/landing/ContactTab";
+import { AnimatedPageIcon } from "~/presentation/elements/AnimatedPageIcon";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -212,6 +213,7 @@ export default function DevelopmentRoute() {
       <div className="w-100 center col middle gap-20">
         <AnimatedDots autoPlayDelay={0} />
         <div className="col middle center" style={{ height: "70vh" }}>
+          <AnimatedPageIcon size={100} />
           <HeaderText
             text={["Software development"]}
             typingSpeed={50}
@@ -223,6 +225,7 @@ export default function DevelopmentRoute() {
             as="h2"
             className="center"
           />
+          <p>We build custom websites for non-profit organisations with a focus on maximising every donation.</p>
           <ScrollMoreButton
             id="dev-more-btn"
             targetRef={headerTextRef}

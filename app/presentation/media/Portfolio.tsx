@@ -13,6 +13,7 @@ import HeaderText from "../landing/HeaderText";
 import { ContactTab } from "../landing/ContactTab";
 import { AnimatedDots } from "../elements/AnimatedDots";
 import { ScrollMoreButton } from "../elements/ScrollMoreButton";
+import { AnimatedPageIcon } from "../elements/AnimatedPageIcon";
 
 export interface PortfolioProps {}
 
@@ -26,6 +27,7 @@ export function Portfolio({}: PortfolioProps) {
 
   const [playing, setPlaying] = useState<number>();
   const [project, setProject] = useState<Project>();
+  const [projectPopupActive, setProjectPopupActive] = useState(false);
   const filter = searchParams.get("type");
   const reactPlayer = useRef(null);
   const filterSectionRef = useRef<HTMLDivElement>(null);
@@ -40,10 +42,12 @@ export function Portfolio({}: PortfolioProps) {
     <div className="w100 col middle" style={{ minHeight: "100vh" }}>
       <AnimatedDots autoPlayDelay={0} />
 
+
       <div
         className="col middle center shrinkCol"
         style={{ height: "80vh" }}
       >
+        <AnimatedPageIcon size={100} />
         <HeaderText
           text={["Portfolio"]}
           typingSpeed={50}
@@ -64,7 +68,6 @@ export function Portfolio({}: PortfolioProps) {
           label="View"
         />
       </div>
-
       <div className="row center w50 m3" ref={filterSectionRef}>
         <button
           className={`row middle ml2 mr3 ${
@@ -147,6 +150,7 @@ export function Portfolio({}: PortfolioProps) {
                   name={"information-circle"}
                   onClick={() => {
                     setProject(p);
+                    setProjectPopupActive(true);
                     setPlaying(undefined);
                   }}
                   style={{
@@ -220,8 +224,8 @@ export function Portfolio({}: PortfolioProps) {
 
       <ProjectInfoPopup
         project={project}
-        onClose={() => setProject(undefined)}
-        active={!!project}
+        onClose={() => setProjectPopupActive(false)}
+        active={projectPopupActive}
       />
     </div>
   );
