@@ -257,9 +257,7 @@ export default function DevelopmentRoute() {
             className=""
             style={{ textAlign: "center" }}
           >
-            We love working with <b>Aussie not for profits</b> to
-            create lightning fast, secure sites that{" "}
-            <b>build trust</b> by reflecting your true brand identity.
+           Not just a software vendor. We're here to help you track, analyse and understand your data and leverage it for maximum impact.
           </h2>
         </div>
 
