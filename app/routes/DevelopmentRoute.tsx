@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Icon } from "~/presentation/elements/Icon";
 import { Route } from "../+types/root";
 import "../app-v2.css";
@@ -17,6 +17,7 @@ import { SharedContextProps } from "~/data/CommonTypes";
 import { useOutletContext } from "react-router";
 import { ContactTab } from "~/presentation/landing/ContactTab";
 import { AnimatedPageIcon } from "~/presentation/elements/AnimatedPageIcon";
+import ReactPlayer from "react-player";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -76,6 +77,11 @@ export default function DevelopmentRoute() {
   const headerTextRef = useRef<HTMLHeadingElement>(null);
   const context: SharedContextProps = useOutletContext();
 
+  // React player vars
+  const reactPlayer = useRef(null);
+  const [playerPlay, setPlayerPlay] = useState(true);
+  const [playerMuted, setPlayerMuted] = useState(true);
+
   gsap.registerPlugin(SplitText, ScrollTrigger);
 
   useGSAP(() => {
@@ -86,8 +92,8 @@ export default function DevelopmentRoute() {
       gsap.from(titleSplit.words, {
         scrollTrigger: {
           scrub: 1,
-          start: "85vh",
-          end: context.inShrink ? "+400" : "+1000",
+          start: "70vh",
+          end: context.inShrink ? "+1000" : "+1000",
           toggleActions: "pause pause reverse pause",
         },
         opacity: 0,
@@ -226,7 +232,10 @@ export default function DevelopmentRoute() {
     >
       <div className="w-100 center col middle gap-20">
         <AnimatedDots autoPlayDelay={0} />
-        <div className="col middle center" style={{ height: "70vh" }}>
+        <div
+          className="col middle center"
+          style={{ height: "100vh" }}
+        >
           <AnimatedPageIcon size={100} />
           <HeaderText
             text={["Software development"]}
@@ -239,6 +248,39 @@ export default function DevelopmentRoute() {
             as="h2"
             className="center"
           />
+          <div className="row shrinkCol between">
+            <div
+              className="w-100  row middle center m-20 "
+              style={{
+                aspectRatio: "16 / 9",
+                width: context.inShrink ? "100vw" : "50vw",
+              }}
+            >
+              <div
+                className="m-20 w-100"
+                style={{ aspectRatio: "16 / 9" }}
+              >
+                <ReactPlayer
+                  src="https://api.freeflex.com.au/storage/v1/object/public/transform/Software-video.mp4"
+                  ref={reactPlayer}
+                  onClick={() => {
+                    setPlayerMuted(!playerMuted);
+                    !playerPlay && setPlayerPlay(true);
+                  }}
+                  className=""
+                  style={{
+                    minWidth: "100%",
+                    minHeight: "100%",
+                    objectFit: "cover",
+                    borderRadius: "var(--borderRadius)",
+                  }}
+                  muted={playerMuted}
+                  loop
+                  playing={playerPlay}
+                />
+              </div>
+            </div>
+          </div>
           <p className="center fade-md m-10">
             We build custom websites for non-profit organisations with
             a focus on increasing user trust and engagement.
@@ -250,6 +292,8 @@ export default function DevelopmentRoute() {
             offset={context.inShrink ? 150 : 100}
           />
         </div>
+        <div className="" style={{ height: 100 }} />
+
         <div className="w-50">
           <h2
             id="dev-header"
@@ -257,7 +301,9 @@ export default function DevelopmentRoute() {
             className=""
             style={{ textAlign: "center" }}
           >
-           Not just a software vendor. We're here to help you track, analyse and understand your data and leverage it for maximum impact.
+            Not just a software vendor. We're here to help you track,
+            analyse and understand your data and leverage it for
+            maximum impact.
           </h2>
         </div>
 

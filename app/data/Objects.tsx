@@ -70,6 +70,9 @@ export const PROJECTS: Project[] = [
     organisation: "Crossover",
     description: [
       "A modern, responsive and more secure website for Crossover Australia.",
+     " We loved building this upgraded site for Crossover Australia.",
+"A real challenge when approaching this site was how to make all of Crossover's resources as 'visible' as possible. On their previous site resources were hidden in all sorts of sub menus, which just made them really hard to find, so we gave them a netflixy design, and ensured resources appear in a snappy popup instead of navigating to a new page, making it so much easier to browse their resources.",
+"On top of this, we integrated Transform Creative's custom payment modal for quick, easy and maximum impact giving + a whole range of little features that just make the site feel nice to use!"
     ],
     link: "https://www.crossover.org.au/",
     images: [
@@ -80,6 +83,7 @@ export const PROJECTS: Project[] = [
       "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_5.png",
       "https://api.freeflex.com.au/storage/v1/object/public/transform/CROSSOVER_SITE_6.png",
     ],
+    video: "https://youtu.be/Mtk4BmTBYGQ",
     endorsement: {
       name: "Andrew",
       text: "We couldn't be happier with the website Transform Creative set up for us. Isaac quickly grasped all our complex requirements and created a solution perfect for our needs. It all came in on budget and weeks ahead of time. Highly recommend!",
