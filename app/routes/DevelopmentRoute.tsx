@@ -93,7 +93,7 @@ export default function DevelopmentRoute() {
         scrollTrigger: {
           scrub: 1,
           start: "70vh",
-          end: context.inShrink ? "+1000" : "+1000",
+          end: context.inShrink ? "+800" : "+1000",
           toggleActions: "pause pause reverse pause",
         },
         opacity: 0,
@@ -281,7 +281,7 @@ export default function DevelopmentRoute() {
               </div>
             </div>
           </div>
-          <p className="center fade-md m-10">
+          <p className="center fade-md m-10 p-20">
             We build custom websites for non-profit organisations with
             a focus on increasing user trust and engagement.
           </p>
@@ -292,7 +292,7 @@ export default function DevelopmentRoute() {
             offset={context.inShrink ? 150 : 100}
           />
         </div>
-        <div className="" style={{ height: 100 }} />
+       {context.inShrink || <div className="" style={{ height: 100 }} />}
 
         <div className="w-50">
           <h2
