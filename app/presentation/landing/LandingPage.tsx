@@ -5,8 +5,10 @@ import { DesignTab } from "./DesignTab";
 import { MediaTab } from "./MediaTab";
 import { SoftwareTab } from "./SoftwareTab";
 import { ContactTab } from "./ContactTab";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import ReactPlayer from "react-player";
 import { PROJECTS } from "~/data/Objects";
+import type { IoniconName } from "~/data/Ionicons";
 import { useGSAP } from "@gsap/react";
 import { SplitText, ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
@@ -16,8 +18,89 @@ import { Carousel } from "../elements/Carousel";
 import { ProjectCarousel } from "../elements/ProjectCarousel";
 import { AnimatedDots } from "../elements/AnimatedDots";
 import { EndorsementCard } from "../elements/EndorsementCard";
+import { GradualBlur } from "../elements/GradualBlur";
+import { SplashCursor } from "../elements/SplashCursor";
+import "../../app-v2.css";
 
 export interface LandingPageProps {}
+
+interface FeatureCardProps {
+  id: string;
+  icon: IoniconName;
+  title: string;
+  subtitle: string;
+  videoSrc: string;
+  onClick: () => void;
+}
+
+/******************************
+ * FeatureCard component
+ * Teaser card for a service (video, one-line pitch, CTA). The video only
+ * plays while the card is on screen.
+ */
+function FeatureCard({
+  id,
+  icon,
+  title,
+  subtitle,
+  videoSrc,
+  onClick,
+}: FeatureCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setPlaying(entry.isIntersecting),
+      { threshold: 0.1 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <article id={id} className="boxed col flex-card  outline-accent">
+      <div
+        ref={cardRef}
+        className="media-16-9"
+        style={{ borderRadius: 3 }}
+      >
+        <ReactPlayer
+          src={videoSrc}
+          muted
+          loop
+          playing={playing}
+          style={{
+            minWidth: "100%",
+            minHeight: "100%",
+            objectFit: "cover",
+          }}
+        />
+      </div>
+      <div className="pl-10 pr-10 pb-10">
+        <h3 className="accent row middle gap-10 mt-20">
+          <Icon name={icon} size={20} color="var(--accent)" />
+          {title}
+        </h3>
+        <p className="mt-10 mb-20">{subtitle}</p>
+        <button
+          className="accentButton row middle center gap-10 w-100"
+          onClick={onClick}
+        >
+          Find out more
+          <Icon
+            name="arrow-forward-circle"
+            size={20}
+            color="var(--bkg)"
+          />
+        </button>
+      </div>
+    </article>
+  );
+}
 
 /******************************
  * LandingPage component
@@ -64,11 +147,6 @@ export function LandingPage({}: LandingPageProps) {
       ".lateFade",
       { opacity: 1, duration: 3, ease: "power3" },
       0.5,
-    ).fromTo(
-      ".endorsementSection",
-      { opacity: 0, y: -20 },
-      { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
-      3,
     );
 
     if (!videoEl || !hero) return;
@@ -116,45 +194,25 @@ export function LandingPage({}: LandingPageProps) {
 
   return (
     <div>
-      <div
-        className="horizontal-line mediumFade"
-        style={{ top: -30 }}
+      {/* Pointer-trailing fluid sim. Click-through, and skipped entirely
+          below the 1200px breakpoint — it repaints every frame. */}
+      <SplashCursor
+        DENSITY_DISSIPATION={1}
+        VELOCITY_DISSIPATION={3}
+        CURL={1}
+        SPLAT_FORCE={2500}
+        RAINBOW_MODE={false}
+        COLOR="#2d3625"
       />
+
       <div
-        ref={heroRef}
-        className="col middle center ml-20 mr-20"
+        className="mt-20 p-20"
         style={{ position: "relative", top: -20, minHeight: "30vh" }}
       >
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            zIndex: 0,
-            filter: "blur(5px)",
-          }}
-        >
-          <video
-            ref={videoRef}
-            src="https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/GREEN_DAPPLED_WALL_SCRUB.mp4"
-            muted
-            playsInline
-            preload="auto"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              borderRadius: "var(--borderRadius)",
-            }}
-          />
-        </div>
-        <div className="w50 col middle center">
+        <div className="col middle center">
           <div
-            className="col  middle center"
+            className="col w-100 middle center"
             style={{
-              minHeight: "80vh",
               position: "relative",
               overflow: "hidden",
             }}
@@ -168,63 +226,23 @@ export function LandingPage({}: LandingPageProps) {
               pauseDuration={500}
               showCursor={true}
               cursorCharacter="|"
-              color="white"
-              textColors={["var(--bkg)"]}
+              color="green"
+              textColors={["var(--accent)"]}
               as="h1"
             />
-            <p
-              style={{ color: "var(--bkg)", fontSize: 22 }}
-              className="textCenter m-20 fade-md"
-            >
-              We partner with{" "}
-              <strong>
-                not-for-profit organisations across South Australia
-              </strong>{" "}
-              and Australia to create websites, videos and software
-              that build trust, attract donors, and tell your story.
-            </p>
-            <div className="row center w50 m3" style={{ zIndex: 10 }}>
-              <button
-                id="landing-software-button"
-                className="boxed  row middle ml3 mr3 lateFade"
-                style={{ opacity: 0, color: "var(--accent)" }}
-                onClick={() => navigate("/development")}
-              >
-                <Icon
-                  name="code-outline"
-                  className="mr1"
-                  color="var(--accent)"
-                />
-                Software
-              </button>
-              <button
-                id="landing-media-button"
-                className="boxed  row middle ml2 mr3 lateFade"
-                style={{ opacity: 0, color: "var(--accent)" }}
-                onClick={() => navigate("#media")}
-              >
-                <Icon
-                  name="film-outline"
-                  className="mr1"
-                  color="var(--accent)"
-                />
-                Video
-              </button>
-
-              {/* <button
-              id="landing-design-button"
-              className="row middle ml3 mr3 lateFade"
-              style={{ opacity: 0 }}
-              onClick={() => navigate("#design")}
-            >
-              <Icon name="color-filter-outline" className="mr1" />
-              Design
-            </button> */}
-            </div>
+          </div>
+        </div>
+        <div className="col middle center">
+          <div
+            className=" w100 mt-20 col middle center lateFade"
+            style={{ opacity: 0 }}
+          >
+            <ProjectCarousel projects={PROJECTS} />
           </div>
         </div>
       </div>
-      <div className="center mt-20 mb-20">
+
+      {/* <div className="center mt-20 mb-20">
         {" "}
         <h2
           className="textCenter m-20 w-50"
@@ -234,91 +252,124 @@ export function LandingPage({}: LandingPageProps) {
           <strong>achieve meaningful change</strong> by crafting
           compelling online resources.
         </h2>
+      </div> */}
+      <div className="middle col m-20">
+        <h4
+          style={{ color: "var(--txt)" }}
+          className="textCenter w-75"
+        >
+          We partner with{" "}
+          <b style={{ fontWeight: 600, color: "var(--accent)" }}>
+            non-profit organisations across South Australia
+          </b>{" "}
+          and Australia to help you build trust, raise donations and
+          further your cause.
+        </h4>
       </div>
-      <div className="col middle center">
+      <div className="row center m3 raised">
         <div
-          className="mt3 w100 col middle center lateFade"
+          className="row wrap gap-20 w-75 stretch lateFade"
           style={{ opacity: 0 }}
         >
-          <ProjectCarousel projects={PROJECTS} />
+          <FeatureCard
+            id="landing-software-button"
+            icon="code-outline"
+            title="Software"
+            subtitle="We help non-profits upgrade to custom solutions that reduce expensive third party fees."
+            videoSrc="https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Software-video.mp4"
+            onClick={() => navigate("/development")}
+          />
+          <FeatureCard
+            id="landing-media-button"
+            icon="film-outline"
+            title="Video"
+            subtitle="Partner with us to create authentic material that cuts through the dribble of AI content."
+            videoSrc="https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/2026%20reel-LQ.mp4"
+            onClick={() => navigate("/portfolio?type=media")}
+          />
         </div>
       </div>
-          <h2
-          style={{fontSize:30}}
-            className="textCenter mt-20 mb-20 pt-20 pb-20"
-          >
-            Trusted by nonprofits and community organisations <strong>
-              across
-              South Australia
-            </strong>.
-          </h2>
-                <WorkedWith />
-                 <div className="p-20">
-        <ContactTab
-          showHeader={false}
-          buttonText="Get in touch with us"
-        />
-      </div>
-
-      {/* What our clients love */}
-      {PROJECTS.filter((p) => p.endorsement).length > 0 && (
-        <div
-          className="accent boxed col middle center p3 mt3 endorsementSection"
-          style={{ opacity: 0 }}
-        >
-
-          <div
-            className="row gap-10 shrink-wrap pt-20 mt-20 mb-20 "
-            style={{ minHeight: 500 }}
-          >
-            <Carousel
-              interval={8}
-              showDots="start"
-              autoplay
-              mode="fade"
-              loop
+      <div className="col middle m-20 pt-20">
+        <div className="boxed outline-accent w-75">
+          <div className="center p-20">
+            <h4
+              style={{ color: "var(--txt)" }}
+              className="textCenter w-100 "
             >
-              {PROJECTS.filter((p) => p.endorsement).map((p) => (
-                <EndorsementCard
-                  key={p.id}
-                  text={p.endorsement!.text}
-                  name={p.endorsement!.name}
-                  width={context.inShrink ? "100vw" : "50vw"}
-                  organisation={p.organisation || p.name}
-                />
-              ))}
-            </Carousel>
+              We're the{" "}
+              <b style={{ fontWeight: 600, color: "var(--accent)" }}>
+                creative engine
+              </b>{" "}
+              empowering Australia’s{" "}
+              <b style={{ fontWeight: 600, color: "var(--accent)" }}>
+                most innovative non-profits.
+              </b>{" "}
+            </h4>
           </div>
+          <WorkedWith />
+          {/* What our clients love */}
+          {PROJECTS.filter((p) => p.endorsement).length > 0 && (
+            <div className=" col middle center m-10" style={{ opacity: 1 }}>
+              <div className="row gap-10 shrink-wrap">
+                <Carousel
+                  interval={8}
+                  showDots="end"
+                  autoplay
+                  mode="fade"
+                  loop
+                >
+                  {PROJECTS.filter((p) => p.endorsement).map((p) => (
+                    <EndorsementCard
+                      key={p.id}
+                      text={p.endorsement!.text}
+                      name={p.endorsement!.name}
+                      width={context.inShrink ? "100vw" : "50vw"}
+                      organisation={p.organisation || p.name}
+                    />
+                  ))}
+                </Carousel>
+              </div>
+            </div>
+          )}
+        
         </div>
-      )}
-      <div
-        className="horizontal-line mediumFade"
-        style={{ top: -30 }}
-      />
-
-     
-
-      <div
-        className="horizontal-line mediumFade"
-        style={{ top: -50 }}
-      />
-      <div className="col middle p3 mb3">
-        <MediaTab />
-        <SoftwareTab />
-        {/* <DesignTab /> */}
-        <div style={{ minHeight: 150, width: 100 }} />
-        <div
-          className="horizontal-line mediumFade"
-          style={{ top: -30 }}
-        />
-
-        <ContactTab buttonText="Get in touch" />
-        <div
-          className="horizontal-line mediumFade"
-          style={{ top: -30 }}
-        />
       </div>
 
+        <div className="p-20">
+            <ContactTab
+              showHeader={false}
+              buttonText="Get in touch with us"
+            />
+          </div>
+
+      {/* Edge blurs. Both sit under the header, footer and popups
+          (zIndex 10), so only page content is softened.
+          Each layer is its own backdrop-filter pass, so the counts are
+          kept low and both are dropped on mobile, where stacked
+          backdrop-filters on fixed elements cost the most. */}
+      <GradualBlur
+        target="page"
+        position="top"
+        height="8rem"
+        strength={1}
+        divCount={3}
+        curve="bezier"
+        animated
+        duration="1.5s"
+        disableOnShrink
+      />
+      <GradualBlur
+        target="page"
+        position="bottom"
+        height="7rem"
+        strength={1.5}
+        divCount={5}
+        curve="bezier"
+        exponential
+        animated
+        duration="1.5s"
+        disableOnShrink
+      />
     </div>
   );
 }

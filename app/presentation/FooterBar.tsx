@@ -3,6 +3,7 @@ import { useNavigate, useOutletContext } from "react-router";
 import { Logo } from "./elements/Logo";
 import { useEffect, useState } from "react";
 import { CONTACT } from "~/data/Objects";
+import "../app-v2.css";
 
 export interface FooterBarProps {}
 
@@ -17,12 +18,7 @@ export function FooterBar({}: FooterBarProps) {
   const [scroll, setScroll] = useState(0);
 
   return (
-    <div
-      className={`col middle between boxedAccent`}
-      style={{
-        zIndex: 100,
-      }}
-    >
+    <div className={`col middle between boxedAccent raised`}>
       <div className="col p-20 center middle">
         <div className="row middle center w100">
           <div className="pr-10">

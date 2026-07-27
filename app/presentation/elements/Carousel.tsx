@@ -191,20 +191,29 @@ export function Carousel({
    * based on the current x position
    */
   function getTargetIndex() {
-    const track = trackRef.current?.getBoundingClientRect();
+    const track = trackRef.current;
     const container = containerRef.current?.getBoundingClientRect();
     if (!track || !container) return 0;
-    const scrolled = container.x - track.x;
-    if (centerFocused) {
-      const itemWidth = track.width / domCount;
-      const centerOffset = container.width / 2 - itemWidth / 2;
-      return Math.round(
-        ((scrolled + centerOffset) / track.width) * domCount +
-          snapOffset / 100,
-      ) - cloneOffset;
+    // Snap point on screen — the container's centre or its left edge
+    const anchor = centerFocused
+      ? container.x + container.width / 2
+      : container.x;
+
+    let closest = 0;
+    let closestDistance = Infinity;
+    for (let i = 0; i < track.children.length; i++) {
+      const item = track.children[i].getBoundingClientRect();
+      const point = centerFocused ? item.x + item.width / 2 : item.x;
+      // snapOffset biases the snap towards the next item
+      const distance = Math.abs(
+        anchor - point + (snapOffset / 100) * item.width,
+      );
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closest = i;
+      }
     }
-    const xPercent = scrolled / track.width;
-    return Math.round(domCount * xPercent + snapOffset / 100) - cloneOffset;
+    return closest - cloneOffset;
   }
 
   /*********************************************
@@ -247,17 +256,28 @@ export function Carousel({
   /***************************************
    * Returns the xPercent fraction (0–1) for a given DOM index,
    * applying the centering offset and clamping when centerFocused is on.
+   * Item positions are measured rather than assumed even, so cards of
+   * differing widths (and the track gap) stay correctly aligned.
    */
   function centeredPercent(domIndex: number): number {
     const raw = domIndex / domCount;
-    if (!centerFocused) return raw;
-    const tw = trackRef.current?.getBoundingClientRect().width || 0;
+    const track = trackRef.current;
+    const item = track?.children[domIndex] as HTMLElement | undefined;
+    if (!track || !item) return raw;
+
+    const trackRect = track.getBoundingClientRect();
+    const itemRect = item.getBoundingClientRect();
+    if (!trackRect.width) return raw;
+
+    // Distance from the track's start to this item, unaffected by the
+    // transform currently applied to the track (both move together)
+    const itemStart = itemRect.x - trackRect.x;
+    if (!centerFocused) return itemStart / trackRect.width;
+
     const cw = containerRef.current?.getBoundingClientRect().width || 0;
-    if (!tw) return raw;
-    const itemW = tw / domCount;
-    const offset = (cw / 2 - itemW / 2) / tw;
-    const max = (tw - cw) / tw;
-    return Math.max(0, Math.min(raw - offset, max));
+    const offset = cw / 2 - itemRect.width / 2;
+    const max = (trackRect.width - cw) / trackRect.width;
+    return Math.max(0, Math.min((itemStart - offset) / trackRect.width, max));
   }
 
   /***************************************
@@ -421,6 +441,8 @@ export function Carousel({
                 borderRadius: "50%",
                 background:
                   selectedIndex === i ? "var(--accent-sm)" : "var(--thirdColor)",
+                    outline:
+                  selectedIndex === i ? "var(--accent)" : "var(--accent-md)",
                 border: "none",
                 padding: 0,
                 cursor: "pointer",
@@ -447,7 +469,8 @@ export function Carousel({
             }}
             className=""
             style={{
-              background: "var(--accent-sm)",
+              background: "#ffffff77",
+              backdropFilter: "blur(2px)",
               left: 10,
               zIndex: 10,
               position: "absolute",
@@ -501,7 +524,8 @@ export function Carousel({
             <button
               onClick={() => { stoppedRef.current = false; scrollToIndex(selectedIndex + 1); }}
               style={{
-                background: "var(--accent-sm)",
+                   background: "#ffffff77",
+              backdropFilter: "blur(2px)",
                 right: 10,
                 zIndex: 10,
                 position: "absolute",
@@ -532,7 +556,7 @@ export function Carousel({
                 borderRadius: "50%",
                 background:
                   selectedIndex === i ? "var(--accent)" : "var(--accent-md)",
-                border: "none",
+                    border: `1px solid ${selectedIndex === i ? "var(--accent-md)" : "var(--accent-lg)"}`,
                 padding: 0,
                 cursor: "pointer",
                 transition: "background 0.3s ease, transform 0.3s ease",

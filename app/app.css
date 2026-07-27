@@ -8,7 +8,7 @@
   color-scheme: light;
   --txt: #191919;
   --bkg: #e2e1d8;
-  --accent-sm: #d8d7ce;
+  --accent-sm: #bcc0b4;
   --accent-md: #bebeb6;
   --accent-lg: #575653;
   --accent: #436940;
@@ -17,7 +17,7 @@
   --primaryGradient: linear-gradient(
     to left,
     var(--accent),
-    var(--accent-md)
+    var(--accent-sm)
   );
   --warningColor: #c78438;
   --safeColor: #8dbe4d;
@@ -490,7 +490,7 @@ th {
 
 .gallery-image {
   transition: 0.3s;
-  height: 500px;
+  height: 700px;
   aspect-ratio: 16 / 9;
   filter: contrast(100);
 }
@@ -500,7 +500,7 @@ th {
 *************************************/
 .boxed {
   color: var(--txt);
-  background: var(--accent-md);
+  background: var(--accent-sm);
 
   border-radius: var(--borderRadius);
 

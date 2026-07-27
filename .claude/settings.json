@@ -86,7 +86,10 @@
       "WebFetch(domain:maileroo.com)",
       "PowerShell(npm run typecheck 2>&1)",
       "PowerShell(npm run check:functions)",
-      "PowerShell(supabase functions deploy email-handler --project-ref hzfjmmakqwsmucxorhlb --no-verify-jwt)"
+      "PowerShell(supabase functions deploy email-handler --project-ref hzfjmmakqwsmucxorhlb --no-verify-jwt)",
+      "Bash(grep -rn \"zIndex: [0-9]\\\\{3,\\\\}\" app/)",
+      "PowerShell(npx tsc --noEmit -p tsconfig.json)",
+      "PowerShell(npx vite build --logLevel warn)"
     ],
     "deny": [
       "Read(**/.env*)",

@@ -183,7 +183,7 @@ const HeaderText = ({
     <span style={{textAlign: "center"}}>
         <span
           className="text-type__content"
-          style={{ color: getCurrentTextColor() }}
+          style={{ color: getCurrentTextColor(), letterSpacing: -3, fontWeight: '400' }}
         >
           {displayedText}
         </span>

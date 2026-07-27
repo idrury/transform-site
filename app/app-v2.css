@@ -220,6 +220,13 @@ p.clickable:hover {
   height: 100%;
 }
 
+/* Cropped 16:9 media surface (video/image fills and overflows are clipped) */
+.media-16-9 {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
 .vh-100 {
   height: 100vh;
 }
@@ -617,6 +624,12 @@ h5.center {
   flex-wrap: wrap;
 }
 
+/* Equal-width flex child that takes a full row once the container wraps */
+.flex-card {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
 /* Push an element to the end of its flex container (e.g. pin to card bottom) */
 .mt-auto {
   margin-top: auto;
@@ -635,9 +648,32 @@ h5.center {
   position: relative;
 }
 
+/* Click-through decorative layer over the full viewport.
+   z-index sits above page content (20) and below the header (100). */
+.fixed-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+/* Fills its container as a block — canvas, video, img */
+.fill-block {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .sticky {
   position: sticky;
   top: 0;
+}
+
+/* Lifts in-flow content above page overlays (blurs, backdrops).
+   z-index is ignored on static elements, so position is required. */
+.raised {
+  position: relative;
+  z-index: 20;
 }
 
 .bold {
@@ -871,4 +907,28 @@ h5.center {
   transition:
     transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     width 0.3s ease;
+}
+
+/************************************
+********** Gradual blur *************
+*************************************/
+.gradual-blur {
+  isolation: isolate;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.gradual-blur-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* No backdrop-filter support — show nothing rather than a flat wash */
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .gradual-blur {
+    display: none;
+  }
 }

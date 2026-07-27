@@ -91,7 +91,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                   <div
                     style={{
                       position: "relative",
-                      height: context.inShrink ? 200 : 500,
+                      height: context.inShrink ? 200 : 700,
                       aspectRatio: "16 / 9",
                       overflow: "hidden",
                     }}

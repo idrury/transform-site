@@ -204,21 +204,7 @@ const CONTEXT =  {
 
   return (
     <div style={{}}>
-      <div
-        className="vertical-line slowFade"
-        style={{
-          left: `${inShrink ? "2%" : "10%"}`,
-          top: 0,
-        }}
-      />
-      <div
-        className="vertical-line mediumFade"
-        style={{
-          right: `${inShrink ? "2%" : "10%"}`,
-          top: 0,
-          width: 1,
-        }}
-      />
+    
       <HeaderBar inShrink={inShrink}  context={CONTEXT}/>
       <Outlet
         context={
