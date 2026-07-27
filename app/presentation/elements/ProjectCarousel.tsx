@@ -9,6 +9,8 @@ import { ProjectInfoPopup } from "../landing/ProjectInfoPopup";
 
 export interface ProjectCarouselProps {
   projects: Project[];
+  /** Width (px) of each project card — height follows the 16/9 ratio */
+  width?: number;
 }
 
 /******************************
@@ -17,13 +19,18 @@ export interface ProjectCarouselProps {
  * Projects with a video play it inline on hover; clicking any card opens
  * the info popup and deep-links it via the ?project=<id> query param.
  */
-export function ProjectCarousel({ projects }: ProjectCarouselProps) {
+export function ProjectCarousel({
+  projects,
+  width = 1244,
+}: ProjectCarouselProps) {
   const context: SharedContextProps = useOutletContext();
   const [searchParams, setSearchParams] = useSearchParams();
   const [hoveredImage, setHoveredImage] = useState<number>();
   const [playingId, setPlayingId] = useState<number>();
   const [selectedProject, setSelectedProject] = useState<Project>();
   const [viewProjectActive, setViewProjectActive] = useState(false);
+  // Cards never grow past the small-screen size once shrunk
+  const cardWidth = context.inShrink ? Math.min(width, 356) : width;
 
   /******************************
    * Deep link — open the popup if the URL carries ?project=<id>
@@ -91,7 +98,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                   <div
                     style={{
                       position: "relative",
-                      height: context.inShrink ? 200 : 700,
+                      width: cardWidth,
                       aspectRatio: "16 / 9",
                       overflow: "hidden",
                     }}
@@ -179,6 +186,8 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                   <img
                     className="gallery-image"
                     style={{
+                      width: cardWidth,
+                      height: "auto",
                       filter: hovered ? "contrast(0.8)" : "none",
                     }}
                     src={project.images[0]}

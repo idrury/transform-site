@@ -227,6 +227,43 @@ p.clickable:hover {
   overflow: hidden;
 }
 
+/* Media that fills its box on both axes, cropping the overflowing side */
+.media-cover,
+.media-cover video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.clip {
+  overflow: hidden;
+}
+
+/* Backdrop blur over media, strongest in the centre, feathered out to the edges */
+.media-blur-center::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  mask-image: radial-gradient(ellipse at center, #000 0%, #0000 70%);
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    #000 0%,
+    #0000 70%
+  );
+  pointer-events: none;
+}
+
+/* Dark scrim over media, strongest at the bottom, so overlaid text reads */
+.media-scrim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, #00000099, #000000dd,#000000a0);
+  pointer-events: none;
+}
+
 .vh-100 {
   height: 100vh;
 }
@@ -505,6 +542,12 @@ Padding
 }
 .feature-pill.active .pill-count {
   background: #00000014;
+}
+.pill-soft {
+  background: #ffffff2e;
+  border-radius: 999px;
+  padding: 2px 12px;
+  width: fit-content;
 }
 .feature-card {
   background: #ffffff14;

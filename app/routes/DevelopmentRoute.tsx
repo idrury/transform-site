@@ -11,8 +11,6 @@ import { AnimatedDots } from "~/presentation/elements/AnimatedDots";
 import { useGSAP } from "@gsap/react";
 import { SplitText, ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
-import HeaderText from "~/presentation/landing/HeaderText";
-import { ScrollMoreButton } from "~/presentation/elements/ScrollMoreButton";
 import { SharedContextProps } from "~/data/CommonTypes";
 import { useOutletContext, useSearchParams } from "react-router";
 import { ContactTab } from "~/presentation/landing/ContactTab";
@@ -135,7 +133,6 @@ export default function DevelopmentRoute() {
         "'Percentage based' giving platforms make it easy to get started, but that ~4% fee adds up as you scale.",
         "We charge a modest fee, not a percentage of yFdonations, so you keep more of the money you raise.",
       ],
-    
     },
 
     {
@@ -150,7 +147,6 @@ export default function DevelopmentRoute() {
         "Your out of the box giving solution is generic - it can't support all of your amazing ideas. (We can).",
         "If you're sick of your admin team telling you 'it's not possible with the current system', let's chat.",
       ],
-   
     },
     {
       className: "center col middle",
@@ -164,7 +160,6 @@ export default function DevelopmentRoute() {
         "We know exactly how your users' data is stored and what's required to keep it safe.",
         "As your database grows you become a bigger target. Generic providers give you generic security. We take an active role in protecting you.",
       ],
-    
     },
     {
       className: "center col middle",
@@ -175,7 +170,6 @@ export default function DevelopmentRoute() {
         "Our local team is here to help you, (and your clients).",
         "No more waiting on hold... Send us a 'slack message' and have your problems fixed in minutes.",
       ],
-     
     },
     {
       className: "center col middle",
@@ -186,29 +180,25 @@ export default function DevelopmentRoute() {
         "You current platform doesn't provide granular control over loading speed and dynamic user experience. (We do).",
         "In the modern era, a site that loads slowly can be the difference between a user making a donation or giving up. We're here to make sure your users get where you want them to.",
       ],
-     
     },
   ];
 
   return (
     <div
       style={{ minHeight: "85vh" }}
-      className="col middle center gap-20 m-20 "
+      className="col middle center gap-20"
     >
-      <div className="w-100 center col middle gap-20">
-        <AnimatedDots autoPlayDelay={0} />
-        <div className="col middle center">
+      <div className="center col middle w-100">
+        <div className="col middle center" style={{minHeight: "90vh"}}>
           <div
-            style={{ minHeight: "50vh" }}
-            className="row middle between w-75 gap-20 shrink-col"
+            className="r-default absolute clip media-scrim media-blur-center"
+            style={{
+              top: 95,
+              left: 5,
+              right: 5,
+              height: "calc(100vh - 100px)",
+            }}
           >
-            <div
-              className="w-100"
-              style={{
-                aspectRatio: "16 / 9",
-                borderRadius: "var(--borderRadius)",
-              }}
-            >
               <ReactPlayer
                 src="https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Software-video.mp4"
                 ref={reactPlayer}
@@ -216,22 +206,31 @@ export default function DevelopmentRoute() {
                   setPlayerMuted(!playerMuted);
                   !playerPlay && setPlayerPlay(true);
                 }}
-                style={{
-                  minWidth: "100%",
-                  minHeight: "100%",
-                  borderRadius: "var(--borderRadius)",
-                }}
+                className="media-cover r-default"
+                width="100%"
+                height="100%"
                 muted={playerMuted}
                 loop
                 playing={playerPlay}
               />
-            </div>
-            <div className="col gap-20 start shrink-col">
-              <h2 className="shrink-col">
-                We develop custom sites that{" "}
-                <strong>reduce fundraising overheads</strong> and turn
-                donors into believers.
-              </h2>
+          </div>
+          <div className="row middle between w-100 gap-20 shrink-col">
+            <div
+              className="col gap-20 middle shrink-col mb-20 pb-20"
+              style={{ zIndex: 10 }}
+            >
+              <AnimatedDots autoPlayDelay={3000} />
+
+              <div className="pl-20 pr-20 col middle">
+                <h2
+                  className="shrink-col textCenter w-75"
+                  style={{ color: "var(--accent-sm)" }}
+                >
+                  We develop custom sites that{" "}
+                  <strong>reduce fundraising overheads</strong> and turn
+                  donors into believers.
+                </h2>
+              </div>
               <div className="row gap-10 shrink-col">
                 <button
                   className="accent"
@@ -241,7 +240,12 @@ export default function DevelopmentRoute() {
                 >
                   What could my org save?
                 </button>
-                <button className="outline">Contact us</button>
+                <button
+                  className="outline-secondary"
+                  style={{ color: "var(--accent-sm)" }}
+                >
+                  Contact us
+                </button>
               </div>
             </div>
           </div>
@@ -251,29 +255,29 @@ export default function DevelopmentRoute() {
           ref={examplesRef}
           style={{ overflow: "clip" }}
         >
+          <h2 className="" style={{margin: '50px 0 30px 0', color: "var(--txt)"}}>Websites we've developed</h2>
           <SoftwareProjects />
         </div>
 
         <div
-          className="w-75 mb-20 pb-20 col gap-20 middle center"
+          className="w-75 mb-20 pb-20 mt-20 pt-20 col gap-20 middle center"
           ref={savingsRef}
-          style={{ minHeight: "90vh" }}
         >
           {" "}
           <h2
             className="textCenter accent mb-10 w-75"
             style={{ color: "var(--txt)" }}
           >
-            Our sites redirect third party donation fees{" "}
-            <strong>back to you</strong>, allowing you to keep more of
+            Our sites redirect third party{" "}
+            <strong style={{color: "var(--accent)"}}>donation fees back to you</strong>, allowing you to keep more of
             every dollar raised.
           </h2>
           <SavingCalculator />
         </div>
       </div>
       <div
-        className="horizontal-line mediumFade"
-        style={{ top: -30 }}
+        className="horizontal-line mediumFade "
+        style={{ top: -30, marginTop: 50, marginBottom: 30 }}
       />
       <div
         className="w-75 center accent boxed"

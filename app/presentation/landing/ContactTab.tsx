@@ -51,7 +51,7 @@ export function ContactTab({
 
   return (
     <section id="contact" className="w-100 col middle center">
-      <div className="p3 col middle w100" >
+      <div className="col middle w100" >
         {showHeader && (
           <div >
             <div className="col middle center mb2" >

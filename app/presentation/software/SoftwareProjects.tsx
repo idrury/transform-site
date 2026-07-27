@@ -5,13 +5,18 @@ import gsap from "gsap";
 import { ProjectCarousel } from "~/presentation/elements/ProjectCarousel";
 
 export default function SoftwareProjects() {
-  const softwareProjects = PROJECTS.filter((p) => p.type === "software");
+  const softwareProjects = PROJECTS.filter(
+    (p) => p.type === "software",
+  );
 
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
   useGSAP(() => {
     document.fonts.ready.then(() => {
-      const titleSplit = SplitText.create("#software-projects-title", { type: "words" });
+      const titleSplit = SplitText.create(
+        "#software-projects-title",
+        { type: "words" },
+      );
       gsap.from(titleSplit.words, {
         scrollTrigger: {
           scrub: 1,
@@ -28,9 +33,8 @@ export default function SoftwareProjects() {
   }, []);
 
   return (
-    <div className="col middle center gap-20 w-100 m-20">
-
-      <ProjectCarousel projects={softwareProjects} />
+    <div className="col middle center gap-20 w-100">
+      <ProjectCarousel projects={softwareProjects} width={700}/>
     </div>
   );
 }

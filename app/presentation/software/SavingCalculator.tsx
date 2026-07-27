@@ -322,7 +322,7 @@ export function SavingCalculator({}: SavingCalculatorProps) {
             </div>
           </div>
           <div className="col end center w-50 shrink-col">
-            <h2>+ {fmt(extraToCause)}</h2>
+            <h2>+{fmt(extraToCause/1000)}k</h2>
             <p style={{ opacity: 0.7 }}>To your cause annually*</p>
           </div>
         </div>
@@ -346,6 +346,11 @@ export function SavingCalculator({}: SavingCalculatorProps) {
                 name={transform.name}
                 emphasis={transform.emphasis}
                 amount={transform.causeGets}
+                pill={
+                  extraToCause > 0
+                    ? `+ ${fmt(extraToCause)}`
+                    : undefined
+                }
               />
               <CoverageRow
                 label="Stripe fees"
@@ -389,19 +394,21 @@ export function SavingCalculator({}: SavingCalculatorProps) {
         <div className="w-100">
           <div
             data-card
-            className="col middle boxed p-20"
+            className="col middle boxed h-100 pl-20 pr-20"
             style={{
               alignSelf: "stretch",
               background: "var(--bkg)",
               border: "1px solid var(--accent-md)",
             }}
           >
-            <CardHeading
-              name={thirdParty.name}
-              emphasis={thirdParty.emphasis}
-              amount={thirdParty.causeGets}
-              dark
-            />
+            <div className="mt-20">
+              <CardHeading
+                name={thirdParty.name}
+                emphasis={thirdParty.emphasis}
+                amount={thirdParty.causeGets}
+                dark
+              />
+            </div>
             <CoverageRow
               label="Stripe fees"
               amount={-stripeFees}
@@ -486,6 +493,8 @@ interface CardHeadingProps {
   name: string;
   emphasis: string;
   amount: number;
+  /** Optional highlight shown in a pill under the headline figure. */
+  pill?: string;
   dark?: boolean;
 }
 
@@ -493,6 +502,7 @@ function CardHeading({
   name,
   emphasis,
   amount,
+  pill,
   dark,
 }: CardHeadingProps) {
   const color = dark ? "var(--txt)" : "var(--bkg)";
@@ -505,6 +515,11 @@ function CardHeading({
         {after}
       </p>
       <h2 style={{ color, margin: 0 }}>{fmt(amount)}</h2>
+      {pill && (
+        <p className="pill-soft" style={{ color, fontWeight: 600 }}>
+          {pill}
+        </p>
+      )}
     </div>
   );
 }
@@ -544,7 +559,7 @@ function CoverageRow({
         <strong>
           {sign} {fmt(Math.abs(amount))}
         </strong>{" "}
-        {label} →
+        {label}
       </div>
       <div className="col" style={{ color, textAlign: "end" }}>
         {split.map((s) => (
