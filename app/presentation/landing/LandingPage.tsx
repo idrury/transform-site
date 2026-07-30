@@ -262,7 +262,7 @@ export function LandingPage({}: LandingPageProps) {
           <b style={{ fontWeight: 600, color: "var(--accent)" }}>
             non-profit organisations across South Australia
           </b>{" "}
-          and Australia to help you build trust, raise donations and
+          to help you build trust, raise donations and
           further your cause.
         </h4>
       </div>

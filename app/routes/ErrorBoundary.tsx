@@ -1,9 +1,15 @@
 import { isRouteErrorResponse, useNavigate } from "react-router";
 import { Route } from "../+types/root";
 import { Icon } from "~/presentation/elements/Icon";
+import { buildMeta } from "~/business/seoBL";
 
-export function meta({}: Route.MetaArgs) {
-  return [{ title: "" }, { name: "description", content: "" }];
+export function meta() {
+  return buildMeta({
+    title: "Page not found | Transform Creative",
+    description: "The page you were looking for could not be found.",
+    path: "/",
+    noIndex: true,
+  });
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

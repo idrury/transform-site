@@ -61,21 +61,21 @@ export function ContactTab({
                 className="mb2"
                 color="var(--accent)"
               />
-              <h2 className="textCenter mb2">{headerText}</h2>
+              <h2 className="textCenter">{headerText}</h2>
             </div>
           </div>
         )}
         <div className="w-50 col middle">
-          <button className="m2 row middle accent" style={{ gap: 8 }}>
+          <button className="row middle " style={{ gap: 8 }}>
             <a
-              style={{ textDecoration: "none", flex: 1, ...style }}
+              style={{ textDecoration: "none", flex: 1, padding: 10, ...style }}
               role="button"
-              className="p-10 w-100  row center middle"
+              className="accent gap-5 row center middle"
               target="_blank"
               rel="noreferrer"
               href={`mailto:${CONTACT.email}`}
             >
-              <Icon name="mail-open" className="mr2"  color={style?.color || undefined}/>
+              <Icon name="mail-open" className="" size={20}  color={style?.color || undefined}/>
               {buttonText}
             </a>
           </button>

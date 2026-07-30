@@ -88,7 +88,7 @@ body {
 p {
   font-family: "Onest", sans-serif;
   margin: 0px;
-  font-size: 14pt;
+  font-size: 20px;
   line-height: 1.5;
   font-weight: 250 !important;
   color: var(--txt);
@@ -99,7 +99,7 @@ h1 {
   font-weight: 200;
   margin: 0;
   text-align: start;
-  font-size: 60pt;
+  font-size: 53pt;
   line-height: 1.2;
   color: var(--accent);
 }
@@ -118,7 +118,7 @@ h3 {
   font-family: "Onest",sans-serif;
   text-align: start;
   line-height: 1.5;
-  font-size: 14pt;
+  font-size: 20px;
   margin: 0;
   color: var(--txt);
 }
@@ -155,14 +155,14 @@ h5 {
 }
 
 ul {
-    font-size: 14pt;
+    font-size: 20px;
 
   padding: 20px;
   margin: 0;
 }
 
 li {
-  font-size: 14pt;
+  font-size: 20px;
   font-family: "Onest", sans-serif;
   text-align: start;
   margin-bottom: 10pt;
@@ -172,7 +172,7 @@ label {
   font-family: "Onest", sans-serif;
   text-align: start !important;
   justify-content: start;
-  font-size: 1rem;
+  font-size: 20px;
 }
 
 img {
@@ -181,14 +181,14 @@ img {
 }
 
 a {
-  font-size: 14pt;
+  font-size: 20px;
 }
 
 /********* Basic elements ***********/
 input {
   font-family: "Onest", sans-serif;
   color: var(--txt);
-  font-size:  1rem;
+  font-size:  20px;
   background: var(--bkg);
   height: 50px;
   height: 3em;
@@ -222,7 +222,7 @@ input:disabled {
 textarea {
   font-family: "Onest", sans-serif;
   color: var(--txt);
-  font-size:  1rem;
+  font-size:  20px;
   background: var(--bkg);
   height: 3em;
 
@@ -272,7 +272,7 @@ button {
   font-weight: light;
   color: var(--txt);
   font-weight: 500;
-  font-size: 14pt;
+  font-size: 20px;
   text-wrap: "wrap";
   border-radius: var(--borderRadius);
   line-height: 1.2em;
@@ -1091,13 +1091,13 @@ Padding
 
 @media (max-width: 1200px) {
   p {
-    font-size: 14pt;
+    font-size: 20px;
   }
   h2 {
     font-size: 40pt;
   }
   h3 {
-    font-size: 14pt;
+    font-size: 20px;
   }
   h4 {
     font-size: 25pt;

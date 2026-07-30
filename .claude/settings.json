@@ -89,7 +89,8 @@
       "PowerShell(supabase functions deploy email-handler --project-ref hzfjmmakqwsmucxorhlb --no-verify-jwt)",
       "Bash(grep -rn \"zIndex: [0-9]\\\\{3,\\\\}\" app/)",
       "PowerShell(npx tsc --noEmit -p tsconfig.json)",
-      "PowerShell(npx vite build --logLevel warn)"
+      "PowerShell(npx vite build --logLevel warn)",
+      "PowerShell(npm audit --json 2>$null)"
     ],
     "deny": [
       "Read(**/.env*)",

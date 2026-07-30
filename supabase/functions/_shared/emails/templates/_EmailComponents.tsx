@@ -189,7 +189,7 @@ export function IssueDetailsCard({
           style={{
             margin: "0 0 12px 0",
             color: colors.txt,
-            fontSize: "18px",
+            fontSize: "20px",
             fontWeight: 700,
           }}
         >

@@ -2,14 +2,16 @@ import { useEffect } from "react";
 import { useOutletContext } from "react-router";
 import type { Session } from "@supabase/supabase-js";
 import type { SharedContextProps } from "~/data/CommonTypes";
-import { Route } from "../+types/root";
+import { buildMeta } from "~/business/seoBL";
 import "../app-v2.css";
 
-export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Client Portal | Transform Creative" },
-    { name: "robots", content: "noindex, nofollow" },
-  ];
+export function meta() {
+  return buildMeta({
+    title: "Client Portal | Transform Creative",
+    description: "Your Transform Creative client portal.",
+    path: "/client",
+    noIndex: true,
+  });
 }
 
 /******************************

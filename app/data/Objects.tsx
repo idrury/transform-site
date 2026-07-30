@@ -1,3 +1,4 @@
+import { Feature } from "~/presentation/software/FeatureSelector";
 import { Project } from "./CommonTypes";
 
 export const tabColors = {
@@ -11,7 +12,8 @@ export const PROJECTS: Project[] = [
     id: 102,
     organisation: "BaptistCare",
     name: "Breaking Free Program",
-    video: "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Breaking_Free.mp4",
+    video:
+      "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Breaking_Free.mp4",
     images: [
       `https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/BreakingFree-1.png`,
       `https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/BreakingFree-2.png`,
@@ -28,7 +30,8 @@ export const PROJECTS: Project[] = [
     id: 105,
     organisation: "Crossover",
     name: "The Middle Sister Project",
-    video: "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/MSP%20Trailer%20Update.mp4",
+    video:
+      "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/MSP%20Trailer%20Update.mp4",
     images: [
       "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/MSP%20Basic%20horizontal.png",
       `https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/MSP-1.png`,
@@ -44,7 +47,7 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://www.crossover.org.au/?resource=49",
   },
-   {
+  {
     id: 8,
     type: "media",
     organisation: "Churches of Christ SA",
@@ -63,16 +66,18 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://churchesofchrist-sa.org.au/",
   },
-    {
+  {
     id: 19,
     type: "software",
     name: "Crossover website",
     organisation: "Crossover",
     description: [
       "A modern, responsive and more secure website for Crossover Australia.",
-     " We loved building this upgraded site for Crossover Australia.",
-"A real challenge when approaching this site was how to make all of Crossover's resources as 'visible' as possible. On their previous site resources were hidden in all sorts of sub menus, which just made them really hard to find, so we gave them a netflixy design, and ensured resources appear in a snappy popup instead of navigating to a new page, making it so much easier to browse their resources.",
-"On top of this, we integrated Transform Creative's custom payment modal for quick, easy and maximum impact giving + a whole range of little features that just make the site feel nice to use!"
+      " We loved building this upgraded site for Crossover Australia.",
+      "A real challenge when approaching this site was how to make all of Crossover's resources as 'visible' as possible. On their previous site resources were hidden in all sorts of sub menus, which just made them really hard to find, so we gave them a netflixy design, and ensured resources appear in a snappy popup instead of navigating to a new page, making it so much easier to browse their resources.",
+      "On top of this, we integrated Transform Creative's custom payment modal for quick, easy and maximum impact giving + a whole range of little features that just make the site feel nice to use!",
+      // {{TODO: Isaac to confirm — Crossover outcome metric ($ raised, traffic,
+      // uptime). Do NOT populate until supplied.}}
     ],
     link: "https://www.crossover.org.au/",
     images: [
@@ -83,17 +88,20 @@ export const PROJECTS: Project[] = [
       "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/CROSSOVER_SITE_5.png",
       "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/CROSSOVER_SITE_6.png",
     ],
-    video: "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/crossover_compress.mp4",
+    video:
+      "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/crossover_compress.mp4",
+    // {{TODO: Isaac to confirm testimonial + client-name permission}}
     endorsement: {
       name: "Andrew",
       text: "We couldn't be happier with the website Transform Creative set up for us. Isaac quickly grasped all our complex requirements and created a solution perfect for our needs. It all came in on budget and weeks ahead of time. Highly recommend!",
     },
   },
-   {
+  {
     id: 106,
     organisation: "Red Frogs",
     name: "Cricket volunteer experience",
-    video: "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Red_frogs_volunteers-V1.mp4",
+    video:
+      "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Red_frogs_volunteers-V1.mp4",
     images: [
       "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/RedFrogs-4.png",
       "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/RedFrogs-1.png",
@@ -111,7 +119,8 @@ export const PROJECTS: Project[] = [
     id: 103,
     organisation: "Crossover",
     name: "Help Where It's Needed Most",
-    video: "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Help%20where%20it's%20needed%20most%20-%20SUBS_1.mp4",
+    video:
+      "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Help%20where%20it's%20needed%20most%20-%20SUBS_1.mp4",
     images: [
       `https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/HelpNeededMost-4.png`,
       `https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/HelpNeededMost-1.png`,
@@ -125,8 +134,8 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://www.crossover.org.au/offering?section=promote",
   },
- 
-   {
+
+  {
     id: 7,
     type: "media",
     organisation: "BCSANT",
@@ -144,11 +153,12 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://bcsant.org.au/",
   },
-   {
+  {
     id: 107,
     organisation: "Sonder",
     name: "EOY Celebration",
-    video: "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Sonder_EOY.mp4",
+    video:
+      "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Sonder_EOY.mp4",
     images: [
       "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Sonder-3.png",
       "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Sonder-1.png",
@@ -161,11 +171,12 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://sonder.net.au/",
   },
-   {
+  {
     id: 108,
     organisation: "BaptistCare",
     name: "Wright Street Program",
-    video: "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Wright%20Street%20-%20subs.mp4",
+    video:
+      "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Wright%20Street%20-%20subs.mp4",
     images: [
       "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/WrightStreet-4.png",
       "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/WrightStreet-1.png",
@@ -178,12 +189,13 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://wrightplace.raiselysite.com/",
   },
-  
+
   {
     id: 101,
     organisation: "Crossover",
     name: "Baptism Week 2025",
-    video: "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Baptism%20Week%202025_3.mp4",
+    video:
+      "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Baptism%20Week%202025_3.mp4",
     images: [
       `https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/BaptismWeek25-3.png`,
       `https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/BaptismWeek25-2.png`,
@@ -196,13 +208,13 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://www.crossover.org.au/?search=national&resource=69",
   },
-  
-  
+
   {
     id: 104,
     organisation: "Crossover",
     name: "Life is now an offering",
-    video: "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Life%20is%20an%20offering%20-%20SUBS.mp4",
+    video:
+      "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Life%20is%20an%20offering%20-%20SUBS.mp4",
     images: [
       `https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/LifeOffering-4.png`,
       `https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/LifeOffering-1.png`,
@@ -215,12 +227,7 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://www.crossover.org.au/offering?section=promote",
   },
-  
- 
- 
- 
- 
- 
+
   {
     id: 20,
     type: "software",
@@ -229,6 +236,11 @@ export const PROJECTS: Project[] = [
     description: [
       "We created this leaderboard and rally tracking application to help increase engagement in the ping-pong-a-thon.",
       "The application allows users to log their rallies, and show users when a high score has been achieved!",
+      "Custom-built on Stripe + Supabase.",
+      // {{TODO: Isaac to confirm — Ping Pong-a-thon $ raised, participants,
+      // uptime. Do NOT populate until supplied. The "$3000" figure on the
+      // King's ping-pong-a-thon *media* project is not a verified platform
+      // metric and must not be reused as one.}}
     ],
     images: [
       "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/pong-4.png",
@@ -237,7 +249,7 @@ export const PROJECTS: Project[] = [
       "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/pong-3.png",
     ],
   },
- {
+  {
     id: 0,
     organisation: "Crossover",
     name: "The Great Tim Tam Experiment",
@@ -273,13 +285,13 @@ export const PROJECTS: Project[] = [
       "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/crossover-info-3.png",
     ],
     link: "https://www.crossover.org.au/",
+    // {{TODO: Isaac to confirm testimonial + client-name permission}}
     endorsement: {
       name: "Andrew",
       text: "Transform Creative is simply our go-to for all our videography needs. We work to tight timelines and a very tight budget - and sometimes get ourselves in a tight spot with a need for quality content of just a little brainstorming. Isaac gets all that and is usually at least one step ahead. The final product's never failed to be well above our expectations",
     },
   },
 
- 
   {
     id: 3,
     type: "software",
@@ -355,7 +367,7 @@ export const PROJECTS: Project[] = [
       "The course went on to sell out completely!",
     ],
   },
-   {
+  {
     id: 11,
     type: "software",
     organisation: "TWC Healthy Collective",
@@ -409,8 +421,8 @@ export const PROJECTS: Project[] = [
     ],
     link: "https://www.crossover.org.au/",
   },
- 
-   {
+
+  {
     id: 2,
     name: "RBC Alpha promo",
     type: "media",
@@ -514,6 +526,13 @@ const ARCHIVED = [
 
 export const CONTACT = {
   email: "hello@transformcreative.com.au",
+  /**
+   * {{TODO: Isaac to confirm this Google Calendar appointment link is the
+   * right destination for a "Book a free 15-min fee audit" CTA, or supply
+   * a different one}}
+   */
+  bookingUrl:
+    "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2neXINmRa2l8cPxCMY8-FrrTt30-Tpwfj7-zqktFODuuJO9Z_wsSfv2wcNkiFvipiOl58trJuc",
 };
 
 export const WORKED_WITH_LOGOS: {
@@ -565,5 +584,222 @@ export const WORKED_WITH_LOGOS: {
     name: "One Rehabilitation Service",
     image:
       "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/worked_with_onerehab.png",
+  },
+];
+
+export const FEATURES: Feature[] = [
+  // ─── PRICING & OWNERSHIP ───
+  {
+    className: "center col middle",
+    icon: { name: "card-outline", size: 50 },
+    category: "Pricing & ownership",
+    text: "No exorbitant 'platform fee'", // unchanged — your original
+    description: [
+      'Platforms like Raisely, Funraisin and GoFundraise usually prompt your donors to add ~4–5% "to cover costs" at checkout — money that goes to the platform, not you.',
+      "Own your platform and that stays with your cause.",
+    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "cash-outline", size: 50 },
+    category: "Pricing & ownership",
+    text: "Donor generosity that reaches your cause",
+    description: [
+      "Most platforms nudge your donors to chip in an extra 4–5% at checkout 'to cover costs'. The donor thinks they're helping you — really they're funding the platform.",
+      "On your own build, that top-up can come to you instead. On $1M a year it's around $18k staying with the cause, and the gap widens as you grow (there's a calculator on the site if you want to plug in your own figures).",
+    ],
+  },
+
+  // ─── BUILD & CUSTOMISE ───
+  {
+    className: "center col middle",
+    icon: { name: "sparkles-outline", size: 50 },
+    category: "Build & customise",
+    text: "Your dream features", // unchanged — your original
+    description: [
+      "Off-the-shelf giving tools are generic. We build what your campaign needs — peer-to-peer, event registration, custom donor journeys — on Stripe and Supabase.",
+      "If you're sick of your admin team telling you 'it's not possible with the current system', let's chat.",
+    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "people-circle-outline", size: 50 },
+    category: "Build & customise",
+    text: "Peer-to-peer & team fundraising",
+    description: [
+      "Team pages, individual fundraiser profiles, leaderboards, targets — the works. Your supporters do the asking, and their mates do the giving.",
+      "We've run this for a national event, so it holds up when a whole campaign piles on at once.",
+    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "ticket-outline", size: 50 },
+    category: "Build & customise",
+    text: "Events, tickets & donations in one flow",
+    description: [
+      "Sign-ups, ticket sales and donations all run through the same system, so you're not shuffling spreadsheets between three tools the night before an event.",
+    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "color-palette-outline", size: 50 },
+    category: "Build & customise",
+    text: "Your brand, front to back",
+    description: [
+      "No 'powered by' badge in the footer, no template that turns up on fifty other charity sites. It looks and reads like your org, top to bottom.",
+      "That matters more than it sounds — people give more freely when the page feels like the cause they care about.",
+    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "trophy-outline", size: 50 },
+    category: "Build & customise",
+    text: "Gamification that drives giving",
+    description: [
+      "Progress bars, milestones, streaks, a shout-out when someone smashes their target — the little nudges that keep fundraisers coming back to their page.",
+    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "swap-horizontal-outline", size: 50 },
+    category: "Build & customise",
+    text: "Matched giving & campaign mechanics",
+    description: [
+      "Matched-giving timers, employer matching, 'donate before Friday and it's doubled' — the levers that give a donor a reason to act now rather than later",
+      "(Cause we all know  later usually means never).",
+    ],
+  },
+
+  // ─── SECURITY & ACCESS ───
+  {
+    className: "center col middle",
+    icon: { name: "lock-closed-outline", size: 50 },
+    category: "Security & access",
+    text: "Security customised for you", // unchanged — your original
+    description: [
+      "Your donor data lives on infrastructure we build and understand — not a black box you can't see into.",
+      "As your database grows you become a bigger target. Generic providers give you generic security. We take an active role in protecting you.",
+    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "id-card-outline", size: 50 },
+    category: "Security & access",
+    text: "Role-based access for your whole team",
+    description: [
+      "Give each person exactly the access they need. A volunteer running one campaign doesn't need to see your entire donor database — and now they won't.",
+      "Set it once and stop worrying about who can get at what.",
+    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "download-outline", size: 50 },
+    category: "Security & access",
+    text: "Your data, exportable, always",
+    description: [
+      "Pull a full export of your donors and donations whenever you like — no support ticket, no 'that feature's on a higher plan'.",
+      "It's your data. Getting it out shouldn't be a negotiation.",
+    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "server-outline", size: 50 },
+    category: "Security & access",
+    text: "Australian-hosted, Australian-handled",
+    description: [
+      "Your donor data can sit on Australian servers, handled to local privacy standards, rather than bouncing around data centres overseas.",
+      "Handy the next time a board member — or a nervous donor — asks where it all actually lives.",
+    ],
+  },
+
+  // ─── SUPPORT & SUCCESS ───
+  {
+    className: "center col middle",
+    icon: { name: "people-outline", size: 50 },
+    category: "Support & success",
+    text: "Face to face support", // unchanged — your original
+    description: [
+      "Local, face-to-face support. We're in Adelaide, we pick up the phone, and we know your platform inside out.",
+      "No more waiting on hold. Send us a Slack message and have your problems fixed in minutes.",
+    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "construct-outline", size: 50 },
+    category: "Support & success",
+    text: "We run the tech, you run the campaign",
+    description: [
+     "Get the same background support you're used to - just faster. Hosting, updates, security patches, the odd 3am gremlin — all on us, so you can focus more on mission.", 
+    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "receipt-outline", size: 50 },
+    category: "Support & success",
+    text: "EOFY & tax receipting, sorted",
+    description: [
+      "Tax-deductible receipts go out automatically, and end-of-financial-year statements are ready to pull whenever you need them — all to DGR standards."    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "school-outline", size: 50 },
+    category: "Support & success",
+    text: "Onboarding & training for your team",
+    description: [
+      "We walk your staff and volunteers through it properly and leave decent documentation behind.",
+      "So when the person who set up the campaign moves on, nothing falls over.",
+    ],
+  },
+
+  // ─── PERFORMANCE & UX ───
+  {
+    className: "center col middle",
+    icon: { name: "flash-outline", size: 50 },
+    category: "Performance & UX",
+    text: "User focused optimisation", // unchanged — your original
+    description: [
+      "Speed and UX you control. On a custom build, every load time and every click is yours to optimise — generic platforms give you no say.",
+      "A site that loads slowly can be the difference between a user making a donation or giving up. We make sure your donors get where you want them to.",
+    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "bar-chart-outline", size: 50 },
+    category: "Performance & UX",
+    text: "Reporting you'll actually use",
+    description: [
+      "See what's been raised, who's driving it, and which appeals are landing — then export something the board will actually read.",
+      "Enough to spot what's working mid-campaign, while there's still time to do something about it.",
+    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "phone-portrait-outline", size: 50 },
+    category: "Performance & UX",
+    text: "Built mobile-first",
+    description: [
+      "Most people donate on their phone in a spare minute, so that's where we start — big buttons, short forms, no pinching and zooming to find the amount field.",
+      "A clunky mobile checkout is where a lot of good intentions quietly die.",
+    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "accessibility-outline", size: 50 },
+    category: "Performance & UX",
+    text: "Fast and accessible for everyone",
+    description: [
+      "Quick to load on old phones and patchy regional connections, and properly usable with a screen reader.",
+      "Your donors aren't all on new iPhones and the NBN — the ones who aren't still deserve to get through checkout.",
+    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "refresh-outline", size: 50 },
+    category: "Performance & UX",
+    text: "Recover the donations you're losing",
+    description: [
+      "Someone starts a donation, gets distracted, closes the tab — happens constantly. We can gently follow up, offer one-tap repeat giving, and win a good chunk of them back.",
+      "Usually the cheapest money you'll ever raise, because the person had already decided to give.",
+    ],
   },
 ];

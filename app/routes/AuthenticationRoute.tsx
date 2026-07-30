@@ -1,14 +1,15 @@
 import { Authentication } from "~/presentation/authentication/Authentication";
-import { Route } from "../+types/root";
+import { buildMeta } from "~/business/seoBL";
 
-export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Sign In | Transform Creative" },
-    { name: "description", content: "Sign in to your Transform Creative account." },
-    { name: "robots", content: "noindex, nofollow" },
-  ];
+export function meta() {
+  return buildMeta({
+    title: "Sign In | Transform Creative",
+    description: "Sign in to your Transform Creative account.",
+    path: "/auth",
+    noIndex: true,
+  });
 }
 
 export default function AuthenticationRoute() {
-  return (<Authentication/>);
+  return <Authentication />;
 }

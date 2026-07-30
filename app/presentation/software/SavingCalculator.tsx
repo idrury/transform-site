@@ -53,6 +53,15 @@ const SCALE_HIGH_CUT = 0.25; // our share of add-ons at the large-org anchor
 
 const DEFAULT_ANNUAL_TOTAL = 1_000_000;
 
+/**
+ * Starting state for the entrance animation, applied in the markup so the
+ * prerendered HTML is already hidden — GSAP reveals it on scroll-in.
+ */
+const CARD_HIDDEN = {
+  opacity: 0,
+  transform: "translateY(-10px)",
+} as const;
+
 const clamp = (n: number, min: number, max: number) =>
   Math.min(Math.max(n, min), max);
 
@@ -213,13 +222,14 @@ export function SavingCalculator({}: SavingCalculatorProps) {
     `(Assumes ${pct(checkRate)} of donors approve at a ${pct(adminWeighting)} rate)`;
 
   // --- Entrance animation (matches the FeeStructure house style) ------
+  // The cards ship hidden via CARD_HIDDEN rather than being hidden here, so
+  // the prerendered HTML doesn't paint them visible and then blink them out.
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
     const cards =
       container.querySelectorAll<HTMLElement>("[data-card]");
-    gsap.set(cards, { opacity: 0, y: -10 });
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -246,7 +256,7 @@ export function SavingCalculator({}: SavingCalculatorProps) {
       {/* --- Controls --- */}
       <div
         style={{ background: "var(--accent-sm)" }}
-        className="row shrink-col between gap-20 mb-20 boxed p-20"
+        className="row shrink-col between gap-20 mb-20 boxed p-20 outline-accent"
       >
         <div className="row w-100 between middle shrink-col gap-20">
           <div className="col gap-10 w-100">
@@ -339,7 +349,7 @@ export function SavingCalculator({}: SavingCalculatorProps) {
           <div
             data-card
             className="h-100 accent boxed"
-            style={{ alignSelf: "stretch" }}
+            style={{ ...CARD_HIDDEN, alignSelf: "stretch" }}
           >
             <div className="col middle p-20">
               <CardHeading
@@ -396,6 +406,7 @@ export function SavingCalculator({}: SavingCalculatorProps) {
             data-card
             className="col middle boxed h-100 pl-20 pr-20"
             style={{
+              ...CARD_HIDDEN,
               alignSelf: "stretch",
               background: "var(--bkg)",
               border: "1px solid var(--accent-md)",

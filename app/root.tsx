@@ -81,6 +81,8 @@ const organizationSchema = {
   name: "Transform Creative",
   url: "https://www.transformcreative.com.au",
   logo: "https://www.transformcreative.com.au/transform-icon-color-donut.png",
+  // {{TODO: Isaac to supply social URLs for sameAs — LinkedIn, Instagram, etc.}}
+  sameAs: [],
   description:
     "Adelaide creative agency specialising in websites, video production and software for Australian not-for-profits and charities.",
   areaServed: ["South Australia", "Australia"],
@@ -157,9 +159,9 @@ export default function App() {
   });
 
   const [session, setSession] = useState<Session | null>();
-  const [inShrink, setInShrink] = useState(
-    window.innerWidth < shrinkWidth
-  );
+  // Starts false so prerendered HTML and the client's first render agree (no
+  // hydration mismatch). The resize effect below corrects it on mount.
+  const [inShrink, setInShrink] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {

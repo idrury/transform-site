@@ -8,10 +8,10 @@ border-radius: 3px;
 }
 
 .scroller__inner {
-  padding-block: 1rem;
+  padding-block: 20px;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 20px;
 }
 
 .scroller {

@@ -152,8 +152,9 @@ export default function FeatureInfo({
                 <a
                   className="accent p-10"
                   role="button"
-                  href={`https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2neXINmRa2l8cPxCMY8-FrrTt30-Tpwfj7-zqktFODuuJO9Z_wsSfv2wcNkiFvipiOl58trJuc`}
-                target="_blank"
+                  href={CONTACT.bookingUrl}
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   Book a call
                 </a>

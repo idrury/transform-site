@@ -5,17 +5,15 @@ import type { SharedContextProps } from "~/data/CommonTypes";
 import type { Business } from "~/data/CustomTypes";
 import { getBusinessById, getUserMembership } from "~/database/Read";
 import { ClientPortal } from "~/presentation/client/ClientPortal";
-import { Route } from "../+types/root";
+import { buildMeta } from "~/business/seoBL";
 
-export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Client Portal | Transform Creative" },
-    {
-      name: "description",
-      content: "Your Transform Creative client portal.",
-    },
-    { name: "robots", content: "noindex, nofollow" },
-  ];
+export function meta() {
+  return buildMeta({
+    title: "Client Portal | Transform Creative",
+    description: "Your Transform Creative client portal.",
+    path: "/client",
+    noIndex: true,
+  });
 }
 
 // The viewer's resolved access: which business they belong to and as what role.

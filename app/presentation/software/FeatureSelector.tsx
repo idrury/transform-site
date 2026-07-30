@@ -1,4 +1,10 @@
-import { useState, useRef, useEffect, useMemo, ReactElement } from "react";
+import {
+  useState,
+  useRef,
+  useEffect,
+  useMemo,
+  ReactElement,
+} from "react";
 import { Icon } from "~/presentation/elements/Icon";
 import type { IoniconName } from "~/data/Ionicons";
 import gsap from "gsap";
@@ -21,9 +27,11 @@ interface Props {
 }
 
 export default function FeatureSelector({ features }: Props) {
-  const context:SharedContextProps = useOutletContext();
+  const context: SharedContextProps = useOutletContext();
   const [search, setSearch] = useState("");
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string | null>(
+    null,
+  );
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const pillsRef = useRef<HTMLDivElement>(null);
@@ -41,7 +49,8 @@ export default function FeatureSelector({ features }: Props) {
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     return features.filter((f) => {
-      if (activeCategory && f.category !== activeCategory) return false;
+      if (activeCategory && f.category !== activeCategory)
+        return false;
       if (!q) return true;
       return (
         f.text.toLowerCase().includes(q) ||
@@ -94,17 +103,29 @@ export default function FeatureSelector({ features }: Props) {
 
   return (
     <div className="col gap-20 w-100">
-      <h2 className="textCenter">Build a custom platform that works with you</h2>
+      <h2 className="textCenter">
+        Every feature you have now, plus the ones you don't
+      </h2>
+      <p className="textCenter">
+        You've{" "}
+        <b style={{ fontWeight: 600 }}>bent your fundraising</b> to
+        fit the platform for long enough. We{" "}
+        <b style={{ fontWeight: 600 }}>
+          bend the platform around you.
+        </b>
+        {" "}Your donor journey, your unique quirks, your 'what if' ideas.
+      </p>
       {/* Search bar */}
       <div className="row center w-100">
         <div
-          className="feature-search row middle gap-10"
-          style={{ maxWidth: 480, width: "100%" }}
+          className="feature-search row middle gap-10 w-100"
+          style={{ maxWidth: 600 }}
         >
           <Icon name="search-outline" size={18} color="var(--bkg)" />
           <input
             className="feature-search-input"
             type="text"
+            style={{ color: "var(--bkg)" }}
             value={search}
             placeholder="Search features…"
             onChange={(e) => {
@@ -135,18 +156,19 @@ export default function FeatureSelector({ features }: Props) {
             setOpenIndex(null);
           }}
         />
-        {!context.inShrink && categories.map((c) => (
-          <CategoryPill
-            key={c.label}
-            label={c.label}
-            count={c.count}
-            active={activeCategory === c.label}
-            onClick={() => {
-              setActiveCategory(c.label);
-              setOpenIndex(null);
-            }}
-          />
-        ))}
+        {!context.inShrink &&
+          categories.map((c) => (
+            <CategoryPill
+              key={c.label}
+              label={c.label}
+              count={c.count}
+              active={activeCategory === c.label}
+              onClick={() => {
+                setActiveCategory(c.label);
+                setOpenIndex(null);
+              }}
+            />
+          ))}
       </div>
 
       {/* Card grid */}
@@ -160,21 +182,34 @@ export default function FeatureSelector({ features }: Props) {
               className="feature-card col gap-10 p-20"
               onClick={() => setOpenIndex(index)}
               onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") setOpenIndex(index);
+                if (e.key === "Enter" || e.key === " ")
+                  setOpenIndex(index);
               }}
             >
-              <div className="feature-icon-tile center middle" >
+              <div className="feature-icon-tile center middle">
                 <Icon
                   name={feature.icon.name}
                   size={22}
                   color="var(--bkg)"
                 />
               </div>
-              <h3 style={{userSelect: "none"}} >{feature.text}</h3>
-              <p style={{userSelect: "none"}} className="feature-clamp m0">{feature.description[0]}</p>
-              <div style={{userSelect: "none"}} className="row middle gap-5 feature-more">
+              <h3 style={{ userSelect: "none" }}>{feature.text}</h3>
+              <p
+                style={{ userSelect: "none" }}
+                className="feature-clamp m0"
+              >
+                {feature.description[0]}
+              </p>
+              <div
+                style={{ userSelect: "none" }}
+                className="row middle gap-5 feature-more"
+              >
                 <h3>More</h3>
-                <Icon name="arrow-forward" size={14} color="var(--bkg)" />
+                <Icon
+                  name="arrow-forward"
+                  size={14}
+                  color="var(--bkg)"
+                />
               </div>
             </div>
           ))}
@@ -199,7 +234,9 @@ export default function FeatureSelector({ features }: Props) {
           )
         }
         hasPrev={openIndex !== null && openIndex > 0}
-        hasNext={openIndex !== null && openIndex < filtered.length - 1}
+        hasNext={
+          openIndex !== null && openIndex < filtered.length - 1
+        }
       />
     </div>
   );
@@ -212,7 +249,12 @@ interface CategoryPillProps {
   onClick: () => void;
 }
 
-function CategoryPill({ label, count, active, onClick }: CategoryPillProps) {
+function CategoryPill({
+  label,
+  count,
+  active,
+  onClick,
+}: CategoryPillProps) {
   return (
     <button
       className={`feature-pill row middle gap-5 ${active ? "active" : ""}`}

@@ -67,13 +67,13 @@ export const h1 = {
 export const h2 = {
   margin: "0 0 12px 0",
   color: colors.txt,
-  fontSize: "18px",
+  fontSize: "20px",
   fontFamily:
     '"Onest", Helvetica, Arial, sans-serif',
 };
 
 export const p = {
-  margin: "0 0 16px 0",
+  margin: "0 0 20px 0",
   color: colors.txt,
   fontSize: "15px",
 };

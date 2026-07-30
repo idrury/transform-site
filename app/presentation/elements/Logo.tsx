@@ -107,7 +107,10 @@ export function Logo({ size = 100 }: LogoProps) {
           />
         </div>
         <div>
-          <h1
+          {/* A div, not a heading — the wordmark sits in the header on every
+              page, so making it an h1 would compete with each page's real h1.
+              All its styling comes from #logo-title-text in app.css. */}
+          <div
             id="logo-title-text"
             style={{
               opacity: 0,
@@ -118,7 +121,7 @@ export function Logo({ size = 100 }: LogoProps) {
             }}
           >
             Transform
-          </h1>
+          </div>
           <h2
             id="logo-sub"
             style={{

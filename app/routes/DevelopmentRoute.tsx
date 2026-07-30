@@ -1,12 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { Icon } from "~/presentation/elements/Icon";
-import { Route } from "../+types/root";
 import "../app-v2.css";
 import FeatureSelector, {
   type Feature,
 } from "~/presentation/software/FeatureSelector";
 import SoftwareProjects from "~/presentation/software/SoftwareProjects";
-import { FeeStructure } from "~/presentation/software/FeeStructure";
 import { AnimatedDots } from "~/presentation/elements/AnimatedDots";
 import { useGSAP } from "@gsap/react";
 import { SplitText, ScrollTrigger } from "gsap/all";
@@ -14,67 +11,60 @@ import gsap from "gsap";
 import { SharedContextProps } from "~/data/CommonTypes";
 import { useOutletContext, useSearchParams } from "react-router";
 import { ContactTab } from "~/presentation/landing/ContactTab";
-import { AnimatedPageIcon } from "~/presentation/elements/AnimatedPageIcon";
 import ReactPlayer from "react-player";
 import { SavingCalculator } from "~/presentation/software/SavingCalculator";
+import { CONTACT, FEATURES } from "~/data/Objects";
+import { buildMeta, canonical, SITE_URL } from "~/business/seoBL";
+import { Icon } from "~/presentation/elements/Icon";
 
-export function meta({}: Route.MetaArgs) {
-  return [
-    {
-      title:
-        "Nonprofit Website Development Adelaide | Transform Creative",
-    },
-    {
-      name: "description",
-      content:
-        "Custom websites for Australian not-for-profits. Fast, accessible, on-brand sites that build donor trust — designed and built in Adelaide, SA.",
-    },
-    {
-      name: "keywords",
-      content:
-        "nonprofit website development Adelaide, not for profit website design South Australia, charity website Australia, NFP software development, giving platform nonprofit",
-    },
-    // Open Graph
-    {
-      property: "og:title",
-      content:
-        "Nonprofit Website Development Adelaide | Transform Creative",
-    },
-    {
-      property: "og:description",
-      content:
-        "Custom websites for Australian not-for-profits. Fast, accessible, on-brand sites that build donor trust — designed and built in Adelaide, SA.",
-    },
-    { property: "og:image", content: "/og-image.jpg" },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "630" },
-    { property: "og:type", content: "website" },
-    {
-      property: "og:url",
-      content: "https://www.transformcreative.com.au/development",
-    },
-    // Twitter Card
-    { name: "twitter:card", content: "summary_large_image" },
-    {
-      name: "twitter:title",
-      content:
-        "Nonprofit Website Development Adelaide | Transform Creative",
-    },
-    {
-      name: "twitter:description",
-      content:
-        "Custom websites for Australian not-for-profits. Fast, accessible, on-brand sites that build donor trust.",
-    },
-    { name: "twitter:image", content: "/og-image.jpg" },
-  ];
+const TITLE =
+  "Nonprofit Website Development Adelaide | Transform Creative";
+const DESCRIPTION =
+  "Custom fundraising platforms for Australian charities — a Raisely & Funraisin alternative. Keep what your donors give instead of it going to a platform. Adelaide-based, nonprofit only.";
+
+export function meta() {
+  return buildMeta({
+    title: TITLE,
+    description: DESCRIPTION,
+    path: "/development",
+    keywords:
+      "custom donation platform Australia, custom fundraising website developer, Raisely alternative Australia, Funraisin alternative, reduce fundraising platform fees, nonprofit website development Adelaide, peer-to-peer fundraising platform Australia",
+    twitterDescription:
+      "Custom fundraising platforms for Australian charities — a Raisely & Funraisin alternative. Adelaide-based, nonprofit only.",
+  });
 }
+
+export const links = () => [canonical("/development")];
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Custom fundraising platform development",
+  serviceType: "Custom fundraising platform development",
+  description: DESCRIPTION,
+  url: `${SITE_URL}/development`,
+  areaServed: ["Australia", "South Australia"],
+  audience: {
+    "@type": "Audience",
+    audienceType: "Nonprofits and charities",
+  },
+  provider: {
+    "@type": "Organization",
+    name: "Transform Creative",
+    url: SITE_URL,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Adelaide",
+      addressRegion: "SA",
+      addressCountry: "AU",
+    },
+  },
+};
 
 export default function DevelopmentRoute() {
   const featureSectionRef = useRef<HTMLDivElement>(null);
-  const feeStructureRef = useRef<HTMLDivElement>(null);
   const examplesRef = useRef<HTMLDivElement>(null);
   const savingsRef = useRef<HTMLDivElement>(null);
-  const headerTextRef = useRef<HTMLHeadingElement>(null);
   const context: SharedContextProps = useOutletContext();
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -92,9 +82,9 @@ export default function DevelopmentRoute() {
   const [playerPlay, setPlayerPlay] = useState(true);
   const [playerMuted, setPlayerMuted] = useState(true);
 
-  gsap.registerPlugin(SplitText, ScrollTrigger);
-
   useGSAP(() => {
+    gsap.registerPlugin(SplitText, ScrollTrigger);
+
     document.fonts.ready.then(() => {
       const titleSplit = SplitText.create("#dev-header", {
         type: "words",
@@ -123,73 +113,22 @@ export default function DevelopmentRoute() {
     );
   }, []);
 
-  const buttons: Feature[] = [
-    {
-      className: "center col middle",
-      icon: { name: "card-outline", size: 50 },
-      category: "Pricing & ownership",
-      text: "No exorbitant 'platform fee'",
-      description: [
-        "'Percentage based' giving platforms make it easy to get started, but that ~4% fee adds up as you scale.",
-        "We charge a modest fee, not a percentage of yFdonations, so you keep more of the money you raise.",
-      ],
-    },
-
-    {
-      className: "center col middle",
-      icon: {
-        name: "sparkles-outline",
-        size: 50,
-      },
-      category: "Build & customise",
-      text: "Your dream features",
-      description: [
-        "Your out of the box giving solution is generic - it can't support all of your amazing ideas. (We can).",
-        "If you're sick of your admin team telling you 'it's not possible with the current system', let's chat.",
-      ],
-    },
-    {
-      className: "center col middle",
-      icon: {
-        name: "lock-closed-outline",
-        size: 50,
-      },
-      category: "Security & access",
-      text: "Security customised for you",
-      description: [
-        "We know exactly how your users' data is stored and what's required to keep it safe.",
-        "As your database grows you become a bigger target. Generic providers give you generic security. We take an active role in protecting you.",
-      ],
-    },
-    {
-      className: "center col middle",
-      icon: { name: "people-outline", size: 50 },
-      category: "Support & success",
-      text: "Face to face support",
-      description: [
-        "Our local team is here to help you, (and your clients).",
-        "No more waiting on hold... Send us a 'slack message' and have your problems fixed in minutes.",
-      ],
-    },
-    {
-      className: "center col middle",
-      icon: { name: "flash-outline", size: 50 },
-      category: "Performance & UX",
-      text: "User focused optimisation",
-      description: [
-        "You current platform doesn't provide granular control over loading speed and dynamic user experience. (We do).",
-        "In the modern era, a site that loads slowly can be the difference between a user making a donation or giving up. We're here to make sure your users get where you want them to.",
-      ],
-    },
-  ];
-
   return (
     <div
       style={{ minHeight: "85vh" }}
       className="col middle center gap-20"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(serviceSchema),
+        }}
+      />
       <div className="center col middle w-100">
-        <div className="col middle center" style={{minHeight: "90vh"}}>
+        <div
+          className="col middle center"
+          style={{ minHeight: "90vh" }}
+        >
           <div
             className="r-default absolute clip media-scrim media-blur-center"
             style={{
@@ -199,20 +138,20 @@ export default function DevelopmentRoute() {
               height: "calc(100vh - 100px)",
             }}
           >
-              <ReactPlayer
-                src="https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Software-video.mp4"
-                ref={reactPlayer}
-                onClick={() => {
-                  setPlayerMuted(!playerMuted);
-                  !playerPlay && setPlayerPlay(true);
-                }}
-                className="media-cover r-default"
-                width="100%"
-                height="100%"
-                muted={playerMuted}
-                loop
-                playing={playerPlay}
-              />
+            <ReactPlayer
+              src="https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Software-video.mp4"
+              ref={reactPlayer}
+              onClick={() => {
+                setPlayerMuted(!playerMuted);
+                !playerPlay && setPlayerPlay(true);
+              }}
+              className="media-cover r-default"
+              width="100%"
+              height="100%"
+              muted={playerMuted}
+              loop
+              playing={playerPlay}
+            />
           </div>
           <div className="row middle between w-100 gap-20 shrink-col">
             <div
@@ -221,71 +160,136 @@ export default function DevelopmentRoute() {
             >
               <AnimatedDots autoPlayDelay={3000} />
 
-              <div className="pl-20 pr-20 col middle">
-                <h2
+              <div className="pl-20 pr-20 col middle gap-10">
+                <h1
                   className="shrink-col textCenter w-75"
                   style={{ color: "var(--accent-sm)" }}
                 >
-                  We develop custom sites that{" "}
-                  <strong>reduce fundraising overheads</strong> and turn
-                  donors into believers.
-                </h2>
-              </div>
-              <div className="row gap-10 shrink-col">
-                <button
-                  className="accent"
-                  onClick={() =>
-                    setSearchParams({ section: "savings" })
-                  }
-                >
-                  What could my org save?
-                </button>
-                <button
-                  className="outline-secondary"
+                  Own your{" "}
+                  <strong style={{ fontWeight: 600 }}>
+                    fundraising platform
+                  </strong>
+                  . Maximise your mission.
+                </h1>
+                <p
+                  className="textCenter w-75 mt-10 mb-10"
                   style={{ color: "var(--accent-sm)" }}
                 >
-                  Contact us
-                </button>
+                  <b style={{ fontWeight: 600 }}>
+                    Custom fundraising platforms
+                  </b>{" "}
+                  for Australian charities that redirect third-party
+                  fees back{" "}
+                  <b style={{ fontWeight: 600 }}>to your cause</b>.
+                </p>
+              </div>
+              <div className="w-50">
+                <div className="row gap-10 shrink-col ml-20 mr-20 ">
+                  <button
+                    className="accent row center gap-5 middle w-50"
+                    onClick={() =>
+                      setSearchParams({ section: "savings" })
+                    }
+                  >
+                    <Icon name="arrow-down" size={16} />
+                    What could my org save?
+                  </button>
+                  {/* {{TODO: Isaac to confirm the existing Google Calendar
+                      appointment link is the right destination for a
+                      "15-min fee audit", or supply a different one}} */}
+                  <a
+                    className="outline-secondary row middle gap-5  w-50 center                 "
+                    role="button"
+                    style={{
+                      color: "var(--accent-sm)",
+                      background: "none",
+                    }}
+                    href={CONTACT.bookingUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Icon
+                      name="link"
+                      size={16}
+                      color="var(--accent-sm)"
+                    />
+                    Book your free demo
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div
-          className="col middle w-100"
-          ref={examplesRef}
-          style={{ overflow: "clip" }}
-        >
-          <h2 className="" style={{margin: '50px 0 30px 0', color: "var(--txt)"}}>Websites we've developed</h2>
-          <SoftwareProjects />
-        </div>
 
-        <div
-          className="w-75 mb-20 pb-20 mt-20 pt-20 col gap-20 middle center"
-          ref={savingsRef}
-        >
-          {" "}
-          <h2
-            className="textCenter accent mb-10 w-75"
-            style={{ color: "var(--txt)" }}
+        <div className="ml-20 mr-20  col middle">
+          <div
+            className="w-75 mb-20 pb-20 mt-20 pt-20 gap-10 col middle center"
+            ref={savingsRef}
           >
-            Our sites redirect third party{" "}
-            <strong style={{color: "var(--accent)"}}>donation fees back to you</strong>, allowing you to keep more of
-            every dollar raised.
-          </h2>
-          <SavingCalculator />
+            <h2
+              className="textCenter accent mb-10 w-75"
+              style={{ color: "var(--txt)" }}
+            >
+              We're on a mission to help Aussie non profits{" "}
+              <strong>make p2p donations go further.</strong>
+            </h2>
+            <p
+              className="textCenter accent mb-10 w-75"
+              style={{ color: "var(--txt)" }}
+            >
+              Third-party platforms nudge your donors to chip in extra
+              "to cover costs" — and pocket it. On a platform you own,{" "}
+              <strong style={{ color: "var(--accent)" }}>
+                that generosity stays with your cause
+              </strong>
+              .
+            </p>
+            <SavingCalculator />
+          </div>
         </div>
       </div>
       <div
         className="horizontal-line mediumFade "
         style={{ top: -30, marginTop: 50, marginBottom: 30 }}
       />
-      <div
-        className="w-75 center accent boxed"
-        ref={featureSectionRef}
-      >
-        <div className="p-20 w-100">
-          <FeatureSelector features={buttons} />
+      <div className="ml-20 mr-20 col middle">
+        <div
+          className="w-75 center accent boxed"
+          ref={featureSectionRef}
+        >
+          <div className="m-20">
+            <FeatureSelector features={FEATURES} />
+          </div>
         </div>
+      </div>
+   <div
+        className="horizontal-line mediumFade "
+        style={{ marginTop: 50, marginBottom: 0 }}
+      />
+      <div
+        className="col middle w-100"
+        ref={examplesRef}
+        style={{ overflow: "clip" }}
+      >
+        <h2
+          className="textCenter"
+          style={{ margin: "50px 0 0px 0", color: "var(--txt)" }}
+        >
+          Custom fundraising platforms{" "}
+          <b
+            className=""
+            style={{ fontWeight: 600, color: "var(--accent)" }}
+          >
+            we've built.
+          </b>
+        </h2>
+        <p
+          className="pb-20 pt-5"
+          style={{ color: "var(--accent-lg)" }}
+        >
+          And are secretly really proud of...
+        </p>
+        <SoftwareProjects />
       </div>
 
       <div
@@ -294,7 +298,7 @@ export default function DevelopmentRoute() {
       />
 
       <div className="w-100 col middle">
-        <ContactTab />
+        <ContactTab headerText="Book a 30 minute discovery call" />
       </div>
     </div>
   );

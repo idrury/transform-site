@@ -1,4 +1,5 @@
 import { IoniconName } from "~/data/Ionicons";
+import type { Project } from "~/data/CommonTypes";
 import type {
   AiStatus,
   Issue,
@@ -7,6 +8,23 @@ import type {
   IssueType,
   IssueUpdate,
 } from "~/data/CustomTypes";
+
+/*******************************************
+ * Descriptive alt text for a project image. Names the org and what the
+ * piece actually is, so the portfolio images carry real meaning for
+ * screen readers and image search.
+ */
+export function projectImageAlt(project: Project): string {
+  const what =
+    project.type == "software"
+      ? "custom fundraising platform built by Transform Creative"
+      : project.type == "media"
+      ? "video production by Transform Creative"
+      : "graphic design by Transform Creative";
+
+  const org = project.organisation ? `${project.organisation} ` : "";
+  return `${org}${project.name} — ${what}`;
+}
 
 /*******************************************
  * Get the icon name for the type of project this is

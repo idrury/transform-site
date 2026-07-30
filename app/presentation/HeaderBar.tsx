@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { Logo } from "./elements/Logo";
 import { useEffect, useState } from "react";
 import { CONTACT } from "~/data/Objects";
@@ -6,7 +6,6 @@ import { Icon } from "./elements/Icon";
 import EditMenu from "./elements/EditMenu";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { Z_BINARY } from "zlib";
 import { SharedContextProps } from "~/data/CommonTypes";
 import { supabaseSignOut } from "~/database/Auth";
 import "../app-v2.css"
@@ -122,6 +121,9 @@ interface MenuOptionsProps {
 
 function MenuOptions({ inShrink, onClose, context }: MenuOptionsProps) {
   const navigate = useNavigate();
+  // Router-provided, not the browser global — works during prerender and
+  // actually re-renders on navigation.
+  const location = useLocation();
 
   const textSize = inShrink ? "30px" : undefined;
 

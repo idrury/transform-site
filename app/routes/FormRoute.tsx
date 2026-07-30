@@ -1,5 +1,4 @@
 import { useOutletContext, useParams } from "react-router";
-import { Route } from "../+types/root";
 import { Icon } from "~/presentation/elements/Icon";
 import { LabelInput } from "~/presentation/elements/LabelInput/LabelInput";
 import { useState } from "react";
@@ -7,11 +6,17 @@ import { PillToggle } from "~/presentation/elements/PillToggle";
 import BasicMenu from "~/presentation/elements/BasicMenu";
 import { createResponse } from "~/database/Create";
 import type { SharedContextProps } from "~/data/CommonTypes";
+import { buildMeta } from "~/business/seoBL";
 import "../app-v2.css";
 import { CONTACT } from "~/data/Objects";
 
-export function meta({}: Route.MetaArgs) {
-  return [{ title: "" }, { name: "description", content: "" }];
+export function meta() {
+  return buildMeta({
+    title: "Form | Transform Creative",
+    description: "Complete your Transform Creative form.",
+    path: "/forms",
+    noIndex: true,
+  });
 }
 
 export default function FormRoute() {
@@ -150,7 +155,7 @@ export default function FormRoute() {
                     name="Name"
                     placeholder="John Smith"
                     autoComplete="name"
-                    style={{ height: "1.1rem", zIndex: 20 }}
+                    style={{ height: "1.20px", zIndex: 20 }}
                     value={name || ""}
                     onChange={(e) => setName(e.target.value)}
                   />
@@ -159,7 +164,7 @@ export default function FormRoute() {
                     type="email"
                     placeholder="john@example.com"
                     autoComplete="email"
-                    style={{ height: "1.1rem", zIndex: 20 }}
+                    style={{ height: "1.20px", zIndex: 20 }}
                     value={email || ""}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -167,7 +172,7 @@ export default function FormRoute() {
                     name="Dietary Requirements"
                     autoComplete="Dietary Requirements"
                     value={dietaryRequirements || ""}
-                    style={{ height: "1.1rem", zIndex: 20 }}
+                    style={{ height: "1.20px", zIndex: 20 }}
                     placeholder="None"
                     onChange={(e) =>
                       setDietaryRequirements(e.target.value)

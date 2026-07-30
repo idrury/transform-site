@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useOutletContext, useSearchParams } from "react-router";
 import ReactPlayer from "react-player";
 import type { Project, SharedContextProps } from "~/data/CommonTypes";
-import { projectToIcon } from "~/business/commonBL";
+import { projectImageAlt, projectToIcon } from "~/business/commonBL";
 import { Carousel } from "./Carousel";
 import { Icon } from "./Icon";
 import { ProjectInfoPopup } from "../landing/ProjectInfoPopup";
@@ -105,7 +105,7 @@ export function ProjectCarousel({
                   >
                     <img
                       src={project.images[0]}
-                      alt={`image of ${project.name} - a piece of digital content created by transform creative australia`}
+                      alt={projectImageAlt(project)}
                       style={{
                         position: "absolute",
                         inset: 0,

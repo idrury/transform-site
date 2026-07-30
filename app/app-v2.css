@@ -81,7 +81,7 @@ a[role="button"] {
   background: var(--accent);
   border-radius: var(--borderRadius);
   transition: 1s;
-  font-size: 14pt;
+  font-size: 20px;
   text-decoration: none;
 }
 a[role="button"]:hover {
@@ -500,7 +500,7 @@ Padding
   background: #ffffff14;
   border: 1px solid #ffffff33;
   border-radius: 999px;
-  padding: 8px 16px;
+  padding: 8px 20px;
 }
 .feature-search-input {
   background: transparent;
@@ -523,7 +523,7 @@ Padding
   border: 1px solid #ffffff40;
   background: transparent;
   color: var(--bkg);
-  padding: 6px 14px;
+  padding: 6px 20px;
   transition: 0.2s;
 }
 .feature-pill:hover {
@@ -926,15 +926,15 @@ h5.center {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  height: 18px;
-  width: 18px;
+  height: 20px;
+  width: 20px;
   border-radius: 50%;
   background: var(--bkg);
   border: 2px solid var(--accent);
 }
 .slider::-moz-range-thumb {
-  height: 18px;
-  width: 18px;
+  height: 20px;
+  width: 20px;
   border-radius: 50%;
   background: var(--bkg);
   border: 2px solid var(--accent);

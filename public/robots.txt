@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
-Disallow: /authentication
+Disallow: /auth
+Disallow: /client
+Disallow: /forms
 
 Sitemap: https://www.transformcreative.com.au/sitemap.xml

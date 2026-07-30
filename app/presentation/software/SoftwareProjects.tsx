@@ -34,7 +34,7 @@ export default function SoftwareProjects() {
 
   return (
     <div className="col middle center gap-20 w-100">
-      <ProjectCarousel projects={softwareProjects} width={700}/>
+      <ProjectCarousel projects={softwareProjects} width={900}/>
     </div>
   );
 }
