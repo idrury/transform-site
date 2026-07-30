@@ -15,6 +15,7 @@ import ReactPlayer from "react-player";
 import { SavingCalculator } from "~/presentation/software/SavingCalculator";
 import { CONTACT, FEATURES } from "~/data/Objects";
 import { buildMeta, canonical, SITE_URL } from "~/business/seoBL";
+import { SplashCursor } from "~/presentation/elements/SplashCursor";
 import { Icon } from "~/presentation/elements/Icon";
 
 const TITLE =
@@ -82,7 +83,8 @@ export default function DevelopmentRoute() {
         document.documentElement.scrollHeight -
         (window.scrollY + window.innerHeight);
       setCtaInView(
-        window.scrollY > window.innerHeight * 0.7 && fromBottom >= 100,
+        window.scrollY > window.innerHeight * 0.7 &&
+          fromBottom >= 100,
       );
     };
     onScroll();
@@ -144,6 +146,16 @@ export default function DevelopmentRoute() {
       style={{ minHeight: "85vh" }}
       className="col middle center gap-20"
     >
+      {/* Pointer-trailing fluid sim. Click-through, and skipped entirely
+                below the 1200px breakpoint — it repaints every frame. */}
+      <SplashCursor
+        DENSITY_DISSIPATION={1}
+        VELOCITY_DISSIPATION={3}
+        CURL={1}
+        SPLAT_FORCE={2500}
+        RAINBOW_MODE={false}
+        COLOR="#2d3625"
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -296,7 +308,7 @@ export default function DevelopmentRoute() {
           </div>
         </div>
       </div>
-   <div
+      <div
         className="horizontal-line mediumFade "
         style={{ marginTop: 50, marginBottom: 0 }}
       />
