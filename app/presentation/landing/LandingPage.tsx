@@ -81,10 +81,10 @@ function FeatureCard({
         />
       </div>
       <div className="pl-10 pr-10 pb-10">
-        <h3 className="accent row middle gap-10 mt-20">
-          <Icon name={icon} size={20} color="var(--accent)" />
+        <h2 className="accent row middle gap-10 mt-20">
+          <Icon name={icon} size={40} color="var(--accent)" />
           {title}
-        </h3>
+        </h2>
         <p className="mt-10 mb-20">{subtitle}</p>
         <button
           className="accentButton row middle center gap-10 w-100"
@@ -222,7 +222,7 @@ export function LandingPage({}: LandingPageProps) {
             <HeaderText
               text={["Digital content for positive change."]}
               typingSpeed={50}
-              className="m3"
+              className="m3 text-hero"
               pauseDuration={500}
               showCursor={true}
               cursorCharacter="|"
@@ -266,7 +266,7 @@ export function LandingPage({}: LandingPageProps) {
           further your cause.
         </h4>
       </div>
-      <div className="row center m3 raised">
+      <div className="row center m-20 pt-20  ">
         <div
           className="row wrap gap-20 w-75 stretch lateFade"
           style={{ opacity: 0 }}

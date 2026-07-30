@@ -1,4 +1,10 @@
-import { ElementType, useEffect, useRef, useState, createElement } from "react";
+import {
+  ElementType,
+  useEffect,
+  useRef,
+  useState,
+  createElement,
+} from "react";
 import { gsap } from "gsap";
 import "./landing.css";
 
@@ -76,7 +82,7 @@ const HeaderText = ({
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     observer.observe(containerRef.current);
@@ -115,10 +121,15 @@ const HeaderText = ({
           }
 
           if (onSentenceComplete) {
-            onSentenceComplete(textArray[currentTextIndex], currentTextIndex);
+            onSentenceComplete(
+              textArray[currentTextIndex],
+              currentTextIndex,
+            );
           }
 
-          setCurrentTextIndex((prev) => (prev + 1) % textArray.length);
+          setCurrentTextIndex(
+            (prev) => (prev + 1) % textArray.length,
+          );
           setCurrentCharIndex(0);
           timeout = setTimeout(() => {}, pauseDuration);
         } else {
@@ -131,11 +142,11 @@ const HeaderText = ({
           timeout = setTimeout(
             () => {
               setDisplayedText(
-                (prev) => prev + processedText[currentCharIndex]
+                (prev) => prev + processedText[currentCharIndex],
               );
               setCurrentCharIndex((prev) => prev + 1);
             },
-            variableSpeed ? getRandomSpeed() : typingSpeed
+            variableSpeed ? getRandomSpeed() : typingSpeed,
           );
         } else if (textArray.length > 1) {
           timeout = setTimeout(() => {
@@ -145,7 +156,11 @@ const HeaderText = ({
       }
     };
 
-    if (currentCharIndex === 0 && !isDeleting && displayedText === "") {
+    if (
+      currentCharIndex === 0 &&
+      !isDeleting &&
+      displayedText === ""
+    ) {
       timeout = setTimeout(executeTypingAnimation, initialDelay);
     } else {
       executeTypingAnimation();
@@ -171,7 +186,8 @@ const HeaderText = ({
 
   const shouldHideCursor =
     hideCursorWhileTyping &&
-    (currentCharIndex < textArray[currentTextIndex].length || isDeleting);
+    (currentCharIndex < textArray[currentTextIndex].length ||
+      isDeleting);
 
   return createElement(
     Component,
@@ -180,22 +196,26 @@ const HeaderText = ({
       className: `text-type ${className}`,
       ...props,
     },
-    <span style={{textAlign: "center"}}>
+    <span style={{ textAlign: "center" }}>
+      <span
+        className="text-type__content"
+        style={{
+          color: getCurrentTextColor(),
+          letterSpacing: -3,
+          fontWeight: "400",
+        }}
+      >
+        {displayedText}
+      </span>
+      {showCursor && (
         <span
-          className="text-type__content"
-          style={{ color: getCurrentTextColor(), letterSpacing: -3, fontWeight: '400' }}
+          ref={cursorRef}
+          className={`text-type__cursor ${cursorClassName} ${shouldHideCursor ? "text-type__cursor--hidden" : ""}`}
         >
-          {displayedText}
+          {cursorCharacter}
         </span>
-      {  showCursor && (
-          <span
-            ref={cursorRef}
-            className={`text-type__cursor ${cursorClassName} ${shouldHideCursor ? "text-type__cursor--hidden" : ""}`}
-          >
-            {cursorCharacter}
-          </span>
-        )}
-    </span>
+      )}
+    </span>,
   );
 };
 
