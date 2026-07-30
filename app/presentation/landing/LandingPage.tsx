@@ -209,7 +209,7 @@ export function LandingPage({}: LandingPageProps) {
         className="mt-20 p-20"
         style={{ position: "relative", top: -20, minHeight: "30vh" }}
       >
-        <div className="col middle center">
+        <div className="col middle center" style={{margin: "5vh 0 5vh 0"}}>
           <div
             className="col w-100 middle center"
             style={{
