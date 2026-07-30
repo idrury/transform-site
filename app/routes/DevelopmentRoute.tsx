@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "../app-v2.css";
 import FeatureSelector, {
-  type Feature,
+  type FeatureSelectorHandle,
 } from "~/presentation/software/FeatureSelector";
 import SoftwareProjects from "~/presentation/software/SoftwareProjects";
 import { AnimatedDots } from "~/presentation/elements/AnimatedDots";
@@ -67,6 +67,32 @@ export default function DevelopmentRoute() {
   const savingsRef = useRef<HTMLDivElement>(null);
   const context: SharedContextProps = useOutletContext();
   const [searchParams, setSearchParams] = useSearchParams();
+
+  // Page-wide CTA into the feature popout — hidden while it's open so it
+  // doesn't sit on top of the popout's own controls.
+  const featureSelector = useRef<FeatureSelectorHandle>(null);
+  const [featuresOpen, setFeaturesOpen] = useState(false);
+  const [ctaInView, setCtaInView] = useState(false);
+
+  // The CTA rides in once the hero is scrolled past, and steps back out of the
+  // way as the page bottoms out so the footer is readable.
+  useEffect(() => {
+    const onScroll = () => {
+      const fromBottom =
+        document.documentElement.scrollHeight -
+        (window.scrollY + window.innerHeight);
+      setCtaInView(
+        window.scrollY > window.innerHeight * 0.7 && fromBottom >= 100,
+      );
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (searchParams.get("section") !== "savings") return;
@@ -230,8 +256,8 @@ export default function DevelopmentRoute() {
               className="textCenter accent mb-10 w-75"
               style={{ color: "var(--txt)" }}
             >
-              We're on a mission to help Aussie non profits{" "}
-              <strong>make p2p donations go further.</strong>
+              We're on a mission to help Aussie non-profits{" "}
+              <strong>make donations go further.</strong>
             </h2>
             <p
               className="textCenter accent mb-10 w-75"
@@ -252,13 +278,21 @@ export default function DevelopmentRoute() {
         className="horizontal-line mediumFade "
         style={{ top: -30, marginTop: 50, marginBottom: 30 }}
       />
-      <div className="ml-20 mr-20 col middle">
-        <div
-          className="w-75 center accent boxed"
-          ref={featureSectionRef}
-        >
-          <div className="m-20">
-            <FeatureSelector features={FEATURES} />
+      {/* w-100 (not margins) so this column has a definite width — otherwise it
+          shrink-wraps the grid and the whole panel resizes per category */}
+      <div className="m-20">
+        <div className="w-100 col middle">
+          <div
+            className="w-75 center boxed accent"
+            ref={featureSectionRef}
+          >
+            <div className="m-20">
+              <FeatureSelector
+                features={FEATURES}
+                ref={featureSelector}
+                onOpenChange={setFeaturesOpen}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -300,6 +334,16 @@ export default function DevelopmentRoute() {
       <div className="w-100 col middle">
         <ContactTab headerText="Book a 30 minute discovery call" />
       </div>
+
+      <button
+        className={`accent row middle center gap-5 floating-cta s-10 outline ${
+          featuresOpen || !ctaInView ? "faded-out" : ""
+        }`}
+        onClick={() => featureSelector.current?.openFirst()}
+      >
+        <Icon name="sparkles" size={16} color="var(--bkg)" />
+        Features we offer
+      </button>
     </div>
   );
 }

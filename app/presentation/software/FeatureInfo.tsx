@@ -51,17 +51,25 @@ export default function FeatureInfo({
 
   // Animate the modal height as the content (varying text length) changes by
   // tracking the inner content's natural height and transitioning to it.
+  // `active` is a dependency so the content is re-measured against the freshly
+  // mounted node each time the menu opens — reopening the same feature doesn't
+  // change `shown`, so measuring on `shown` alone left a stale (or zero) height
+  // and the body stayed clipped shut.
   const innerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number | "auto">("auto");
   useLayoutEffect(() => {
     const el = innerRef.current;
-    if (!el) return;
-    const update = () => setHeight(el.offsetHeight);
+    if (!active || !el) return;
+    // The observer reports 0 as the menu unmounts; keep the last real height so
+    // the next open starts from something visible.
+    const update = () => {
+      if (el.offsetHeight) setHeight(el.offsetHeight);
+    };
     update();
     const observer = new ResizeObserver(update);
     observer.observe(el);
     return () => observer.disconnect();
-  }, [shown]);
+  }, [shown, active]);
 
   return (
     <BasicMenu

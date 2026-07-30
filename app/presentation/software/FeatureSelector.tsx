@@ -3,7 +3,9 @@ import {
   useRef,
   useEffect,
   useMemo,
+  useImperativeHandle,
   ReactElement,
+  type Ref,
 } from "react";
 import { Icon } from "~/presentation/elements/Icon";
 import type { IoniconName } from "~/data/Ionicons";
@@ -22,11 +24,23 @@ export interface Feature {
   component?: ReactElement;
 }
 
-interface Props {
-  features: Feature[];
+export interface FeatureSelectorHandle {
+  /** Opens the popout on the first feature, clearing any active filters. */
+  openFirst: () => void;
 }
 
-export default function FeatureSelector({ features }: Props) {
+interface Props {
+  features: Feature[];
+  ref?: Ref<FeatureSelectorHandle>;
+  /** Fires as the popout opens / closes, so a page-level CTA can step aside. */
+  onOpenChange?: (open: boolean) => void;
+}
+
+export default function FeatureSelector({
+  features,
+  ref,
+  onOpenChange,
+}: Props) {
   const context: SharedContextProps = useOutletContext();
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<string | null>(
@@ -61,6 +75,20 @@ export default function FeatureSelector({ features }: Props) {
   }, [features, activeCategory, search]);
 
   const selected = openIndex !== null ? filtered[openIndex] : null;
+
+  // Let the page open the popout from its own CTA — filters are cleared so
+  // "page 1" is genuinely the first of every feature.
+  useImperativeHandle(ref, () => ({
+    openFirst: () => {
+      setSearch("");
+      setActiveCategory(null);
+      setOpenIndex(0);
+    },
+  }));
+
+  useEffect(() => {
+    onOpenChange?.(openIndex !== null);
+  }, [openIndex, onOpenChange]);
 
   // Stagger the category pills in when they scroll into view.
   // useEffect(() => {
@@ -103,10 +131,10 @@ export default function FeatureSelector({ features }: Props) {
 
   return (
     <div className="col gap-20 w-100">
-      <h2 className="textCenter">
+      <h2 className="textCenter" style={{padding: "10px 10px 0 10px"}}>
         Every feature you have now, plus the ones you don't
       </h2>
-      <p className="textCenter">
+      <p className="textCenter"style={{padding: "0px 20px 10px 20px"}}>
         You've{" "}
         <b style={{ fontWeight: 600 }}>bent your fundraising</b> to
         fit the platform for long enough. We{" "}
@@ -116,7 +144,7 @@ export default function FeatureSelector({ features }: Props) {
         {" "}Your donor journey, your unique quirks, your 'what if' ideas.
       </p>
       {/* Search bar */}
-      <div className="row center w-100">
+      <div className="row center w-100 mb-20">
         <div
           className="feature-search row middle gap-10 w-100"
           style={{ maxWidth: 600 }}
@@ -146,7 +174,7 @@ export default function FeatureSelector({ features }: Props) {
       </div>
 
       {/* Category pills */}
-      <div className="row center wrap gap-10" ref={pillsRef}>
+      <div className="row center wrap gap-10 " ref={pillsRef}>
         <CategoryPill
           label="All"
           count={features.length}
@@ -173,7 +201,7 @@ export default function FeatureSelector({ features }: Props) {
 
       {/* Card grid */}
       {filtered.length ? (
-        <div className="grid-250" ref={gridRef}>
+        <div className="grid-250 w-100" ref={gridRef}>
           {filtered.map((feature, index) => (
             <div
               key={feature.text}

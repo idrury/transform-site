@@ -483,9 +483,11 @@ Padding
   grid-template-columns: repeat(auto-fill, minmax(clamp(200px, 6vw, 400px), 1fr));
 }
 
+/* auto-fill, not auto-fit: empty tracks are kept, so cards stay the same size
+   when the set shrinks instead of stretching to fill the row */
 .grid-250 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 10px;
 }
 
@@ -697,6 +699,25 @@ h5.center {
   position: fixed;
   inset: 0;
   z-index: 50;
+  pointer-events: none;
+}
+
+/* Bottom-centred floating action, above page content and below menus (120).
+   Centred with auto margins, not a transform, so hover transforms still work */
+.floating-cta {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  width: fit-content;
+  margin-inline: auto;
+  z-index: 90;
+  transition: opacity 0.3s;
+}
+
+/* Fades an element out and stops it catching clicks, without removing it */
+.faded-out {
+  opacity: 0;
   pointer-events: none;
 }
 

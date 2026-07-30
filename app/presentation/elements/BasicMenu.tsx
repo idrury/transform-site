@@ -88,6 +88,10 @@ const BasicMenu = ({
         >
           <div
             className="menu s2 p1"
+            // Clicks on the menu itself must not reach the backdrop's
+            // click-off handler above, or interacting with the content
+            // (or missing a button) closes the menu.
+            onClick={(e) => e.stopPropagation()}
             style={{
               width: width,
               height: "auto",

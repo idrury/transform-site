@@ -599,17 +599,16 @@ export const FEATURES: Feature[] = [
       "Own your platform and that stays with your cause.",
     ],
   },
-  {
-    className: "center col middle",
-    icon: { name: "cash-outline", size: 50 },
-    category: "Pricing & ownership",
-    text: "Donor generosity that reaches your cause",
-    description: [
-      "Most platforms nudge your donors to chip in an extra 4–5% at checkout 'to cover costs'. The donor thinks they're helping you — really they're funding the platform.",
-      "On your own build, that top-up can come to you instead. On $1M a year it's around $18k staying with the cause, and the gap widens as you grow (there's a calculator on the site if you want to plug in your own figures).",
-    ],
-  },
-
+{
+  className: "center col middle",
+  icon: { name: "hardware-chip-outline", size: 50 },
+  category: "Performance & UX",
+  text: "Donations that get smarter over time",
+  description: [
+    "There's a bit of machine learning ticking away in the background, quietly A/B testing the things that move the needle — suggested amounts, button wording, how the ask is framed — and leaning toward whatever's raising more.",
+    "Instead of guessing and rebuilding the page every few months, the platform keeps tuning itself as your donors respond.",
+  ],
+},
   // ─── BUILD & CUSTOMISE ───
   {
     className: "center col middle",
@@ -727,7 +726,7 @@ export const FEATURES: Feature[] = [
     className: "center col middle",
     icon: { name: "construct-outline", size: 50 },
     category: "Support & success",
-    text: "We run the tech, you run the campaign",
+    text: "We run the tech, you run the campaign.",
     description: [
      "Get the same background support you're used to - just faster. Hosting, updates, security patches, the odd 3am gremlin — all on us, so you can focus more on mission.", 
     ],
