@@ -16,6 +16,8 @@ import { SavingCalculator } from "~/presentation/software/SavingCalculator";
 import { CONTACT, FEATURES } from "~/data/Objects";
 import { buildMeta, canonical, SITE_URL } from "~/business/seoBL";
 import { SplashCursor } from "~/presentation/elements/SplashCursor";
+import { GradualBlur } from "~/presentation/elements/GradualBlur";
+
 import { Icon } from "~/presentation/elements/Icon";
 
 const TITLE =
@@ -356,6 +358,34 @@ export default function DevelopmentRoute() {
         <Icon name="sparkles" size={16} color="var(--bkg)" />
         Features we offer
       </button>
+      {/* Edge blurs. Both sit under the header, footer and popups
+          (zIndex 10), so only page content is softened.
+          Each layer is its own backdrop-filter pass, so the counts are
+          kept low and both are dropped on mobile, where stacked
+          backdrop-filters on fixed elements cost the most. */}
+      <GradualBlur
+        target="page"
+        position="top"
+        height="8rem"
+        strength={1}
+        divCount={3}
+        curve="bezier"
+        animated
+        duration="1.5s"
+        disableOnShrink
+      />
+      <GradualBlur
+        target="page"
+        position="bottom"
+        height="7rem"
+        strength={1.5}
+        divCount={5}
+        curve="bezier"
+        exponential
+        animated
+        duration="1.5s"
+        disableOnShrink
+      />
     </div>
   );
 }
