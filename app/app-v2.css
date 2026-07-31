@@ -596,6 +596,101 @@ Padding
   letter-spacing: 0.05em;
 }
 
+/* Reduced type for notes, captions and counters */
+.text-sm {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/* Solid accent tile holding an icon, for use on the page background */
+.icon-tile {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--borderRadius);
+  background: var(--accent);
+  flex: none;
+}
+
+/* Soft accent pill for an inline note on the page background */
+.pill-accent {
+  background: #4369401f;
+  border-radius: 999px;
+  padding: 5px 14px;
+  width: fit-content;
+}
+
+/* Vertical list of steps — the rail line runs down behind the dots */
+.step-rail {
+  border-left: 1px solid var(--accent-md);
+  list-style: none;
+  padding: 0 0 0 25px;
+}
+.step-rail li {
+  margin: 0;
+}
+
+/* Marker on .step-rail, filled in once its step is selected */
+.step-dot {
+  height: 9px;
+  width: 9px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  margin-left: -30px;
+  flex: none;
+}
+.step-dot.active {
+  background: var(--accent);
+}
+
+
+/* Held back until hovered or selected */
+.step-muted {
+  opacity: 0.6;
+  transition: 0.2s;
+}
+.step-muted:hover,
+.step-muted.active {
+  opacity: 1;
+}
+
+/* Bare text button — no chrome, inherits the surrounding type */
+.text-button {
+  background: none;
+  padding: 0;
+  width: 100%;
+  text-align: start;
+}
+.text-button:hover {
+  transform: none;
+  color: var(--accent);
+}
+
+/* Grows open from nothing when .open is added — no fixed max-height needed */
+.collapse-row {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.35s ease,
+    opacity 0.3s ease;
+}
+.collapse-row.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.collapse-row > * {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Stacked cards split by a hairline, with none above the first */
+.divided-card {
+  border-top: 1px solid var(--accent);
+}
+.divided-card:first-child {
+  border-top: none;
+}
+
 .middle {
   display: flex;
   align-items: center;
@@ -672,6 +767,12 @@ h5.center {
 /* Equal-width flex child that takes a full row once the container wraps */
 .flex-card {
   flex: 1 1 320px;
+  min-width: 0;
+}
+
+/* Wider partner to .flex-card in a two-column row (roughly 2:1) */
+.flex-card-2 {
+  flex: 2 1 420px;
   min-width: 0;
 }
 

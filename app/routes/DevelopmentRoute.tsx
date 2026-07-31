@@ -4,6 +4,7 @@ import FeatureSelector, {
   type FeatureSelectorHandle,
 } from "~/presentation/software/FeatureSelector";
 import SoftwareProjects from "~/presentation/software/SoftwareProjects";
+import { HowItWorks } from "~/presentation/software/HowItWorks";
 import { AnimatedDots } from "~/presentation/elements/AnimatedDots";
 import { useGSAP } from "@gsap/react";
 import { SplitText, ScrollTrigger } from "gsap/all";
@@ -279,10 +280,10 @@ export default function DevelopmentRoute() {
               className="textCenter accent mb-10 w-75"
               style={{ color: "var(--txt)" }}
             >
-              Third-party platforms nudge your donors to chip in extra
-              "to cover costs" — and pocket it. On a platform you own,{" "}
+              Third-party platforms nudge your donors 
+              'to cover costs'. On a platform you own, that generosity{" "}
               <strong style={{ color: "var(--accent)" }}>
-                that generosity stays with your cause
+                furthers your cause
               </strong>
               .
             </p>
@@ -333,7 +334,7 @@ export default function DevelopmentRoute() {
 
        
         <SoftwareProjects />
-        <div className="col middle center mt-20">
+        <div className="col middle center m-20">
           <Carousel
             interval={8}
             showDots="end"
@@ -365,8 +366,17 @@ export default function DevelopmentRoute() {
         style={{ top: 0 }}
       />
 
+      <div className="w-100 col middle m-20">
+        <HowItWorks />
+      </div>
+
+      <div
+        className="horizontal-line mediumFade mt-20 mb-20 ot02"
+        style={{ top: 0 }}
+      />
+
       <div className="w-100 col middle">
-        <ContactTab headerText="Book a 30 minute discovery call" />
+        <ContactTab headerText="Still got questions?" />
       </div>
       
 

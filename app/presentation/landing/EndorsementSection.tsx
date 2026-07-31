@@ -54,23 +54,7 @@ export function EndorsementSection({
         </div>
         {showLogos && <WorkedWith />}
         {/* What our clients love */}
-        {endorsed.length > 0 && (
-          <div className="col middle center m-10">
-            <div className="row gap-10 shrink-wrap">
-              <Carousel interval={8} showDots="end" autoplay mode="fade" loop>
-                {endorsed.map((p) => (
-                  <EndorsementCard
-                    key={p.id}
-                    text={p.endorsement!.text}
-                    name={p.endorsement!.name}
-                    width={context.inShrink ? "100vw" : "50vw"}
-                    organisation={p.organisation || p.name}
-                  />
-                ))}
-              </Carousel>
-            </div>
-          </div>
-        )}
+      
       </div>
     </div>
   );

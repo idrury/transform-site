@@ -1,4 +1,5 @@
 import { Feature } from "~/presentation/software/FeatureSelector";
+import { HowItWorksStep } from "~/presentation/software/HowItWorks";
 import { Project } from "./CommonTypes";
 
 export const tabColors = {
@@ -783,5 +784,69 @@ export const FEATURES: Feature[] = [
     description: [
       "Someone starts a donation, gets distracted, closes the tab. We can automate follow up, offer one-tap repeat giving, and win a good chunk of them back.",
     ],
+  },
+];
+
+/** The six-step process shown on /development. */
+export const HOW_IT_WORKS: HowItWorksStep[] = [
+  {
+    icon: "analytics-outline",
+    label: "We audit your fees",
+    title: "We audit your fees",
+    description: [
+      "Before anyone talks about building, we map where your donor dollars actually go — including what your donors get asked to tip your current platform on top of their gift.",
+      "You'll see exactly how much goodwill is leaking to software you don't own.",
+    ],
+    note: "No obligation. The numbers are yours to keep.",
+  },
+  {
+    icon: "document-text-outline",
+    label: "We scope and quote",
+    title: "We scope and quote",
+    description: [
+      "We map out precisely what your site and donation flow need to do — your campaigns, your events, your reporting — and put it in a fixed proposal.",
+      "You know what you're getting and what it costs before we write a line of code.",
+    ],
+    note: "A fixed number for your board, not a vibe.",
+  },
+  {
+    icon: "hammer-outline",
+    label: "We build it with you",
+    title: "We build it with you",
+    description: [
+      "We build your platform around the way you actually raise money, not a template with your logo dropped on top.",
+      "You're in the loop the whole way, with something real to click on early rather than a reveal at the end.",
+    ],
+    note: "Regular check-ins, never a black box.",
+  },
+  {
+    icon: "swap-horizontal-outline",
+    label: "We handle the switch",
+    title: "We handle the switch",
+    description: [
+      "Donor records, giving history, receipts and active recurring gifts all come across, so switching doesn't mean starting from a blank spreadsheet.",
+      "We schedule going live around your calendar — never in the middle of your biggest weekend.",
+    ],
+    note: "Your regular donors keep giving, uninterrupted.",
+  },
+  {
+    icon: "shield-checkmark-outline",
+    label: "We run and maintain it",
+    title: "We run and maintain it",
+    description: [
+      "Hosting, updates, security and monitoring are ours to worry about. Anything you need changed goes straight to us through your client portal.",
+      "You get a team that knows your platform, not a ticket queue that doesn't.",
+    ],
+    note: "One predictable monthly fee, no surprise invoices.",
+  },
+  {
+    icon: "trending-up-outline",
+    label: "It gets smarter every campaign",
+    title: "It gets smarter every campaign",
+    description: [
+      "Every appeal teaches us something about your donors. We test, tune and add what the next campaign needs, so the platform keeps getting sharper.",
+      "Because you own it, those improvements are yours — they're never held back for a higher pricing tier.",
+    ],
+    note: "Your platform, improving on your terms.",
   },
 ];

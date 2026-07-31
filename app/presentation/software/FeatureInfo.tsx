@@ -41,7 +41,10 @@ export default function FeatureInfo({
   // collapse / blank out mid-close animation when the parent clears its
   // selection.
   const [shown, setShown] = useState<Feature | null>(feature);
-  const [position, setPosition] = useState({ index: index ?? 0, total });
+  const [position, setPosition] = useState({
+    index: index ?? 0,
+    total,
+  });
   useEffect(() => {
     if (feature) {
       setShown(feature);
@@ -89,7 +92,6 @@ export default function FeatureInfo({
         <div ref={innerRef}>
           {shown && (
             <div className="col middle center gap-20 fade-sm">
-             
               <div className="center middle">
                 <Icon
                   name={solid(shown.icon.name)}
@@ -107,7 +109,7 @@ export default function FeatureInfo({
               <div style={{ maxWidth: 460, width: "100%" }}>
                 {shown.description.map((para, i) => (
                   <p
-                    style={{ color: "var(--accent-lg)" }}
+                    style={{ color: "var(--txt)" }}
                     key={i}
                     className="center mb-10"
                   >
@@ -117,11 +119,16 @@ export default function FeatureInfo({
               </div>
 
               {shown.component || null}
-            <p
+              <p
                 className="m0"
-                style={{ color: "var(--accent-lg)", letterSpacing: "0.05em" }}
+                style={{
+                  color: "var(--accent-lg)",
+                  letterSpacing: "0.05em",
+                }}
               >
-                <b style={{fontWeight: 600}}>{position.index + 1} / {position.total}</b> 
+                <b style={{ fontWeight: 600 }}>
+                  {position.index + 1} / {position.total}
+                </b>
               </p>
               <div className="mb-20 pb-20 " />
             </div>
@@ -154,30 +161,29 @@ export default function FeatureInfo({
                     size={14}
                     color="var(--accent)"
                   />
-                  
                 </button>
-                   <div className="row gap-10">
-                <a
-                  className="accent p-10"
-                  role="button"
-                  href={CONTACT.bookingUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Book a call
-                </a>
-                <a
-                  className="outline-accent p-10"
-                  style={{
-                    background: "var(--bkg)",
-                    color: "var(--accent)",
-                  }}
-                  role="button"
-                  href={`mailto:${CONTACT.email}`}
-                >
-                  Email us
-                </a>
-              </div>
+                <div className="row gap-10">
+                  <a
+                    className="accent p-10"
+                    role="button"
+                    href={CONTACT.bookingUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Book a call
+                  </a>
+                  <a
+                    className="outline-accent p-10"
+                    style={{
+                      background: "var(--bkg)",
+                      color: "var(--accent)",
+                    }}
+                    role="button"
+                    href={`mailto:${CONTACT.email}`}
+                  >
+                    Email us
+                  </a>
+                </div>
                 <button
                   className="outline-secondary p-10 row gap-5 center"
                   style={{
@@ -190,7 +196,6 @@ export default function FeatureInfo({
                     onNext?.();
                   }}
                 >
-                  
                   <Icon
                     name="arrow-forward"
                     size={14}
@@ -202,7 +207,7 @@ export default function FeatureInfo({
           )}
         </div>
       </div>
-      <div className="pb-20"/>
+      <div className="pb-20" />
     </BasicMenu>
   );
 }

@@ -22,7 +22,7 @@ export function ContactTab({
   iconSize = 50,
   headerText = "Got questions? Let's talk.",
   showHeader = true,
-  buttonText = "Email us!",
+  buttonText = "Email us",
   secondaryButtonText = "Book a free discovery call",
   style,
 }: ContactTabProps) {
@@ -67,50 +67,57 @@ export function ContactTab({
             </div>
           </div>
         )}
-        <div className="w-50 col middle ">
-          <div className="row middle center gap-5 w-100">
-            <button className="row middle w-50">
-              <a
-                style={{
-                  textDecoration: "none",
-                  flex: 1,
-                  padding: 10,
-                  ...style,
-                }}
-                role="button"
-                className="accent gap-5 row center middle"
-                target="_blank"
-                rel="noreferrer"
-                href={`mailto:${CONTACT.email}`}
-              >
-                <Icon
-                  name="mail-open"
-                  className=""
-                  size={20}
-                  color={style?.color || undefined}
-                />
-                {buttonText}
-              </a>
-            </button>
-            <a
-              className="outline-secondary row middle gap-5  w-50 center                 "
-              role="button"
-              style={{
-                color: "var(--txt)",
-                background: "none",
-              }}
-              href={CONTACT.bookingUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-                 <Icon
-                  name="link"
-                  className=""
-                  size={20}
-                  color={style?.color || undefined}
-                />
-              {secondaryButtonText}
-            </a>
+        <div className="w-50">
+          <div className="col middle p-10">
+            <div className="row middle center gap-5 w-100 shrink-col ">
+                <div className="w-75">
+                  <a
+                    className="accent row middle gap-5 center p-10"
+                    role="button"
+                    style={{
+          
+                      background: "var(--accent)",
+                    }}
+                    href={CONTACT.bookingUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                       <Icon
+                        name="link"
+                        className=""
+                        size={20}
+                        color={style?.color || undefined}
+                      />
+                    {secondaryButtonText}
+                  </a>
+                </div>
+                <div className="w-50">
+                  <a
+                    style={{
+                      textDecoration: "none",
+                      flex: 1,
+                      padding: 10,
+                      background: "none",
+                      color: 'var(--txt)',
+                      ...style,
+                    }}
+                    role="button"
+                    className="outline-secondary gap-5 row center middle "
+                    target="_blank"
+                    rel="noreferrer"
+                    href={`mailto:${CONTACT.email}`}
+                  >
+                    <Icon
+                      name="mail-open"
+                      className=""
+                      size={20}
+                      color={style?.color || undefined}
+                    />
+                    {buttonText}
+                  </a>
+                </div>
+          
+            </div>
           </div>
         </div>
         <div>
