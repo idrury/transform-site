@@ -81,8 +81,7 @@ const organizationSchema = {
   name: "Transform Creative",
   url: "https://www.transformcreative.com.au",
   logo: "https://www.transformcreative.com.au/transform-icon-color-donut.png",
-  // {{TODO: Isaac to supply social URLs for sameAs — LinkedIn, Instagram, etc.}}
-  sameAs: [],
+  sameAs: ['https://www.instagram.com/transform_creative_au/','https://www.linkedin.com/company/112600945' ],
   description:
     "Adelaide creative agency specialising in websites, video production and software for Australian not-for-profits and charities.",
   areaServed: ["South Australia", "Australia"],

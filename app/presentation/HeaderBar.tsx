@@ -196,7 +196,7 @@ function MenuOptions({ inShrink, onClose, context }: MenuOptionsProps) {
           onClose();
         }}
       >
-        Software
+        Websites
       </button>
       <div className="div20" />
       <button

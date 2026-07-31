@@ -10,6 +10,7 @@ export interface ContactTabProps {
   headerText?: string;
   showHeader?: boolean;
   buttonText?: string;
+  secondaryButtonText?: string;
   style?: CSSProperties;
 }
 
@@ -22,7 +23,8 @@ export function ContactTab({
   headerText = "Got questions? Let's talk.",
   showHeader = true,
   buttonText = "Email us!",
-  style
+  secondaryButtonText = "Book a free discovery call",
+  style,
 }: ContactTabProps) {
   const context: SharedContextProps = useOutletContext();
   const [playerPlay, setPlayerPlay] = useState(false);
@@ -50,11 +52,11 @@ export function ContactTab({
   }
 
   return (
-    <section id="contact" className="w-100 col middle center">
-      <div className="col middle w100" >
+    <section id="contact" className="w-100 col middle center ">
+      <div className="col middle w100">
         {showHeader && (
-          <div >
-            <div className="col middle center mb2" >
+          <div>
+            <div className="col middle center mb2 ">
               <Icon
                 name="chatbubble-ellipses-outline"
                 size={iconSize}
@@ -65,35 +67,68 @@ export function ContactTab({
             </div>
           </div>
         )}
-        <div className="w-50 col middle">
-          <button className="row middle " style={{ gap: 8 }}>
+        <div className="w-50 col middle ">
+          <div className="row middle center gap-5 w-100">
+            <button className="row middle w-50">
+              <a
+                style={{
+                  textDecoration: "none",
+                  flex: 1,
+                  padding: 10,
+                  ...style,
+                }}
+                role="button"
+                className="accent gap-5 row center middle"
+                target="_blank"
+                rel="noreferrer"
+                href={`mailto:${CONTACT.email}`}
+              >
+                <Icon
+                  name="mail-open"
+                  className=""
+                  size={20}
+                  color={style?.color || undefined}
+                />
+                {buttonText}
+              </a>
+            </button>
             <a
-              style={{ textDecoration: "none", flex: 1, padding: 10, ...style }}
+              className="outline-secondary row middle gap-5  w-50 center                 "
               role="button"
-              className="accent gap-5 row center middle"
+              style={{
+                color: "var(--txt)",
+                background: "none",
+              }}
+              href={CONTACT.bookingUrl}
               target="_blank"
               rel="noreferrer"
-              href={`mailto:${CONTACT.email}`}
             >
-              <Icon name="mail-open" className="" size={20}  color={style?.color || undefined}/>
-              {buttonText}
+                 <Icon
+                  name="link"
+                  className=""
+                  size={20}
+                  color={style?.color || undefined}
+                />
+              {secondaryButtonText}
             </a>
-          </button>
+          </div>
         </div>
-        <div className="row middle center clickable">
-          <p onClick={copyEmail}>{CONTACT.email}</p>
-          <button
-          style={{color: style?.color}}
-            onClick={copyEmail}
-            title="Copy email address"
-            className="pt2 pb2"
-          >
-            <Icon
-              name={copied ? "checkmark-outline" : "copy-outline"}
-              color={style?.background }
-              size={15}
-            />
-          </button>
+        <div>
+          <div className="row middle center clickable">
+            <p onClick={copyEmail}>{CONTACT.email}</p>
+            <button
+              style={{ color: style?.color }}
+              onClick={copyEmail}
+              title="Copy email address"
+              className="pt2 pb2"
+            >
+              <Icon
+                name={copied ? "checkmark-outline" : "copy-outline"}
+                color={style?.background}
+                size={15}
+              />
+            </button>
+          </div>
         </div>
       </div>
       <div style={{ height: 100 }} />

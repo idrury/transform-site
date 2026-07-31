@@ -13,11 +13,9 @@ import { useGSAP } from "@gsap/react";
 import { SplitText, ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
 import HeaderText from "./HeaderText";
-import WorkedWith from "./WorkedWith";
-import { Carousel } from "../elements/Carousel";
 import { ProjectCarousel } from "../elements/ProjectCarousel";
 import { AnimatedDots } from "../elements/AnimatedDots";
-import { EndorsementCard } from "../elements/EndorsementCard";
+import { EndorsementSection } from "./EndorsementSection";
 import { GradualBlur } from "../elements/GradualBlur";
 import { SplashCursor } from "../elements/SplashCursor";
 import "../../app-v2.css";
@@ -30,6 +28,7 @@ interface FeatureCardProps {
   title: string;
   subtitle: string;
   videoSrc: string;
+  cta:string;
   onClick: () => void;
 }
 
@@ -44,6 +43,7 @@ function FeatureCard({
   title,
   subtitle,
   videoSrc,
+  cta="Find out more",
   onClick,
 }: FeatureCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -62,7 +62,7 @@ function FeatureCard({
   }, []);
 
   return (
-    <article id={id} className="boxed col flex-card  outline-accent">
+    <article id={id} className="boxed accent col flex-card  outline-accent p-5">
       <div
         ref={cardRef}
         className="media-16-9"
@@ -80,17 +80,18 @@ function FeatureCard({
           }}
         />
       </div>
-      <div className="pl-10 pr-10 pb-10">
-        <h2 className="accent row middle gap-10 mt-20">
-          <Icon name={icon} size={40} color="var(--accent)" />
+      <div className="pl-20 pr-20 pb-20">
+        <h2 className=" row middle gap-10 mt-20">
+          <Icon name={icon} size={35} color="var(--accent)" />
           {title}
         </h2>
-        <p className="mt-10 mb-20">{subtitle}</p>
+        <p className="mt-10 mb-20" style={{color: 'var(--accent-sm)'}}>{subtitle}</p>
         <button
-          className="accentButton row middle center gap-10 w-100"
+          className="outline-bkg boxed row middle center gap-10 w-100"
           onClick={onClick}
+          style={{color: 'var(--accent)'}}
         >
-          Find out more
+         {cta}
           <Icon
             name="arrow-forward-circle"
             size={20}
@@ -273,14 +274,16 @@ export function LandingPage({}: LandingPageProps) {
         >
           <FeatureCard
             id="landing-software-button"
+            cta="Develop with us"
             icon="code-outline"
-            title="Software"
-            subtitle="We help non-profits upgrade to custom solutions that reduce expensive third party fees."
+            title="Website"
+            subtitle="We build custom giving platforms that redirect third party fees back to your mission."
             videoSrc="https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Software-video.mp4"
             onClick={() => navigate("/development")}
           />
           <FeatureCard
             id="landing-media-button"
+                        cta="Film with us"
             icon="film-outline"
             title="Video"
             subtitle="Partner with us to create authentic material that cuts through the dribble of AI content."
@@ -289,56 +292,12 @@ export function LandingPage({}: LandingPageProps) {
           />
         </div>
       </div>
-      <div className="col middle m-20 pt-20">
-        <div className="boxed outline-accent w-75">
-          <div className="center p-20">
-            <h4
-              style={{ color: "var(--txt)" }}
-              className="textCenter w-100 "
-            >
-              We're the{" "}
-              <b style={{ fontWeight: 600, color: "var(--accent)" }}>
-                creative engine
-              </b>{" "}
-              empowering Australia’s{" "}
-              <b style={{ fontWeight: 600, color: "var(--accent)" }}>
-                most innovative non-profits.
-              </b>{" "}
-            </h4>
-          </div>
-          <WorkedWith />
-          {/* What our clients love */}
-          {PROJECTS.filter((p) => p.endorsement).length > 0 && (
-            <div className=" col middle center m-10" style={{ opacity: 1 }}>
-              <div className="row gap-10 shrink-wrap">
-                <Carousel
-                  interval={8}
-                  showDots="end"
-                  autoplay
-                  mode="fade"
-                  loop
-                >
-                  {PROJECTS.filter((p) => p.endorsement).map((p) => (
-                    <EndorsementCard
-                      key={p.id}
-                      text={p.endorsement!.text}
-                      name={p.endorsement!.name}
-                      width={context.inShrink ? "100vw" : "50vw"}
-                      organisation={p.organisation || p.name}
-                    />
-                  ))}
-                </Carousel>
-              </div>
-            </div>
-          )}
-        
-        </div>
-      </div>
+      <EndorsementSection />
 
         <div className="p-20">
             <ContactTab
               showHeader={false}
-              buttonText="Get in touch with us"
+              buttonText="Get in touch"
             />
           </div>
 

@@ -132,7 +132,7 @@ export default function FeatureSelector({
   return (
     <div className="col gap-20 w-100">
       <h2 className="textCenter" style={{padding: "10px 10px 0 10px"}}>
-        Every feature you have now, plus the ones you don't
+        Every feature you have now, <strong style={{fontWeight: 600}}>plus ones you don't</strong>.
       </h2>
       <p className="textCenter"style={{padding: "0px 20px 10px 20px"}}>
         You've{" "}

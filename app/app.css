@@ -642,6 +642,12 @@ th {
   transition: 0.2s;
 }
 
+.outline-bkg {
+   border-radius: var(--borderRadius);
+  border: 1px solid var(--bkg);
+  transition: 0.2s;
+}
+
 .moveableMenuBackground {
   position: fixed;
   backdrop-filter: blur(1.5px);

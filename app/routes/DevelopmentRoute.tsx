@@ -11,14 +11,18 @@ import gsap from "gsap";
 import { SharedContextProps } from "~/data/CommonTypes";
 import { useOutletContext, useSearchParams } from "react-router";
 import { ContactTab } from "~/presentation/landing/ContactTab";
+import { EndorsementSection } from "~/presentation/landing/EndorsementSection";
 import ReactPlayer from "react-player";
 import { SavingCalculator } from "~/presentation/software/SavingCalculator";
-import { CONTACT, FEATURES } from "~/data/Objects";
+import { CONTACT, FEATURES, PROJECTS } from "~/data/Objects";
 import { buildMeta, canonical, SITE_URL } from "~/business/seoBL";
 import { SplashCursor } from "~/presentation/elements/SplashCursor";
 import { GradualBlur } from "~/presentation/elements/GradualBlur";
 
 import { Icon } from "~/presentation/elements/Icon";
+import { Carousel } from "~/presentation/elements/Carousel";
+import { EndorsementCard } from "~/presentation/elements/EndorsementCard";
+import WorkedWith from "~/presentation/landing/WorkedWith";
 
 const TITLE =
   "Nonprofit Website Development Adelaide | Transform Creative";
@@ -234,9 +238,7 @@ export default function DevelopmentRoute() {
                     <Icon name="arrow-down" size={16} />
                     What could my org save?
                   </button>
-                  {/* {{TODO: Isaac to confirm the existing Google Calendar
-                      appointment link is the right destination for a
-                      "15-min fee audit", or supply a different one}} */}
+
                   <a
                     className="outline-secondary row middle gap-5  w-50 center                 "
                     role="button"
@@ -253,7 +255,7 @@ export default function DevelopmentRoute() {
                       size={16}
                       color="var(--accent-sm)"
                     />
-                    Book your free demo
+                    Book a free discovery call
                   </a>
                 </div>
               </div>
@@ -320,34 +322,53 @@ export default function DevelopmentRoute() {
         style={{ overflow: "clip" }}
       >
         <h2
-          className="textCenter"
-          style={{ margin: "50px 0 0px 0", color: "var(--txt)" }}
+          className="textCenter w-75"
+          style={{ margin: "50px 0 40px 0", color: "var(--txt)" }}
         >
-          Custom fundraising platforms{" "}
-          <b
-            className=""
-            style={{ fontWeight: 600, color: "var(--accent)" }}
-          >
-            we've built.
-          </b>
+          We've created with some of Australia's most innovative{" "}
+          <b style={{ fontWeight: 600, color: "var(--accent)" }}>
+            non-profits
+          </b>{" "}
         </h2>
-        <p
-          className="pb-20 pt-5"
-          style={{ color: "var(--accent-lg)" }}
-        >
-          And are secretly really proud of...
-        </p>
+
+       
         <SoftwareProjects />
+        <div className="col middle center mt-20">
+          <Carousel
+            interval={8}
+            showDots="end"
+            autoplay
+            mode="fade"
+            loop
+          >
+            {PROJECTS.filter(
+              (e) => e.type === "software" && e.endorsement,
+            ).map((p) => (
+              <EndorsementCard
+                key={p.id}
+                text={p.endorsement!.text}
+                name={p.endorsement!.name}
+                width={context.inShrink ? "100vw" : "50vw"}
+                organisation={p.organisation || p.name}
+              />
+            ))}
+          </Carousel>
+        </div>
+           <div className="col middle center m-10 ">
+          <WorkedWith />
+        </div>
       </div>
+    
 
       <div
-        className="horizontal-line mediumFade"
-        style={{ top: 0, marginTop: 100, marginBottom: 80 }}
+        className="horizontal-line mediumFade mt-20 mb-20 ot02"
+        style={{ top: 0 }}
       />
 
       <div className="w-100 col middle">
         <ContactTab headerText="Book a 30 minute discovery call" />
       </div>
+      
 
       <button
         className={`accent row middle center gap-5 floating-cta s-10 outline ${

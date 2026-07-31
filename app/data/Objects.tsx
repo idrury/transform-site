@@ -90,10 +90,9 @@ export const PROJECTS: Project[] = [
     ],
     video:
       "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/crossover_compress.mp4",
-    // {{TODO: Isaac to confirm testimonial + client-name permission}}
     endorsement: {
       name: "Andrew",
-      text: "We couldn't be happier with the website Transform Creative set up for us. Isaac quickly grasped all our complex requirements and created a solution perfect for our needs. It all came in on budget and weeks ahead of time. Highly recommend!",
+      text: "We couldn't be happier with the website Transform Creative set up for us. They quickly grasped all our complex requirements and created a solution perfect for our needs. It all came in on budget and weeks ahead of time. Highly recommend!",
     },
   },
   {
@@ -285,7 +284,6 @@ export const PROJECTS: Project[] = [
       "https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/crossover-info-3.png",
     ],
     link: "https://www.crossover.org.au/",
-    // {{TODO: Isaac to confirm testimonial + client-name permission}}
     endorsement: {
       name: "Andrew",
       text: "Transform Creative is simply our go-to for all our videography needs. We work to tight timelines and a very tight budget - and sometimes get ourselves in a tight spot with a need for quality content of just a little brainstorming. Isaac gets all that and is usually at least one step ahead. The final product's never failed to be well above our expectations",
@@ -526,11 +524,6 @@ const ARCHIVED = [
 
 export const CONTACT = {
   email: "hello@transformcreative.com.au",
-  /**
-   * {{TODO: Isaac to confirm this Google Calendar appointment link is the
-   * right destination for a "Book a free 15-min fee audit" CTA, or supply
-   * a different one}}
-   */
   bookingUrl:
     "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2neXINmRa2l8cPxCMY8-FrrTt30-Tpwfj7-zqktFODuuJO9Z_wsSfv2wcNkiFvipiOl58trJuc",
 };
@@ -592,67 +585,67 @@ export const FEATURES: Feature[] = [
   {
     className: "center col middle",
     icon: { name: "card-outline", size: 50 },
-    category: "Pricing & ownership",
+    category: "Decrease overheads",
     text: "No exorbitant 'platform fee'", // unchanged — your original
     description: [
       'Platforms like Raisely, Funraisin and GoFundraise usually prompt your donors to add ~4–5% "to cover costs" at checkout — money that goes to the platform, not you.',
       "Own your platform and that stays with your cause.",
     ],
   },
-{
+  {
   className: "center col middle",
   icon: { name: "hardware-chip-outline", size: 50 },
-  category: "Performance & UX",
-  text: "Donations that get smarter over time",
+  category: "Increase donations",
+  text: "Machine learning",
   description: [
-    "There's a bit of machine learning ticking away in the background, quietly A/B testing the things that move the needle — suggested amounts, button wording, how the ask is framed — and leaning toward whatever's raising more.",
-    "Instead of guessing and rebuilding the page every few months, the platform keeps tuning itself as your donors respond.",
+   "We utlize custom built machine learning algorithms which analyse donor activity, and use the results of A/B tests to optimise your site's effectiveness."
   ],
 },
+  {
+  className: "center col middle",
+  icon: { name: "sync-outline", size: 50 },
+  category: "Deliver great experiences",
+  text: "Transfer your data",
+  description: [
+    "Years of donor records, giving history, receipts, active recurring gifts — we bring the lot over from your current platform, so switching doesn't mean starting from a blank spreadsheet.",
+  ],
+},
+
+{
+  className: "center col middle",
+  icon: { name: "repeat-outline", size: 50 },
+  category: "Increase donations",
+  text: "Generate regular donors",
+  description: [
+    "We have experience optimisng how you find regular donors. The timing of the ask, the thank-you, the gentle nudge to set it up as recurring.",
+  ],
+},
+{
+  className: "center col middle",
+  icon: { name: "extension-puzzle-outline", size: 50 },
+  category: "Decrease overheads",
+  text: "Easily find 'proof-of-impact'",
+  description: [
+    "Only 23% of organisations report having systems that let them understand the impact of their services",
+    "Our custom site will generate better data and integrate directly into your existing systems & workflows.",
+  ],
+},
+
   // ─── BUILD & CUSTOMISE ───
   {
     className: "center col middle",
     icon: { name: "sparkles-outline", size: 50 },
-    category: "Build & customise",
-    text: "Your dream features", // unchanged — your original
+    category: "Deliver great experiences",
+    text: "Deliver real value", // unchanged — your original
     description: [
-      "Off-the-shelf giving tools are generic. We build what your campaign needs — peer-to-peer, event registration, custom donor journeys — on Stripe and Supabase.",
+      "Only 38% of orgs agree their website delivers value. We build what your campaign needs — peer-to-peer, event registration, custom donor journeys.",
       "If you're sick of your admin team telling you 'it's not possible with the current system', let's chat.",
     ],
   },
-  {
-    className: "center col middle",
-    icon: { name: "people-circle-outline", size: 50 },
-    category: "Build & customise",
-    text: "Peer-to-peer & team fundraising",
-    description: [
-      "Team pages, individual fundraiser profiles, leaderboards, targets — the works. Your supporters do the asking, and their mates do the giving.",
-      "We've run this for a national event, so it holds up when a whole campaign piles on at once.",
-    ],
-  },
-  {
-    className: "center col middle",
-    icon: { name: "ticket-outline", size: 50 },
-    category: "Build & customise",
-    text: "Events, tickets & donations in one flow",
-    description: [
-      "Sign-ups, ticket sales and donations all run through the same system, so you're not shuffling spreadsheets between three tools the night before an event.",
-    ],
-  },
-  {
-    className: "center col middle",
-    icon: { name: "color-palette-outline", size: 50 },
-    category: "Build & customise",
-    text: "Your brand, front to back",
-    description: [
-      "No 'powered by' badge in the footer, no template that turns up on fifty other charity sites. It looks and reads like your org, top to bottom.",
-      "That matters more than it sounds — people give more freely when the page feels like the cause they care about.",
-    ],
-  },
-  {
+    {
     className: "center col middle",
     icon: { name: "trophy-outline", size: 50 },
-    category: "Build & customise",
+    category: "Increase donations",
     text: "Gamification that drives giving",
     description: [
       "Progress bars, milestones, streaks, a shout-out when someone smashes their target — the little nudges that keep fundraisers coming back to their page.",
@@ -660,11 +653,31 @@ export const FEATURES: Feature[] = [
   },
   {
     className: "center col middle",
-    icon: { name: "swap-horizontal-outline", size: 50 },
-    category: "Build & customise",
-    text: "Matched giving & campaign mechanics",
+    icon: { name: "people-circle-outline", size: 50 },
+    category: "Decrease overheads",
+    text: "Peer-to-peer & team fundraising",
     description: [
-      "Matched-giving timers, employer matching, 'donate before Friday and it's doubled' — the levers that give a donor a reason to act now rather than later",
+      "Team pages, individual fundraiser profiles, leaderboards, targets — the works. Your supporters do the asking, and their mates do the giving.",
+    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "ticket-outline", size: 50 },
+    category: "Decrease overheads",
+    text: "Events, tickets & donations in one flow",
+    description: [
+      "Sign-ups, ticket sales and donations all run through the same system, so you're not shuffling spreadsheets between three tools the night before an event.",
+    ],
+  },
+
+
+  {
+    className: "center col middle",
+    icon: { name: "swap-horizontal-outline", size: 50 },
+    category: "Increase donations",
+    text: "Matched giving",
+    description: [
+      "We can build custom levers that give donors a reason to act now rather than later",
       "(Cause we all know  later usually means never).",
     ],
   },
@@ -673,37 +686,19 @@ export const FEATURES: Feature[] = [
   {
     className: "center col middle",
     icon: { name: "lock-closed-outline", size: 50 },
-    category: "Security & access",
-    text: "Security customised for you", // unchanged — your original
+    category:"Deliver great experiences",
+    text: "Locked down security", // unchanged — your original
     description: [
       "Your donor data lives on infrastructure we build and understand — not a black box you can't see into.",
       "As your database grows you become a bigger target. Generic providers give you generic security. We take an active role in protecting you.",
     ],
   },
-  {
-    className: "center col middle",
-    icon: { name: "id-card-outline", size: 50 },
-    category: "Security & access",
-    text: "Role-based access for your whole team",
-    description: [
-      "Give each person exactly the access they need. A volunteer running one campaign doesn't need to see your entire donor database — and now they won't.",
-      "Set it once and stop worrying about who can get at what.",
-    ],
-  },
-  {
-    className: "center col middle",
-    icon: { name: "download-outline", size: 50 },
-    category: "Security & access",
-    text: "Your data, exportable, always",
-    description: [
-      "Pull a full export of your donors and donations whenever you like — no support ticket, no 'that feature's on a higher plan'.",
-      "It's your data. Getting it out shouldn't be a negotiation.",
-    ],
-  },
+
+
   {
     className: "center col middle",
     icon: { name: "server-outline", size: 50 },
-    category: "Security & access",
+    category: "Deliver great experiences",
     text: "Australian-hosted, Australian-handled",
     description: [
       "Your donor data can sit on Australian servers, handled to local privacy standards, rather than bouncing around data centres overseas.",
@@ -715,38 +710,29 @@ export const FEATURES: Feature[] = [
   {
     className: "center col middle",
     icon: { name: "people-outline", size: 50 },
-    category: "Support & success",
+    category: "Deliver great experiences",
     text: "Face to face support", // unchanged — your original
     description: [
       "Local, face-to-face support. We're in Adelaide, we pick up the phone, and we know your platform inside out.",
       "No more waiting on hold. Send us a Slack message and have your problems fixed in minutes.",
     ],
   },
-  {
-    className: "center col middle",
-    icon: { name: "construct-outline", size: 50 },
-    category: "Support & success",
-    text: "We run the tech, you run the campaign.",
-    description: [
-     "Get the same background support you're used to - just faster. Hosting, updates, security patches, the odd 3am gremlin — all on us, so you can focus more on mission.", 
-    ],
-  },
+
   {
     className: "center col middle",
     icon: { name: "receipt-outline", size: 50 },
-    category: "Support & success",
-    text: "EOFY & tax receipting, sorted",
+    category: "Deliver great experiences",
+    text: "EOFY & tax",
     description: [
       "Tax-deductible receipts go out automatically, and end-of-financial-year statements are ready to pull whenever you need them — all to DGR standards."    ],
   },
   {
     className: "center col middle",
     icon: { name: "school-outline", size: 50 },
-    category: "Support & success",
-    text: "Onboarding & training for your team",
+    category:  "Deliver great experiences",
+    text: "Onboarding & training",
     description: [
-      "We walk your staff and volunteers through it properly and leave decent documentation behind.",
-      "So when the person who set up the campaign moves on, nothing falls over.",
+      "We walk your staff and volunteers through it properly and leave detailed documentation about how things are working behind the scenes.",
     ],
   },
 
@@ -754,7 +740,7 @@ export const FEATURES: Feature[] = [
   {
     className: "center col middle",
     icon: { name: "flash-outline", size: 50 },
-    category: "Performance & UX",
+    category:  "Increase donations",
     text: "User focused optimisation", // unchanged — your original
     description: [
       "Speed and UX you control. On a custom build, every load time and every click is yours to optimise — generic platforms give you no say.",
@@ -764,28 +750,26 @@ export const FEATURES: Feature[] = [
   {
     className: "center col middle",
     icon: { name: "bar-chart-outline", size: 50 },
-    category: "Performance & UX",
-    text: "Reporting you'll actually use",
+    category: "Deliver great experiences",
+    text: "Discover meaning in data",
     description: [
-      "See what's been raised, who's driving it, and which appeals are landing — then export something the board will actually read.",
-      "Enough to spot what's working mid-campaign, while there's still time to do something about it.",
+      "Many organisations struggle to quantify ",
     ],
   },
   {
     className: "center col middle",
     icon: { name: "phone-portrait-outline", size: 50 },
-    category: "Performance & UX",
-    text: "Built mobile-first",
+    category: "Increase donations",
+    text: "Mobile-first design",
     description: [
       "Most people donate on their phone in a spare minute, so that's where we start — big buttons, short forms, no pinching and zooming to find the amount field.",
-      "A clunky mobile checkout is where a lot of good intentions quietly die.",
     ],
   },
   {
     className: "center col middle",
     icon: { name: "accessibility-outline", size: 50 },
-    category: "Performance & UX",
-    text: "Fast and accessible for everyone",
+    category: "Increase donations",
+    text: "Fast and accessible for all",
     description: [
       "Quick to load on old phones and patchy regional connections, and properly usable with a screen reader.",
       "Your donors aren't all on new iPhones and the NBN — the ones who aren't still deserve to get through checkout.",
@@ -794,11 +778,10 @@ export const FEATURES: Feature[] = [
   {
     className: "center col middle",
     icon: { name: "refresh-outline", size: 50 },
-    category: "Performance & UX",
-    text: "Recover the donations you're losing",
+    category: "Increase donations",
+    text: "Recover lost donations",
     description: [
-      "Someone starts a donation, gets distracted, closes the tab — happens constantly. We can gently follow up, offer one-tap repeat giving, and win a good chunk of them back.",
-      "Usually the cheapest money you'll ever raise, because the person had already decided to give.",
+      "Someone starts a donation, gets distracted, closes the tab. We can automate follow up, offer one-tap repeat giving, and win a good chunk of them back.",
     ],
   },
 ];
