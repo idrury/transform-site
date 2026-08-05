@@ -1,0 +1,70 @@
+/* Accordian — drop this next to Accordian.tsx.
+   Colours fall back to currentColor, so it inherits any theme it lands in. */
+
+.accordian {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Hairline between rows, never above the first */
+.accordian-row {
+  border-top: 1px solid var(--accent, currentColor);
+}
+.accordian-row:first-child,
+.accordian.no-lines .accordian-row {
+  border-top: none;
+}
+
+/* Header reads as a button but inherits the page's type */
+.accordian-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 20px 0;
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.accordian-title {
+  margin: 0;
+  color: var(--accent, currentColor);
+}
+
+.accordian-number {
+  color: var(--accent-lg, var(--accent, currentColor));
+}
+
+/* GSAP drives height/opacity — these are only the resting values */
+.accordian-panel {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.accordian-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 20px;
+}
+
+/* Pulls the rows in from the edges, dividers stay full width */
+.accordian.inset .accordian-head,
+.accordian.inset .accordian-body {
+  padding-inline: 20px;
+}
+
+.accordian-chevron {
+  margin-left: auto;
+  flex: none;
+  transition: transform 0.3s ease;
+}
+.accordian-chevron.open {
+  transform: rotate(180deg);
+}

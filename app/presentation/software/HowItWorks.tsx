@@ -3,6 +3,7 @@ import { useOutletContext } from "react-router";
 import { SharedContextProps } from "~/data/CommonTypes";
 import type { IoniconName } from "~/data/Ionicons";
 import { Icon } from "~/presentation/elements/Icon";
+import { Accordian } from "~/presentation/elements/Accordian/Accordian";
 import FeatureInfo from "./FeatureInfo";
 import type { Feature } from "./FeatureSelector";
 import { CONTACT, HOW_IT_WORKS } from "~/data/Objects";
@@ -47,6 +48,22 @@ export function HowItWorks() {
   // On the rail: a popout on small screens, the card beside it on large ones.
   const select = (index: number) =>
     context.inShrink ? setOpenIndex(index) : setActive(index);
+
+  // The steps as accordian rows — the icon tile is passed in as the row's
+  // leading node so the accordian itself stays icon-library agnostic.
+  const accordianItems = useMemo(
+    () =>
+      HOW_IT_WORKS.map((step) => ({
+        title: step.title,
+        content: [...step.description],
+        icon: (
+          <div className="icon-tile center middle">
+            <Icon name={step.icon} size={18} color="var(--bkg)" />
+          </div>
+        ),
+      })),
+    [],
+  );
 
   // Kept stable — FeatureInfo stores whatever feature it is handed, so a fresh
   // object every render would loop.
@@ -109,39 +126,17 @@ export function HowItWorks() {
       {/* Right — the cards, closed until their step is picked */}
       {!context.inShrink && (
         <div className="col flex-card-2">
-          {HOW_IT_WORKS.map((step, index) => (
-            <article
-              key={step.label}
-              className="divided-card col gap-10 p-20"
-              onMouseEnter={() => setActive(index)}
-              onClick={() => setActive(index)}
-            >
-              <div className="row middle gap-10">
-                <div className="icon-tile center middle">
-                  <Icon
-                    name={step.icon}
-                    size={18}
-                    color="var(--bkg)"
-                  />
-                </div>
-                <b className="" style={{color: "var(--accent-lg)"}}>{stepNumber(index)}</b>
-                <h3 className="accent">{step.title}</h3>
-              </div>
-
-              <div
-                className={`collapse-row ${active === index ? "open" : ""}`}
-              >
-                <div className="col gap-10">
-                  {step.description.map((para) => (
-                    <p key={para} >
-                      {para}
-                    </p>
-                  ))}
-                  
-                </div>
-              </div>
-            </article>
-          ))}
+          <Accordian
+            className="inset"
+            items={accordianItems}
+            numbered
+            chevron={false}
+            openOnHover
+            openIndexes={active === null ? [] : [active]}
+            onToggle={(index, open) =>
+              setActive(open.includes(index) ? index : null)
+            }
+          />
         </div>
       )}
 
