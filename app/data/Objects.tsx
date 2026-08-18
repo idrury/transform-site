@@ -594,43 +594,43 @@ export const FEATURES: Feature[] = [
     ],
   },
   {
-  className: "center col middle",
-  icon: { name: "hardware-chip-outline", size: 50 },
-  category: "Increase donations",
-  text: "Machine learning",
-  description: [
-   "We utlize custom built machine learning algorithms which analyse donor activity, and use the results of A/B tests to optimise your site's effectiveness."
-  ],
-},
+    className: "center col middle",
+    icon: { name: "hardware-chip-outline", size: 50 },
+    category: "Increase donations",
+    text: "Machine learning",
+    description: [
+      "We utlize custom built machine learning algorithms which analyse donor activity, and use the results of A/B tests to optimise your site's effectiveness.",
+    ],
+  },
   {
-  className: "center col middle",
-  icon: { name: "sync-outline", size: 50 },
-  category: "Deliver great experiences",
-  text: "Transfer your data",
-  description: [
-    "Years of donor records, giving history, receipts, active recurring gifts — we bring the lot over from your current platform, so switching doesn't mean starting from a blank spreadsheet.",
-  ],
-},
+    className: "center col middle",
+    icon: { name: "sync-outline", size: 50 },
+    category: "Deliver great experiences",
+    text: "Transfer your data",
+    description: [
+      "Years of donor records, giving history, receipts, active recurring gifts — we bring the lot over from your current platform, so switching doesn't mean starting from a blank spreadsheet.",
+    ],
+  },
 
-{
-  className: "center col middle",
-  icon: { name: "repeat-outline", size: 50 },
-  category: "Increase donations",
-  text: "Generate regular donors",
-  description: [
-    "We have experience optimisng how you find regular donors. The timing of the ask, the thank-you, the gentle nudge to set it up as recurring.",
-  ],
-},
-{
-  className: "center col middle",
-  icon: { name: "extension-puzzle-outline", size: 50 },
-  category: "Decrease overheads",
-  text: "Easily find 'proof-of-impact'",
-  description: [
-    "Only 23% of organisations report having systems that let them understand the impact of their services",
-    "Our custom site will generate better data and integrate directly into your existing systems & workflows.",
-  ],
-},
+  {
+    className: "center col middle",
+    icon: { name: "repeat-outline", size: 50 },
+    category: "Increase donations",
+    text: "Generate regular donors",
+    description: [
+      "We have experience optimisng how you find regular donors. The timing of the ask, the thank-you, the gentle nudge to set it up as recurring.",
+    ],
+  },
+  {
+    className: "center col middle",
+    icon: { name: "extension-puzzle-outline", size: 50 },
+    category: "Decrease overheads",
+    text: "Easily find 'proof-of-impact'",
+    description: [
+      "Only 23% of organisations report having systems that let them understand the impact of their services",
+      "Our custom site will generate better data and integrate directly into your existing systems & workflows.",
+    ],
+  },
 
   // ─── BUILD & CUSTOMISE ───
   {
@@ -643,7 +643,7 @@ export const FEATURES: Feature[] = [
       "If you're sick of your admin team telling you 'it's not possible with the current system', let's chat.",
     ],
   },
-    {
+  {
     className: "center col middle",
     icon: { name: "trophy-outline", size: 50 },
     category: "Increase donations",
@@ -671,7 +671,6 @@ export const FEATURES: Feature[] = [
     ],
   },
 
-
   {
     className: "center col middle",
     icon: { name: "swap-horizontal-outline", size: 50 },
@@ -687,14 +686,13 @@ export const FEATURES: Feature[] = [
   {
     className: "center col middle",
     icon: { name: "lock-closed-outline", size: 50 },
-    category:"Deliver great experiences",
+    category: "Deliver great experiences",
     text: "Locked down security", // unchanged — your original
     description: [
       "Your donor data lives on infrastructure we build and understand — not a black box you can't see into.",
       "As your database grows you become a bigger target. Generic providers give you generic security. We take an active role in protecting you.",
     ],
   },
-
 
   {
     className: "center col middle",
@@ -725,12 +723,13 @@ export const FEATURES: Feature[] = [
     category: "Deliver great experiences",
     text: "EOFY & tax",
     description: [
-      "Tax-deductible receipts go out automatically, and end-of-financial-year statements are ready to pull whenever you need them — all to DGR standards."    ],
+      "Tax-deductible receipts go out automatically, and end-of-financial-year statements are ready to pull whenever you need them — all to DGR standards.",
+    ],
   },
   {
     className: "center col middle",
     icon: { name: "school-outline", size: 50 },
-    category:  "Deliver great experiences",
+    category: "Deliver great experiences",
     text: "Onboarding & training",
     description: [
       "We walk your staff and volunteers through it properly and leave detailed documentation about how things are working behind the scenes.",
@@ -741,7 +740,7 @@ export const FEATURES: Feature[] = [
   {
     className: "center col middle",
     icon: { name: "flash-outline", size: 50 },
-    category:  "Increase donations",
+    category: "Increase donations",
     text: "User focused optimisation", // unchanged — your original
     description: [
       "Speed and UX you control. On a custom build, every load time and every click is yours to optimise — generic platforms give you no say.",
@@ -750,11 +749,12 @@ export const FEATURES: Feature[] = [
   },
   {
     className: "center col middle",
-    icon: { name: "bar-chart-outline", size: 50 },
-    category: "Deliver great experiences",
+    icon: { name: "bulb-outline", size: 50 },
+    category: "Increase donations",
     text: "Discover meaning in data",
     description: [
-      "Many organisations struggle to quantify ",
+      "Many organisations struggle to quantify what's really going on - why supporters drift off, what nudges a one-off gift into a monthly one, that kinda stuff.",
+      "With a platform built around your data, those patterns actually surface in a useable way.",
     ],
   },
   {

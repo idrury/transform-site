@@ -184,7 +184,7 @@ export default function DevelopmentRoute() {
             }}
           >
             <ReactPlayer
-              src="https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Software-video.mp4"
+              src="https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/software_video.mp4"
               ref={reactPlayer}
               onClick={() => {
                 setPlayerMuted(!playerMuted);
@@ -274,7 +274,7 @@ export default function DevelopmentRoute() {
               style={{ color: "var(--txt)" }}
             >
               We're on a mission to help Aussie non-profits{" "}
-              <strong>make donations go further.</strong>
+              <strong>decrease overheads, increase donations and deliver great experiences.</strong>
             </h2>
             <p
               className="textCenter accent mb-10 w-75"

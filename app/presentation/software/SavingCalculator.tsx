@@ -258,6 +258,7 @@ export function SavingCalculator({}: SavingCalculatorProps) {
         style={{ background: "var(--accent-sm)" }}
         className="row shrink-col between gap-20 mb-20 boxed p-20 outline-accent"
       >
+
         <div className="row w-100 between middle shrink-col gap-20">
           <div className="col gap-10 w-100">
             <label className="row middle gap-10 boxed p-5 shrink-col">
@@ -332,7 +333,7 @@ export function SavingCalculator({}: SavingCalculatorProps) {
             </div>
           </div>
           <div className="col end center w-50 shrink-col">
-            <h2>+{fmt(extraToCause/1000)}k</h2>
+            <h1>+{fmt(extraToCause/1000)}k</h1>
             <p style={{ opacity: 0.7 }}>To your cause annually*</p>
           </div>
         </div>

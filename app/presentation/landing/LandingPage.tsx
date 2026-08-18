@@ -278,7 +278,7 @@ export function LandingPage({}: LandingPageProps) {
             icon="code-outline"
             title="Website"
             subtitle="We build custom giving platforms that redirect third party fees back to your mission."
-            videoSrc="https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/Software-video.mp4"
+            videoSrc="https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/software_video.mp4"
             onClick={() => navigate("/development")}
           />
           <FeatureCard
