@@ -145,8 +145,7 @@ export function SavingCalculator({}: SavingCalculatorProps) {
   // Quietly adjustable assumptions, surfaced as inline inputs in the
   // disclaimer copy. They default to the spreadsheet constants.
   const [avgDonation, setAvgDonation] = useState(AVG_DONATION);
-  const [adminWeighting, setAdminWeighting] =
-    useState(BOX_ADDON_PCT);
+  const [adminWeighting, setAdminWeighting] = useState(BOX_ADDON_PCT);
 
   // --- Shared figures -------------------------------------------------
   const numDonations = annualTotal / avgDonation;
@@ -217,9 +216,8 @@ export function SavingCalculator({}: SavingCalculatorProps) {
   const donationCount = Math.round(numDonations);
   const stripeTip =
     `${fmt(stripeFees)} (1.45% + 30c from ` +
-    `~${(donationCount/1000).toLocaleString()}K donations)`;
-  const poolNote =
-    `(Assumes ${pct(checkRate)} of donors approve at a ${pct(adminWeighting)} rate)`;
+    `~${(donationCount / 1000).toLocaleString()}K donations)`;
+  const poolNote = `(Assumes ${pct(checkRate)} of donors approve at a ${pct(adminWeighting)} rate)`;
 
   // --- Entrance animation (matches the FeeStructure house style) ------
   // The cards ship hidden via CARD_HIDDEN rather than being hidden here, so
@@ -254,87 +252,88 @@ export function SavingCalculator({}: SavingCalculatorProps) {
   return (
     <div className="col w-100" ref={containerRef}>
       {/* --- Controls --- */}
-      <div
-        style={{ background: "var(--accent-sm)" }}
-        className="row shrink-col between gap-20 mb-20 boxed p-20 outline-accent"
-      >
+      <div className="mb-20 boxed  outline-accent" style={{ background: "var(--accent-sm)" }}>
+        <h2 className="textCenter pt-10 pb-10" style={{background: "#11111122", color: "var(--accent)"}} >Savings calculator</h2>
 
-        <div className="row w-100 between middle shrink-col gap-20">
-          <div className="col gap-10 w-100">
-            <label className="row middle gap-10 boxed p-5 shrink-col">
-              <p style={{ fontWeight: 600 }}>
-                Annual fundraising total
-              </p>
-                 <input
-                className="slider"
-                type="range"
-                min={SCALE_LOW_TOTAL}
-                max={SCALE_HIGH_TOTAL}
-                step={50_000}
-                value={clamp(
-                  annualTotal,
-                  SCALE_LOW_TOTAL,
-                  SCALE_HIGH_TOTAL,
-                )}
-                onChange={(e) => setAnnualTotal(+e.target.value)}
-                style={{
-                  minWidth: 120,
-                  flex: 1,
-                }}
-              />
-              <div
-                className="row middle"
-                style={{
-                  background: "var(--accent)",
-                  borderRadius: "var(--borderRadius)",
-                  color: "var(--bkg)",
-                }}
-              >
-                
-                <p className="pl-5" style={{ color: "var(--bkg)" }}>
-                  $
+        <div className="row shrink-col between gap-20 p-20">
+          <div className="row w-100 between middle shrink-col gap-20">
+            <div className="col gap-10 w-100">
+              <label className="row middle gap-10 boxed p-5 shrink-col">
+                <p style={{ fontWeight: 600 }}>
+                  Annual fundraising total
                 </p>
                 <input
-                  type="number"
-                  min={0}
-                  step={0.1}
-                  value={(annualTotal / 1_000_000).toFixed(1)}
-                  onChange={(e) =>
-                    setAnnualTotal(
-                      Math.max(0, +e.target.value) * 1_000_000,
-                    )
-                  }
+                  className="slider"
+                  type="range"
+                  min={SCALE_LOW_TOTAL}
+                  max={SCALE_HIGH_TOTAL}
+                  step={50_000}
+                  value={clamp(
+                    annualTotal,
+                    SCALE_LOW_TOTAL,
+                    SCALE_HIGH_TOTAL,
+                  )}
+                  onChange={(e) => setAnnualTotal(+e.target.value)}
                   style={{
-                    border: "none",
-                    background: "transparent",
-                    height: "auto",
-                    width: (annualTotal / 1_000_000).toFixed(1).length*15 + 10,
-                    fontWeight: 800,
-                    fontSize: "1.2rem",
-                    color: "var(--bkg)",
-                    outline: "none",
+                    minWidth: 120,
+                    flex: 1,
                   }}
                 />
-                <p className="pr-5" style={{ color: "var(--bkg)" }}>
-                  Million
+                <div
+                  className="row middle"
+                  style={{
+                    background: "var(--accent)",
+                    borderRadius: "var(--borderRadius)",
+                    color: "var(--bkg)",
+                  }}
+                >
+                  <p className="pl-5" style={{ color: "var(--bkg)" }}>
+                    $
+                  </p>
+                  <input
+                    type="number"
+                    min={0}
+                    step={0.1}
+                    value={(annualTotal / 1_000_000).toFixed(1)}
+                    onChange={(e) =>
+                      setAnnualTotal(
+                        Math.max(0, +e.target.value) * 1_000_000,
+                      )
+                    }
+                    style={{
+                      border: "none",
+                      background: "transparent",
+                      height: "auto",
+                      width:
+                        (annualTotal / 1_000_000).toFixed(1).length *
+                          15 +
+                        10,
+                      fontWeight: 800,
+                      fontSize: "1.2rem",
+                      color: "var(--bkg)",
+                      outline: "none",
+                    }}
+                  />
+                  <p className="pr-5" style={{ color: "var(--bkg)" }}>
+                    Million
+                  </p>
+                </div>
+              </label>
+              <div className="row middle gap-10 boxed p-5 shrink-wrap between">
+                <p>
+                  <strong>'Cover admin costs'</strong> toggle default
+                  state
                 </p>
-              </div>
-           
-            </label>
-            <div className="row middle gap-10 boxed p-5 shrink-wrap between">
-              <p >
-                <strong>'Cover admin costs'</strong> toggle default
-                state
-              </p>
                 <ToggleSwitch
                   on={coverCostsDefaultOn}
                   onChange={setCoverCostsDefaultOn}
                 />
+              </div>
             </div>
-          </div>
-          <div className="col end center w-50 shrink-col">
-            <h1>+{fmt(extraToCause/1000)}k</h1>
-            <p style={{ opacity: 0.7 }}>To your cause annually*</p>
+            <div className="col end center w-50 shrink-col">
+              <h1>+{fmt(extraToCause / 1000)}k</h1>
+              <p style={{ opacity: 0.7 }}>To your cause annually*</p>
+            </div>
           </div>
         </div>
       </div>
@@ -367,7 +366,11 @@ export function SavingCalculator({}: SavingCalculatorProps) {
                 label="Stripe fees"
                 amount={-stripeFees}
                 split={[
-                  { name: "Stripe", value: "100%", tooltip: stripeTip },
+                  {
+                    name: "Stripe",
+                    value: "100%",
+                    tooltip: stripeTip,
+                  },
                 ]}
                 faded
               />
@@ -393,7 +396,7 @@ export function SavingCalculator({}: SavingCalculatorProps) {
                     ),
                     tooltip:
                       `${fmt(transform.causeShareAmount)} back to you ` +
-                      `${poolNote}, `
+                      `${poolNote}, `,
                   },
                 ]}
               />
@@ -474,26 +477,27 @@ export function SavingCalculator({}: SavingCalculatorProps) {
         </div>
       </div>
 
-      <p className="textCenter mt-20" style={{ fontStyle: "italic", opacity: 0.6 }}>
-          *Estimate only. Assumes an average donation of ${" "}
-          <InlineNumber
-            value={avgDonation}
-            onChange={(v) => setAvgDonation(Math.max(0, v))}
-            step={10}
-            min={10}
-          />{" "}
-          and a{" "}
-          <InlineNumber
-            value={+(adminWeighting * 100).toFixed(1)}
-            onChange={(v) =>
-              setAdminWeighting(clamp(v, 0, 100) / 100)
-            }
-            step={0.5}
-            min={0}
-            max={100}
-            suffix="%"
-          />{" "}
-          admin costs weighting.
+      <p
+        className="textCenter mt-20"
+        style={{ fontStyle: "italic", opacity: 0.6 }}
+      >
+        *Estimate only. Assumes an average donation of ${" "}
+        <InlineNumber
+          value={avgDonation}
+          onChange={(v) => setAvgDonation(Math.max(0, v))}
+          step={10}
+          min={10}
+        />{" "}
+        and a{" "}
+        <InlineNumber
+          value={+(adminWeighting * 100).toFixed(1)}
+          onChange={(v) => setAdminWeighting(clamp(v, 0, 100) / 100)}
+          step={0.5}
+          min={0}
+          max={100}
+          suffix="%"
+        />{" "}
+        admin costs weighting.
       </p>
     </div>
   );
@@ -551,7 +555,7 @@ function CoverageRow({
   dark,
   faded,
 }: CoverageRowProps) {
-    const context:SharedContextProps = useOutletContext();
+  const context: SharedContextProps = useOutletContext();
 
   const color = dark ? "var(--txt)" : "var(--bkg)";
   const sign = amount < 0 ? "−" : "+";
@@ -581,8 +585,13 @@ function CoverageRow({
               <Tooltip
                 text={s.tooltip}
                 position="left"
-                wrapperStyle={{ display: "inline-block", }}
-                style={{ color: "var(--txt)", fontWeight: 500,zIndex: 100,maxWidth: context.inShrink ? 220 : 400 }}
+                wrapperStyle={{ display: "inline-block" }}
+                style={{
+                  color: "var(--txt)",
+                  fontWeight: 500,
+                  zIndex: 100,
+                  maxWidth: context.inShrink ? 220 : 400,
+                }}
               >
                 <strong
                   style={{
@@ -612,9 +621,7 @@ interface ToggleSwitchProps {
 
 function ToggleSwitch({ on, onChange }: ToggleSwitchProps) {
   return (
-    <div
-      className="row outline-secondary "
-    >
+    <div className="row outline-secondary ">
       {[true, false].map((state) => (
         <button
           key={String(state)}

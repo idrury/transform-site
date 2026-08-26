@@ -112,10 +112,18 @@ export default function DevelopmentRoute() {
     window.scrollTo({ top, behavior: "smooth" });
   }, [searchParams]);
 
-  // React player vars
+  // React player vars. It doesn't autoplay — it starts muted only so the
+  // first frame is never blocked, and the first manual play unmutes it,
+  // which the browser allows because that play came from a user gesture.
   const reactPlayer = useRef(null);
-  const [playerPlay, setPlayerPlay] = useState(true);
+  const [playerPlay, setPlayerPlay] = useState(false);
   const [playerMuted, setPlayerMuted] = useState(true);
+
+  const togglePlay = () => {
+    if (playerPlay) return setPlayerPlay(false);
+    setPlayerMuted(false);
+    setPlayerPlay(true);
+  };
 
   useGSAP(() => {
     gsap.registerPlugin(SplitText, ScrollTrigger);
@@ -170,130 +178,151 @@ export default function DevelopmentRoute() {
         }}
       />
       <div className="center col middle w-100">
+        {/* shrink-p-10 = the 10px mobile gutter, as padding on the section
+            rather than margins on the children that go w-100 below 1200px */}
         <div
-          className="col middle center"
+          className="col middle center shrink-p-10"
           style={{ minHeight: "90vh" }}
         >
-          <div
-            className="r-default absolute clip media-scrim media-blur-center"
-            style={{
-              top: 95,
-              left: 5,
-              right: 5,
-              height: "calc(100vh - 100px)",
-            }}
-          >
-            <ReactPlayer
-              src="https://hzfjmmakqwsmucxorhlb.supabase.co//storage/v1/object/public/transform/software_video.mp4"
-              ref={reactPlayer}
-              onClick={() => {
-                setPlayerMuted(!playerMuted);
-                !playerPlay && setPlayerPlay(true);
-              }}
-              className="media-cover r-default"
-              width="100%"
-              height="100%"
-              muted={playerMuted}
-              loop
-              playing={playerPlay}
-            />
-          </div>
-          <div className="row middle between w-100 gap-20 shrink-col">
-            <div
-              className="col gap-20 middle shrink-col mb-20 pb-20"
-              style={{ zIndex: 10 }}
-            >
-              <AnimatedDots autoPlayDelay={3000} />
+          <div className="col gap-20 middle w-100">
+            <AnimatedDots autoPlayDelay={3000} />
 
-              <div className="pl-20 pr-20 col middle gap-10">
-                <h1
-                  className="shrink-col textCenter w-75"
-                  style={{ color: "var(--accent-sm)" }}
+            <div className="col middle gap-10 w-100">
+              <h1
+                className="textCenter w-100"
+                style={{ color: "var(--txt)", letterSpacing: -1.5 }}
+              >
+                Own your{" "}
+                <strong style={{ fontWeight: 600 }}>
+                  fundraising platform
+                </strong>
+                ,
+              </h1>
+              <h1
+                className="textCenter w-100"
+                style={{ color: "var(--txt)", letterSpacing: -1.5 }}
+              >
+                Maximise your mission.
+              </h1>
+              {/* <p
+                className="textCenter w-75 mt-10 mb-10"
+                style={{ color: "var(--txt)" }}
+              >
+                <b style={{ fontWeight: 600 }}>
+                  Custom fundraising platforms
+                </b>{" "}
+                for Australian charities that redirect third-party
+                fees back{" "}
+                <b style={{ fontWeight: 600 }}>to your cause</b>.
+              </p> */}
+            </div>
+            <div className="w-50">
+              <div className="row gap-10 shrink-col">
+                <button
+                  className="accent row center gap-5 middle w-50"
+                  onClick={() =>
+                    setSearchParams({ section: "savings" })
+                  }
                 >
-                  Own your{" "}
-                  <strong style={{ fontWeight: 600 }}>
-                    fundraising platform
-                  </strong>
-                  . Maximise your mission.
-                </h1>
-                <p
-                  className="textCenter w-75 mt-10 mb-10"
-                  style={{ color: "var(--accent-sm)" }}
+                  <Icon name="arrow-down" size={16} />
+                  What could my org save?
+                </button>
+
+                <a
+                  className="outline-secondary row middle gap-5 w-50 center"
+                  role="button"
+                  style={{
+                    color: "var(--accent)",
+                    background: "none",
+                  }}
+                  href={CONTACT.bookingUrl}
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  <b style={{ fontWeight: 600 }}>
-                    Custom fundraising platforms
-                  </b>{" "}
-                  for Australian charities that redirect third-party
-                  fees back{" "}
-                  <b style={{ fontWeight: 600 }}>to your cause</b>.
-                </p>
+                  <Icon name="link" size={16} color="var(--accent)" />
+                  Book a free discovery call
+                </a>
               </div>
-              <div className="w-50">
-                <div className="row gap-10 shrink-col ml-20 mr-20 ">
-                  <button
-                    className="accent row center gap-5 middle w-50"
-                    onClick={() =>
-                      setSearchParams({ section: "savings" })
-                    }
-                  >
-                    <Icon name="arrow-down" size={16} />
-                    What could my org save?
-                  </button>
+            </div>
 
-                  <a
-                    className="outline-secondary row middle gap-5  w-50 center                 "
-                    role="button"
-                    style={{
-                      color: "var(--accent-sm)",
-                      background: "none",
-                    }}
-                    href={CONTACT.bookingUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <Icon
-                      name="link"
-                      size={16}
-                      color="var(--accent-sm)"
-                    />
-                    Book a free discovery call
-                  </a>
+            <div
+              style={{ background: "var(--accent)" }}
+              className=" w-75 boxed outline-accent col middle gap-10"
+            >
+              <div className="m-10">
+                <div className="media-16-9 clip r-default relative">
+                  {!playerPlay && (
+                    <div className="overlay-center">
+                      <button
+                        className="bkg-none fade-sm"
+                        aria-label="Play video"
+                        onClick={togglePlay}
+                      >
+                        <Icon
+                          name="play"
+                          size={48}
+                          color="#ffffff"
+                          className="glyph-shadow"
+                        />
+                      </button>
+                    </div>
+                  )}
+                  <ReactPlayer
+                    src="https://hzfjmmakqwsmucxorhlb.supabase.co/storage/v1/object/public/transform/fundrasing_ad_1_subs_720.mp4"
+                    ref={reactPlayer}
+                    onClick={togglePlay}
+                    className="media-cover r-default"
+                    width="100%"
+                    height="100%"
+                    muted={playerMuted}
+                    loop
+                    playing={playerPlay}
+                  />
                 </div>
               </div>
+              <p
+                className="textCenter mb-10"
+                style={{ color: "var(--accent-sm)" }}
+              >
+                Third-party platforms nudge your donors 'to cover
+                costs'. On a platform you own, that generosity{" "}
+                <b style={{ fontWeight: 800 }}>furthers your cause</b>
+                .
+              </p>
             </div>
           </div>
         </div>
+        <div
+          className="horizontal-line  w-100"
+          style={{ margin: "60px 0 20px 0" }}
+        />
 
+        <h2
+          className="textCenter accent m-10"
+          style={{ color: "var(--txt)", letterSpacing: -1.5 }}
+        >
+          Sites that help Aussie non-profits{" "}
+          <strong>decrease overheads</strong>,{" "}
+          <strong>increase donations</strong> and{" "}
+          <strong>deliver great experiences</strong>.
+        </h2>
+
+        <div
+          className="horizontal-line  w-100"
+          style={{ margin: "20px 0 20px 0" }}
+        />
         <div className="ml-20 mr-20  col middle">
           <div
-            className="w-75 mb-20 pb-20 mt-20 pt-20 gap-10 col middle center"
+            className="w-100 mb-20 pb-20 mt-20 pt-20 gap-10 col middle center"
             ref={savingsRef}
           >
-            <h2
-              className="textCenter accent mb-10 w-75"
-              style={{ color: "var(--txt)" }}
-            >
-              We're on a mission to help Aussie non-profits{" "}
-              <strong>decrease overheads, increase donations and deliver great experiences.</strong>
-            </h2>
-            <p
-              className="textCenter accent mb-10 w-75"
-              style={{ color: "var(--txt)" }}
-            >
-              Third-party platforms nudge your donors 
-              'to cover costs'. On a platform you own, that generosity{" "}
-              <strong style={{ color: "var(--accent)" }}>
-                furthers your cause
-              </strong>
-              .
-            </p>
             <SavingCalculator />
           </div>
         </div>
       </div>
       <div
         className="horizontal-line mediumFade "
-        style={{ top: -30, marginTop: 50, marginBottom: 30 }}
+        style={{ top: -50, marginTop: 50, marginBottom: -20 }}
       />
       {/* w-100 (not margins) so this column has a definite width — otherwise it
           shrink-wraps the grid and the whole panel resizes per category */}
@@ -332,7 +361,6 @@ export default function DevelopmentRoute() {
           </b>{" "}
         </h2>
 
-       
         <SoftwareProjects />
         <div className="col middle center m-20">
           <Carousel
@@ -355,11 +383,10 @@ export default function DevelopmentRoute() {
             ))}
           </Carousel>
         </div>
-           <div className="col middle center m-10 ">
+        <div className="col middle center m-10 ">
           <WorkedWith />
         </div>
       </div>
-    
 
       <div
         className="horizontal-line mediumFade mt-20 mb-20 ot02"
@@ -378,7 +405,6 @@ export default function DevelopmentRoute() {
       <div className="w-100 col middle">
         <ContactTab headerText="Still got questions?" />
       </div>
-      
 
       <button
         className={`accent row middle center gap-5 floating-cta s-10 outline ${
